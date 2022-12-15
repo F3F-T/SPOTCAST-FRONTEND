@@ -1,0 +1,3 @@
+이 폴더에 client component를 짜시면 됩니다!
+
+https://beta.nextjs.org/docs/rendering/server-and-client-components - 틈틈이 참고하면 좋을 공식 docs
