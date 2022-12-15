@@ -1,4 +1,7 @@
 import React from "react";
+import styles from "../styles/Input.module.css"
+
+// 부모 컴포넌트 = 클라이언트 컴포넌트
 
 interface Input {
   value: string;
@@ -23,15 +26,15 @@ const Input = ({
     onChange(e);
   }; */
   return (
-    <div className="input">
+    <div className={styles.container}>
       <label
         htmlFor={label}
-        /* className={hiddenLabel ? "display-none" : ""} */
-        style={hiddenLabel ? { display: "none" } : {}}
+        className={hiddenLabel ? styles.hidden : styles.label}
       >
         {label}
       </label>
       <input
+      className={styles.input}
         type={type}
         id={label}
         value={value}

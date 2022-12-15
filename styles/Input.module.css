@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+}
+
+.label {
+    margin-bottom: 0.8rem;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+} /* globals.css로 빼서 공통클래스로 사용하기 */
+
+.input {
+    border: 1px solid #CED3D6;
+    border-radius: 5px;
+    padding: 0.8rem;
+    font-size: inherit;
+    max-width: 40ch;
+    /*     outline-color: rgba(255, 255, 0, 0.359); */
+}
