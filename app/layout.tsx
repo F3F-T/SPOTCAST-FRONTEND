@@ -1,3 +1,6 @@
+
+import Gnb from "./Gnb";
+
 export default function RootLayout({
   children,
 }: {
@@ -6,7 +9,10 @@ export default function RootLayout({
   return (
     <html>
       <head></head>
-      <body>{children}</body>
+      <body>
+      <Gnb />
+        {children}
+        </body>
     </html>
   );
 }
