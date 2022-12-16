@@ -52,6 +52,7 @@ const Wrapper = styled.button<{
 }>`
   ${({ size, disabled, buttonType, hasPadding }) => `
    padding:  ${
+     // eslint-disable-next-line no-nested-ternary
      size === "large"
        ? "1.2rem 20rem"
        : size === "medium"
@@ -63,6 +64,7 @@ const Wrapper = styled.button<{
   cursor: ${disabled ? "default" : "pointer"};
   color: ${buttonType === "text" ? GREY[500] : WHITE};
   background-color: ${
+    // eslint-disable-next-line no-nested-ternary
     buttonType === "text" ? WHITE : buttonType === "primary" ? INDIGO : MUSTARD
   };
   ${
