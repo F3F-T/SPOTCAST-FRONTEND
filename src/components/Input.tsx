@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../styles/Input.module.css"
+import styles from "../styles/Input.module.css";
 
 // 부모 컴포넌트 = 클라이언트 컴포넌트
 
@@ -34,7 +34,7 @@ function InputField({
         {label}
       </label>
       <input
-      className={styles.input}
+        className={styles.input}
         type={type}
         id={label}
         value={value}
