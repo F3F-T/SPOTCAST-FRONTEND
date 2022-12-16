@@ -10,7 +10,7 @@ interface Input {
   required?: boolean;
 }
 
-const Input = ({
+function InputField({
   value,
   type,
   label,
@@ -18,7 +18,7 @@ const Input = ({
   onChange,
   hiddenLabel,
   required,
-}: Input) => {
+}: Input) {
   /*   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e);
   }; */
@@ -36,11 +36,11 @@ const Input = ({
         id={label}
         value={value}
         required={required && true}
-        placeholder={hiddenLabel ? label : placeholder ? placeholder : ""}
+        placeholder={hiddenLabel ? label : placeholder || ""}
         onChange={onChange}
       />
     </div>
   );
-};
+}
 
-export default Input;
+export default InputField;
