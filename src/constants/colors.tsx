@@ -23,6 +23,8 @@ export const GREEN = {
 };
 
 export const MUSTARD = "#FEC107";
+export const MUSTARD_DARK = "#EAB30B";
 export const INDIGO = "#020088";
+export const INDIGO_DARK = "#04026D";
 // export const MUSTARD_MUTED: "#";
 // export const INDIGO_MUTED: "#";

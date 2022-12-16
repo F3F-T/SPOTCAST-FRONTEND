@@ -2,7 +2,14 @@
 
 import React from "react";
 import styled from "@emotion/styled";
-import { INDIGO, MUSTARD, GREY, WHITE } from "../constants/colors";
+import {
+  INDIGO,
+  INDIGO_DARK,
+  MUSTARD,
+  MUSTARD_DARK,
+  GREY,
+  WHITE,
+} from "../../constants/colors";
 
 export type ButtonSize = "large" | "medium" | "small";
 export type ButtonType = "primary" | "secondary" | "text";
@@ -13,8 +20,6 @@ export type ButtonProps = {
   title: string;
   disabled?: boolean;
   onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
-  className: string;
-  hasPadding?: boolean;
 };
 
 export default function Button({
@@ -23,11 +28,7 @@ export default function Button({
   title,
   onClick,
   disabled = false,
-  className,
-  hasPadding,
 }: ButtonProps) {
-  const HAS_PADDING = hasPadding || type !== "text";
-
   return (
     //   eslint-disable-next-line @typescript-eslint/no-use-before-define
     <Wrapper
@@ -35,8 +36,6 @@ export default function Button({
       buttonType={type}
       onClick={onClick}
       disabled={disabled}
-      className={className}
-      hasPadding={HAS_PADDING}
     >
       {title}
     </Wrapper>
@@ -48,10 +47,10 @@ const Wrapper = styled.button<{
   size: ButtonSize;
   disabled: boolean;
   buttonType: ButtonType;
-  hasPadding: boolean;
 }>`
-  ${({ size, disabled, buttonType, hasPadding }) => `
+  ${({ size, disabled, buttonType }) => `
    padding:  ${
+     // eslint-disable-next-line no-nested-ternary
      size === "large"
        ? "1.2rem 20rem"
        : size === "medium"
@@ -59,16 +58,19 @@ const Wrapper = styled.button<{
        : "1rem 2rem"
    };
   font-size: ${{ large: "2rem", medium: "1,7rem", small: "1.2rem" }[size]};
-  font-weight: ${{ primary: "600", secondary: "600", text: "400" }[buttonType]};
   cursor: ${disabled ? "default" : "pointer"};
   color: ${buttonType === "text" ? GREY[500] : WHITE};
   background-color: ${
-    buttonType === "text" ? WHITE : buttonType === "primary" ? INDIGO : MUSTARD
+    { primary: INDIGO, secondary: MUSTARD, text: WHITE }[buttonType]
   };
   ${
     !disabled &&
     `&:hover {
-      ${buttonType === "primary" ? "background-color" : null}: ${INDIGO}; 
+      background-color: ${
+        { primary: INDIGO_DARK, secondary: MUSTARD_DARK, text: WHITE }[
+          buttonType
+        ]
+      };
       border-color: ${buttonType === "text" ? GREY[600] : null};
       color:  ${buttonType === "text" ? GREY[600] : null};
     }`
