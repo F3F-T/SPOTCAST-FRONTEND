@@ -17,4 +17,5 @@ export const StyledLine = styled.div`
     width: ${width};
 `}
   margin: 0 auto;
+  display: block;
 `;
