@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-import { GREY } from "../constants/colors";
+import { GREY } from "../../constants/colors";
 
 export default function Carousel() {
   // 이미지 경로
@@ -17,7 +17,6 @@ export default function Carousel() {
   const newItemWidth = 1060;
   const transitionStyle = `transform 500ms ease 0s`;
   const [slideTransition, setTransition] = useState(transitionStyle);
-
   const SIZE_BOTH_ENDS = 2;
   const [currentIndex, setCurrentIndex] = useState(SIZE_BOTH_ENDS);
 
@@ -116,7 +115,7 @@ const SliderWrapper = styled.div`
   height: 30rem;
 `;
 
-const StyledSlider = styled.div`
+const StyledSlider = styled.div<{ transition: string }>`
   ${({ transition }) => `
 transition:  ${transition};
 `}
@@ -130,7 +129,7 @@ transition:  ${transition};
 `;
 
 const SliderContent = styled.div`
-  display: inline-block;
+  /* display: inline-block; */
   position: relative;
   height: 100%;
   padding: 0 12px;
@@ -141,6 +140,9 @@ const SliderContent = styled.div`
     border-radius: 4px;
     object-fit: cover;
     max-height: 300px;
+    &:hover {
+      cursor: pointer;
+    }
   }
 `;
 
@@ -153,6 +155,9 @@ const SliderFakerImage = styled.div`
   height: 100%;
   border-radius: 4px;
   object-fit: cover;
+  &:hover {
+    cursor: pointer;
+  }
   /* max-height: 30rem; */
 `;
 const LeftButton = styled.button`
@@ -169,6 +174,9 @@ const LeftButton = styled.button`
   border: none;
   font-size: 2rem;
   color: ${GREY[800]};
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const RightButton = styled.button`
@@ -185,4 +193,7 @@ const RightButton = styled.button`
   border: none;
   font-size: 2rem;
   color: ${GREY[800]};
+  &:hover {
+    cursor: pointer;
+  }
 `;
