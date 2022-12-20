@@ -1,40 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
 // import { useNavigate } from "react-router-dom";
-import Line from "./common/line";
-import { GREY } from "../constants/colors";
-
-export default function Footer() {
-  //   const navigate = useNavigate();
-
-  return (
-    <>
-      <Container />
-      <Line width="100%" color={GREY[300]} />
-      <Container>
-        <FooterWrapper>
-          <Upper>
-            <Title>F3F</Title>
-            <ButtonsWrapper>
-              <Button>GitHub</Button>|<Button>FAQ</Button>|
-              <Button>Private Policy</Button>|<Button>Terms</Button>
-            </ButtonsWrapper>
-          </Upper>
-          <Line width="100%" color={GREY[300]} />
-          <Lower>
-            <Team>(주) F3F | Team : f3fdev2</Team>
-            <Contact>
-              서울특별시 은평구 연서로 19길
-              <br />
-              Contact: 010-2543-6064 | dbscogus4467@naver.com
-            </Contact>
-            <Copyright>@ 2022 All rights reserved</Copyright>
-          </Lower>
-        </FooterWrapper>
-      </Container>
-    </>
-  );
-}
+import Line from "../common/line";
+import { GREY } from "../../constants/colors";
 
 const Container = styled.div`
   font-family: Pretendard;
@@ -110,3 +78,35 @@ const Copyright = styled.div`
   font-size: 1.6rem;
   text-align: end;
 `;
+
+export default function Footer() {
+  //   const navigate = useNavigate();
+
+  return (
+    <>
+      <Container />
+      <Line width="100%" color={GREY[300]} />
+      <Container>
+        <FooterWrapper>
+          <Upper>
+            <Title>F3F</Title>
+            <ButtonsWrapper>
+              <Button>GitHub</Button>|<Button>FAQ</Button>|
+              <Button>Private Policy</Button>|<Button>Terms</Button>
+            </ButtonsWrapper>
+          </Upper>
+          <Line width="100%" color={GREY[300]} />
+          <Lower>
+            <Team>(주) F3F | Team : f3fdev2</Team>
+            <Contact>
+              서울특별시 은평구 연서로 19길
+              <br />
+              Contact: 010-2543-6064 | dbscogus4467@naver.com
+            </Contact>
+            <Copyright>@ 2022 All rights reserved</Copyright>
+          </Lower>
+        </FooterWrapper>
+      </Container>
+    </>
+  );
+}
