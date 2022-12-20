@@ -5,7 +5,7 @@ export type BadgeVariant = "mustard" | "indigo" | "grey";
 export type BadgeSize = "large" | "medium" | "small";
 
 export interface BadgeProps {
-  children: string;
+  label: string;
   variant?: BadgeVariant;
   size?: BadgeSize;
 }

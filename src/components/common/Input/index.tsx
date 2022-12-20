@@ -15,7 +15,7 @@ function Input({
   required = false,
   size = 35,
   color = "light",
-  onChange,
+  onChange
 }: InputProps) {
   return (
     <Container size={size} labelType={labelType} color={color}>
