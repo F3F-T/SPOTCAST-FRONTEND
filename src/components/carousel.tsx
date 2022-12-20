@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { GREY } from "../constants/colors";
-import Button from "./common/button";
 
 export default function Carousel() {
   // 이미지 경로
