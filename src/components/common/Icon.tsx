@@ -1,22 +1,20 @@
 import React from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import styled from "@emotion/styled";
-import ICONS from "../../constants/icons"
+import icons from "../../constants/icons";
 
 interface iconProps {
-  className: string; 
+  className: string;
   size?: string;
   color?: string;
 }
 
-const Icon = ({ className, size = "" , color }: iconProps) => {
-  const Wrapper = styled.i<{
-    size: string;
-  }>`
-    font-size: ${size};
-    color: ${color};
-  `;
-  return <Wrapper className={ICONS[className]} size={size}></Wrapper>;
+const Icon = ({ className, size = "", color }: iconProps) => {
+  return (
+    <i
+      className={icons[className]}
+      style={{ fontSize: size, color: color }}
+    ></i>
+  );
 };
 
 export default Icon;
