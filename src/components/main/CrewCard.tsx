@@ -23,7 +23,7 @@ const CrewCard = ({
   bookmarks,
   bookmarked,
 }: CrewCardProps) => {
-  const ContainerWrapper = styled.div<{}>`
+  const Wrapper = styled.div<{}>`
     display: flex;
     flex-direction: column;
     width: 19.5rem;
@@ -66,7 +66,7 @@ const CrewCard = ({
   `;
 
   return (
-    <ContainerWrapper>
+    <Wrapper>
       <div className="info">
         <p className="content">{content}</p>
         <p className="duration">
@@ -95,7 +95,7 @@ const CrewCard = ({
           {bookmarks}
         </span>
       </div>
-    </ContainerWrapper>
+    </Wrapper>
   );
 };
 
