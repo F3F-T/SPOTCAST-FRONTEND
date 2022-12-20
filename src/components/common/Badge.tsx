@@ -6,13 +6,13 @@ type BadgeVariant = "mustard" | "indigo" | "grey";
 type BadgeSize = "large" | "medium" | "small";
 
 interface BadgeProps {
-  children: string;
+  label: string;
   variant?: BadgeVariant;
   size?: BadgeSize;
 }
 
 const Badge = ({
-  children,
+  label,
   variant = "indigo",
   size = "medium",
 }: BadgeProps) => {
@@ -35,7 +35,7 @@ const Badge = ({
 
   return (
     <Wrapper variant={variant} size={size}>
-      {children}
+      {label}
     </Wrapper>
   );
 };
