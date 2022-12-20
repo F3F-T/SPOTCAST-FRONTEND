@@ -16,7 +16,7 @@ export type ButtonTheme = "primary" | "secondary" | "tertiary";
 export type ButtonProps = {
   size?: ButtonSize;
   theme?: ButtonTheme;
-  title: string;
+  title?: string;
   width?: string;
   disabled?: boolean;
   onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
