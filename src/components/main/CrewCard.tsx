@@ -4,25 +4,26 @@ import Badge from "../common/Badge";
 import Icon from "../common/Icon";
 import { MUSTARD, GREY, BLACK } from "../../constants/colors";
 
-type BadgeType = "profit" | "none-profit";
+//얘 서버컴포넌트로 만들수 있지 않나? 글고 인터페이스들 모아놓고 export 할수 있게 해야할듯
 
-interface CrewCardProps {
-  badge: BadgeType;
-  duration: number;
+interface CrewPost {
+  id: number;
+  category: string;
+  profitable: boolean;
   content: string;
+  duration: number;
+  bookmarked: boolean;
   views: number;
-  bookmarks: number; //남들이 스크랩 한 수
-  bookmarked: boolean; //내가 스크랩 했는지 아닌지
+  bookmarks: number;
 }
-
 const CrewCard = ({
-  badge,
+  profitable,
   duration,
   content,
   views,
   bookmarks,
   bookmarked,
-}: CrewCardProps) => {
+}: CrewPost) => {
   const Wrapper = styled.div<{}>`
     display: flex;
     flex-direction: column;
@@ -75,7 +76,7 @@ const CrewCard = ({
             {duration === 0 ? "없음" : "D-" + duration}
           </span>
         </p>
-        {badge === "profit" ? (
+        {profitable ? (
           <Badge variant="mustard" size="medium" label="수익성" />
         ) : (
           <Badge variant="indigo" size="medium" label="비수익성" />
