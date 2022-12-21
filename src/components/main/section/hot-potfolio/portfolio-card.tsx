@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { GREY } from "../../../constants/colors";
+import { GREY } from "../../../../constants/colors";
 
 export type UserType = {
   name: string;

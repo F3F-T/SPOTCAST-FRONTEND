@@ -1,22 +1,20 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React from "react";
 import styled from "@emotion/styled";
-import { GREY } from "../../../constants/colors";
+import { GREY } from "../../../../constants/colors";
 import PortfolioCard from "./portfolio-card";
 import users from "./fakeUser";
 
 export default function MainArticle1() {
+  const CategoryList = ["전체보기", "음악", "연기", "연출", "모델", "+"];
   return (
     <Container>
       <ArticleWrapper>
         <Title>HOT 포트폴리오 📸</Title>
         <CategoryWrapper>
-          <Category>전체보기</Category>
-          <Category>음악</Category>
-          <Category>연기</Category>
-          <Category>연출</Category>
-          <Category>모델</Category>
-          <Category>+</Category>
+          {CategoryList.map(item => {
+            return <Category>{item}</Category>;
+          })}
         </CategoryWrapper>
         <CardWrapper>
           {users.map(user => {
