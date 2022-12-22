@@ -1,6 +1,4 @@
-"use client";
-
-import React from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import {
   INDIGO,
@@ -19,7 +17,7 @@ export type ButtonProps = {
   title?: string;
   width?: string;
   disabled?: boolean;
-  onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  onClick: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   // iconOnly?: boolean;
 };
 
@@ -31,12 +29,19 @@ export default function Button({
   disabled = false,
   onClick,
 }: ButtonProps) {
+  const [isActive, setIsActive] = useState(false);
+
+  const handleClick = () => {
+    setIsActive(!isActive);
+    onClick();
+  };
+
   return (
     //   eslint-disable-next-line @typescript-eslint/no-use-before-define
     <Wrapper
       size={size}
       ButtonTheme={theme}
-      onClick={onClick}
+      onClick={handleClick}
       disabled={disabled}
       width={width!}
     >
