@@ -31,9 +31,9 @@ export default function Button({
 }: ButtonProps) {
   const [isActive, setIsActive] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     setIsActive(!isActive);
-    onClick();
+    onClick(e);
   };
 
   return (
