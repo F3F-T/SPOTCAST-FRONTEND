@@ -1,5 +1,5 @@
 import React from "react";
-import CrewStack from "../src/components/main/CrewStack";
+import CrewStack from "../src/components/main/section/find-crew/CrewStack";
 
 const response = {
   all: [
@@ -314,21 +314,20 @@ const response = {
       profitable: true,
     },
   ],
-};
+};/* mock response */
 
 const FindCrew = /* async */ () => {
-  /*   const fetchFindCrew = async () => {
+/*   const fetchFindCrew = async () => {
     const response = await fetch("www.whatever.api/dashboard/fetch");
     const crewDashboard = await response.json();
     return crewDashboard;
   };
 
-  const response = await fetchFindCrew(); */
-
+  const response = await fetchFindCrew();
+   */
   return (
     <article className="find-crew">
       <h3>함께 작업할 사람을 찾아보세요!</h3>
-      {/* 자 이제부터 클라이언트 컴포넌트를 만들어야함 왜냐? 그냥 맵 돌리면 안대고 저중에 멀 맵 돌릴지 스테이트로 정해야하거든여 돌려돌려 돌림판~~ */}
       <CrewStack data={response} />
     </article >
   );
