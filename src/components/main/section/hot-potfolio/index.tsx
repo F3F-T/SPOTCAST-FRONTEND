@@ -80,7 +80,7 @@ const Category = styled.button`
   border-radius: 0.5rem;
   border: none;
   text-align: center;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.5rem;
   color: white;
   &:hover {
@@ -96,7 +96,7 @@ const StyledButton = styled.button`
   background-color: ${GREY[800]};
   border-radius: 6rem;
   color: white;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.7rem;
   text-align: center;
   &:hover {

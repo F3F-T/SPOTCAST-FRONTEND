@@ -52,7 +52,7 @@ const ArticleWrapper = styled.div`
 
 const Title = styled.div`
   font-size: 2.2rem;
-  font-weight: 750;
+  font-weight: 700;
   text-align: start;
 `;
 
