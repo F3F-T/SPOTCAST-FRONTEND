@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "./button";
+import Button from ".";
 
 export default {
   title: "components/Button", // 스토리북에서 보여질 그룹과 경로를 명시

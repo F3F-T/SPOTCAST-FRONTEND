@@ -1,6 +1,6 @@
 import React from "react";
-import Line from "./line";
-import { GREY } from "../../constants/colors";
+import Line from ".";
+import { GREY } from "../../../constants/colors";
 
 export default {
   title: "components/Line", // 스토리북에서 보여질 그룹과 경로를 명시
