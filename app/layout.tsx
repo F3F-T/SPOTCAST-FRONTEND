@@ -1,4 +1,7 @@
+"use client";
+
 import "../styles/globals.css";
+import Header from "../src/components/main/Header";
 
 export default function RootLayout({
   children,
@@ -7,8 +10,13 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <head />
-      <body>{children}</body>
+      <head>
+        <title>SPOTCAST</title>
+      </head>
+      <body>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
