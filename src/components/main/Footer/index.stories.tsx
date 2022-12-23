@@ -1,5 +1,5 @@
 import React from "react";
-import Footer from "./footer";
+import Footer from ".";
 
 export default {
   title: "components/Footer", // 스토리북에서 보여질 그룹과 경로를 명시

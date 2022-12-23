@@ -1,5 +1,5 @@
 import React from "react";
-import Carousel from "./carousel";
+import Carousel from ".";
 
 export default {
   title: "components/Carousel", // 스토리북에서 보여질 그룹과 경로를 명시

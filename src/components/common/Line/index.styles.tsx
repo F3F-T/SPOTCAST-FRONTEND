@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "@emotion/styled";
 
 export type LineProps = {
@@ -8,7 +7,7 @@ export type LineProps = {
   width: string;
 };
 
-export const StyledLine = styled.div<{ color: string; width: string }>`
+const StyledLine = styled.div<{ color: string; width: string }>`
   ${({ color, width }) => `
     border-bottom: 0.1rem solid ${color};
     width: ${width};
@@ -17,6 +16,4 @@ export const StyledLine = styled.div<{ color: string; width: string }>`
   display: block;
 `;
 
-export default function Line({ color, width }: LineProps) {
-  return <StyledLine color={color} width={width} />;
-}
+export { StyledLine };
