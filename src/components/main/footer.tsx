@@ -33,7 +33,6 @@ const Lower = styled.div`
   background-color: WHITE;
   display: block;
   font-size: 1.2rem;
-  font-weight: 500;
 `;
 const Team = styled.div`
   margin-top: 2rem;
@@ -52,7 +51,6 @@ const ButtonsWrapper = styled.div`
   margin-left: 5rem;
   font-size: 1.5rem;
   font-family: Pretendard;
-  font-weight: 500;
 `;
 
 const Button = styled.button`
@@ -61,7 +59,6 @@ const Button = styled.button`
   height: 2rem;
   border: none;
   font-size: 1.5rem;
-  font-weight: 500;
   &:hover {
     cursor: pointer;
   }

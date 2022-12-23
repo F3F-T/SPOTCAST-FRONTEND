@@ -101,7 +101,7 @@ export default function Carousel() {
 const Title = styled.div`
   width: 100%;
   font-size: 2.2rem;
-  font-weight: 750;
+  font-weight: 700;
   text-align: center;
   margin-top: 3rem;
   margin-bottom: 3rem;
