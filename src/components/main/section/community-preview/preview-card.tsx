@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import Line from "../../../common/line";
+import Line from "../../../common/Line";
 import { GREY } from "../../../../constants/colors";
 
 const Container = styled.div`
