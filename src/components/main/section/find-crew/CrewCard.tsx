@@ -14,73 +14,64 @@ interface CrewPost {
   views: number;
   bookmarks: number;
 }
-
-interface Props extends CrewPost {}
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 19.5rem;
-`;
-
-const Info = styled.div`
-  padding: 2.5rem 1.4rem;
-  background-color: ${GREY[100]};
-  border-radius: 0.5rem;
-
-  .content {
-    color: ${BLACK};
-    font-size: 1.5rem;
-    overflow: hidden;
-    white-space: normal;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
-    min-height: 9.2rem;
-  }
-
-  .duration {
-    color: ${GREY[600]};
-    font-size: 1.3rem;
-
-    .number {
-      font-weight: bold;
-      margin-left: 0.8rem;
-    }
-  }
-`;
-
-const Stats = styled.div`
-  font-size: 1.5rem;
-  color: ${GREY[600]};
-  align-self: flex-end;
-  margin-top: 0.8rem;
-  display: flex;
-  gap: 1rem;
-  margin-right: 1rem;
-
-  i {
-    margin-right: 0.4rem;
-  }
-`;
-
-const CrewCard: React.FC<Props> = ({
+function CrewCard({
   profitable,
   duration,
   content,
   views,
   bookmarks,
   bookmarked,
-}) => {
+}: CrewPost) {
+  const Wrapper = styled.div<{}>`
+    display: flex;
+    flex-direction: column;
+    width: 19.5rem;
+    .info {
+      padding: 2.5rem 1.4rem;
+      background-color: ${GREY[100]};
+      border-radius: 0.5rem;
+      .content {
+        color: ${BLACK};
+        font-size: 1.5rem; //p tag 기본 마진 없애기 (css reset)
+        overflow: hidden;
+        white-space: normal;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        min-height: 9.2rem;
+      }
+      .duration {
+        color: ${GREY[600]};
+        font-size: 1.3rem;
+        .number {
+          font-weight: bold;
+          margin-left: 0.8rem;
+        }
+      }
+    }
+    .stats {
+      font-size: 1.5rem;
+      color: ${GREY[600]};
+      align-self: flex-end;
+      margin-top: 0.8rem;
+      display: flex;
+      gap: 1rem;
+      margin-right: 1rem;
+      i {
+        margin-right: 0.4rem;
+      }
+    }
+  `;
+
   return (
     <Wrapper>
-      <Info className="info">
+      <div className="info">
         <p className="content">{content}</p>
         <p className="duration">
           <span>모집 마감일</span>
           <span className="number">
-            {duration === 0 ? "없음" : "D-" + duration}
+            {duration === 0 ? "없음" : `D-${duration}`}
           </span>
         </p>
         {profitable ? (
@@ -88,8 +79,8 @@ const CrewCard: React.FC<Props> = ({
         ) : (
           <Badge variant="indigo" size="medium" label="비수익성" />
         )}
-      </Info>
-      <Stats className="stats">
+      </div>
+      <div className="stats">
         <span>
           <Icon className="eye" />
           {views}
@@ -102,9 +93,9 @@ const CrewCard: React.FC<Props> = ({
           )}
           {bookmarks}
         </span>
-      </Stats>
+      </div>
     </Wrapper>
   );
-};
+}
 
 export default CrewCard;

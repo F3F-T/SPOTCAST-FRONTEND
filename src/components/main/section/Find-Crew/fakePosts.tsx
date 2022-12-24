@@ -1,4 +1,4 @@
-interface CrewPost {
+export interface CrewPost {
   id: number;
   category: string;
   profitable: boolean;
@@ -13,7 +13,7 @@ interface CrewDashboard {
   [index: string]: CrewPost[];
 }
 
-const posts: CrewDashboard = {
+export const posts: CrewDashboard = {
   all: [
     {
       id: 1,
@@ -327,5 +327,3 @@ const posts: CrewDashboard = {
     },
   ],
 };
-
-export default posts;
