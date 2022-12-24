@@ -18,10 +18,10 @@ export interface InputProps {
 
 const Container = styled.div<{
   color: ColorScheme;
-  LabelType: LabelType;
+  labelType: LabelType;
   size: number;
 }>`
-  ${() => `
+  ${({ color, labelType, size }) => `
       input, label {color: ${{ light: BLACK, dark: WHITE }[color]}}
       label {
         display: ${{ hidden: "none", default: "initial" }[labelType]};
