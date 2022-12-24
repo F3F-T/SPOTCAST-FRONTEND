@@ -7,6 +7,7 @@ export default function Button({
   title,
   width,
   disabled = false,
+  className,
   onClick,
 }: ButtonProps) {
   const [isActive, setIsActive] = useState(false);
@@ -24,6 +25,7 @@ export default function Button({
       onClick={handleClick}
       disabled={disabled}
       width={width!}
+      className={className}
     >
       {title}
     </Wrapper>

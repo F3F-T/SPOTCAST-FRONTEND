@@ -5,6 +5,7 @@ export type LabelType = "default" | "hidden";
 export type ColorScheme = "light" | "dark";
 
 export interface InputProps {
+  className?: string;
   value: string;
   type: string;
   label: string;
