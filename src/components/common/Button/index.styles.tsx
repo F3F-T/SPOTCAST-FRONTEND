@@ -11,6 +11,7 @@ import {
 export type ButtonSize = "large" | "medium" | "small";
 export type ButtonTheme = "primary" | "secondary" | "tertiary";
 export type ButtonProps = {
+  className?: string;
   size?: ButtonSize;
   theme?: ButtonTheme;
   title?: string;
@@ -21,6 +22,7 @@ export type ButtonProps = {
 };
 
 const Wrapper = styled.button<{
+  className?: string;
   size: ButtonSize;
   width: string;
   disabled: boolean;

@@ -13,7 +13,7 @@ export interface InputProps {
   required?: boolean;
   size?: number;
   color?: ColorScheme;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;  
 }
 
 const Container = styled.div<{

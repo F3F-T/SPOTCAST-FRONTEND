@@ -15,10 +15,16 @@ function Input({
   required = false,
   size = 35,
   color = "light",
-  onChange
+  className,
+  onChange,
 }: InputProps) {
   return (
-    <Container size={size} labelType={labelType} color={color}>
+    <Container
+      className={className}
+      size={size}
+      labelType={labelType}
+      color={color}
+    >
       <LabelWrapper>{label}</LabelWrapper>
       <InputWrapper
         value={value}
