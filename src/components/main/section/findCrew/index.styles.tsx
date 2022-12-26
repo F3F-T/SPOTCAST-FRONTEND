@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import Button from "../../../common/Button";
 
 export const ArticleContainer = styled.article`
-  width: 132rem;
+  width: 108rem;
   display: flex;
   flex-direction: column;
   gap: 2.6rem;
@@ -21,7 +21,7 @@ export const CategoryList = styled.ul`
   display: flex;
 `;
 export const CategoryButton = styled(Button)`
-  font-size: 20rem;
+  font-size: 2rem;
   color: red;
 `;
 export const CardContainer = styled.div`

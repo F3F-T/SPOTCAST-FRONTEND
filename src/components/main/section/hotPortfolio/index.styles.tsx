@@ -1,13 +1,6 @@
 import styled from "@emotion/styled";
 import { GREY } from "../../../../constants/colors";
 
-const Title = styled.div`
-  width: 100%;
-  font-size: 1.7rem;
-  font-weight: 700;
-  text-align: start;
-  margin-bottom: 2rem;
-`;
 const Container = styled.div`
   width: 100%;
   /* height: 70rem; */
@@ -17,13 +10,20 @@ const Container = styled.div`
 `;
 
 const ArticleWrapper = styled.div`
-  width: 68%;
+  width: 108rem;
   height: 100%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
 `;
 
+const Title = styled.div`
+  width: 100%;
+  font-size: 1.7rem;
+  font-weight: 700;
+  text-align: start;
+  margin-bottom: 2rem;
+`;
 const CategoryWrapper = styled.div`
   display: flex;
   width: 100%;
