@@ -24,12 +24,12 @@ export default function Login() {
         </EtcWrapper>
         <SNSWrapper>SNS로 간편하게 로그인
           <br/>
-          <ImgWrapper><SNSIMG src = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/320px-Google_%22G%22_Logo.svg.png"/>
-          <SNSIMG src = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/320px-Google_%22G%22_Logo.svg.png"/>
+          <ImgWrapper><SNSIMG src = "https://cdn.imweb.me/upload/S20210304872ba49a108a8/89a68d1e3674a.png"/>
+          {/* <SNSIMG src = "https://i.pinimg.com/564x/fb/71/04/fb71048e03a5ada757f70d61b583d0bf.jpg"/> */}
           <SNSIMG src = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/320px-Google_%22G%22_Logo.svg.png"/>
           </ImgWrapper>
-          아직 스팟캐스트 회원이 아니세요?
-          <SignUp>회원가입하기</SignUp>
+         <div> 아직 스팟캐스트 회원이 아니세요?<br/>
+          <SignUp>회원가입하기</SignUp></div>
        </SNSWrapper>
       </Wrapper>
     </Container>
@@ -40,12 +40,17 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  button,img{
+    &:hover{
+      cursor: pointer;
+    }
+  }
 
 `;
 
 const Wrapper = styled.div`
   width: 50rem;
-  height: 60rem;
+  height: 63rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -123,14 +128,18 @@ text-align: center;
 font-size: 1.3rem;
 color: ${GREY[600]};
 gap: 2rem;
+
 `;
 const ImgWrapper = styled.div`
   display: flex;
+  justify-content: center;
   gap: 1.5rem;
+
 `
 const SNSIMG = styled.img`
   width: 4.7rem;
-
+  height: 4.7rem;
+  border-radius: 5rem;
 `
 
 const SignUp = styled.button`
@@ -139,4 +148,5 @@ const SignUp = styled.button`
   background: none;
   border: none;
   text-decoration: underline;
+  padding-top: 0.5rem;
 `
