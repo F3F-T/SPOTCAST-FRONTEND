@@ -27,7 +27,7 @@ export default function Login() {
   const onSubmitForm = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      router.replace("/");
+      router.push("/");
     },
     [email, password],
   );
