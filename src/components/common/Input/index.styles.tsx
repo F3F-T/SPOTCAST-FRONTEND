@@ -13,6 +13,7 @@ export interface InputProps {
   required?: boolean;
   size?: number;
   color?: ColorScheme;
+  className?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 

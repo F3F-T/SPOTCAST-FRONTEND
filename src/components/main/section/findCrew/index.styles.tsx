@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import Button from "../../../common/Button";
 
 export const ArticleContainer = styled.article`
+  padding-top: 5rem;
   width: 108rem;
   display: flex;
   flex-direction: column;
@@ -14,7 +15,7 @@ export const ArticleTitle = styled.div`
   align-items: center;
 `;
 export const Title = styled.h2`
-  font-size: 2.8rem;
+  font-size: 2.2rem;
   font-weight: bold;
 `;
 export const CategoryList = styled.ul`

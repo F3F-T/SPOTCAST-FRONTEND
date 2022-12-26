@@ -6,6 +6,7 @@ export default function Button({
   theme = "primary",
   title,
   width,
+  className,
   disabled = false,
   onClick,
 }: ButtonProps) {
@@ -24,6 +25,7 @@ export default function Button({
       onClick={handleClick}
       disabled={disabled}
       width={width!}
+      className={className}
     >
       {title}
     </Wrapper>
