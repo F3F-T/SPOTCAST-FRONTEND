@@ -1,15 +1,10 @@
 import React from "react";
 import { BadgeProps, Wrapper } from "./index.styles";
 
-function Badge({
-  children,
-  variant = "indigo",
-  size = "medium",
-  className,
-}: BadgeProps) {
+function Badge({ label, variant = "indigo", size = "medium" }: BadgeProps) {
   return (
-    <Wrapper className={className} variant={variant} size={size}>
-      {children}
+    <Wrapper variant={variant} size={size}>
+      {label}
     </Wrapper>
   );
 }

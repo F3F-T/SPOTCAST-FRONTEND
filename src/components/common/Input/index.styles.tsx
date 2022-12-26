@@ -5,7 +5,6 @@ export type LabelType = "default" | "hidden";
 export type ColorScheme = "light" | "dark";
 
 export interface InputProps {
-  className?: string;
   value: string;
   type: string;
   label: string;
@@ -14,7 +13,7 @@ export interface InputProps {
   required?: boolean;
   size?: number;
   color?: ColorScheme;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;  
 }
 
 const Container = styled.div<{
@@ -30,12 +29,12 @@ const Container = styled.div<{
       input {
         border: ${
           {
-            light: `0.15rem solid ${GREY[400]}`,
+            light: `0.15rem solid ${GREY[600]}`,
             dark: `0.15rem solid ${GREY[700]}`,
           }[color]
         };
             background-color: ${{ light: WHITE, dark: GREY[900] }[color]};
-            width: ${size}rem
+            width: ${size}ch
       }
       `}
   display: flex;
@@ -45,11 +44,11 @@ const Container = styled.div<{
 
 const LabelWrapper = styled.label`
   font-weight: bold;
-  font-size: 1.4rem;
+  font-size: 1.7rem;
 `;
 
 const InputWrapper = styled.input`
-  font-size: 1.3rem;
+  font-size: 1.7rem;
   padding: 1.5rem;
   border-radius: 0.5rem;
   outline-color: ${MUSTARD};

@@ -5,14 +5,12 @@ export type BadgeVariant = "mustard" | "indigo" | "grey";
 export type BadgeSize = "large" | "medium" | "small";
 
 export interface BadgeProps {
-  className?: string;
-  children: string;
+  label: string;
   variant?: BadgeVariant;
   size?: BadgeSize;
 }
 
 const Wrapper = styled.span<{
-  className?: string;
   variant: BadgeVariant;
   size: BadgeSize;
 }>`
