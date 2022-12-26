@@ -9,7 +9,7 @@ const Container = styled.div`
 `;
 
 const ArticleWrapper = styled.div`
-  width: 68%;
+  width: 108rem;
   height: 100%;
   display: flex;
   flex-wrap: wrap;
