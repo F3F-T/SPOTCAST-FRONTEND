@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 import React from "react";
 import styled from "@emotion/styled";
 import Badge from "../../../common/Badge";
