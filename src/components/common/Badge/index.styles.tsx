@@ -8,11 +8,13 @@ export interface BadgeProps {
   label: string;
   variant?: BadgeVariant;
   size?: BadgeSize;
+  className?: string;
 }
 
 const Wrapper = styled.span<{
   variant: BadgeVariant;
   size: BadgeSize;
+  className?: string;
 }>`
   ${({ variant, size }) => `
   background-color: ${

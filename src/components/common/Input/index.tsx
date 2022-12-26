@@ -15,6 +15,7 @@ function Input({
   required = false,
   size = 35,
   color = "light",
+  className,
   // className,
   onChange,
 }: InputProps) {
@@ -24,6 +25,7 @@ function Input({
       size={size}
       labelType={labelType}
       color={color}
+      className={className}
     >
       <LabelWrapper>{label}</LabelWrapper>
       <InputWrapper
