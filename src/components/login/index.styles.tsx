@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { GREY } from "../../constants/colors";
-import Button from "../common/Button";
 
 const Container = styled.div`
   width: 100%;
@@ -53,16 +52,18 @@ const Form = styled.form`
   justify-content: center;
 `;
 
-const LoginButton = styled(Button)`
+const LoginButton = styled.button`
   margin-top: 1.5rem;
   width: 35rem;
-  padding: 2.5rem 2rem;
+  padding: 1.7rem 2rem;
   background-color: ${GREY[600]};
+  border: none;
   border-radius: 0.5rem;
   &:hover {
     background-color: ${GREY[500]};
   }
   font-size: 1.4rem;
+  color: white;
   font-weight: 700;
 `;
 

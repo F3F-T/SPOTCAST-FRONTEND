@@ -1,5 +1,5 @@
-
 import React, { useCallback } from "react";
+import { useRouter } from "next/navigation";
 import Input from "../common/Input";
 import useInput from "../../hooks/useInput";
 import {
@@ -20,12 +20,18 @@ import {
 } from "./index.styles";
 
 export default function Login() {
+  const router = useRouter();
   const [email, onChangeEmail] = useInput("");
   const [password, onChangePassword] = useInput("");
 
-  const onSubmitForm = useCallback(() => {
-    console.log(email, password);
-  }, [email, password]);
+  const onSubmitForm = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      router.replace("/");
+    },
+    [email, password],
+  );
+
   return (
     <Container>
       <Wrapper>
@@ -48,7 +54,7 @@ export default function Login() {
             type="password"
             required
           />
-          <LoginButton title="로그인" />
+          <LoginButton>로그인</LoginButton>
         </Form>
         <EtcWrapper>
           <CheckBox type="checkbox" />
