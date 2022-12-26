@@ -15,12 +15,12 @@ function Input({
   required = false,
   size = 35,
   color = "light",
-  className,
+  // className,
   onChange,
 }: InputProps) {
   return (
     <Container
-      className={className}
+      // className={className}
       size={size}
       labelType={labelType}
       color={color}
