@@ -12,10 +12,10 @@ const Title = styled.div`
 `;
 
 const SliderWrapper = styled.div`
+  width: 100%;
   overflow: hidden;
   display: flex;
   position: relative;
-  width: 100%;
   height: 30rem;
 `;
 

@@ -13,7 +13,8 @@ export interface InputProps {
   required?: boolean;
   size?: number;
   color?: ColorScheme;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;  
+  className?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Container = styled.div<{
@@ -29,7 +30,7 @@ const Container = styled.div<{
       input {
         border: ${
           {
-            light: `0.15rem solid ${GREY[600]}`,
+            light: `0.15rem solid ${GREY[400]}`,
             dark: `0.15rem solid ${GREY[700]}`,
           }[color]
         };

@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 // import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
-  font-family: Pretendard;
   width: 100%;
   background-color: white;
   bottom: 0;
@@ -13,7 +12,7 @@ const Container = styled.div`
 `;
 
 const FooterWrapper = styled.div`
-  width: 68%;
+  width: 108rem;
   height: 20rem;
   background-color: WHITE;
 `;
