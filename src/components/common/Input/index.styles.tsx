@@ -35,7 +35,7 @@ const Container = styled.div<{
           }[color]
         };
             background-color: ${{ light: WHITE, dark: GREY[900] }[color]};
-            width: ${size}ch
+            width: ${size}rem
       }
       `}
   display: flex;
@@ -45,11 +45,11 @@ const Container = styled.div<{
 
 const LabelWrapper = styled.label`
   font-weight: bold;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
 `;
 
 const InputWrapper = styled.input`
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   padding: 1.5rem;
   border-radius: 0.5rem;
   outline-color: ${MUSTARD};
