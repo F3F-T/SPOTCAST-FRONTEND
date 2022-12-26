@@ -2,16 +2,16 @@ import styled from "@emotion/styled";
 import Button from "../../../common/Button";
 
 export const ArticleContainer = styled.article`
+  width: 132rem;
   display: flex;
   flex-direction: column;
   gap: 2.6rem;
-  width: 100%;
+  margin: auto;
 `;
 export const ArticleTitle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid red;
 `;
 export const Title = styled.h2`
   font-size: 2.8rem;
