@@ -8,6 +8,7 @@ const Title = styled.div`
   text-align: center;
   margin-top: 3rem;
   margin-bottom: 3rem;
+  padding-top: 5rem;
 `;
 
 const SliderWrapper = styled.div`
