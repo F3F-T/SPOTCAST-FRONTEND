@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/html-has-lang */
+/* eslint-disable react/react-in-jsx-scope */
+
 "use client";
 
 import "../styles/globals.css";

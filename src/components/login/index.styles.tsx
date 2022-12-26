@@ -12,6 +12,9 @@ const Container = styled.div`
       cursor: pointer;
     }
   }
+  input:focus {
+    background-color: #fff !important;
+  }
   padding-top: 2rem;
 `;
 
@@ -42,7 +45,7 @@ const SubTitle = styled.div`
   padding-bottom: 3rem;
 `;
 
-const InputWrapper = styled.div`
+const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -51,6 +54,7 @@ const InputWrapper = styled.div`
 `;
 
 const LoginButton = styled(Button)`
+  margin-top: 1.5rem;
   width: 35rem;
   padding: 2.5rem 2rem;
   background-color: ${GREY[600]};
@@ -125,7 +129,7 @@ export {
   Wrapper,
   Title,
   SubTitle,
-  InputWrapper,
+  Form,
   LoginButton,
   EtcWrapper,
   CheckBox,
