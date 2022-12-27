@@ -30,10 +30,13 @@
 
 html,
 body {
-  width: 100%;
-  max-width: 192rem;
+  font-size: 62.5%;
   margin: 0;
   font-size: 62.5%;
+  display: flex;
+  justify-content: center;
+  font-family: "Pretendard-Web", serif;
+  font-weight: 500;
 }
 
 a {
@@ -44,7 +47,7 @@ a {
 * {
   box-sizing: border-box;
 }
-
+/* 
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -53,15 +56,13 @@ a {
     color: white;
     background: black;
   }
-}
+} */
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
 
-html,
-body,
 div,
 span,
 applet,
