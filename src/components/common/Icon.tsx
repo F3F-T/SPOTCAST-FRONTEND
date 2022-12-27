@@ -1,20 +1,15 @@
 import React from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import icons from "../../constants/icons";
+import Icons from "../../constants/icons";
 
-interface iconProps {
+interface IconProps {
   className: string;
   size?: string;
   color?: string;
 }
 
-const Icon = ({ className, size = "", color }: iconProps) => {
-  return (
-    <i
-      className={icons[className]}
-      style={{ fontSize: size, color: color }}
-    ></i>
-  );
-};
+function Icon({ className, size = "", color }: IconProps) {
+  return <i className={Icons[className]} style={{ fontSize: size, color }} />;
+}
 
 export default Icon;

@@ -3,7 +3,7 @@ import { Wrapper, ButtonProps } from "./index.styles";
 
 export default function Button({
   size = "medium",
-  theme = "primary",
+  buttonTheme = "primary",
   title,
   width,
   className,
@@ -21,7 +21,7 @@ export default function Button({
     //   eslint-disable-next-line @typescript-eslint/no-use-before-define
     <Wrapper
       size={size}
-      ButtonTheme={theme}
+      ButtonTheme={buttonTheme}
       onClick={handleClick}
       disabled={disabled}
       width={width!}
