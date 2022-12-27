@@ -30,7 +30,6 @@ const Wrapper = styled.button<{
 }>`
   ${({ size, disabled, ButtonTheme, width }) => `
      width: ${width};
-     height: ${{ large: "3rem", medium: "2.5rem", small: "1.75rem" }[size]};
      font-size: ${{ large: "1.2rem", medium: "1rem", small: "0.75rem" }[size]};
      padding: ${
        { large: "0 1.5rem", medium: "0 1rem", small: "0 0.875rem" }[size]

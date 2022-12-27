@@ -38,8 +38,12 @@ function MainArticle2() {
         {Object.keys(categories).map(category => (
           <li key={category}>
             <CategoryButton
+              buttonTheme="tertiary"
               title={category}
               onClick={() => setCurrentCategory(categories[category])}
+              className={
+                categories[category] === currentCategory ? "active" : ""
+              }
             />
           </li>
         ))}
