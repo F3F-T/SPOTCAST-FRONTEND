@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import Input from "../common/Input";
 import useInput from "../../hooks/useInput";
 import {
@@ -72,7 +73,9 @@ export default function Login() {
           <div>
             아직 스팟캐스트 회원이 아니세요?
             <br />
-            <SignUp>회원가입하기</SignUp>
+            <SignUp>
+              <Link href="/signup">회원가입하기</Link>
+            </SignUp>
           </div>
         </SNSWrapper>
       </Wrapper>
