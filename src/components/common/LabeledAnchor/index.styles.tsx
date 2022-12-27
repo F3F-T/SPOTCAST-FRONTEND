@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 type AnchorSize = "large" | "medium" | "small";
 
 export interface AnchorProps {
+  className?: string;
   href: string;
   icon?: string;
   size?: AnchorSize;

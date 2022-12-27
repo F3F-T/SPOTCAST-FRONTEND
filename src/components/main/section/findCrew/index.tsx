@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { posts, CrewPost } from "./fakePosts";
-import LabeledAnchor from "../../../common/LabeledAnchor";
-import CrewCard from "./CrewCard";
 import {
   ArticleContainer,
   ArticleTitle,
   CardContainer,
   CategoryList,
   Title,
+  Anchor,
   CategoryButton,
 } from "./index.styles";
+import CrewCard from "./crewCard";
 
 interface CrewCategories {
   [translation: string]: string;
@@ -32,7 +32,7 @@ function MainArticle2() {
     <ArticleContainer>
       <ArticleTitle>
         <Title>함께 작업할 사람을 찾아보세요!</Title>
-        <LabeledAnchor href="/" label="전체보기" icon="arrowRight" />
+        <Anchor href="/" label="전체보기" icon="arrowRight" />
       </ArticleTitle>
       <CategoryList>
         {Object.keys(categories).map(category => (
