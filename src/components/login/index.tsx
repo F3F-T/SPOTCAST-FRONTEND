@@ -35,7 +35,7 @@ export default function Login() {
   return (
     <Container>
       <Wrapper>
-        <Title>SPOTCAST </Title>
+        <Title>SPOTCAST</Title>
         <SubTitle>당신이 제일 빛나는 공간, 스팟캐스트</SubTitle>
         <Form onSubmit={onSubmitForm}>
           <Input

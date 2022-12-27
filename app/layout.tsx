@@ -12,9 +12,7 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <head>
-        <title>SPOTCAST</title>
-      </head>
+      <head />
       <body>{children}</body>
     </html>
   );

@@ -23,15 +23,24 @@
   font-display: swap;
 }
 
-.Body {
-  width: 100%;
-  margin: 0;
-  font-size: 62.5%;
-  display: flex;
-  justify-content: center;
-  font-family: "Pretendard-Web", serif;
-  font-weight: 500;
+.Full {
+  width: 100%
 }
-.Div {
-  max-width: 108rem;
+
+.Inner {
+  width: 108rem;
 }
+
+
+/* 
+@media only screen and (max-width: 786px) {
+
+  .Inner {
+    
+  }
+  .Full {
+  }
+}
+ */
+
+
