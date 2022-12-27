@@ -13,7 +13,7 @@ export type ButtonTheme = "primary" | "secondary" | "tertiary";
 export type ButtonProps = {
   className?: string;
   size?: ButtonSize;
-  theme?: ButtonTheme;
+  buttonTheme?: ButtonTheme;
   title?: string;
   width?: string;
   disabled?: boolean;
