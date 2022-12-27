@@ -11,10 +11,10 @@ export default function LoginLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className={styles.Body}>
+    <section className={styles.Full}>
       {/* Include shared UI here e.g. a header or sidebar */}
 
-      <div className={styles.Div}>{children}</div>
+      <div className={styles.Inner}>{children}</div>
     </section>
   );
 }
