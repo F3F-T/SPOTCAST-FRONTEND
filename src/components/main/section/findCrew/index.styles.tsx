@@ -1,12 +1,12 @@
 import styled from "@emotion/styled";
 import Button from "../../../common/Button";
+import InnerContainer from "../../../common/InnerContainer";
 import { BLACK, RED } from "../../../../constants/colors";
 
-export const ArticleContainer = styled.article`
-  padding-top: 5rem;
-  width: 108rem;
+export const ArticleContainer = styled(InnerContainer)`
   display: flex;
   flex-direction: column;
+  padding-top: 5rem;
   gap: 2.6rem;
   margin: auto;
 `;
