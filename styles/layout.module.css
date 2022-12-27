@@ -25,6 +25,7 @@
 
 .Body {
   width: 100%;
+  max-width: 192rem;
   margin: 0;
   font-size: 62.5%;
   display: flex;
@@ -33,5 +34,5 @@
   font-weight: 500;
 }
 .Div {
-  max-width: 108rem;
+  width: 108rem;
 }
