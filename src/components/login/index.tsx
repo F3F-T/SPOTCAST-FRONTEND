@@ -1,5 +1,5 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useCallback } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Input from "../common/Input";
 import useInput from "../../hooks/useInput";
@@ -19,31 +19,16 @@ import {
   SNSIMG,
   SignUp,
 } from "./index.styles";
-import { authLogin, getMember } from "../../api/auth";
+import { useLogin } from "../../hooks/useAuth";
 
 export default function Login() {
-  const router = useRouter();
   const [email, onChangeEmail] = useInput("");
   const [password, onChangePassword] = useInput("");
 
   const onSubmitForm = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      authLogin(email, password).then(result => {
-        localStorage.setItem("email", email);
-        localStorage.setItem("access_token", result.data.access_token);
-        getMember()
-          .then(res => {
-            console.log(`${res.data.email}님 로그인이 완료되었습니다.`);
-          })
-          .catch(err => {
-            if (err.response.status === 403) {
-              console.error("에러!");
-            }
-            localStorage.removeItem("access_token");
-          });
-      });
-      router.push("/");
+      useLogin(email, password);
     },
     [email, password],
   );

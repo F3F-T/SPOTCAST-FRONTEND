@@ -1,5 +1,5 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useCallback } from "react";
-import { useRouter } from "next/navigation";
 import Input from "../../common/Input";
 import useInput from "../../../hooks/useInput";
 import {
@@ -14,10 +14,9 @@ import {
   AgreeButton,
   EtcWrapper,
 } from "./index.styles";
-import { authSignUp } from "../../../api/auth";
+import { useSignUp } from "../../../hooks/useAuth";
 
 export default function Login() {
-  const router = useRouter();
   const [email, onChangeEmail] = useInput("");
   const [password, onChangePassword] = useInput("");
   const [passwordCheck, onChangePasswordCheck] = useInput("");
@@ -25,17 +24,7 @@ export default function Login() {
   const onSubmitForm = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      authSignUp(email, password)
-        .then(res => {
-          console.log("가입된 이메일로 인증 메일을 발송했습니다.");
-          console.log(res.data);
-        })
-        .catch(err => {
-          if (err.response.data.message === "이미 있으면") {
-            console.error("이미 있는 이메일입니다");
-          }
-        });
-      router.replace("/");
+      useSignUp(email, password);
     },
     [email, password, passwordCheck],
   );

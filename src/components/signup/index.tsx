@@ -20,6 +20,7 @@ export default function Signup() {
   const EmailLogin = useCallback(() => {
     Router.replace("/signup/email");
   }, []);
+
   return (
     <LayoutContainer>
       <Wrapper>
