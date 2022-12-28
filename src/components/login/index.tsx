@@ -1,5 +1,7 @@
 import React, { useCallback } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
 import Input from "../common/Input";
 import useInput from "../../hooks/useInput";
 import {
@@ -18,16 +20,21 @@ import {
   SNSIMG,
   SignUp,
 } from "./index.styles";
+import { loadUser } from "../../../stores/reducers/user";
+import { login } from "../../hooks/useAuth";
 
 export default function Login() {
   const router = useRouter();
   const [email, onChangeEmail] = useInput("");
   const [password, onChangePassword] = useInput("");
+  const dispatch = useDispatch();
 
   const onSubmitForm = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      router.push("/");
+      login(email, password);
+      dispatch(loadUser({ email, password }));
+      router.replace("/");
     },
     [email, password],
   );
@@ -72,7 +79,9 @@ export default function Login() {
           <div>
             아직 스팟캐스트 회원이 아니세요?
             <br />
-            <SignUp>회원가입하기</SignUp>
+            <SignUp>
+              <Link href="/signup">회원가입하기</Link>
+            </SignUp>
           </div>
         </SNSWrapper>
       </Wrapper>

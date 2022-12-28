@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 import Button from "../../common/Button";
 import {
   Container,
@@ -13,6 +14,10 @@ import {
 } from "./index.styles";
 
 export default function Header() {
+  const { IsUserLoggedIn, me } = useSelector(state => state.user);
+  console.log(IsUserLoggedIn);
+  console.log(me);
+
   const menu = [
     { name: "캐스팅/오디션", href: "/casting" },
     { name: "공개 포트폴리오", href: "/portfolio" },
@@ -55,6 +60,7 @@ export default function Header() {
           onClick={openPotfolioForm}
         />
       </Wrapper>
+      {IsUserLoggedIn ? me.email : null}
     </Container>
   );
 }

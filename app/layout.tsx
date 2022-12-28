@@ -4,12 +4,9 @@
 "use client";
 
 import "../styles/globals.css";
+import wrapper from "../stores/store/configureStore";
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html>
       <head />
@@ -17,3 +14,4 @@ export default function RootLayout({
     </html>
   );
 }
+export default wrapper.withRedux(RootLayout);
