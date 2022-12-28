@@ -18,6 +18,7 @@
     "@types/node": "18.11.15",
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.9",
+    "@types/redux-logger": "^3.0.9",
     "@typescript-eslint/eslint-plugin": "^5.46.1",
     "axios": "^1.2.1",
     "bootstrap-icons": "^1.10.2",
