@@ -1,7 +1,6 @@
 import React, { useCallback } from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
-import Button from "../../common/Button";
 import {
   Container,
   Wrapper,
@@ -11,6 +10,7 @@ import {
   Hover,
   Input,
   Login,
+  StyledButton,
 } from "./index.styles";
 
 export default function Header() {
@@ -54,7 +54,7 @@ export default function Header() {
             ))}
           </Login>
         </aside>
-        <Button
+        <StyledButton
           size="large"
           title="내 포트폴리오 등록"
           onClick={openPotfolioForm}

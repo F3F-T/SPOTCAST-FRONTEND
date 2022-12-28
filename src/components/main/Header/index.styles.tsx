@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { GREY } from "../../../constants/colors";
+import Button from "../../common/Button";
 
 const Container = styled.div`
   width: 100%;
@@ -67,4 +68,9 @@ const Hover = styled.div`
     font-weight: 600;
   }
 `;
-export { Container, Wrapper, Logo, Ul, Li, Hover, Input, Login };
+
+const StyledButton = styled(Button)`
+  padding: 0.8rem 1.2rem;
+`;
+
+export { Container, Wrapper, Logo, Ul, Li, Hover, Input, Login, StyledButton };

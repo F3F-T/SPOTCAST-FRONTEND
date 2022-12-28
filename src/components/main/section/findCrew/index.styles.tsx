@@ -21,8 +21,8 @@ export const Title = styled.h2`
   font-weight: bold;
 `;
 export const Anchor = styled(LabeledAnchor)`
-  font-size: 1.88rem;
-  font-weight: bold;
+  font-size: 1.7rem;
+  font-weight: 700;
 `;
 export const CategoryList = styled.ul`
   display: flex;

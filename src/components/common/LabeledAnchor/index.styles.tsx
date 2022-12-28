@@ -13,9 +13,9 @@ export interface AnchorProps {
 export const AnchorWrapper = styled.a<{ size: AnchorSize }>`
   ${({ size }) => `
 font-size: ${{ large: "2.7rem", medium: "2.3rem", small: "1.5rem" }[size]};
-font-weight: bold;
 display: flex;
 gap: 0.8rem;
 width: fit-content;
 `}
+  font-weight: 700;
 `;
