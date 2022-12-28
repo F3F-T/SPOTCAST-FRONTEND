@@ -1,6 +1,6 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useCallback } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Input from "../common/Input";
 import useInput from "../../hooks/useInput";
 import {
@@ -19,16 +19,18 @@ import {
   SNSIMG,
   SignUp,
 } from "./index.styles";
-import { useLogin } from "../../hooks/useAuth";
+import { login } from "../../hooks/useAuth";
 
 export default function Login() {
+  const router = useRouter();
   const [email, onChangeEmail] = useInput("");
   const [password, onChangePassword] = useInput("");
 
   const onSubmitForm = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      useLogin(email, password);
+      login(email, password);
+      router.replace("/");
     },
     [email, password],
   );

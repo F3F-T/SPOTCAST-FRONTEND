@@ -1,10 +1,6 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import { useRouter } from "next/navigation";
 import { authLogin, authSignUp, getMember } from "../api/auth";
 
-export const useLogin = (email: string, password: string) => {
-  const router = useRouter();
-
+export const login = (email: string, password: string) => {
   authLogin(email, password).then(result => {
     localStorage.setItem("email", email);
     localStorage.setItem("access_token", result.data.access_token);
@@ -19,11 +15,9 @@ export const useLogin = (email: string, password: string) => {
         localStorage.removeItem("access_token");
       });
   });
-  router.push("/");
 };
 
-export const useSignUp = (email: string, password: string) => {
-  const router = useRouter();
+export const signup = (email: string, password: string) => {
   authSignUp(email, password)
     .then(res => {
       console.log("가입된 이메일로 인증 메일을 발송했습니다.");
@@ -34,5 +28,4 @@ export const useSignUp = (email: string, password: string) => {
         console.error("이미 있는 이메일입니다");
       }
     });
-  router.replace("/");
 };
