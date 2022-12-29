@@ -1,6 +1,10 @@
+import { useDispatch } from "react-redux";
 import { authLogin, authSignUp, getMember } from "../api/auth";
+import { AppDispatch } from "../../stores/store/configureStore";
 
 export const login = (email: string, password: string) => {
+  const dispatch = useDispatch<AppDispatch>();
+
   authLogin(email, password).then(result => {
     localStorage.setItem("email", email);
     localStorage.setItem("access_token", result.data.access_token);

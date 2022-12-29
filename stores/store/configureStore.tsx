@@ -14,8 +14,12 @@ const createStore = () => {
     middleware,
     devTools: isDev,
   });
+
   return store;
 };
+
+const Store = createStore();
+export type AppDispatch = typeof Store.dispatch;
 
 const wrapper = createWrapper(createStore, {
   debug: isDev,

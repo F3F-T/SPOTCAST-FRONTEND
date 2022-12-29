@@ -20,15 +20,15 @@ import {
   SNSIMG,
   SignUp,
 } from "./index.styles";
-import { loadUser } from "../../../stores/reducers/user";
-import { login } from "../../hooks/useAuth";
 import { authLogin } from "../../api/auth";
+import { AppDispatch } from "../../../stores/store/configureStore";
+import { login } from "../../hooks/useAuth";
 
 export default function Login() {
   const router = useRouter();
   const [email, onChangeEmail] = useInput("");
   const [password, onChangePassword] = useInput("");
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const onSubmitForm = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
