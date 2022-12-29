@@ -8,11 +8,12 @@ function LabeledAnchor({
   size = "medium",
   label,
   icon,
+  border,
 }: AnchorProps) {
   return (
     <AnchorWrapper className={className} href={href} size={size}>
-      <span>{label}</span>
-      {icon && <Icon className={icon} />}
+      {label}
+      {icon && <Icon className={icon} border={border} />}
     </AnchorWrapper>
   );
 }

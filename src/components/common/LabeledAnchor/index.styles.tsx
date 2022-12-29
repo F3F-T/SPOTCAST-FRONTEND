@@ -8,6 +8,7 @@ export interface AnchorProps {
   icon?: string;
   size?: AnchorSize;
   label: string;
+  border?: number;
 }
 
 export const AnchorWrapper = styled.a<{ size: AnchorSize }>`
@@ -17,5 +18,4 @@ display: flex;
 gap: 0.8rem;
 width: fit-content;
 `}
-  font-weight: 700;
 `;
