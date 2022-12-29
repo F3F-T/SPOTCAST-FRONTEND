@@ -24,13 +24,14 @@
 }
 
 .Full {
-  width: 100%
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .Inner {
   width: 108rem;
 }
-
 
 /* 
 @media only screen and (max-width: 786px) {
@@ -42,5 +43,3 @@
   }
 }
  */
-
-

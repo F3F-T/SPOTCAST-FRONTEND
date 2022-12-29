@@ -32,8 +32,6 @@ html,
 body {
   font-size: 62.5%;
   margin: 0;
-  display: flex;
-  justify-content: center;
   font-family: "Pretendard-Web", serif;
   font-weight: 500;
 }
