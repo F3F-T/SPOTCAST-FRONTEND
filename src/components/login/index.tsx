@@ -22,6 +22,7 @@ import {
 } from "./index.styles";
 import { loadUser } from "../../../stores/reducers/user";
 import { login } from "../../hooks/useAuth";
+import { authLogin } from "../../api/auth";
 
 export default function Login() {
   const router = useRouter();
@@ -33,7 +34,8 @@ export default function Login() {
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       login(email, password);
-      dispatch(loadUser({ email, password }));
+      dispatch(authLogin({ email, password }));
+      // dispatch(loadUser({ email, password }));
       router.replace("/");
     },
     [email, password],
