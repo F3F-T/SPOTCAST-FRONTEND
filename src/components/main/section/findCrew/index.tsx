@@ -32,7 +32,7 @@ function MainArticle2() {
     <ArticleContainer>
       <ArticleTitle>
         <Title>함께 작업할 사람을 찾아보세요!</Title>
-        <Anchor href="/" label="전체보기" icon="arrowRight" />
+        <Anchor href="/" label="전체보기" icon="arrowRight" border={1.2} />
       </ArticleTitle>
       <CategoryList>
         {Object.keys(categories).map(category => (

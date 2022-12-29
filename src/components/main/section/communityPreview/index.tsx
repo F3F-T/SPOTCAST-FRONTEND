@@ -7,7 +7,7 @@ import {
   ArticleWrapper,
   Title,
   SubTitle,
-  ButtonAll,
+  Anchor,
   CardContainer,
   Preview,
   PreviewTitle,
@@ -22,7 +22,7 @@ export default function MainArticle3() {
       <ArticleWrapper>
         <Title>커뮤니티</Title>
         <SubTitle>다양한 아티스트들을 인터넷으로 만나보세요.</SubTitle>
-        <ButtonAll>{`전체보기 >`}</ButtonAll>
+        <Anchor href="/" label="전체보기" icon="arrowRight" border={1.2} />
         <CardContainer>
           <Preview>
             <PreviewTitle>Weekly Best</PreviewTitle>

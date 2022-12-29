@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import LabeledAnchor from "../../../common/LabeledAnchor";
 
 const Container = styled.div`
   width: 100%;
@@ -30,7 +31,7 @@ const SubTitle = styled.div`
   text-align: start;
 `;
 
-const ButtonAll = styled.button`
+const Anchor = styled(LabeledAnchor)`
   position: absolute;
   right: 0;
   font-size: 1.8rem;
@@ -75,7 +76,7 @@ export {
   ArticleWrapper,
   Title,
   SubTitle,
-  ButtonAll,
+  Anchor,
   CardContainer,
   Preview,
   PreviewTitle,
