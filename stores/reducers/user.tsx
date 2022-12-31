@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from "@reduxjs/toolkit";
-import { authLogin, getMember } from "../../src/api/auth";
+import { authLogin, authSignUp, getMember } from "../../src/api/auth";
 
 type UserState = {
   IsUserLoggedIn: boolean;
@@ -8,6 +8,9 @@ type UserState = {
   loginLoading: boolean; // 로그인 시도중
   loginDone: boolean;
   loginError: any;
+  signUpLoading: boolean; // 로그인 시도중
+  signUpDone: boolean;
+  signUpError: any;
   getMeLoading: boolean;
   getMeDone: boolean;
   getMeError: any;
@@ -20,6 +23,9 @@ export const initialState: UserState = {
   loginLoading: false, // 로그인 시도중
   loginDone: false,
   loginError: null,
+  signUpLoading: false, // 로그인 시도중
+  signUpDone: false,
+  signUpError: null,
   getMeLoading: false,
   getMeDone: false,
   getMeError: null,
@@ -36,7 +42,7 @@ const userSlice = createSlice({
   },
   extraReducers: builder =>
     builder
-      // login
+      // 로그인
       .addCase(authLogin.pending, state => {
         state.loginLoading = true;
         state.loginDone = false;
@@ -51,7 +57,21 @@ const userSlice = createSlice({
         state.loginLoading = false;
         state.loginError = action.payload;
       })
-      // getMember
+      // 회원가입
+      .addCase(authSignUp.pending, state => {
+        state.signUpLoading = true;
+        state.signUpDone = false;
+        state.signUpError = null;
+      })
+      .addCase(authSignUp.fulfilled, state => {
+        state.signUpLoading = false;
+        state.signUpDone = true;
+      })
+      .addCase(authSignUp.rejected, (state, action) => {
+        state.signUpLoading = false;
+        state.signUpError = action.payload;
+      })
+      // 유저정보 가져오기
       .addCase(getMember.pending, state => {
         state.getMeLoading = true;
         state.getMeDone = false;
