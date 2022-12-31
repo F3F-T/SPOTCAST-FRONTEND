@@ -1,9 +1,6 @@
-import React, { useCallback } from "react";
+import React from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
 import Input from "../common/Input";
-import useInput from "../../hooks/useInput";
 import {
   Container,
   Wrapper,
@@ -20,25 +17,11 @@ import {
   SNSIMG,
   SignUp,
 } from "./index.styles";
-import { loadUser } from "../../../stores/reducers/user";
-import { login } from "../../hooks/useAuth";
+import useLogin from "../../hooks/useLogin";
 
 export default function Login() {
-  const router = useRouter();
-  const [email, onChangeEmail] = useInput("");
-  const [password, onChangePassword] = useInput("");
-  const dispatch = useDispatch();
-
-  const onSubmitForm = useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      login(email, password);
-      dispatch(loadUser({ email, password }));
-      router.replace("/");
-    },
-    [email, password],
-  );
-
+  const { email, onChangeEmail, password, onChangePassword, onSubmitForm } =
+    useLogin();
   return (
     <Container>
       <Wrapper>
