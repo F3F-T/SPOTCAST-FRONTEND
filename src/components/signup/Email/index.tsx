@@ -1,8 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useCallback } from "react";
-import { useRouter } from "next/navigation";
+import React from "react";
 import Input from "../../common/Input";
-import useInput from "../../../hooks/useInput";
 import {
   Container,
   Wrapper,
@@ -15,20 +13,18 @@ import {
   AgreeButton,
   EtcWrapper,
 } from "./index.styles";
+import useSignUp from "../../../hooks/useSignUp";
 
 export default function Login() {
-  const router = useRouter();
-  const [email, onChangeEmail] = useInput("");
-  const [password, onChangePassword] = useInput("");
-  const [passwordCheck, onChangePasswordCheck] = useInput("");
-
-  const onSubmitForm = useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      router.push("/");
-    },
-    [email, password, passwordCheck],
-  );
+  const {
+    email,
+    password,
+    passwordCheck,
+    onChangeEmail,
+    onChangePassword,
+    onChangePasswordCheck,
+    onSubmitForm,
+  } = useSignUp();
 
   return (
     <Container>
