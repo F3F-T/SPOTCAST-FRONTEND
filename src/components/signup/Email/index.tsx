@@ -15,7 +15,6 @@ import {
   AgreeButton,
   EtcWrapper,
 } from "./index.styles";
-import { signup } from "../../../hooks/useAuth";
 
 export default function Login() {
   const router = useRouter();
@@ -26,7 +25,6 @@ export default function Login() {
   const onSubmitForm = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      signup(email, password);
       router.push("/");
     },
     [email, password, passwordCheck],

@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import { HYDRATE } from "next-redux-wrapper";
 import userSlice from "./user";
 
-const rootReducer = (state, action) => {
+const rootReducer = (state: any, action: any) => {
   if (action.type === HYDRATE) {
     return {
       ...state,
@@ -14,5 +14,7 @@ const rootReducer = (state, action) => {
     // 여기에 추가
   })(state, action);
 };
+
+export type RootState = ReturnType<typeof rootReducer>;
 
 export default rootReducer;

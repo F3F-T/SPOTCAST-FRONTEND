@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
+import { RootState } from "../../../../stores/reducers";
 import {
   Container,
   Wrapper,
@@ -14,9 +15,10 @@ import {
 } from "./index.styles";
 
 export default function Header() {
-  const { IsUserLoggedIn, me } = useSelector(state => state.user);
+  // 상태관리 테스트
+  const { IsUserLoggedIn, me } = useSelector((state: RootState) => state.user);
   console.log(IsUserLoggedIn);
-  console.log(me);
+  console.log(`me ??? ${me.email}`);
 
   const menu = [
     { name: "캐스팅/오디션", href: "/casting" },
