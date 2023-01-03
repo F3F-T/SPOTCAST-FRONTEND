@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { GREY, MUSTARD, WHITE, BLACK } from "../../../constants/colors";
+import { GREY, WHITE, BLACK, RED } from "../../../constants/colors";
 
 export type LabelType = "default" | "hidden";
 export type ColorScheme = "light" | "dark";
@@ -14,6 +14,7 @@ export interface InputProps {
   size?: number;
   color?: ColorScheme;
   className?: string;
+  isValid?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -21,18 +22,21 @@ const Container = styled.div<{
   color: ColorScheme;
   labelType: LabelType;
   size: number;
+  isValid: boolean;
 }>`
-  ${({ color, labelType, size }) => `
+  ${({ color, labelType, size, isValid }) => `
       input, label {color: ${{ light: BLACK, dark: WHITE }[color]}}
       label {
         display: ${{ hidden: "none", default: "initial" }[labelType]};
       }
       input {
         border: ${
-          {
-            light: `0.15rem solid ${GREY[400]}`,
-            dark: `0.15rem solid ${GREY[700]}`,
-          }[color]
+          !isValid
+            ? `0.15rem solid ${RED.DARK}`
+            : {
+                light: `0.15rem solid ${GREY[400]}`,
+                dark: `0.15rem solid ${GREY[700]}`,
+              }[color]
         };
             background-color: ${{ light: WHITE, dark: GREY[900] }[color]};
             width: ${size}rem
@@ -44,15 +48,16 @@ const Container = styled.div<{
 `;
 
 const LabelWrapper = styled.label`
-  font-weight: bold;
-  font-size: 1.5rem;
+  font-weight: 700;
+  font-size: 1.3rem;
 `;
 
 const InputWrapper = styled.input`
-  font-size: 1.5rem;
-  padding: 1.5rem;
+  font-weight: 300;
+  font-size: 1.3rem;
+  padding: 1rem;
   border-radius: 0.5rem;
-  outline-color: ${MUSTARD};
+  outline: none;
 `;
 
 export { Container, LabelWrapper, InputWrapper };
