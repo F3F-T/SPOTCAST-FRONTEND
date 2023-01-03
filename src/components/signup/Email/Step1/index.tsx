@@ -28,16 +28,21 @@ export default function Step1() {
   const {
     email,
     isValidEmail,
+    authNumber,
+    onChangeAuthNumber,
     password,
     passwordCheck,
     onChangeEmail,
     onChangePassword,
     onChangePasswordCheck,
-    onCheckEmailAuth,
+    isEmailConfirms,
+    onSubmitEmailAuth,
     onReplaceBack,
     onReplaceNext,
+    AuthTimer,
   } = useSignUp();
 
+  const { time, min, sec, onStartTimer } = AuthTimer();
   return (
     <Container>
       <Wrapper>
@@ -60,9 +65,9 @@ export default function Step1() {
                 />
                 {isValidEmail ? (
                   <AuthButton
-                    title="인증"
+                    title={min < 1 ? "재전송" : "인증"}
                     width="6.5rem"
-                    onClick={onCheckEmailAuth}
+                    onClick={onStartTimer}
                   />
                 ) : (
                   <AuthButton title="인증" width="6.5rem" disabled />
@@ -72,6 +77,38 @@ export default function Step1() {
                 <Wrong>이메일 형식이 올바르지 않습니다.</Wrong>
               )}
             </div>
+            {min < 1 && (
+              <div>
+                <EmailWrapper>
+                  <Input
+                    value={authNumber}
+                    onChange={onChangeAuthNumber}
+                    size={21}
+                    label="인증번호 입력"
+                    type="text"
+                    required
+                  />
+                  {authNumber.length === 6 ? (
+                    <AuthButton
+                      title="인증 완료"
+                      width="9rem"
+                      onClick={onSubmitEmailAuth}
+                    />
+                  ) : (
+                    <AuthButton title="인증 완료" width="9rem" disabled />
+                  )}
+                </EmailWrapper>
+                {time.current <= 0 ? (
+                  <Wrong>
+                    입력시간이 초과되었습니다. 재전송 버튼을 눌러주세요.
+                  </Wrong>
+                ) : (
+                  <Wrong>
+                    {min < 10 ? `0${min}` : min} : {sec < 10 ? `0${sec}` : sec}
+                  </Wrong>
+                )}
+              </div>
+            )}
             <Input
               value={password}
               onChange={onChangePassword}
@@ -103,7 +140,7 @@ export default function Step1() {
                 buttonTheme="tertiary"
                 title="이전"
               />
-              {isValidEmail && password === passwordCheck ? (
+              {isValidEmail && password === passwordCheck && isEmailConfirms ? (
                 <RightButton onClick={onReplaceNext} title="다음" />
               ) : (
                 <ButtonDisabled title="다음" disabled />
