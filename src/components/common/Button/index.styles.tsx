@@ -17,7 +17,7 @@ export type ButtonProps = {
   title?: string;
   width?: string;
   disabled?: boolean;
-  onClick: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   // iconOnly?: boolean;
 };
 

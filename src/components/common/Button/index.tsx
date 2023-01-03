@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Wrapper, ButtonProps } from "./index.styles";
 
 export default function Button({
@@ -10,19 +10,18 @@ export default function Button({
   disabled = false,
   onClick,
 }: ButtonProps) {
-  const [isActive, setIsActive] = useState(false);
-
-  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
-    setIsActive(!isActive);
-    onClick(e);
-  };
+  // const [isActive, setIsActive] = useState(false);
+  // const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+  //   setIsActive(!isActive);
+  //   onClick(e);
+  // };
 
   return (
     //   eslint-disable-next-line @typescript-eslint/no-use-before-define
     <Wrapper
       size={size}
       ButtonTheme={buttonTheme}
-      onClick={handleClick}
+      onClick={onClick}
       disabled={disabled}
       width={width!}
       className={className}
