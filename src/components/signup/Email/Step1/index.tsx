@@ -16,10 +16,6 @@ import {
   ButtonDisabled,
   Wrong,
   ButtonWrapper,
-  CheckBox,
-  Agree,
-  AgreeButton,
-  EtcWrapper,
 } from "./index.styles";
 
 import useSignUp from "../../../../hooks/useSignUp";
@@ -128,12 +124,6 @@ export default function Step1() {
                 <Wrong>비밀번호가 일치하지 않습니다.</Wrong>
               ) : null}
             </div>
-            {/*            
-            <EtcWrapper>
-              <CheckBox type="checkbox" required />
-              <Agree>SPOTCAST 가입 약관에 모두 동의합니다.</Agree>
-              <AgreeButton>확인하기</AgreeButton>
-            </EtcWrapper> */}
             <ButtonWrapper>
               <LeftButton
                 onClick={onReplaceBack}
