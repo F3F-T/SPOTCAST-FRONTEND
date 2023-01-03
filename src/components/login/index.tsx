@@ -55,9 +55,10 @@ export default function Login() {
           SNS로 간편하게 로그인
           <br />
           <ImgWrapper>
+            <SNSIMG src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/320px-Google_%22G%22_Logo.svg.png" />
+
             <SNSIMG src="https://cdn.imweb.me/upload/S20210304872ba49a108a8/89a68d1e3674a.png" />
             {/* <SNSIMG src = "https://i.pinimg.com/564x/fb/71/04/fb71048e03a5ada757f70d61b583d0bf.jpg"/> */}
-            <SNSIMG src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/320px-Google_%22G%22_Logo.svg.png" />
           </ImgWrapper>
           <div>
             아직 스팟캐스트 회원이 아니세요?
