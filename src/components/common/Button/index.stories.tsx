@@ -6,25 +6,28 @@ export default {
   component: Button, // 어떤 컴포넌트를 문서화 할지 명시
 };
 
-export const primary = () => <Button title="basic navy" theme="primary" />;
+export const primary = () => (
+  <Button title="basic navy" buttonTheme="primary" />
+);
 
 export const secondary = () => (
-  <Button title="basic mustard" theme="secondary" />
+  <Button title="basic mustard" buttonTheme="secondary" />
 );
 
-export const text = () => <Button title="basic text" theme="tertiary" />;
+export const text = () => <Button title="basic text" buttonTheme="tertiary" />;
 export const btnEx1 = () => (
-  <Button title="LARGE" theme="primary" size="large" />
+  <Button title="LARGE" buttonTheme="primary" size="large" />
 );
 export const btnEx2 = () => (
-  <Button title="MEDIUM" theme="tertiary" size="medium" />
+  <Button title="MEDIUM" buttonTheme="tertiary" size="medium" />
 );
 export const btnEx3 = () => (
-  <Button title="SMALL" theme="secondary" size="small" />
+  <Button title="SMALL" buttonTheme="secondary" size="small" />
 );
 export const btnEx4 = () => (
-  <Button title="CUSTOM WIDTH" theme="primary" width="20rem" />
+  <Button title="CUSTOM WIDTH" buttonTheme="primary" width="20rem" />
 );
 export const btnEx5 = () => (
-  <Button title="FULL WIDTH" theme="primary" width="100%" />
+  <Button title="FULL WIDTH" buttonTheme="primary" width="100%" />
 );
+export const disabled = () => <Button title="disabled" disabled />;
