@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import Email from "../../../src/components/signup/Email";
+import Step1 from "../../../src/components/signup/Email/Step1";
 
 export default function Page() {
-  return <Email />;
+  return <Step1 />;
 }
