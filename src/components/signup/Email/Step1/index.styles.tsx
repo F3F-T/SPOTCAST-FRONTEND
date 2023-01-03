@@ -1,13 +1,11 @@
 import styled from "@emotion/styled";
-import { GREY } from "../../../constants/colors";
+import Button from "../../../common/Button";
+import { GREY, RED } from "../../../../constants/colors";
 
 const Container = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  button {
-    cursor: pointer;
-  }
   input:focus {
     background-color: #fff;
   }
@@ -29,43 +27,89 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
+const FormWrapper = styled.div`
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
 const Title = styled.div`
   font-weight: 700;
-  font-size: 2rem;
-  padding-bottom: 1.4rem;
+  font-size: 1.6rem;
+  padding-bottom: 2.4rem;
 `;
 
 const SubTitle = styled.div`
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 1.8rem;
+  padding-bottom: 1rem;
+`;
+const Ment = styled.div`
+  color: ${GREY[500]};
+  font-size: 1.4rem;
   padding-bottom: 3rem;
 `;
 
-const Form = styled.form`
+const Form = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  padding-bottom: 3rem;
-  justify-content: center;
+  gap: 2rem;
+`;
+const EmailWrapper = styled.div`
+  display: flex;
+  gap: 0.5rem;
+`;
+const AuthButton = styled(Button)`
+  margin-top: 2.7rem;
+  height: 3.8rem;
+  border-radius: 0.5rem;
+  font-size: 1.3rem;
 `;
 
-const SubmitButton = styled.button`
+const Wrong = styled.div`
+  display: block;
+  text-align: start;
+  color: ${RED.DARK};
+  padding-top: 1rem;
+  font-size: 1.2rem;
+`;
+const ButtonWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+const LeftButton = styled(Button)`
   margin-top: 1.5rem;
-  width: 35rem;
+  width: 10rem;
+  padding: 1.7rem 2rem;
+  border-radius: 0.5rem;
+  font-size: 1.4rem;
+`;
+const RightButton = styled(Button)`
+  margin-top: 1.5rem;
+  width: 30rem;
   padding: 1.7rem 2rem;
   background-color: ${GREY[600]};
   border: none;
   border-radius: 0.5rem;
   &:hover {
     background-color: ${GREY[500]};
+    cursor: pointer;
   }
   font-size: 1.4rem;
   color: white;
-  font-weight: 700;
 `;
 
+const ButtonDisabled = styled(Button)`
+  margin-top: 1.5rem;
+  width: 30rem;
+  padding: 1.7rem 2rem;
+  border-radius: 0.5rem;
+  cursor: default;
+  font-size: 1.4rem;
+`;
 const EtcWrapper = styled.div`
-  width: 35rem;
+  width: 30rem;
   display: flex;
   position: relative;
   align-items: center;
@@ -94,26 +138,24 @@ const AgreeButton = styled.button`
   text-decoration: underline;
   color: ${GREY[500]};
 `;
-const SNSWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  font-size: 1.3rem;
-  color: ${GREY[600]};
-  gap: 2rem;
-`;
 
 export {
+  EmailWrapper,
   Container,
   Wrapper,
+  FormWrapper,
   Title,
   SubTitle,
+  Ment,
   Form,
-  SubmitButton,
+  AuthButton,
+  ButtonWrapper,
+  LeftButton,
+  RightButton,
+  ButtonDisabled,
   EtcWrapper,
   CheckBox,
   Agree,
   AgreeButton,
-  SNSWrapper,
+  Wrong,
 };

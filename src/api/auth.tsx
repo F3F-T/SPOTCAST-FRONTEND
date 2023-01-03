@@ -23,6 +23,18 @@ const getMember = createAsyncThunk("user/getMember", async () => {
   }
 });
 
+const authEmailSend = (email: string) => {
+  return unAuthorizationClient
+    .post(`${API.AUTH}email-certification/sends`, { email })
+    .then(res => res.data);
+};
+
+const authEmailConfirms = (email: string, authNumber: string) => {
+  return unAuthorizationClient
+    .post(`${API.AUTH}email-certification/confirms`, { email, authNumber })
+    .then(res => res.data);
+};
+
 const authSignUp = createAsyncThunk(
   "user/authSignUp",
   async (data: object, { rejectWithValue }) => {
@@ -35,4 +47,4 @@ const authSignUp = createAsyncThunk(
   },
 );
 
-export { authLogin, authSignUp, getMember };
+export { authLogin, authEmailSend, authEmailConfirms, authSignUp, getMember };

@@ -17,7 +17,7 @@ export type ButtonProps = {
   title?: string;
   width?: string;
   disabled?: boolean;
-  onClick: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+  onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   // iconOnly?: boolean;
 };
 
@@ -35,23 +35,29 @@ const Wrapper = styled.button<{
        { large: "0 1.5rem", medium: "0 1rem", small: "0 0.875rem" }[size]
      };
     cursor: ${disabled ? "default" : "pointer"};
-    color: ${ButtonTheme === "tertiary" ? GREY[500] : WHITE};
-    background-color: ${
-      { primary: INDIGO, secondary: MUSTARD, tertiary: WHITE }[ButtonTheme]
-    };
+    border: ${ButtonTheme !== "tertiary" ? "none" : `1px solid ${GREY[500]}`};
+      color: ${
+        (disabled && GREY[400]) ||
+        (ButtonTheme === "tertiary" ? GREY[500] : WHITE)
+      };
+      background-color: 
+      ${
+        (disabled && GREY[200]) ||
+        { primary: INDIGO, secondary: MUSTARD, tertiary: WHITE }[ButtonTheme]
+      };
     ${
       !disabled &&
-      `&:hover {
+      `
+      &:hover {
         background-color: ${
           { primary: INDIGO_MUTED, secondary: MUSTARD_MUTED, tertiary: WHITE }[
             ButtonTheme
           ]
         };
-        border-color: ${ButtonTheme === "tertiary" ? GREY[600] : null};
         color:  ${ButtonTheme === "tertiary" ? GREY[600] : null};
       }`
     }
-    border: ${ButtonTheme !== "tertiary" ? "none" : `1px solid ${GREY[500]}`};
+
   `}
   display: flex;
   justify-content: center;
