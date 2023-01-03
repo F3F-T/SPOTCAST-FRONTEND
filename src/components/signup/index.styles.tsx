@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import Line from "../common/Line";
-import ImgButton from "./ImgButton";
+import ImgButton from "../common/ImgButton";
 import { GREY } from "../../constants/colors";
 
 const Wrapper = styled.div`

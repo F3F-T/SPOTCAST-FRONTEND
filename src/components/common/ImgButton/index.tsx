@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "@emotion/styled";
+import { Wrapper, Logo, NoneImg, StyledP } from "./index.styles";
 
 export type SignupButtonProps = {
   href?: string;
@@ -10,36 +10,6 @@ export type SignupButtonProps = {
   color?: string;
   onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 };
-
-const Wrapper = styled.a`
-  ${({ color }) => `
-background-color: ${color};`}
-  display: flex;
-  align-items: center;
-  width: 100%;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  border-radius: 0.5rem;
-  padding: 1rem;
-`;
-
-const Logo = styled.img<{ size: number }>`
-  ${({ size }) => `
-  width: ${size}rem;
-  height: ${size}rem;
-  margin-right: 1rem;
-`}
-`;
-const NoneImg = styled.div<{ size: number }>`
-  ${({ size }) => `
-  width: ${size}rem;
-  height: ${size}rem;
-`}
-`;
-const StyledP = styled.p`
-  font-weight: 700;
-`;
 
 export default function LoginButton({
   href,
