@@ -16,6 +16,8 @@ const ICONS: IconType = {
   chatRight: "bi bi-chat-right",
   search: "bi bi-search",
   eye: "bi bi-eye",
+  unchecked: "bi bi-check-circle",
+  checked: "bi bi-check-circle-fill",
 };
 
 export default ICONS;
