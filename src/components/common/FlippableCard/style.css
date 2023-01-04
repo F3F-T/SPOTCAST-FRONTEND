@@ -1,0 +1,24 @@
+.card {
+  position: relative;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  rotate: y var(--rotate-y, 0);
+  transition: all 800ms;
+  /*   transform: perspective(1000px); */
+}
+
+.card.flipped {
+  --rotate-y: -180deg;
+}
+
+.card .front,
+.card .back {
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.card .back {
+  rotate: y 180deg;
+}
