@@ -30,6 +30,8 @@ export default function Step2() {
     CategoryList,
     checkedInputs,
     changeHandler,
+    onReplaceBack,
+    onReplaceNext,
   } = useInform();
   return (
     <Container>
@@ -73,9 +75,13 @@ export default function Step2() {
             </EtcWrapper>
 
             <ButtonWrapper>
-              <LeftButton buttonTheme="tertiary" title="이전" />
+              <LeftButton
+                buttonTheme="tertiary"
+                title="이전"
+                onClick={onReplaceBack}
+              />
               {name && nickname && checkedInputs.length > 0 ? (
-                <RightButton title="다음" />
+                <RightButton title="다음" onClick={onReplaceNext} />
               ) : (
                 <ButtonDisabled title="다음" disabled />
               )}

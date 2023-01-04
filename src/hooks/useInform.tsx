@@ -3,6 +3,7 @@ import { useState } from "react";
 import useInput from "./useInput";
 
 export default function useInform() {
+  const router = useRouter();
   const [name, onChangeName] = useInput("");
   const [nickname, onChangeNickname] = useInput("");
   const CategoryList = ["실용음악", "클래식", "연기", "연출", "모델", "사진"];
@@ -17,6 +18,13 @@ export default function useInform() {
       setCheckedInputs(checkedInputs.filter(el => el !== id));
     }
   };
+  const onReplaceBack = () => {
+    router.back();
+  };
+
+  const onReplaceNext = () => {
+    router.push("/signup/email/userType");
+  };
 
   return {
     name,
@@ -26,5 +34,7 @@ export default function useInform() {
     CategoryList,
     checkedInputs,
     changeHandler,
+    onReplaceBack,
+    onReplaceNext,
   };
 }
