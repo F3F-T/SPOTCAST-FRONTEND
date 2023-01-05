@@ -7,7 +7,7 @@ const Title = styled.div`
   font-weight: 700;
   text-align: start;
   margin-top: 3rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   padding-top: 5rem;
   position: relative;
 `;
@@ -38,7 +38,7 @@ const SliderWrapper = styled.div`
   overflow: hidden;
   display: flex;
   position: relative;
-  height: 24rem;
+  height: 26rem;
   margin-bottom: 3rem;
 `;
 
@@ -68,8 +68,8 @@ const SliderFakerImage = styled.div`
   background-color: ${color};
 
 `}
-  width: 100%;
-  height: 100%;
+  width: 5rem;
+  height: 3rem;
   border-radius: 4px;
   object-fit: cover;
   &:hover {
