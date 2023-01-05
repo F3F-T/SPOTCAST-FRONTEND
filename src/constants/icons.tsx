@@ -18,6 +18,9 @@ const ICONS: IconType = {
   eye: "bi bi-eye",
   unchecked: "bi bi-check-circle",
   checked: "bi bi-check-circle-fill",
+  bell: "bi bi-bell-fill",
+  msg: "bi bi-envelope-fill",
+  mypage: "bi bi-person-fill",
 };
 
 export default ICONS;
