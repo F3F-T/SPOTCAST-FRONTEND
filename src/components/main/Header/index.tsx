@@ -2,6 +2,8 @@ import React, { useCallback } from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../stores/reducers";
+import Icon from "../../common/Icon";
+import { MUSTARD, GREY } from "../../../constants/colors";
 import {
   Container,
   Wrapper,
@@ -9,13 +11,16 @@ import {
   Ul,
   Li,
   Hover,
+  SearchBox,
+  IconWrapper,
   Input,
   Login,
+  LoggedIn,
   StyledButton,
 } from "./index.styles";
 
 export default function Header() {
-  const { IsUserLoggedIn, me } = useSelector((state: RootState) => state.user);
+  const { IsUserLoggedIn } = useSelector((state: RootState) => state.user);
 
   const menu = [
     { name: "캐스팅/오디션", href: "/casting" },
@@ -45,23 +50,45 @@ export default function Header() {
             </Li>
           ))}
         </Ul>
-        <Input />
+        <SearchBox>
+          <IconWrapper>
+            <Icon className="search" border={0.01} size="1.4rem" />
+          </IconWrapper>
+          <Input />
+        </SearchBox>
         <aside>
-          <Login>
-            {aside.map(({ name, href }) => (
-              <Link href={href}>
-                <Hover>{name}</Hover>
-              </Link>
-            ))}
-          </Login>
+          {IsUserLoggedIn ? (
+            <LoggedIn>
+              <Icon className="bell" border={0.3} size="2rem" color={MUSTARD} />
+              <Icon className="msg" border={0.3} size="2rem" color={MUSTARD} />
+              <Icon
+                className="mypage"
+                border={0.5}
+                size="2.2rem"
+                color={MUSTARD}
+              />
+              <StyledButton
+                size="large"
+                title="내 포트폴리오 등록"
+                onClick={openPotfolioForm}
+              />
+            </LoggedIn>
+          ) : (
+            <Login>
+              {aside.map(({ name, href }) => (
+                <Link href={href}>
+                  <Hover>{name}</Hover>
+                </Link>
+              ))}
+              <StyledButton
+                size="large"
+                title="내 포트폴리오 등록"
+                onClick={openPotfolioForm}
+              />
+            </Login>
+          )}
         </aside>
-        <StyledButton
-          size="large"
-          title="내 포트폴리오 등록"
-          onClick={openPotfolioForm}
-        />
       </Wrapper>
-      {IsUserLoggedIn ? me.email : null}
     </Container>
   );
 }

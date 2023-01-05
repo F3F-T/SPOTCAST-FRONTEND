@@ -45,24 +45,43 @@ const Li = styled.div`
   }
 `;
 
+const SearchBox = styled.div`
+  position: relative;
+  height: 2.6rem;
+  width: 17rem;
+`;
+
 const Input = styled.input`
+  position: absolute;
   background-color: #f7f9f9;
   height: 2.6rem;
   width: 17rem;
   border-radius: 2rem;
+  font-weight: 300;
   border: 0.1rem solid ${GREY[300]};
-  padding: 1rem 3rem;
+  padding: 1rem 4rem;
   outline-style: none;
-  color: ${GREY[700]};
+  color: ${GREY[900]};
 `;
-
+const IconWrapper = styled.div`
+  position: absolute;
+  z-index: 999;
+  top: 0.7rem;
+  left: 1.1rem;
+`;
 const Login = styled.div`
   display: flex;
+  align-items: center;
   gap: 1rem;
   font-size: 1.3rem;
   padding-left: 7rem;
 `;
-
+const LoggedIn = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.7rem;
+  font-size: 1.3rem;
+`;
 const Hover = styled.div`
   &:hover {
     font-weight: 600;
@@ -71,6 +90,20 @@ const Hover = styled.div`
 
 const StyledButton = styled(Button)`
   padding: 0.8rem 1.2rem;
+  margin-left: 1rem;
 `;
 
-export { Container, Wrapper, Logo, Ul, Li, Hover, Input, Login, StyledButton };
+export {
+  Container,
+  Wrapper,
+  Logo,
+  Ul,
+  Li,
+  Hover,
+  SearchBox,
+  Input,
+  IconWrapper,
+  Login,
+  LoggedIn,
+  StyledButton,
+};
