@@ -20,6 +20,10 @@ const StarButton = styled.button`
   &:hover {
     transform: scale(1.2);
   }
+
+  &:active {
+    transform: scale(1);
+  }
 `;
 interface StarProps {
   border: number;
