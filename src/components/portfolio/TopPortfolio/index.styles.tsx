@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { GREY } from "../../../constants/colors";
 
 const Title = styled.div`
   width: 100%;
@@ -7,38 +6,23 @@ const Title = styled.div`
   font-weight: 700;
   text-align: start;
   margin-top: 3rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   padding-top: 5rem;
   position: relative;
 `;
-const LeftButton = styled.button`
-  z-index: 1;
-  background-color: white;
-  border-radius: 15px;
+const DirectionButton = styled.button`
+  background-color: transparent;
+  outline: none;
   border: none;
-  font-size: 2rem;
-  color: ${GREY[800]};
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 
-const RightButton = styled.button`
-  z-index: 1;
-  background-color: white;
-  border: none;
-  font-size: 2rem;
-  color: ${GREY[800]};
-  &:hover {
-    cursor: pointer;
-  }
-`;
 const SliderWrapper = styled.div`
   width: 100%;
   overflow: hidden;
   display: flex;
   position: relative;
-  height: 24rem;
+  height: 26rem;
   margin-bottom: 3rem;
 `;
 
@@ -68,8 +52,8 @@ const SliderFakerImage = styled.div`
   background-color: ${color};
 
 `}
-  width: 100%;
-  height: 100%;
+  width: 5rem;
+  height: 3rem;
   border-radius: 4px;
   object-fit: cover;
   &:hover {
@@ -83,14 +67,14 @@ const ButtonWrapper = styled.div`
   bottom: 0;
   right: 0;
   display: flex;
+  margin-right: 1rem;
 `;
 
 export {
   Title,
   SliderWrapper,
   ButtonWrapper,
-  LeftButton,
-  RightButton,
+  DirectionButton,
   StyledSlider,
   SliderContent,
   SliderFakerImage,

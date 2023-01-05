@@ -33,7 +33,9 @@ export default function Header() {
   return (
     <Container>
       <Wrapper>
-        <Logo>SPOTCAST</Logo>
+        <Link href="/">
+          <Logo>SPOTCAST</Logo>
+        </Link>
         <Ul>
           {menu.map(({ name, href }) => (
             <Li>
