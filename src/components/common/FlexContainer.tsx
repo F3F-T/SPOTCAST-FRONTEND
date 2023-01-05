@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import React from "react";
 
 type DirectionType = "row" | "column";
 type PositionType = "flex-start" | "center" | "flex-end";
@@ -12,14 +13,14 @@ interface FlexProps {
   width?: string;
 }
 
-const FlexContainer = ({
+function FlexContainer({
   children,
   direction,
   gap,
   align = "flex-start",
   justify = "flex-start",
   width = "100%",
-}: FlexProps) => {
+}: FlexProps) {
   const Wrapper = styled.div<{
     children: React.ReactNode;
     direction: DirectionType;
@@ -48,6 +49,6 @@ const FlexContainer = ({
       {children}
     </Wrapper>
   );
-};
+}
 
 export default FlexContainer;

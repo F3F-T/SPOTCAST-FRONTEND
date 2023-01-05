@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import React, { useState } from "react";
-import { GREY, MUSTARD } from "../../../../constants/colors";
-import Icon from "../../../common/Icon";
+import React from "react";
+import { GREY } from "../../../../constants/colors";
+import StarIcon from "../../../common/StarIcon";
 
 const Container = styled.div`
   width: 100%;
@@ -79,14 +79,8 @@ type ItemType = {
 type ItemProps = {
   item: ItemType;
 };
-export default function TopCard({ item }: ItemProps) {
-  const [isStarred, setIsStarred] = useState(false);
-  const handleStarClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    setIsStarred(!isStarred);
-    // 즐겨찾기 POST
-  };
 
+export default function TopCard({ item }: ItemProps) {
   return (
     <Container>
       {item.src.length === 2 ? (
@@ -99,19 +93,11 @@ export default function TopCard({ item }: ItemProps) {
           <Img src={item.src[0]} />
         </Image>
       )}
-
       <Contents>
         <Name>{item.name}</Name>
         <Role>{item.role}</Role>
         <Star>
-          <StarButton type="button" onClick={handleStarClick}>
-            <Icon
-              className={isStarred ? "starFill" : "starEmpty"}
-              color={MUSTARD}
-              border={0.2}
-              size="2rem"
-            />
-          </StarButton>
+          <StarIcon border={0.2} size="2rem" />
         </Star>
       </Contents>
     </Container>
