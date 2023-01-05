@@ -6,7 +6,7 @@ const Container = styled.div`
   /* height: 70rem; */
   display: flex;
   justify-content: center;
-  margin-top: 8rem;
+  padding-top: 10rem;
 `;
 
 const ArticleWrapper = styled.div`

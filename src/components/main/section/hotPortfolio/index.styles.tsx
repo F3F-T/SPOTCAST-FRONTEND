@@ -63,7 +63,7 @@ const Category = styled.button`
 `;
 
 const StyledButton = styled.button`
-  margin-top: 5rem;
+  margin: 5rem 0;
   width: 100%;
   height: 6rem;
   border: none;

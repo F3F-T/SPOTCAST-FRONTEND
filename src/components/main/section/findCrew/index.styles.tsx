@@ -15,6 +15,7 @@ export const ArticleTitle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 1rem;
 `;
 export const Title = styled.h2`
   font-size: 2.2rem;

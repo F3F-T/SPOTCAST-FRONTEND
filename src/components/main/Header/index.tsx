@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../stores/reducers";
 import Icon from "../../common/Icon";
-import { MUSTARD, GREY } from "../../../constants/colors";
+import { MUSTARD } from "../../../constants/colors";
 import {
   Container,
   Wrapper,

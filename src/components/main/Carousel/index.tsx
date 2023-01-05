@@ -10,6 +10,7 @@ import {
   SliderFakerImage,
 } from "./index.styles";
 import { MainCarousel } from "../../../hooks/useCarousel";
+import Icon from "../../common/Icon";
 
 export default function Carousel() {
   const {
@@ -25,8 +26,12 @@ export default function Carousel() {
     <>
       <Title> 얼마 안남은 오디션/캐스팅 🗓️</Title>
       <SliderWrapper>
-        <LeftButton onClick={() => handleSwipe(-1)}>{"<"}</LeftButton>
-        <RightButton onClick={() => handleSwipe(1)}>{">"}</RightButton>
+        <LeftButton onClick={() => handleSwipe(-1)}>
+          <Icon className="arrowLeft" border={1.3} size="1.8rem" />
+        </LeftButton>
+        <RightButton onClick={() => handleSwipe(1)}>
+          <Icon className="arrowRight" border={1.3} size="1.8rem" />
+        </RightButton>
         <StyledSlider
           style={{
             transform: `translateX(calc(${
