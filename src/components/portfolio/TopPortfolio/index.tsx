@@ -4,13 +4,13 @@ import {
   Title,
   SliderWrapper,
   ButtonWrapper,
-  LeftButton,
-  RightButton,
+  DirectionButton,
   StyledSlider,
   SliderContent,
 } from "./index.styles";
 import TopCard from "./TopCard";
 import { SubCarousel } from "../../../hooks/useCarousel";
+import Icon from "../../common/Icon";
 
 export default function Carousel() {
   const {
@@ -27,8 +27,12 @@ export default function Carousel() {
       <Title>
         뜨고 있는 프로필 ⚡
         <ButtonWrapper>
-          <LeftButton onClick={() => handleSwipe(-3)}>{"<"}</LeftButton>
-          <RightButton onClick={() => handleSwipe(3)}>{">"}</RightButton>
+          <DirectionButton onClick={() => handleSwipe(-3)}>
+            <Icon className="arrowLeft" border={1.3} size="1.8rem" />
+          </DirectionButton>
+          <DirectionButton onClick={() => handleSwipe(3)}>
+            <Icon className="arrowRight" border={1.3} size="1.8rem" />
+          </DirectionButton>
         </ButtonWrapper>
       </Title>
       <SliderWrapper>

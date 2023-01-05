@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { GREY } from "../../../constants/colors";
 
 const Title = styled.div`
   width: 100%;
@@ -11,28 +10,13 @@ const Title = styled.div`
   padding-top: 5rem;
   position: relative;
 `;
-const LeftButton = styled.button`
-  z-index: 1;
-  background-color: white;
-  border-radius: 15px;
+const DirectionButton = styled.button`
+  background-color: transparent;
+  outline: none;
   border: none;
-  font-size: 2rem;
-  color: ${GREY[800]};
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 
-const RightButton = styled.button`
-  z-index: 1;
-  background-color: white;
-  border: none;
-  font-size: 2rem;
-  color: ${GREY[800]};
-  &:hover {
-    cursor: pointer;
-  }
-`;
 const SliderWrapper = styled.div`
   width: 100%;
   overflow: hidden;
@@ -83,14 +67,14 @@ const ButtonWrapper = styled.div`
   bottom: 0;
   right: 0;
   display: flex;
+  margin-right: 1rem;
 `;
 
 export {
   Title,
   SliderWrapper,
   ButtonWrapper,
-  LeftButton,
-  RightButton,
+  DirectionButton,
   StyledSlider,
   SliderContent,
   SliderFakerImage,

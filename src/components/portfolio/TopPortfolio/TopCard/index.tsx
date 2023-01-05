@@ -70,6 +70,7 @@ export const StarButton = styled.button`
   border: none;
   cursor: pointer;
 `;
+
 type ItemType = {
   name: string;
   role: string;
