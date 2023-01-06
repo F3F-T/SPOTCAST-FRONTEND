@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../stores/reducers";
 import Icon from "../../common/Icon";
@@ -21,7 +22,7 @@ import {
 
 export default function Header() {
   const { IsUserLoggedIn } = useSelector((state: RootState) => state.user);
-
+  const router = useRouter();
   const menu = [
     { name: "캐스팅/오디션", href: "/casting" },
     { name: "공개 포트폴리오", href: "/portfolio" },
@@ -33,7 +34,9 @@ export default function Header() {
     { name: "회원가입", href: "/signup" },
   ];
 
-  const openPotfolioForm = useCallback(() => {}, []);
+  const openPotfolioForm = useCallback(() => {
+    router.push("/pages/user-portfolio");
+  }, []);
 
   return (
     <Container>

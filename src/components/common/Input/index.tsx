@@ -4,6 +4,7 @@ import {
   Container,
   LabelWrapper,
   InputWrapper,
+  TextAreaWrapper,
 } from "./index.styles";
 
 function Input({
@@ -17,6 +18,7 @@ function Input({
   color = "light",
   className,
   isValid = true,
+  isTextarea = false,
   // className,
   onChange,
 }: InputProps) {
@@ -28,16 +30,26 @@ function Input({
       color={color}
       className={className}
       isValid={isValid}
+      isTextarea={isTextarea!}
     >
       <LabelWrapper>{label}</LabelWrapper>
-      <InputWrapper
-        value={value}
-        type={type}
-        name={label}
-        placeholder={labelType === "hidden" ? label : placeholder}
-        required={required}
-        onChange={onChange}
-      />
+      {isTextarea ? (
+        <TextAreaWrapper
+          value={value}
+          name={label}
+          placeholder={labelType === "hidden" ? label : placeholder}
+          required={required}
+        />
+      ) : (
+        <InputWrapper
+          value={value}
+          type={type}
+          name={label}
+          placeholder={labelType === "hidden" ? label : placeholder}
+          required={required}
+          onChange={onChange}
+        />
+      )}
     </Container>
   );
 }

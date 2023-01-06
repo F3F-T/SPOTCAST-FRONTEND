@@ -14,7 +14,7 @@ export default function LoginLayout({
     <section className={styles.Full}>
       {/* Include shared UI here e.g. a header or sidebar */}
 
-      <div className={styles.Inner}>{children}</div>
+      <div className={styles.InnerFull}>{children}</div>
     </section>
   );
 }

@@ -33,6 +33,11 @@
 
 .Inner {
   width: 108rem;
+  padding-top: 8rem;
+}
+
+.InnerFull {
+  width: 108rem;
 }
 
 /* 
