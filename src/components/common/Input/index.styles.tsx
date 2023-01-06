@@ -15,6 +15,7 @@ export interface InputProps {
   color?: ColorScheme;
   className?: string;
   isValid?: boolean;
+  isTextarea?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -23,13 +24,14 @@ const Container = styled.div<{
   labelType: LabelType;
   size: number;
   isValid: boolean;
+  isTextarea: boolean;
 }>`
   ${({ color, labelType, size, isValid }) => `
       input, label {color: ${{ light: BLACK, dark: WHITE }[color]}}
       label {
         display: ${{ hidden: "none", default: "initial" }[labelType]};
       }
-      input {
+      input, textarea {
         border: ${
           !isValid
             ? `0.15rem solid ${RED.DARK}`
@@ -41,6 +43,7 @@ const Container = styled.div<{
             background-color: ${{ light: WHITE, dark: GREY[900] }[color]};
             width: ${size}rem
       }
+     
       `}
   display: flex;
   flex-direction: column;
@@ -60,4 +63,12 @@ const InputWrapper = styled.input`
   outline: none;
 `;
 
-export { Container, LabelWrapper, InputWrapper };
+const TextAreaWrapper = styled.textarea`
+  font-weight: 300;
+  font-size: 1.3rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  outline: none;
+`;
+
+export { Container, LabelWrapper, InputWrapper, TextAreaWrapper };
