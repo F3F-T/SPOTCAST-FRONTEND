@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import Inform from "./inform";
+import EditForm from "./tab/introduce/edit-form";
 import Tab from "./tab";
 
 const Container = styled.div`
@@ -14,7 +15,8 @@ export default function UserProfile() {
   return (
     <Container>
       <Inform />
-      <Tab />
+      {/* <Tab /> */}
+      <EditForm />
     </Container>
   );
 }

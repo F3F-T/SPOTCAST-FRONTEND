@@ -1,7 +1,9 @@
 import React, { useState, useCallback } from "react";
 import styled from "@emotion/styled";
+// import { useSelector } from "react-redux";
+// import { RootState } from "../../../../stores/reducers";
 import Line from "../../common/Line";
-import Introduce from "./introduce";
+import Introduce from "./introduce/inform";
 import Work from "./work";
 import SNS from "./sns";
 import Button from "../../common/Button";
@@ -54,6 +56,7 @@ interface TabTypes {
 interface TabProps extends Array<TabTypes> {}
 
 export default function Tab() {
+  //   const { IsUserLoggedIn } = useSelector((state: RootState) => state.user);
   const [currentTab, setCurrentTab] = useState(0);
   const tabMenu: TabProps = [
     { name: "소개", content: <Introduce /> },
@@ -80,6 +83,10 @@ export default function Tab() {
           );
         })}
         <EditButton title="수정하기" buttonTheme="tertiary" />
+        {/* 추후에 주석 처리 제거
+        {IsUserLoggedIn && (
+          <EditButton title="수정하기" buttonTheme="tertiary" />
+        )} */}
       </ButtonWrapper>
       <StyledLine width="100%" />
       <div>{tabMenu[currentTab].content}</div>
