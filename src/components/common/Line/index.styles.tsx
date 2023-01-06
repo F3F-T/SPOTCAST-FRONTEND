@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export type LineProps = {
   className?: string;
   // 선 색상
-  color: string;
+  color?: string;
   // 선 너비
   width: string;
 };

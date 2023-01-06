@@ -16,7 +16,7 @@ const Container = styled.div`
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
 `;
 const Name = styled.div`
   font-weight: 700;

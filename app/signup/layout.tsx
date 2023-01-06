@@ -14,7 +14,7 @@ export default function SignupLayout({
     <section className={styles.Full}>
       {/* Include shared UI here e.g. a header or sidebar */}
 
-      <div className={styles.Inner}>{children}</div>
+      <div className={styles.Full}>{children}</div>
     </section>
   );
 }
