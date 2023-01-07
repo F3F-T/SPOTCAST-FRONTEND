@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import Inform from "./inform";
-import EditForm from "./tab/introduce/edit-form";
+
 import Tab from "./tab";
 
 const Container = styled.div`
@@ -12,11 +12,12 @@ const Container = styled.div`
 `;
 
 export default function UserProfile() {
+  const [openForm, setOpenForm] = useState(false);
+
   return (
     <Container>
       <Inform />
-      {/* <Tab /> */}
-      <EditForm />
+      <Tab openForm={openForm} setOpenForm={setOpenForm} />
     </Container>
   );
 }
