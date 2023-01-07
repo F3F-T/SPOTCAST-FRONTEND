@@ -35,7 +35,7 @@ export default function Header() {
   ];
 
   const openPotfolioForm = useCallback(() => {
-    router.push("/pages/user-portfolio");
+    router.push("/pages/user-profile");
   }, []);
 
   return (

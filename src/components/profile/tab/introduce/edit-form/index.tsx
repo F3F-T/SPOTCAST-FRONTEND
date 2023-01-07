@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import styled from "@emotion/styled";
 import { GREY } from "../../../../../constants/colors";
 import Button from "../../../../common/Button";
@@ -71,12 +71,22 @@ const IntroduceInput = styled(Input)`
     font-weight: 500;
   }
 `;
+interface FormProps {
+  setOpenForm: Dispatch<SetStateAction<boolean>>;
+}
 
-export default function EditForm() {
+export default function EditForm({ setOpenForm }: FormProps) {
+  const onSubmitEditForm = () => {
+    setOpenForm(false);
+  };
   return (
     <Container>
       <ButtonWrapper>
-        <EditButton title="수정 완료" buttonTheme="tertiary" />
+        <EditButton
+          onClick={onSubmitEditForm}
+          title="수정 완료"
+          buttonTheme="tertiary"
+        />
       </ButtonWrapper>
       <Form>
         <Title>기본 정보</Title>

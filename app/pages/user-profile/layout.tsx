@@ -7,7 +7,7 @@ import styles from "../../../styles/layout.module.css";
 import Header from "../../../src/components/main/Header";
 import Footer from "../../../src/components/main/Footer";
 
-export default function PortfolioLayout({
+export default function ProfileLayout({
   children, // will be a page or nested layout
 }: {
   children: React.ReactNode;
