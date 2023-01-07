@@ -55,6 +55,7 @@ const EditButton = styled(Button)`
 interface TabTypes {
   name: string;
   content: React.ReactNode;
+  editForm: React.ReactNode;
 }
 
 interface TabProps extends Array<TabTypes> {}
@@ -68,30 +69,36 @@ export default function Tab({ openForm, setOpenForm }: FormProps) {
   //   const { IsUserLoggedIn } = useSelector((state: RootState) => state.user);
   const [currentTab, setCurrentTab] = useState(0);
   const tabMenu: TabProps = [
-    { name: "소개", content: <Introduce /> },
-    { name: "작업물", content: <Work /> },
-    { name: "SNS", content: <SNS /> },
+    {
+      name: "소개",
+      content: <Introduce />,
+      editForm: <EditForm setOpenForm={setOpenForm} />,
+    },
+    {
+      name: "작업물",
+      content: <Work />,
+      editForm: <EditForm setOpenForm={setOpenForm} />,
+    },
+    {
+      name: "SNS",
+      content: <SNS />,
+      editForm: <EditForm setOpenForm={setOpenForm} />,
+    },
   ];
 
-  const editForm = [
-    <EditForm setOpenForm={setOpenForm} />,
-    <EditForm setOpenForm={setOpenForm} />, // 작업물 수정 폼 컴포넌트 추가 예정
-    <EditForm setOpenForm={setOpenForm} />, // SNS 수정 폼 컴포넌트 추가 예정
-  ];
   const tabHandler = useCallback(
     (index: number) => {
       setCurrentTab(index);
     },
     [tabMenu[currentTab].name],
   );
-
   const onClickEditButton = useCallback(() => {
     setOpenForm(true);
   }, [currentTab]);
   return (
     <Container>
       {openForm ? (
-        <div>{editForm[currentTab]}</div>
+        <div>{tabMenu[currentTab].editForm}</div>
       ) : (
         <Wrapper>
           <ButtonWrapper>
