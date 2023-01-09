@@ -31,11 +31,13 @@
   align-items: center;
 }
 
+/* for pages including header, footer  */
 .Inner {
   width: 108rem;
   padding-top: 8rem;
 }
 
+/* for pages not including header, footer  */
 .InnerFull {
   width: 108rem;
 }

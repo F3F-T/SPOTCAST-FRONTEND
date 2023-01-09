@@ -5,9 +5,7 @@ const Title = styled.div`
   font-size: 1.7rem;
   font-weight: 700;
   text-align: start;
-  margin-top: 3rem;
   margin-bottom: 2rem;
-  padding-top: 5rem;
   position: relative;
 `;
 const DirectionButton = styled.button`
