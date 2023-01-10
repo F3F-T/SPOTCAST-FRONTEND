@@ -1,9 +1,6 @@
 import React, { useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useDispatch } from "react-redux";
 import styled from "@emotion/styled";
-import { AppDispatch } from "../../../stores/store/configureStore";
-import { loginTest } from "../../../stores/reducers/user";
+import useLogin from "../../hooks/useLogin";
 import { GREY } from "../../constants/colors";
 
 const Container = styled.div`
@@ -28,25 +25,16 @@ const Comment = styled.div`
 `;
 
 export default function Redirct() {
-  const router = useRouter();
-  const dispatch = useDispatch<AppDispatch>();
-  const searchParams = useSearchParams();
-  const token = searchParams.get("token");
+  const { token, useoAuthRedirct } = useLogin();
 
   useEffect(() => {
-    if (token) {
-      const prevPath = sessionStorage.getItem("prevPath");
-      localStorage.setItem("access_token", token);
-      dispatch(loginTest()); // TEST
-      if (prevPath) router.push(`${prevPath}`);
-      else router.push("/");
-    }
-  }, []);
+    useoAuthRedirct();
+  }, [token]);
 
   return (
     <Container>
       <Title>SPOTCAST</Title>
-      <Comment>이전 페이지로 돌아가는중 • • •</Comment>
+      <Comment>로그인 진행중 • • •</Comment>
     </Container>
   );
 }
