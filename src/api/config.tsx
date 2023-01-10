@@ -6,6 +6,7 @@ const USER = "/user/"; // 다른 유저
 const BOARD = "/board/";
 const PORTFFOLIO = "/portfolio/";
 const LOGIN = "login";
+const LOGOUT = "logout";
 const SIGNUP = "signup";
 const EMAIL_CERTIFICATION_SEND = "email-certification/sends";
 const EMAIL_CERTIFICATION_CONFIRM = "email-certification/confirms";
@@ -16,6 +17,7 @@ const API = {
   BASE_URL: `${BASE_URL}`,
   AUTH: `${AUTH}`,
   LOGIN: `${AUTH}${LOGIN}`,
+  LOGOUT: `${AUTH}${LOGOUT}`,
   EMAIL_SEND: `${AUTH}${EMAIL_CERTIFICATION_SEND}`,
   EMAIL_CONFIRM: `${AUTH}${EMAIL_CERTIFICATION_CONFIRM}`,
   SIGNUP: `${AUTH}${SIGNUP}`,

@@ -2,7 +2,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useCallback, useEffect } from "react";
 import { AppDispatch } from "../../stores/store/configureStore";
-import { authLogin, getMember } from "../api/auth";
+import { authLogin, authLogout } from "../api/auth";
 import { RootState } from "../../stores/reducers";
 import { loginTest } from "../../stores/reducers/user";
 import useInput from "./useInput";
@@ -16,9 +16,10 @@ export default function useLogin() {
   const [password, onChangePassword] = useInput("");
 
   const dispatch = useDispatch<AppDispatch>();
-  const { loginDone, loginError, me } = useSelector(
+  const { loginDone, loginError, me, logoutDone } = useSelector(
     (state: RootState) => state.user,
   );
+
   const useoAuthRedirct = () => {
     if (token) {
       const prevPath = sessionStorage.getItem("prevPath");
@@ -30,6 +31,9 @@ export default function useLogin() {
     }
   };
 
+  const useLogout = () => {
+    dispatch(authLogout());
+  };
   const onSubmitForm = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
@@ -39,7 +43,7 @@ export default function useLogin() {
   );
 
   useEffect(() => {
-    if (loginDone) {
+    if (loginDone && me.length > 0) {
       localStorage.setItem("email", me.email);
       localStorage.setItem("access_token", me.accessToken);
       // dispatch(getMember());
@@ -57,6 +61,7 @@ export default function useLogin() {
     onChangePassword,
     onSubmitForm,
     useoAuthRedirct,
+    useLogout,
     token,
   };
 }

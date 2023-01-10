@@ -14,10 +14,19 @@ const authLogin = createAsyncThunk(
   },
 );
 
+const authLogout = createAsyncThunk("user/authLogout", async () => {
+  try {
+    const response = await authorizationClient.post(API.LOGOUT);
+    return response.data.data;
+  } catch (error: any) {
+    return error.response.data;
+  }
+});
+
 const getMember = createAsyncThunk("user/getMember", async () => {
   try {
     const response = await authorizationClient.post(API.ME);
-    return response.data;
+    return response.data.data;
   } catch (error: any) {
     return error.response.data;
   }
@@ -41,11 +50,18 @@ const authSignUp = createAsyncThunk(
   async (data: object, { rejectWithValue }) => {
     try {
       const response = await unAuthorizationClient.post(API.SIGNUP, data);
-      return response.data;
+      return response.data.data;
     } catch (error: any) {
       return rejectWithValue(error.response.data);
     }
   },
 );
 
-export { authLogin, authEmailSend, authEmailConfirms, authSignUp, getMember };
+export {
+  authLogin,
+  authLogout,
+  authEmailSend,
+  authEmailConfirms,
+  authSignUp,
+  getMember,
+};
