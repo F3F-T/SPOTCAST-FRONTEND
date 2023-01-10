@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React from "react";
 import Input from "../../../common/Input";
@@ -15,6 +16,7 @@ import {
   RightButton,
   ButtonDisabled,
   Wrong,
+  Success,
   ButtonWrapper,
 } from "./index.styles";
 
@@ -61,7 +63,7 @@ export default function Step1() {
                 />
                 {isValidEmail ? (
                   <AuthButton
-                    title={min < 1 ? "재전송" : "인증"}
+                    title={min < 5 ? "재전송" : "인증"}
                     width="6.5rem"
                     onClick={onStartTimer}
                   />
@@ -73,7 +75,7 @@ export default function Step1() {
                 <Wrong>이메일 형식이 올바르지 않습니다.</Wrong>
               )}
             </div>
-            {min < 1 && (
+            {min < 5 && (
               <div>
                 <EmailWrapper>
                   <Input
@@ -84,7 +86,7 @@ export default function Step1() {
                     type="text"
                     required
                   />
-                  {authNumber.length === 6 ? (
+                  {authNumber.length === 6 && !isEmailConfirms ? (
                     <AuthButton
                       title="인증 완료"
                       width="9rem"
@@ -94,14 +96,19 @@ export default function Step1() {
                     <AuthButton title="인증 완료" width="9rem" disabled />
                   )}
                 </EmailWrapper>
-                {time.current <= 0 ? (
-                  <Wrong>
-                    입력시간이 초과되었습니다. 재전송 버튼을 눌러주세요.
-                  </Wrong>
+                {!isEmailConfirms ? (
+                  time.current <= 0 ? (
+                    <Wrong>
+                      입력시간이 초과되었습니다. 재전송 버튼을 눌러주세요.
+                    </Wrong>
+                  ) : (
+                    <Wrong>
+                      {min < 10 ? `0${min}` : min} :{" "}
+                      {sec < 10 ? `0${sec}` : sec}
+                    </Wrong>
+                  )
                 ) : (
-                  <Wrong>
-                    {min < 10 ? `0${min}` : min} : {sec < 10 ? `0${sec}` : sec}
-                  </Wrong>
+                  <Success>이메일 인증이 완료되었습니다!</Success>
                 )}
               </div>
             )}

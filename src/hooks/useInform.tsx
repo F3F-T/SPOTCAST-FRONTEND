@@ -1,5 +1,8 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { signUp } from "../../stores/reducers/user";
+import { AppDispatch } from "../../stores/store/configureStore";
 import useInput from "./useInput";
 
 export default function useInform() {
@@ -7,6 +10,7 @@ export default function useInform() {
   const [name, onChangeName] = useInput("");
   const [nickname, onChangeNickname] = useInput("");
   const CategoryList = ["실용음악", "클래식", "연기", "연출", "모델", "사진"];
+  const dispatch = useDispatch<AppDispatch>();
 
   const [checkedInputs, setCheckedInputs] = useState<string[]>([]);
 
@@ -23,6 +27,8 @@ export default function useInform() {
   };
 
   const onReplaceNext = () => {
+    dispatch(signUp({ name }));
+
     router.push("/signup/email/userType");
   };
 

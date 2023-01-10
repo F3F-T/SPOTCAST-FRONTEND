@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import Button from "../../../common/Button";
-import { GREY, RED } from "../../../../constants/colors";
+import { GREY, RED, GREEN } from "../../../../constants/colors";
 
 const Container = styled.div`
   width: 100%;
@@ -71,6 +71,14 @@ const Wrong = styled.div`
   display: block;
   text-align: start;
   color: ${RED.DARK};
+  padding-top: 1rem;
+  font-size: 1.2rem;
+`;
+
+const Success = styled.div`
+  display: block;
+  text-align: start;
+  color: ${GREEN.LIGHT};
   padding-top: 1rem;
   font-size: 1.2rem;
 `;
@@ -158,4 +166,5 @@ export {
   Agree,
   AgreeButton,
   Wrong,
+  Success,
 };

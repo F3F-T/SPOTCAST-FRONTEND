@@ -20,13 +20,13 @@ import {
   Agree,
   AgreeButton,
   EtcWrapper,
+  ButtonDisabled,
 } from "./index.styles";
 import Icon from "../../../common/Icon";
 import useUserType from "../../../../hooks/useUserType";
 
 export default function Step3() {
-  const { types, onToggleCheck } = useUserType();
-
+  const { types, onToggleCheck, onSubmitForm } = useUserType();
   return (
     <Container>
       <Wrapper>
@@ -68,7 +68,11 @@ export default function Step3() {
           </EtcWrapper>
           <ButtonWrapper>
             <LeftButton buttonTheme="tertiary" title="이전" />
-            <RightButton title="다음" />
+            {types[0].selected || types[1].selected ? (
+              <RightButton onClick={onSubmitForm} title="가입 완료" />
+            ) : (
+              <ButtonDisabled title="가입 완료" disabled />
+            )}
           </ButtonWrapper>
         </FormWrapper>
       </Wrapper>
