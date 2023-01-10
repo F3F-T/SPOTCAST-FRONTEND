@@ -16,7 +16,7 @@ export const StarContainer = styled.div`
   flex-direction: column;
   align-items: center;
   align-self: end;
-  gap: 0.6rem;
+  gap: 0.4rem;
 `;
 export const StarButton = styled.button`
   background-color: transparent;
@@ -25,30 +25,30 @@ export const StarButton = styled.button`
   cursor: pointer;
 `;
 export const StarCount = styled.span`
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 `;
 export const ProfileImage = styled.img`
-  width: 21.6rem;
+  width: 17.6rem;
   aspect-ratio: 1/1;
   border-radius: 50%;
 `;
 export const Title = styled.div`
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
-  margin: 2.2rem 0;
+  margin: 1.8rem 0;
 `;
 export const Subtitle = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 0.9rem;
-  margin-bottom: 2.5rem;
+  gap: 0.7rem;
+  margin-bottom: 1.95rem;
 `;
 export const Tag = styled.span`
   border: 1px solid ${GREY[500]};
   border-radius: 5.95rem;
-  padding: 0.7rem 1.7rem;
-  font-size: 1.7rem;
+  padding: 0.5rem 1.5rem;
+  font-size: 1.4rem;
 `;
 export const LinkContainer = styled.div`
   display: flex;
@@ -58,8 +58,8 @@ export const LinkContainer = styled.div`
   margin-top: auto;
 `;
 export const Link = styled.a`
-  padding: 0.6rem;
-  font-size: 1.7rem;
+  padding: 0.5rem;
+  font-size: 1.4rem;
   font-weight: 700;
   position: relative;
   ::before {

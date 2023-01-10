@@ -56,8 +56,8 @@ function PortfolioCard({
             starred={starred}
           />
         }
-        width="30.7rem"
-        height="47.3rem"
+        width="25rem"
+        height="37.7rem"
       />
     </div>
   );
