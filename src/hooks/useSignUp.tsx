@@ -1,14 +1,14 @@
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { useCallback, useState, useRef, useEffect } from "react";
-import { authSignUp, authEmailSend, authEmailConfirms } from "../api/auth";
+import { authEmailSend, authEmailConfirms } from "../api/auth";
 import { AppDispatch } from "../../stores/store/configureStore";
 import useInput from "./useInput";
+import { signUp } from "../../stores/reducers/user";
 
 export default function useSignUp() {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
-
   const [email, onChangeEmail] = useInput("");
   const [authNumber, onChangeAuthNumber] = useInput("");
   const [password, onChangePassword] = useInput("");
@@ -37,12 +37,12 @@ export default function useSignUp() {
   }, [authNumber]);
 
   const AuthTimer = () => {
-    const VALIDTIME = 60;
+    const VALIDTIME = 300;
     const time = useRef<number>(VALIDTIME);
 
     const intervalRef: { current: NodeJS.Timeout | null } = useRef(null);
 
-    const [min, setMin] = useState(1);
+    const [min, setMin] = useState(5);
     const [sec, setSec] = useState(0);
 
     const decreaseNum = () => {
@@ -70,14 +70,16 @@ export default function useSignUp() {
   };
 
   const onReplaceNext = () => {
+    dispatch(
+      signUp({
+        email,
+        password,
+        loginType: "GENERAL_LOGIN",
+        authority: "ROLE_USER",
+      }),
+    );
     router.push("/signup/email/inform");
   };
-
-  const onSubmitForm = useCallback((e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    dispatch(authSignUp({ email, password }));
-    router.push("/");
-  }, []);
 
   return {
     email,
@@ -93,7 +95,6 @@ export default function useSignUp() {
     isEmailConfirms,
     onReplaceBack,
     onReplaceNext,
-    onSubmitForm,
     onSubmitEmailAuth,
     AuthTimer,
   };

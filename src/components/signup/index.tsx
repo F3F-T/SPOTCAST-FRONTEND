@@ -15,10 +15,13 @@ import {
 } from "./index.styles";
 
 export default function Signup() {
-  const Router = useRouter();
+  const router = useRouter();
+
+  const googloSignup = `http://localhost:8080/oauth2/authorization/google?redirect_uri=http://localhost:3000/redirect`;
+  const kakaoSignup = ``;
 
   const EmailLogin = useCallback(() => {
-    Router.replace("/signup/email");
+    router.push("/signup/email");
   }, []);
 
   return (
@@ -34,12 +37,14 @@ export default function Signup() {
           <SNSButton
             title="구글 계정으로 가입하기"
             ImgSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/320px-Google_%22G%22_Logo.svg.png"
+            href={googloSignup}
             color={GREY[100]}
             size={2.3}
           />
           <SNSButton
             title="카카오 계정으로 가입하기"
             ImgSrc="https://cdn.imweb.me/upload/S20210304872ba49a108a8/89a68d1e3674a.png"
+            href={kakaoSignup}
             color="#f9da49"
             size={2.5}
           />

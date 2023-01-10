@@ -67,6 +67,7 @@ const LeftButton = styled(Button)`
   border-radius: 0.5rem;
   font-size: 1.4rem;
 `;
+
 const RightButton = styled(Button)`
   width: 30rem;
   padding: 1.7rem 2rem;
@@ -80,7 +81,13 @@ const RightButton = styled(Button)`
   font-size: 1.4rem;
   color: white;
 `;
-
+const ButtonDisabled = styled(Button)`
+  width: 30rem;
+  padding: 1.7rem 2rem;
+  border-radius: 0.5rem;
+  cursor: default;
+  font-size: 1.4rem;
+`;
 const EtcWrapper = styled.div`
   width: 30rem;
   display: flex;
@@ -179,4 +186,5 @@ export {
   Agree,
   AgreeButton,
   EtcWrapper,
+  ButtonDisabled,
 };
