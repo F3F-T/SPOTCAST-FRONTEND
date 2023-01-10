@@ -42,7 +42,7 @@ export const Subtitle = styled.div`
   flex-direction: row;
   justify-content: space-between;
   gap: 0.7rem;
-  margin-bottom: 1.95rem;
+  margin-bottom: 1.9rem;
 `;
 export const Tag = styled.span`
   border: 1px solid ${GREY[500]};
