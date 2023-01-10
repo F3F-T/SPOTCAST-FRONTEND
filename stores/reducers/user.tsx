@@ -4,7 +4,7 @@ import { authLogin, authSignUp, getMember } from "../../src/api/auth";
 
 type UserState = {
   IsUserLoggedIn: boolean;
-  me: null; // 내 정보
+  me: object; // 내 정보
   loginLoading: boolean; // 로그인 시도중
   loginDone: boolean;
   loginError: any;
@@ -19,7 +19,7 @@ type UserState = {
 // 기본 state
 export const initialState: UserState = {
   IsUserLoggedIn: false,
-  me: null, // 내 정보
+  me: {}, // 내 정보
   loginLoading: false, // 로그인 시도중
   loginDone: false,
   loginError: null,
@@ -37,6 +37,9 @@ const userSlice = createSlice({
   reducers: {
     loginTest(state) {
       state.IsUserLoggedIn = true;
+    },
+    signUp(state, action) {
+      state.me = Object.assign(state.me, action.payload);
     },
   },
   extraReducers: builder =>
@@ -89,6 +92,6 @@ const userSlice = createSlice({
       .addDefaultCase(state => state),
 });
 
-export const { loginTest } = userSlice.actions;
+export const { loginTest, signUp } = userSlice.actions;
 
 export default userSlice;
