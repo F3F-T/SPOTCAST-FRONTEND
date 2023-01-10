@@ -1,10 +1,11 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../stores/reducers";
 import Icon from "../../common/Icon";
 import { MUSTARD } from "../../../constants/colors";
+import ProfileModal from "./ProfileModal";
 import {
   Container,
   Wrapper,
@@ -14,6 +15,8 @@ import {
   Hover,
   SearchBox,
   IconWrapper,
+  UserWrapper,
+  IconButton,
   Input,
   Login,
   LoggedIn,
@@ -22,6 +25,7 @@ import {
 
 export default function Header() {
   const { IsUserLoggedIn } = useSelector((state: RootState) => state.user);
+  const [openModal, setOpenModal] = useState(false);
   const router = useRouter();
   const menu = [
     { name: "캐스팅/오디션", href: "/casting" },
@@ -62,14 +66,37 @@ export default function Header() {
         <aside>
           {IsUserLoggedIn ? (
             <LoggedIn>
-              <Icon className="bell" border={0.3} size="2rem" color={MUSTARD} />
-              <Icon className="msg" border={0.3} size="2rem" color={MUSTARD} />
-              <Icon
-                className="mypage"
-                border={0.5}
-                size="2.2rem"
-                color={MUSTARD}
-              />
+              <IconButton>
+                <Icon
+                  className="bell"
+                  border={0.3}
+                  size="2rem"
+                  color={MUSTARD}
+                />
+              </IconButton>
+              <IconButton>
+                <Icon
+                  className="msg"
+                  border={0.3}
+                  size="2rem"
+                  color={MUSTARD}
+                />
+              </IconButton>
+              <UserWrapper>
+                <IconButton
+                  onClick={() => {
+                    setOpenModal(!openModal);
+                  }}
+                >
+                  <Icon
+                    className="mypage"
+                    border={0.5}
+                    size="2.2rem"
+                    color={MUSTARD}
+                  />
+                </IconButton>
+                {openModal && <ProfileModal />}
+              </UserWrapper>
               <StyledButton
                 size="large"
                 title="내 포트폴리오 등록"
