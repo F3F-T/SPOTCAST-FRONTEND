@@ -17,8 +17,8 @@ const Logo = styled.img<{ size: number }>`
   ${({ size }) => `
     width: ${size}rem;
     height: ${size}rem;
-    margin-right: 1rem;
   `}
+  margin-right: 1rem;
 `;
 const NoneImg = styled.div<{ size: number }>`
   ${({ size }) => `
