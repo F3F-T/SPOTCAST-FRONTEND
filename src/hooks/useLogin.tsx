@@ -1,14 +1,16 @@
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useCallback, useEffect } from "react";
 import { AppDispatch } from "../../stores/store/configureStore";
 import { authLogin, getMember } from "../api/auth";
 import { RootState } from "../../stores/reducers";
-
+import { loginTest } from "../../stores/reducers/user";
 import useInput from "./useInput";
 
 export default function useLogin() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const token = searchParams.get("token"); // oAuth AccessToken
 
   const [email, onChangeEmail] = useInput("");
   const [password, onChangePassword] = useInput("");
@@ -17,6 +19,16 @@ export default function useLogin() {
   const { loginDone, loginError, me } = useSelector(
     (state: RootState) => state.user,
   );
+  const useoAuthRedirct = () => {
+    if (token) {
+      const prevPath = sessionStorage.getItem("prevPath");
+      localStorage.setItem("access_token", token);
+      dispatch(loginTest()); // TEST
+      if (prevPath) {
+        router.push(`${prevPath}`);
+      } else router.push("/");
+    }
+  };
 
   const onSubmitForm = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
@@ -44,5 +56,7 @@ export default function useLogin() {
     password,
     onChangePassword,
     onSubmitForm,
+    useoAuthRedirct,
+    token,
   };
 }
