@@ -79,8 +79,12 @@ const Login = styled.div`
 const LoggedIn = styled.div`
   display: flex;
   align-items: center;
-  gap: 1.7rem;
+  gap: 0.7rem;
   font-size: 1.3rem;
+`;
+
+const UserWrapper = styled.div`
+  position: relative;
 `;
 const Hover = styled.div`
   &:hover {
@@ -93,6 +97,13 @@ const StyledButton = styled(Button)`
   margin-left: 1rem;
 `;
 
+const IconButton = styled.button`
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+`;
+
 export {
   Container,
   Wrapper,
@@ -103,7 +114,9 @@ export {
   SearchBox,
   Input,
   IconWrapper,
+  IconButton,
   Login,
   LoggedIn,
   StyledButton,
+  UserWrapper,
 };
