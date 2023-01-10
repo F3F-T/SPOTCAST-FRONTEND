@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { GREY } from "../../constants/colors";
+import ImgButton from "../common/ImgButton";
 
 const Container = styled.div`
   width: 100%;
@@ -109,10 +110,13 @@ const ImgWrapper = styled.div`
   display: flex;
   justify-content: center;
   gap: 1.5rem;
+  a {
+    width: 4rem;
+    height: 4rem;
+    padding: 0;
+  }
 `;
-const SNSIMG = styled.img`
-  width: 4.7rem;
-  height: 4.7rem;
+const SNSIMG = styled(ImgButton)`
   border-radius: 5rem;
 `;
 

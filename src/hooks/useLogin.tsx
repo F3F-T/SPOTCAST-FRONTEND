@@ -1,10 +1,11 @@
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { useCallback } from "react";
-import { authLogin, getMember } from "../api/auth";
-import { loginTest } from "../../stores/reducers/user";
+import React, { useCallback } from "react";
 import { RootState } from "../../stores/reducers";
 import { AppDispatch } from "../../stores/store/configureStore";
+import { authLogin, getMember } from "../api/auth";
+import { loginTest } from "../../stores/reducers/user";
+
 import useInput from "./useInput";
 
 export default function useLogin() {
@@ -25,9 +26,9 @@ export default function useLogin() {
         localStorage.setItem("access_token", me.accessToken);
         console.log(`${me.email}님 로그인이 완료되었습니다.`);
         dispatch(getMember());
-        router.replace("/");
+        router.push("/");
       }
-      dispatch(loginTest({ email, password })); // TEST
+      dispatch(loginTest()); // TEST
     },
     [email, password],
   );

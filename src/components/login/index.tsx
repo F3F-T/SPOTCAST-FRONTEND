@@ -22,6 +22,9 @@ import useLogin from "../../hooks/useLogin";
 export default function Login() {
   const { email, onChangeEmail, password, onChangePassword, onSubmitForm } =
     useLogin();
+  const googleLogin = `http://localhost:8080/oauth2/authorization/google?redirect_uri=http://localhost:3000/redirect`;
+  const kakaoLogin = ``;
+
   return (
     <Container>
       <Wrapper>
@@ -55,9 +58,16 @@ export default function Login() {
           SNS로 간편하게 로그인
           <br />
           <ImgWrapper>
-            <SNSIMG src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/320px-Google_%22G%22_Logo.svg.png" />
-
-            <SNSIMG src="https://cdn.imweb.me/upload/S20210304872ba49a108a8/89a68d1e3674a.png" />
+            <SNSIMG
+              href={googleLogin}
+              size={4}
+              ImgSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/320px-Google_%22G%22_Logo.svg.png"
+            />
+            <SNSIMG
+              href={kakaoLogin}
+              size={4}
+              ImgSrc="https://cdn.imweb.me/upload/S20210304872ba49a108a8/89a68d1e3674a.png"
+            />
             {/* <SNSIMG src = "https://i.pinimg.com/564x/fb/71/04/fb71048e03a5ada757f70d61b583d0bf.jpg"/> */}
           </ImgWrapper>
           <div>

@@ -35,9 +35,8 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    loginTest(state, action) {
+    loginTest(state) {
       state.IsUserLoggedIn = true;
-      state.me = action.payload;
     },
   },
   extraReducers: builder =>
