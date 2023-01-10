@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "@emotion/styled";
 import Inform from "./inform";
 import Tab from "./tab";
-import useAuth from "../../hooks/useAuth";
 
 const Container = styled.div`
   width: 100%;
@@ -13,8 +12,6 @@ const Container = styled.div`
 
 export default function UserProfile() {
   const [openForm, setOpenForm] = useState(false);
-
-  useAuth();
 
   return (
     <Container>
