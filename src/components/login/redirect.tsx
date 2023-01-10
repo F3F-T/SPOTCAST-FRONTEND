@@ -38,7 +38,8 @@ export default function Redirct() {
       const prevPath = sessionStorage.getItem("prevPath");
       localStorage.setItem("access_token", token);
       dispatch(loginTest()); // TEST
-      router.push(`${prevPath}`);
+      if (prevPath) router.push(`${prevPath}`);
+      else router.push("/");
     }
   }, []);
 
