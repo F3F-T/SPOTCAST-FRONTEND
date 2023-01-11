@@ -29,7 +29,7 @@ export default function useInform() {
   const onReplaceNext = () => {
     dispatch(signUp({ name }));
 
-    router.push("/signup/email/userType");
+    router.push("/signup/userType");
   };
 
   return {

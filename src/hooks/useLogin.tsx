@@ -46,7 +46,7 @@ export default function useLogin() {
     if (loginDone && me) {
       localStorage.setItem("email", me.email);
       localStorage.setItem("access_token", me.accessToken);
-      router.back();
+      router.push("/");
     }
 
     if (loginError) {

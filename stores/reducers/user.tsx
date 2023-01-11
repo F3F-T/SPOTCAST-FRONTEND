@@ -9,7 +9,7 @@ import {
 
 type UserState = {
   IsUserLoggedIn: boolean;
-  me: object | any; // 내 정보
+  me: object; // 내 정보
   loginLoading: boolean; // 로그인 시도중
   loginDone: boolean;
   loginError: any;
@@ -80,7 +80,7 @@ const userSlice = createSlice({
       .addCase(authLogout.fulfilled, state => {
         state.logoutLoading = false;
         state.IsUserLoggedIn = false;
-        state.me = null;
+        state.me = {};
         state.logoutDone = true;
       })
       .addCase(authLogout.rejected, (state, action) => {
