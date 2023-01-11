@@ -46,9 +46,7 @@ export default function useLogin() {
     if (loginDone && me) {
       localStorage.setItem("email", me.email);
       localStorage.setItem("access_token", me.accessToken);
-      if (sessionStorage.getItem("prevPath")) {
-        router.push(`${sessionStorage.getItem("prevPath")}`);
-      } else router.push("/");
+      router.back();
     }
 
     if (loginError) {
