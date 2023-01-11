@@ -1,7 +1,8 @@
-"use client";
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 
-import React, { useState } from "react";
-import "./style.css";
+import React, { useEffect, useState } from "react";
+import styles from "./index.module.css";
 
 interface FlippableProps {
   frontCard: React.ReactNode;
@@ -14,14 +15,26 @@ function FlippableCard({ frontCard, backCard, width, height }: FlippableProps) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
-    <div
-      style={{ width, height }}
-      className={`card ${isFlipped ? "flipped" : ""}`}
-      onClick={() => setIsFlipped(!isFlipped)}
-    >
-      <div className="front">{frontCard}</div>
-      <div className="back">{backCard}</div>
+    <div className={styles.card}>
+      {isFlipped ? (
+        <div
+          style={{ width, height }}
+          className={styles.flippedCard}
+          onClick={() => setIsFlipped(!isFlipped)}
+        >
+          <div className={styles.front}>{frontCard}</div>
+          <div className={styles.back}>{backCard}</div>
+        </div>
+      ) : (
+        <div
+          style={{ width, height }}
+          className={styles.card}
+          onClick={() => setIsFlipped(!isFlipped)}
+        >
+          <div className={styles.front}>{frontCard}</div>
+          <div className={styles.back}>{backCard}</div>
+        </div>
+      )}
     </div>
   );
 }
