@@ -7,7 +7,12 @@
   /*   transform: perspective(1000px); */
 }
 
-.card.flipped {
+.flippedCard {
+  position: relative;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  rotate: y var(--rotate-y, 0);
+  transition: all 800ms;
   --rotate-y: -180deg;
 }
 
