@@ -16,7 +16,7 @@ export default function useLogin() {
   const [password, onChangePassword] = useInput("");
 
   const dispatch = useDispatch<AppDispatch>();
-  const { loginDone, loginError, me, logoutDone } = useSelector(
+  const { loginDone, loginError, me } = useSelector(
     (state: RootState) => state.user,
   );
 
@@ -43,12 +43,14 @@ export default function useLogin() {
   );
 
   useEffect(() => {
-    if (loginDone && me.length > 0) {
+    if (loginDone && me) {
       localStorage.setItem("email", me.email);
       localStorage.setItem("access_token", me.accessToken);
-      // dispatch(getMember());
-      router.push("/");
+      if (sessionStorage.getItem("prevPath")) {
+        router.push(`${sessionStorage.getItem("prevPath")}`);
+      } else router.push("/");
     }
+
     if (loginError) {
       alert(loginError.message);
     }
