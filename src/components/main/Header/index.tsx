@@ -25,7 +25,7 @@ import {
 
 export default function Header() {
   const { IsUserLoggedIn } = useSelector((state: RootState) => state.user);
-  const [openModal, setOpenModal] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const router = useRouter();
   const menu = [
     { name: "캐스팅/오디션", href: "/casting" },
@@ -38,8 +38,11 @@ export default function Header() {
     { name: "회원가입", href: "/signup" },
   ];
 
+  const showModal = useCallback(() => {
+    setModalOpen(!modalOpen);
+  }, [modalOpen]);
   const openPotfolioForm = useCallback(() => {
-    router.push("/pages/user-profile");
+    router.push("/profile");
   }, []);
 
   return (
@@ -83,11 +86,7 @@ export default function Header() {
                 />
               </IconButton>
               <UserWrapper>
-                <IconButton
-                  onClick={() => {
-                    setOpenModal(!openModal);
-                  }}
-                >
+                <IconButton onClick={showModal}>
                   <Icon
                     className="mypage"
                     border={0.5}
@@ -95,7 +94,7 @@ export default function Header() {
                     color={MUSTARD}
                   />
                 </IconButton>
-                {openModal && <ProfileModal />}
+                {modalOpen && <ProfileModal />}
               </UserWrapper>
               <StyledButton
                 size="large"
