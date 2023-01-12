@@ -19,12 +19,10 @@ function Input({
   className,
   isValid = true,
   isTextarea = false,
-  // className,
   onChange,
 }: InputProps) {
   return (
     <Container
-      // className={className}
       size={size}
       labelType={labelType}
       color={color}
