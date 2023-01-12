@@ -2,6 +2,16 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { authorizationClient, unAuthorizationClient } from ".";
 import API from "./config";
 
+const getMember = createAsyncThunk("user/getMember", async () => {
+  const response = await authorizationClient.get(API.MYINFO);
+  return response.data.data;
+});
+
+const getSocialMember = createAsyncThunk("user/getMember", async () => {
+  const response = await authorizationClient.get(API.SOCIAL_MYINFO);
+  return response.data.data;
+});
+
 const authLogin = createAsyncThunk(
   "user/authLogin",
   async (data: object, { rejectWithValue }) => {
@@ -17,15 +27,6 @@ const authLogin = createAsyncThunk(
 const authLogout = createAsyncThunk("user/authLogout", async () => {
   try {
     const response = await authorizationClient.post(API.LOGOUT);
-    return response.data.data;
-  } catch (error: any) {
-    return error.response.data;
-  }
-});
-
-const getMember = createAsyncThunk("user/getMember", async () => {
-  try {
-    const response = await authorizationClient.post(API.ME);
     return response.data.data;
   } catch (error: any) {
     return error.response.data;
@@ -58,10 +59,11 @@ const authSignUp = createAsyncThunk(
 );
 
 export {
+  getMember,
+  getSocialMember,
   authLogin,
   authLogout,
   authEmailSend,
   authEmailConfirms,
   authSignUp,
-  getMember,
 };
