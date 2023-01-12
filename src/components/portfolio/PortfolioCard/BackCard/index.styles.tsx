@@ -19,7 +19,7 @@ export const StarContainer = styled.div`
   flex-direction: column;
   align-items: center;
   align-self: end;
-  gap: 0.6rem;
+  gap: 0.4rem;
 `;
 export const StarButton = styled.button`
   background-color: transparent;
@@ -28,7 +28,7 @@ export const StarButton = styled.button`
   cursor: pointer;
 `;
 export const StarCount = styled.span`
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 `;
 export const TitleContainer = styled.div`
   display: flex;
@@ -36,12 +36,12 @@ export const TitleContainer = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
-  margin-bottom: 2rem;
+  margin-bottom: 1.37rem;
 `;
 export const Title = styled.div`
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 1rem; /* COME BACK */
 `;
 export const Subtitle = styled.div`
   display: flex;
@@ -52,7 +52,7 @@ export const Subtitle = styled.div`
 export const Tag = styled.span`
   font-weight: 300;
   color: ${GREY[600]};
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 `;
 export const LinkContainer = styled.div`
   display: flex;
@@ -62,8 +62,8 @@ export const LinkContainer = styled.div`
   margin-top: auto;
 `;
 export const Link = styled.a`
-  padding: 0.6rem;
-  font-size: 1.7rem;
+  padding: 0.5rem;
+  font-size: 1.4rem;
   font-weight: 700;
   position: relative;
   ::before {
@@ -78,19 +78,19 @@ export const Link = styled.a`
     background-color: ${GREY[300]};
     opacity: 0;
     transition: 200ms;
-    z-index: 100;
   }
   :hover::before {
     opacity: 1;
   }
 `;
+
 export const PrevGrid = styled.div<{ length: number }>`
   display: grid;
-  height: 31.5rem; //찝찝..^^
-  gap: 1.5rem;
+  height: 73%;
+  gap: 1.2rem;
   ${({ length }) => `
     grid-template-columns: ${length > 2 ? "repeat(2,1fr)" : "1fr"};
-    grid-template-rows: ${length > 1 ? "repeat(2,15rem)" : "auto"};
+    grid-template-rows: ${length > 1 ? "repeat(2,1fr)" : "auto"};
     ${
       length === 3 &&
       `  & > div:nth-child(3) {

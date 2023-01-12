@@ -44,7 +44,7 @@ function FrontCard({
           <Icon
             className={isStarred ? "starFill" : "starEmpty"}
             color={MUSTARD}
-            size="2.5rem"
+            size="2rem"
           />
         </StarButton>
         <StarCount>{starred}</StarCount>
