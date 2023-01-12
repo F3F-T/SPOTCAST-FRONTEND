@@ -111,6 +111,7 @@ const userSlice = createSlice({
         state.getMeLoading = false;
         state.me = action.payload;
         state.getMeDone = true;
+        state.IsUserLoggedIn = true;
       })
       .addCase(getMember.rejected, (state, action) => {
         state.getMeLoading = false;
