@@ -1,0 +1,26 @@
+import React, { useState } from "react";
+
+type Props = {
+  options: Array<{ value: any; label: string }>;
+  onChange: (value: any) => void;
+};
+
+export default function SelectBox({ options, onChange }: Props) {
+  const [selectedValue, setSelectedValue] = useState(options[0].value);
+
+  return (
+    <select
+      value={selectedValue}
+      onChange={e => {
+        setSelectedValue(e.target.value);
+        onChange(e.target.value);
+      }}
+    >
+      {options.map(option => (
+        <option key={option.value} value={option.value}>
+          {option.label}
+        </option>
+      ))}
+    </select>
+  );
+}

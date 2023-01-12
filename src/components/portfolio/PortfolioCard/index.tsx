@@ -5,7 +5,7 @@ import FlippableCard from "../../common/FlippableCard";
 import BackCard from "./BackCard/index";
 import FrontCard from "./FrontCard";
 
-interface PortfolioProps {
+export interface PortfolioProps {
   title: string;
   tags: string[];
   imageUrl: string;
@@ -17,19 +17,14 @@ interface PortfolioProps {
 }
 
 function PortfolioCard({
-  title = "윤채현",
-  tags = ["연출", "실용음악"],
-  imageUrl = "https://via.placeholder.com/300?text=PROFILE",
-  prevUrls = [
-    "https://via.placeholder.com/300x100?text=1",
-    "https://via.placeholder.com/200x400?text=2",
-    "https://via.placeholder.com/300x700?text=3",
-    "https://via.placeholder.com/300?text=4",
-  ],
-  profileUrl = "/profile",
-  portfolioUrl = "/portfolio",
-  isStarred = true,
-  starred = 123,
+  title,
+  tags,
+  imageUrl,
+  prevUrls,
+  profileUrl,
+  portfolioUrl,
+  isStarred,
+  starred,
 }: PortfolioProps) {
   return (
     <div>

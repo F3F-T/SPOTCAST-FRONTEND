@@ -62,8 +62,8 @@ export const LinkContainer = styled.div`
   margin-top: auto;
 `;
 export const Link = styled.a`
-  padding: 0.6rem;
-  font-size: 1.7rem;
+  padding: 0.5rem;
+  font-size: 1.4rem;
   font-weight: 700;
   position: relative;
   ::before {
@@ -78,12 +78,12 @@ export const Link = styled.a`
     background-color: ${GREY[300]};
     opacity: 0;
     transition: 200ms;
-    z-index: 100;
   }
   :hover::before {
     opacity: 1;
   }
 `;
+
 export const PrevGrid = styled.div<{ length: number }>`
   display: grid;
   height: 73%;
