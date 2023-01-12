@@ -1,10 +1,11 @@
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 // const API_VER = ""; => API 미정이라 주석
-const ME = "/member/"; // 접속한 유저
+const MEMBER = "/member/";
 const AUTH = "/auth/";
 const USER = "/user/"; // 다른 유저
 const BOARD = "/board/";
 const PORTFFOLIO = "/portfolio/";
+const MYINFO = "myInfo";
 const LOGIN = "login";
 const LOGOUT = "logout";
 const SIGNUP = "signup";
@@ -21,7 +22,9 @@ const API = {
   EMAIL_SEND: `${AUTH}${EMAIL_CERTIFICATION_SEND}`,
   EMAIL_CONFIRM: `${AUTH}${EMAIL_CERTIFICATION_CONFIRM}`,
   SIGNUP: `${AUTH}${SIGNUP}`,
-  ME: `${ME}`,
+  MEMBER: `${MEMBER}`,
+  MYINFO: `${MEMBER}${MYINFO}`,
+  SOCIAL_MYINFO: `${AUTH}${MYINFO}`,
   USER: `${USER}`,
   BOARD: `${BOARD}`,
   PORTFOLIO: `${PORTFFOLIO}`,
