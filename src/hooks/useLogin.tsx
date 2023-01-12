@@ -23,17 +23,17 @@ export default function useLogin() {
   const useoAuthRedirct = () => {
     if (token) {
       const prevPath = sessionStorage.getItem("prevPath");
-      localStorage.setItem("access_token", token);
-      dispatch(loginTest()); // TEST
+      dispatch(loginTest());
       if (prevPath) {
         router.push(`${prevPath}`);
       } else router.push("/");
     }
   };
 
-  const useLogout = () => {
+  const useLogout = useCallback(() => {
     dispatch(authLogout());
-  };
+  }, []);
+
   const onSubmitForm = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
@@ -44,11 +44,8 @@ export default function useLogin() {
 
   useEffect(() => {
     if (loginDone && me) {
-      localStorage.setItem("email", me.email);
-      localStorage.setItem("access_token", me.accessToken);
       router.push("/");
     }
-
     if (loginError) {
       alert(loginError.message);
     }
