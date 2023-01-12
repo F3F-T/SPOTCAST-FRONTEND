@@ -6,14 +6,14 @@ const authorizationClient = axios.create({
   withCredentials: true,
 });
 
-// 요청 전 헤더 추가
-authorizationClient.interceptors.request.use(config => {
-  return Object.assign(config, {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-    },
-  });
-});
+// // 요청 전 헤더 추가
+// authorizationClient.interceptors.request.use(config => {
+//   return Object.assign(config, {
+//     headers: {
+//       Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+//     },
+//   });
+// });
 
 authorizationClient.interceptors.response.use(
   response => {
