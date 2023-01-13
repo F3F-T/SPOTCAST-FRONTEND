@@ -22,20 +22,17 @@ export default function Page() {
     </div>
   );
 }
-// SSR (프론트 서버에서 실행)
+
 export const getServerSideProps = wrapper.getServerSideProps(store =>
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async ({ req, res, ...etc }) => {
     const cookie = req ? req.headers.cookie : "";
     axios.defaults.headers.Cookie = "";
-    // 쿠키가 브라우저에 있는경우만 넣어서 실행
-    // 주의, 아래 조건이 없다면 다른 사람으로 로그인 될 수도 있음
+
     if (req && cookie) {
       axios.defaults.headers.Cookie = cookie;
-      // 쿠키 테스트용
       await store.dispatch(storeCookie(cookie));
     }
-
     await store.dispatch(getMember());
 
     return {
