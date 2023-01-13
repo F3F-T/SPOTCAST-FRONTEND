@@ -79,7 +79,7 @@ const Login = styled.div`
 const LoggedIn = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.7rem;
+  gap: 0.5rem;
   font-size: 1.3rem;
 `;
 

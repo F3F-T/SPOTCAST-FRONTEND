@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../stores/reducers";
 import Icon from "../../common/Icon";
@@ -26,7 +25,7 @@ import {
 export default function Header() {
   const { IsUserLoggedIn } = useSelector((state: RootState) => state.user);
   const [modalOpen, setModalOpen] = useState(false);
-  const router = useRouter();
+
   const menu = [
     { name: "캐스팅/오디션", href: "/casting" },
     { name: "공개 포트폴리오", href: "/portfolio" },
@@ -41,9 +40,6 @@ export default function Header() {
   const showModal = useCallback(() => {
     setModalOpen(!modalOpen);
   }, [modalOpen]);
-  const openPotfolioForm = useCallback(() => {
-    router.push("/profile");
-  }, []);
 
   return (
     <Container>
@@ -96,11 +92,7 @@ export default function Header() {
                 </IconButton>
                 {modalOpen && <ProfileModal />}
               </UserWrapper>
-              <StyledButton
-                size="large"
-                title="내 포트폴리오 등록"
-                onClick={openPotfolioForm}
-              />
+              <StyledButton size="large" title="내 포트폴리오 관리" />
             </LoggedIn>
           ) : (
             <Login>
@@ -109,11 +101,7 @@ export default function Header() {
                   <Hover>{name}</Hover>
                 </Link>
               ))}
-              <StyledButton
-                size="large"
-                title="내 포트폴리오 등록"
-                onClick={openPotfolioForm}
-              />
+              <StyledButton size="large" title="내 포트폴리오 등록" />
             </Login>
           )}
         </aside>
