@@ -24,7 +24,6 @@ const API = {
   SIGNUP: `${AUTH}${SIGNUP}`,
   MEMBER: `${MEMBER}`,
   MYINFO: `${MEMBER}${MYINFO}`,
-  SOCIAL_MYINFO: `${AUTH}${MYINFO}`,
   USER: `${USER}`,
   BOARD: `${BOARD}`,
   PORTFOLIO: `${PORTFFOLIO}`,

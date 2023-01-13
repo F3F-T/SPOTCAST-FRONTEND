@@ -7,11 +7,6 @@ const getMember = createAsyncThunk("user/getMember", async () => {
   return response.data.data;
 });
 
-const getSocialMember = createAsyncThunk("user/getMember", async () => {
-  const response = await authorizationClient.get(API.SOCIAL_MYINFO);
-  return response.data.data;
-});
-
 const authLogin = createAsyncThunk(
   "user/authLogin",
   async (data: object, { rejectWithValue }) => {
@@ -60,7 +55,6 @@ const authSignUp = createAsyncThunk(
 
 export {
   getMember,
-  getSocialMember,
   authLogin,
   authLogout,
   authEmailSend,

@@ -7,7 +7,7 @@ import MainArticle1 from "../src/components/main/section/hotPortfolio";
 import MainArticle3 from "../src/components/main/section/communityPreview";
 import MainArticle2 from "../src/components/main/section/findCrew";
 import wrapper from "../stores/store/configureStore";
-import { getMember, getSocialMember } from "../src/api/auth";
+import { getMember } from "../src/api/auth";
 
 export default function Page() {
   return (
@@ -33,7 +33,6 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
     if (req && cookie) {
       axios.defaults.headers.Cookie = cookie;
       await store.dispatch(getMember());
-      await store.dispatch(getSocialMember());
     }
 
     return {
