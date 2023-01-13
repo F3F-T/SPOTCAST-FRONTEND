@@ -25,11 +25,11 @@ const Comment = styled.div`
 `;
 
 export default function Redirct() {
-  const { token, useoAuthRedirct } = useLogin();
+  const { useoAuthRedirct } = useLogin();
 
   useEffect(() => {
     useoAuthRedirct();
-  }, [token]);
+  }, []);
 
   return (
     <Container>

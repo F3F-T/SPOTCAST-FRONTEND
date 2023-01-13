@@ -9,8 +9,6 @@ import useInput from "./useInput";
 
 export default function useLogin() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const token = searchParams.get("token"); // oAuth AccessToken
 
   const [email, onChangeEmail] = useInput("");
   const [password, onChangePassword] = useInput("");
@@ -21,13 +19,11 @@ export default function useLogin() {
   );
 
   const useoAuthRedirct = () => {
-    if (token) {
-      const prevPath = sessionStorage.getItem("prevPath");
-      dispatch(loginTest());
-      if (prevPath) {
-        router.push(`${prevPath}`);
-      } else router.push("/");
-    }
+    const prevPath = sessionStorage.getItem("prevPath");
+    dispatch(loginTest());
+    if (prevPath) {
+      router.push(`${prevPath}`);
+    } else router.push("/");
   };
 
   const useLogout = useCallback(() => {
@@ -59,6 +55,5 @@ export default function useLogin() {
     onSubmitForm,
     useoAuthRedirct,
     useLogout,
-    token,
   };
 }

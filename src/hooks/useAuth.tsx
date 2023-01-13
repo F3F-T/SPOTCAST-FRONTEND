@@ -12,6 +12,10 @@ const useAuth = (loginRequired: boolean) => {
     router.push("/login");
     sessionStorage.setItem("prevPath", `${pathname}`);
   }
+
+  if (IsUserLoggedIn) {
+    sessionStorage.setItem("prevPath", ``);
+  }
 };
 
 export default useAuth;
