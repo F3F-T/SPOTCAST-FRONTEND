@@ -22,6 +22,7 @@ type UserState = {
   getMeLoading: boolean;
   getMeDone: boolean;
   getMeError: any;
+  cookie: any;
 };
 
 // 기본 state
@@ -40,17 +41,18 @@ export const initialState: UserState = {
   getMeLoading: false,
   getMeDone: false,
   getMeError: null,
+  cookie: null,
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    loginTest(state) {
-      state.IsUserLoggedIn = true;
-    },
     signUp(state, action) {
       state.me = Object.assign(state.me, action.payload);
+    },
+    storeCookie(state, action) {
+      state.cookie = action.payload;
     },
   },
   extraReducers: builder =>
@@ -120,6 +122,6 @@ const userSlice = createSlice({
       .addDefaultCase(state => state),
 });
 
-export const { loginTest, signUp } = userSlice.actions;
+export const { signUp, storeCookie } = userSlice.actions;
 
 export default userSlice;

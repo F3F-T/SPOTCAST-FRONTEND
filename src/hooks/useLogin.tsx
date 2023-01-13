@@ -1,10 +1,9 @@
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useCallback, useEffect } from "react";
 import { AppDispatch } from "../../stores/store/configureStore";
 import { authLogin, authLogout } from "../api/auth";
 import { RootState } from "../../stores/reducers";
-import { loginTest } from "../../stores/reducers/user";
 import useInput from "./useInput";
 
 export default function useLogin() {
@@ -20,7 +19,6 @@ export default function useLogin() {
 
   const useoAuthRedirct = () => {
     const prevPath = sessionStorage.getItem("prevPath");
-    dispatch(loginTest());
     if (prevPath) {
       router.push(`${prevPath}`);
     } else router.push("/");

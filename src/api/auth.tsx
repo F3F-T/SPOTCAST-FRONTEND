@@ -1,11 +1,22 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 import { authorizationClient, unAuthorizationClient } from ".";
 import API from "./config";
 
-const getMember = createAsyncThunk("user/getMember", async () => {
-  const response = await authorizationClient.get(API.MYINFO);
-  return response.data.data;
-});
+axios.defaults.baseURL = API.BASE_URL;
+axios.defaults.withCredentials = true;
+
+const getMember = createAsyncThunk(
+  "user/getMember",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(API.MYINFO);
+      return response.data.data;
+    } catch (error: any) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
 
 const authLogin = createAsyncThunk(
   "user/authLogin",
