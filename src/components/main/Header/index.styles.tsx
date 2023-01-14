@@ -100,8 +100,8 @@ const StyledButton = styled(Button)`
 const IconButton = styled.button`
   background-color: transparent;
   outline: none;
-  border: none;
   cursor: pointer;
+  border: none;
 `;
 
 export {

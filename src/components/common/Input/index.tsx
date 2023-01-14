@@ -37,6 +37,7 @@ function Input({
           name={label}
           placeholder={labelType === "hidden" ? label : placeholder}
           required={required}
+          onChange={onChange}
         />
       ) : (
         <InputWrapper

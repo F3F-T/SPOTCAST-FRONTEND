@@ -22,6 +22,7 @@ export default function Carousel() {
     items,
     getItemIndex,
   } = MainCarousel();
+
   return (
     <>
       <Title> 얼마 안남은 오디션/캐스팅 🗓️</Title>
@@ -44,7 +45,7 @@ export default function Carousel() {
             const itemIndex = getItemIndex(slideIndex);
             return (
               <SliderContent style={{ width: newItemWidth }}>
-                <SliderFakerImage color={items[itemIndex]} />
+                <SliderFakerImage color={items[itemIndex].color} />
                 {/* <img src={items[itemIndex]} alt={`banner${itemIndex}`} /> */}
               </SliderContent>
             );

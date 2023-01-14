@@ -51,7 +51,7 @@ function MainArticle2() {
       <CardContainer>
         {posts[currentCategory] &&
           posts[currentCategory].map((post: CrewPost) => (
-            <CrewCard {...post} />
+            <CrewCard key={post.id} {...post} />
           ))}
       </CardContainer>
     </ArticleContainer>

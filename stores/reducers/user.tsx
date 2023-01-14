@@ -51,6 +51,9 @@ const userSlice = createSlice({
     signUp(state, action) {
       state.me = Object.assign(state.me, action.payload);
     },
+    updateMe(state, action) {
+      state.me = Object.assign(state.me, action.payload);
+    },
     storeCookie(state, action) {
       state.cookie = action.payload;
     },
@@ -119,9 +122,10 @@ const userSlice = createSlice({
         state.getMeLoading = false;
         state.getMeError = action.payload;
       })
+
       .addDefaultCase(state => state),
 });
 
-export const { signUp, storeCookie } = userSlice.actions;
+export const { signUp, updateMe, storeCookie } = userSlice.actions;
 
 export default userSlice;

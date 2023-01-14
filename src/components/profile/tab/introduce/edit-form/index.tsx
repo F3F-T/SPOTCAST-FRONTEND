@@ -1,8 +1,9 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 import styled from "@emotion/styled";
 import { GREY } from "../../../../../constants/colors";
 import Button from "../../../../common/Button";
 import Input from "../../../../common/Input";
+import useEditForm from "../../../../../hooks/useEditForm";
 
 const Container = styled.div`
   width: 58.5rem;
@@ -71,19 +72,24 @@ const IntroduceInput = styled(Input)`
     font-weight: 500;
   }
 `;
-interface FormProps {
-  setOpenForm: Dispatch<SetStateAction<boolean>>;
-}
 
-export default function EditForm({ setOpenForm }: FormProps) {
-  const onSubmitEditForm = () => {
-    setOpenForm(false);
+export default function EditForm() {
+  const {
+    name,
+    information,
+    onChangeName,
+    onChangeInformation,
+    onSubmitEditForm,
+  } = useEditForm();
+
+  const onClickSubmitButton = () => {
+    onSubmitEditForm();
   };
   return (
     <Container>
       <ButtonWrapper>
         <EditButton
-          onClick={onSubmitEditForm}
+          onClick={onClickSubmitButton}
           title="수정 완료"
           buttonTheme="tertiary"
         />
@@ -95,6 +101,8 @@ export default function EditForm({ setOpenForm }: FormProps) {
           size={50}
           label="이름"
           placeholder="성명 입력란"
+          value={name}
+          onChange={onChangeName}
         />
         <StyledInput
           type="text"
@@ -117,6 +125,8 @@ export default function EditForm({ setOpenForm }: FormProps) {
           size={50}
           label="소개"
           placeholder="소개 입력란"
+          value={information}
+          onChange={onChangeInformation}
         />
         <Title>추가 정보</Title>
         <StyledInput

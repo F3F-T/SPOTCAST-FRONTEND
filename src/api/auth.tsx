@@ -6,6 +6,17 @@ import API from "./config";
 axios.defaults.baseURL = API.BASE_URL;
 axios.defaults.withCredentials = true;
 
+// 액세스 토큰 있는지 우선 API.MYINFO로 확인 리턴값이 err.code === 401이면
+const updateAuth = () => {
+  return axios.get(API.MYINFO);
+};
+
+// 리프레쉬 토큰으로 액세스토큰 재요청
+const refreshAuth = () => {
+  return axios.post(API.REISSUE);
+};
+
+// 액세스 토큰 있음 && 유효함
 const getMember = createAsyncThunk(
   "user/getMember",
   async (_, { rejectWithValue }) => {
@@ -71,4 +82,6 @@ export {
   authEmailSend,
   authEmailConfirms,
   authSignUp,
+  updateAuth,
+  refreshAuth,
 };

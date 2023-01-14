@@ -91,11 +91,10 @@ function Ripple(props: PropsType) {
   return (
     <RippleContainer duration={duration} color={color} onMouseDown={addRipple}>
       {rippleArray.length > 0 &&
-        rippleArray.map((ripple: RippleProps, index) => {
+        rippleArray.map((ripple: RippleProps) => {
           return (
             <span
-              // eslint-disable-next-line react/no-array-index-key
-              key={`span${index}`}
+              key={`span${rippleArray.indexOf(ripple)}`}
               style={{
                 top: ripple.y,
                 left: ripple.x,

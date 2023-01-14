@@ -20,12 +20,12 @@ export default function MainArticle1() {
         <Title>HOT 포트폴리오 📸</Title>
         <CategoryWrapper>
           {CategoryList.map(item => {
-            return <Category>{item}</Category>;
+            return <Category key={item}>{item}</Category>;
           })}
         </CategoryWrapper>
         <CardWrapper>
           {users.map(user => {
-            return <PortfolioCard user={user} />;
+            return <PortfolioCard key={user.id} user={user} />;
           })}
         </CardWrapper>
         <StyledButton>{`더 많은 영감 받으러 가기 >`}</StyledButton>
