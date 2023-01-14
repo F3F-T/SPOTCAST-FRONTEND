@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 import styled from "@emotion/styled";
 import { GREY } from "../../../../../constants/colors";
 import Button from "../../../../common/Button";
@@ -72,11 +72,8 @@ const IntroduceInput = styled(Input)`
     font-weight: 500;
   }
 `;
-interface FormProps {
-  setOpenForm: Dispatch<SetStateAction<boolean>>;
-}
 
-export default function EditForm({ setOpenForm }: FormProps) {
+export default function EditForm() {
   const {
     name,
     information,
@@ -86,10 +83,8 @@ export default function EditForm({ setOpenForm }: FormProps) {
   } = useEditForm();
 
   const onClickSubmitButton = () => {
-    setOpenForm(false);
     onSubmitEditForm();
   };
-
   return (
     <Container>
       <ButtonWrapper>
