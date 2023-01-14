@@ -11,6 +11,7 @@ const updateAuth = () => {
   return axios.get(API.MYINFO);
 };
 
+// 리프레쉬 토큰으로 액세스토큰 재요청
 const refreshAuth = () => {
   return axios.post(API.REISSUE);
 };
