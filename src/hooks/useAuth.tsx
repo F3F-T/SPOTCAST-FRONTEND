@@ -7,13 +7,13 @@ const useAuth = (loginRequired: boolean) => {
   const pathname = usePathname();
   const { IsUserLoggedIn } = useSelector((state: RootState) => state.user);
 
-  if (!IsUserLoggedIn && loginRequired) {
+  if (!IsUserLoggedIn && loginRequired && typeof window !== "undefined") {
     alert("로그인이 필요한 기능입니다.");
     router.push("/login");
     sessionStorage.setItem("prevPath", `${pathname}`);
   }
 
-  if (IsUserLoggedIn) {
+  if (IsUserLoggedIn && typeof window !== "undefined") {
     sessionStorage.setItem("prevPath", ``);
   }
 };
