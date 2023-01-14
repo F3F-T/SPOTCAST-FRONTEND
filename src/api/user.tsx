@@ -1,11 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { authorizationClient } from ".";
 import API from "./config";
-import { UserProps } from "../interface/user";
+import { IUser } from "../interface/user";
 
 const editMyInfo = createAsyncThunk(
   "user/editMyInfo",
-  async (data: UserProps, { rejectWithValue }) => {
+  async (data: IUser, { rejectWithValue }) => {
     try {
       const response = await authorizationClient.patch(
         `${API.MEMBER}${data.id}`,

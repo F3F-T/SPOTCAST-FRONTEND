@@ -1,4 +1,4 @@
-export interface UserProps {
+export interface IUser {
   authority: string | null;
   email: string;
   id: number;

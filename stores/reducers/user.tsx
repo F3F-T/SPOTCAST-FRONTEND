@@ -119,6 +119,7 @@ const userSlice = createSlice({
         state.getMeLoading = false;
         state.getMeError = action.payload;
       })
+
       .addDefaultCase(state => state),
 });
 

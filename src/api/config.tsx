@@ -6,6 +6,7 @@ const USER = "/user/"; // 다른 유저
 const BOARD = "/board/";
 const PORTFFOLIO = "/portfolio/";
 const MYINFO = "myInfo";
+const REISSUE = "reissue";
 const LOGIN = "login";
 const LOGOUT = "logout";
 const SIGNUP = "signup";
@@ -24,6 +25,7 @@ const API = {
   SIGNUP: `${AUTH}${SIGNUP}`,
   MEMBER: `${MEMBER}`,
   MYINFO: `${MEMBER}${MYINFO}`,
+  REISSUE: `${AUTH}${REISSUE}`,
   USER: `${USER}`,
   BOARD: `${BOARD}`,
   PORTFOLIO: `${PORTFFOLIO}`,
