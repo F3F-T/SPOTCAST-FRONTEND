@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../stores/reducers";
 import Icon from "../../common/Icon";
-import { MUSTARD } from "../../../constants/colors";
+import { GREY, INDIGO } from "../../../constants/colors";
 import ProfileModal from "./ProfileModal";
 import {
   Container,
@@ -68,27 +68,36 @@ export default function Header() {
               <IconButton>
                 <Icon
                   className="bell"
-                  border={0.3}
-                  size="2rem"
-                  color={MUSTARD}
+                  border={0.4}
+                  size="2.3rem"
+                  color={GREY[700]}
                 />
               </IconButton>
               <IconButton>
                 <Icon
                   className="msg"
-                  border={0.3}
-                  size="2rem"
-                  color={MUSTARD}
+                  border={0.4}
+                  size="2.3rem"
+                  color={GREY[700]}
                 />
               </IconButton>
               <UserWrapper>
                 <IconButton onClick={showModal}>
-                  <Icon
-                    className="mypage"
-                    border={0.5}
-                    size="2.2rem"
-                    color={MUSTARD}
-                  />
+                  {modalOpen ? (
+                    <Icon
+                      className="mypageCircle"
+                      border={0.2}
+                      size="2.7rem"
+                      color={INDIGO}
+                    />
+                  ) : (
+                    <Icon
+                      className="mypage"
+                      border={0.4}
+                      size="2.7rem"
+                      color={GREY[700]}
+                    />
+                  )}
                 </IconButton>
                 {modalOpen && <ProfileModal />}
               </UserWrapper>
