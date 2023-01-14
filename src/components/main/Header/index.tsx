@@ -49,7 +49,7 @@ export default function Header() {
         </Link>
         <Ul>
           {menu.map(({ name, href }) => (
-            <Li>
+            <Li key={name}>
               <Link href={href}>
                 <Hover>{name}</Hover>
               </Link>
@@ -97,7 +97,7 @@ export default function Header() {
           ) : (
             <Login>
               {aside.map(({ name, href }) => (
-                <Link href={href}>
+                <Link key={name} href={href}>
                   <Hover>{name}</Hover>
                 </Link>
               ))}

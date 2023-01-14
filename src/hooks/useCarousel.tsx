@@ -3,7 +3,11 @@ import { GREY } from "../constants/colors";
 import list from "../components/portfolio/TopPortfolio/data";
 
 export function MainCarousel() {
-  const items = [GREY[300], GREY[400], GREY[500]];
+  const items = [
+    { id: 0, color: GREY[300] },
+    { id: 1, color: GREY[400] },
+    { id: 2, color: GREY[500] },
+  ];
   const itemSize = items.length;
 
   const newItemWidth = 1060;
