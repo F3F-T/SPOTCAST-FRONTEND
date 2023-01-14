@@ -72,17 +72,17 @@ export default function Tab({ openForm, setOpenForm }: FormProps) {
     {
       name: "소개",
       content: <Introduce />,
-      editForm: <EditForm setOpenForm={setOpenForm} />,
+      editForm: <EditForm />,
     },
     {
       name: "작업물",
       content: <Work />,
-      editForm: <EditForm setOpenForm={setOpenForm} />,
+      editForm: <EditForm />,
     },
     {
       name: "SNS",
       content: <SNS />,
-      editForm: <EditForm setOpenForm={setOpenForm} />,
+      editForm: <EditForm />,
     },
   ];
 
