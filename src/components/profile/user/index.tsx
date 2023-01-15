@@ -11,10 +11,12 @@ const Container = styled.div`
 `;
 
 export default function UserProfile() {
+  const [openForm, setOpenForm] = useState(false);
+  // useAuth(true);
   return (
     <Container>
-      <Inform />
-      <Tab />
+      <Inform openForm={openForm} setOpenForm={setOpenForm} />
+      <Tab openForm={openForm} setOpenForm={setOpenForm} />
     </Container>
   );
 }
