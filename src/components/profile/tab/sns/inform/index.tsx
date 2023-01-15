@@ -45,6 +45,7 @@ export default function SNS() {
           title="instagram"
           size={2.4}
           ImgSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1200px-Instagram_logo_2022.svg.png"
+          href={`https://www.instagram.com/${me.instagram}/`}
         />
       )}
       {me.twitter && (
@@ -52,6 +53,7 @@ export default function SNS() {
           title="twitter"
           size={2.4}
           ImgSrc="https://upload.wikimedia.org/wikipedia/commons/f/f2/Logo_Twitter.png"
+          href={`https://twitter.com/${me.twitter}`}
         />
       )}
       {me.otherSns && (
