@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { GREY } from "../../../../constants/colors";
+import { GREY, INDIGO } from "../../../../constants/colors";
 import useLogin from "../../../../hooks/useLogin";
 import Line from "../../../common/Line";
 import getUser from "../../../../lib/utils";
@@ -31,6 +31,7 @@ const Button = styled.button`
 
   &:hover {
     font-weight: 700;
+    color: ${INDIGO};
     cursor: pointer;
   }
 `;
