@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import Button from "../../common/Button";
 import { GREY } from "../../../constants/colors";
+import { FormProps } from "../tab";
 
 const Container = styled.div`
   width: 45rem;
@@ -40,7 +41,7 @@ const InformButton = styled(Button)`
   font-size: 1.7rem;
 `;
 
-export default function Inform() {
+export default function Inform({ openForm }: FormProps) {
   return (
     <Container>
       <Wrapper>
@@ -49,7 +50,11 @@ export default function Inform() {
       </Wrapper>
       <EgName>Jeong Eun Bie</EgName>
       <ProfileImg src="/images/img4.png" />
-      <InformButton title="전체 포트폴리오 보기" buttonTheme="tertiary" />
+      {openForm ? (
+        <InformButton title="프로필 사진 수정" buttonTheme="tertiary" />
+      ) : (
+        <InformButton title="전체 포트폴리오 보기" buttonTheme="tertiary" />
+      )}
     </Container>
   );
 }

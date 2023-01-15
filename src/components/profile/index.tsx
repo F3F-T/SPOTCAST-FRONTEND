@@ -13,10 +13,10 @@ const Container = styled.div`
 
 export default function UserProfile() {
   const [openForm, setOpenForm] = useState(false);
-  useAuth(true);
+  // useAuth(true);
   return (
     <Container>
-      <Inform />
+      <Inform openForm={openForm} setOpenForm={setOpenForm} />
       <Tab openForm={openForm} setOpenForm={setOpenForm} />
     </Container>
   );
