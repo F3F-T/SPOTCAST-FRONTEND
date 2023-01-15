@@ -3,11 +3,12 @@ import styled from "@emotion/styled";
 // import { useSelector } from "react-redux";
 // import { RootState } from "../../../../stores/reducers";
 import Line from "../../common/Line";
-import Introduce from "./introduce/inform";
+import Introduce from "./Information/inform";
 import Work from "./work";
-import SNS from "./sns";
+import SNS from "./sns/inform";
 import Button from "../../common/Button";
-import EditForm from "./introduce/edit-form";
+import InformEditForm from "./Information/edit-form";
+import SNSEditForm from "./sns/edit-form";
 import { GREY } from "../../../constants/colors";
 
 const Container = styled.div`
@@ -72,17 +73,17 @@ export default function Tab({ openForm, setOpenForm }: FormProps) {
     {
       name: "소개",
       content: <Introduce />,
-      editForm: <EditForm />,
+      editForm: <InformEditForm />,
     },
     {
       name: "작업물",
       content: <Work />,
-      editForm: <EditForm />,
+      editForm: <InformEditForm />,
     },
     {
       name: "SNS",
       content: <SNS />,
-      editForm: <EditForm />,
+      editForm: <SNSEditForm />,
     },
   ];
 
