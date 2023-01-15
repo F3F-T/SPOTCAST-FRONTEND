@@ -12,14 +12,17 @@ export default function useEditForm() {
 
   const [name, onChangeName] = useInput(me.name);
   const [information, onChangeInformation] = useInput(me.information);
+  const [instagram, onChangeInstagram] = useInput(me.instagram);
+  const [twitter, onChangeTwitter] = useInput(me.twitter);
+  const [otherSns, onChangeOtherSns] = useInput(me.otherSns);
 
   const onSubmitEditForm = async () => {
     const data = {
       id: me.id,
       information,
-      twitter: me.twitter,
-      instagram: me.instagram,
-      otherSns: me.otherSns,
+      twitter,
+      instagram,
+      otherSns,
     };
     await dispatch(editMyInfo(data));
     router.refresh();
@@ -28,8 +31,14 @@ export default function useEditForm() {
   return {
     name,
     information,
+    instagram,
+    twitter,
+    otherSns,
     onChangeName,
     onChangeInformation,
+    onChangeInstagram,
+    onChangeTwitter,
+    onChangeOtherSns,
     onSubmitEditForm,
   };
 }
