@@ -3,12 +3,13 @@ import axios from "axios";
 import UserProfile from "../src/components/profile/me";
 import AppLayout from "../styles/AppLayout";
 import wrapper from "../stores/store/configureStore";
-import { loadMe } from "../src/api/auth";
-import { useProfileRedirect } from "../src/hooks/useAuth";
-import { loadField } from "../src/api/user";
+import { storeCookie } from "../stores/reducers/user";
+import { getMember } from "../src/api/auth";
+import { useRedirect } from "../src/hooks/useAuth";
 
 function Page() {
-  useProfileRedirect();
+  useRedirect();
+
   return (
     <AppLayout>
       <UserProfile />

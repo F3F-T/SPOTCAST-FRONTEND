@@ -2,7 +2,12 @@ import React from "react";
 import axios from "axios";
 import Redirct from "../src/components/login/redirect";
 import wrapper from "../stores/store/configureStore";
+<<<<<<< HEAD
 import { loadMe } from "../src/api/auth";
+=======
+import { storeCookie } from "../stores/reducers/user";
+import { getMember } from "../src/api/auth";
+>>>>>>> de21836 (feat: JWT reissue 로직 개선)
 import { useRedirect } from "../src/hooks/useAuth";
 
 export default function Page() {
