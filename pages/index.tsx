@@ -8,9 +8,12 @@ import MainArticle3 from "../src/components/main/section/communityPreview";
 import MainArticle2 from "../src/components/main/section/findCrew";
 import wrapper from "../stores/store/configureStore";
 import { storeCookie } from "../stores/reducers/user";
-import { getMember, updateAuth, refreshAuth } from "../src/api/auth";
+import { getMember } from "../src/api/auth";
+import { useRedirect } from "../src/hooks/useAuth";
 
 export default function Page() {
+  useRedirect();
+
   return (
     <div>
       <Header />
@@ -33,35 +36,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
       axios.defaults.headers.Cookie = cookie;
       await store.dispatch(storeCookie(cookie));
     }
-
-    await updateAuth()
-      .then(async () => {
-        // 유효한 토큰 => 유저 정보 로드
-        await store.dispatch(getMember());
-      })
-      .catch(async error => {
-        // 유효하지 않은 토큰(401) => 리이슈 요청
-        switch (error.response.data.code) {
-          // 로그인 하지 않은 사용자가 요청
-          case 400:
-            break;
-          // 액세스 토큰 만료
-          case 401:
-            refreshAuth()
-              .then(async () => {
-                await store.dispatch(getMember());
-              })
-              .catch(async err => {
-                await store.dispatch(storeCookie(err.response.data));
-              });
-            break;
-          // 접근 권한 없음(ex. ADMIN페이지에 USER가 접근)
-          case 403:
-            break;
-          default:
-            break;
-        }
-      });
+    await store.dispatch(getMember());
 
     return {
       props: {},
