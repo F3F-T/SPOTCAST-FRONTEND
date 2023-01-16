@@ -24,7 +24,7 @@ const getMember = createAsyncThunk(
       const response = await axios.get(API.MYINFO);
       return response.data.data;
     } catch (error: any) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error?.response.data);
     }
   },
 );
