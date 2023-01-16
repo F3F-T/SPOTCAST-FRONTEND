@@ -41,7 +41,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
       })
       .catch(async error => {
         // 유효하지 않은 토큰(401) => 리이슈 요청
-        switch (error.response.data.code) {
+        switch (error.response?.data?.code) {
           // 로그인 하지 않은 사용자가 요청
           case 400:
             break;
