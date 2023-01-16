@@ -15,19 +15,27 @@ export default function Page() {
 
   return <Redirct />;
 }
-export const getServerSideProps = wrapper.getServerSideProps(store =>
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async ({ req, res, ...etc }) => {
-    const cookie = req ? req.headers.cookie : "";
-    axios.defaults.headers.Cookie = "";
+// export const getServerSideProps = wrapper.getServerSideProps(store =>
+//   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+//   async ({ req, res, ...etc }) => {
+//     const cookie = req ? req.headers.cookie : "";
+//     axios.defaults.headers.Cookie = "";
 
+<<<<<<< HEAD
     if (req && cookie) {
       axios.defaults.headers.Cookie = cookie;
     }
     await store.dispatch(loadMe());
+=======
+//     if (req && cookie) {
+//       axios.defaults.headers.Cookie = cookie;
+//       await store.dispatch(storeCookie(cookie));
+//     }
+//     await store.dispatch(getMember());
+>>>>>>> 4bf14ec (chore: 서버 없는 언니를 위한 juseok ~ ♥)
 
-    return {
-      props: {},
-    };
-  },
-);
+//     return {
+//       props: {},
+//     };
+//   },
+// );
