@@ -4,8 +4,11 @@ import Redirct from "../src/components/login/redirect";
 import wrapper from "../stores/store/configureStore";
 import { storeCookie } from "../stores/reducers/user";
 import { getMember } from "../src/api/auth";
+import { useRedirect } from "../src/hooks/useAuth";
 
 export default function Page() {
+  useRedirect();
+
   return <Redirct />;
 }
 export const getServerSideProps = wrapper.getServerSideProps(store =>
