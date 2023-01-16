@@ -7,8 +7,7 @@ import MainArticle1 from "../src/components/main/section/hotPortfolio";
 import MainArticle3 from "../src/components/main/section/communityPreview";
 import MainArticle2 from "../src/components/main/section/findCrew";
 import wrapper from "../stores/store/configureStore";
-import { storeCookie } from "../stores/reducers/user";
-import { getMember } from "../src/api/auth";
+import { loadMe } from "../src/api/auth";
 import { useRedirect } from "../src/hooks/useAuth";
 
 export default function Page() {
@@ -26,27 +25,19 @@ export default function Page() {
   );
 }
 
-// export const getServerSideProps = wrapper.getServerSideProps(store =>
-//   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-//   async ({ req, res, ...etc }) => {
-//     const cookie = req ? req.headers.cookie : "";
-//     axios.defaults.headers.Cookie = "";
+export const getServerSideProps = wrapper.getServerSideProps(store =>
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async ({ req, res, ...etc }) => {
+    const cookie = req ? req.headers.cookie : "";
+    axios.defaults.headers.Cookie = "";
 
-<<<<<<< HEAD
     if (req && cookie) {
       axios.defaults.headers.Cookie = cookie;
     }
-    await store.dispatch(getMember());
-=======
-//     if (req && cookie) {
-//       axios.defaults.headers.Cookie = cookie;
-//       await store.dispatch(storeCookie(cookie));
-//     }
-//     await store.dispatch(getMember());
->>>>>>> 4bf14ec (chore: 서버 없는 언니를 위한 juseok ~ ♥)
+    await store.dispatch(loadMe());
 
-//     return {
-//       props: {},
-//     };
-//   },
-// );
+    return {
+      props: {},
+    };
+  },
+);
