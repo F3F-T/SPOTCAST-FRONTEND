@@ -22,6 +22,7 @@ const ICONS: IconType = {
   msg: "bi bi-chat-square-heart",
   mypage: "bi bi-person",
   mypageCircle: "bi bi-person-circle",
+  plus: "bi bi-patch-plus-fill",
 };
 
 export default ICONS;

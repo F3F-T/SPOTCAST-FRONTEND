@@ -5,8 +5,11 @@ import AppLayout from "../styles/AppLayout";
 import wrapper from "../stores/store/configureStore";
 import { storeCookie } from "../stores/reducers/user";
 import { getMember } from "../src/api/auth";
+import { useRedirect } from "../src/hooks/useAuth";
 
 function Page() {
+  useRedirect();
+
   return (
     <AppLayout>
       <UserProfile />
