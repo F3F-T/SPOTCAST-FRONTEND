@@ -18,28 +18,29 @@ const Title = styled.div`
 
 const Contents = styled.div``;
 export default function Introduce() {
+  const { me } = getUser();
+
   const fakeList = [
     {
       title: "작업 분야",
-      contents: "모델",
+      contents: me.field,
     },
-    {
-      title: "회사",
-      contents: "Model directors",
-    },
-    {
-      title: "아카이브",
-      contents: `Model of the Year (Nominations)
-      2017 Breakout Star (Nominee)`,
-    },
+    // {
+    //   title: "회사",
+    //   contents: "Model directors",
+    // },
+    // {
+    //   title: "아카이브",
+    //   contents: `Model of the Year (Nominations)
+    //   2017 Breakout Star (Nominee)`,
+    // },
   ];
-  const { me } = getUser();
   return (
     <Container>
       {me.information}
       {fakeList.map(item => {
         return (
-          <div>
+          <div key={item.title}>
             <Title>{item.title}</Title>
             <Contents>{item.contents}</Contents>
           </div>
