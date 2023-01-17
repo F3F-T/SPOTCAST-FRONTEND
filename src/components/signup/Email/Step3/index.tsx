@@ -26,7 +26,7 @@ import Icon from "../../../common/Icon";
 import useUserType from "../../../../hooks/useUserType";
 
 export default function Step3() {
-  const { types, onToggleCheck, onSubmitForm } = useUserType();
+  const { types, onReplaceBack, onToggleCheck, onSubmitForm } = useUserType();
   return (
     <Container>
       <Wrapper>
@@ -45,6 +45,7 @@ export default function Step3() {
             {types.map(item => (
               <UserTypeWrapper
                 checked={item.selected}
+                key={item.id}
                 onClick={() => {
                   onToggleCheck(item.id);
                 }}
@@ -67,7 +68,11 @@ export default function Step3() {
             <AgreeButton>확인하기</AgreeButton>
           </EtcWrapper>
           <ButtonWrapper>
-            <LeftButton buttonTheme="tertiary" title="이전" />
+            <LeftButton
+              buttonTheme="tertiary"
+              title="이전"
+              onClick={onReplaceBack}
+            />
             {types[0].selected || types[1].selected ? (
               <RightButton onClick={onSubmitForm} title="가입 완료" />
             ) : (

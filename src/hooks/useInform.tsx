@@ -27,8 +27,9 @@ export default function useInform() {
   };
 
   const onReplaceNext = () => {
+    const field = checkedInputs.join();
     dispatch(signUp({ name }));
-
+    dispatch(signUp({ field }));
     router.push("/signup/userType");
   };
 
