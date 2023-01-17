@@ -34,7 +34,7 @@ const EditButton = styled(Button)`
 
 const ButtonWrapper = styled.div`
   width: 100%;
-  padding: 4.5rem 0;
+  padding: 4.3rem 0;
   position: relative;
 `;
 
