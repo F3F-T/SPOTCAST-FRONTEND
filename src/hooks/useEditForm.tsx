@@ -20,7 +20,6 @@ export default function useEditForm() {
   const [instagram, onChangeInstagram] = useInput(me.instagram);
   const [twitter, onChangeTwitter] = useInput(me.twitter);
   const [otherSns, onChangeOtherSns] = useInput(me.otherSns);
-<<<<<<< HEAD
   const [egName, onChangeEgName] = useInput(me.egName);
   const [FieldList, setFieldList] = useState(field);
 
@@ -32,8 +31,6 @@ export default function useEditForm() {
       ),
     );
   };
-=======
->>>>>>> 2598fd5 (feat: SNS 수정 기능 구현)
 
   const onSubmitEditForm = async () => {
     const data = {
@@ -42,11 +39,8 @@ export default function useEditForm() {
       twitter,
       instagram,
       otherSns,
-<<<<<<< HEAD
       categoryInfo: FieldList,
       egName,
-=======
->>>>>>> 2598fd5 (feat: SNS 수정 기능 구현)
     };
 
     await dispatch(editMyInfo(data));
@@ -59,20 +53,13 @@ export default function useEditForm() {
     instagram,
     twitter,
     otherSns,
-<<<<<<< HEAD
     egName,
     onChangeEgName,
-=======
-    onChangeName,
->>>>>>> 2598fd5 (feat: SNS 수정 기능 구현)
     onChangeInformation,
     onChangeInstagram,
     onChangeTwitter,
     onChangeOtherSns,
-<<<<<<< HEAD
     FieldList,
-=======
->>>>>>> 2598fd5 (feat: SNS 수정 기능 구현)
     onSubmitEditForm,
     onToggleField,
     getFieldList,
