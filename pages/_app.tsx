@@ -1,15 +1,18 @@
 /* eslint-disable react/react-in-jsx-scope */
 import type { AppProps } from "next/app";
-import { ToastContainer } from "react-toastify";
+import StyledContainer from "../src/components/common/Toast/container";
 import wrapper from "../stores/store/configureStore";
-import "react-toastify/dist/ReactToastify.css";
 import "../styles/globals.css";
 
 function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Component {...pageProps} />
-      <ToastContainer />
+      <StyledContainer
+        className="toast"
+        position="top-center"
+        closeButton={false}
+      />
     </>
   );
 }

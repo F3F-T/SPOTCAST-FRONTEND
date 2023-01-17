@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
 import { RootState } from "../../../../stores/reducers";
 import Icon from "../../common/Icon";
 import { GREY, INDIGO } from "../../../constants/colors";
@@ -41,15 +40,9 @@ export default function Header() {
   const showModal = useCallback(() => {
     setModalOpen(!modalOpen);
   }, [modalOpen]);
-  const onClick = () =>
-    toast("Toast is good", {
-      hideProgressBar: true,
-      autoClose: 2000,
-      type: "success",
-    });
+
   return (
     <Container>
-      <button onClick={onClick}> Click Me</button>
       <Wrapper>
         <Link href="/">
           <Logo>SPOTCAST</Logo>
