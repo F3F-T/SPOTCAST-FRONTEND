@@ -15,6 +15,7 @@
     "@emotion/styled": "^11.10.5",
     "@redux-devtools/extension": "^3.2.3",
     "@reduxjs/toolkit": "^1.9.1",
+    "@toast-ui/editor": "^3.2.1",
     "@types/node": "18.11.15",
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.9",
