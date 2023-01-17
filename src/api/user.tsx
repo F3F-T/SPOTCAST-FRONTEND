@@ -7,7 +7,8 @@ const editMyInfo = createAsyncThunk(
   "user/editMyInfo",
   async (data: IUser, { rejectWithValue }) => {
     try {
-      const { id, information, twitter, instagram, otherSns } = data;
+      const { id, information, twitter, instagram, otherSns, egName, field } =
+        data;
       const response = await authorizationClient.post(
         `${API.MEMBER}${id}/change/information`,
         {
@@ -15,6 +16,8 @@ const editMyInfo = createAsyncThunk(
           twitter,
           instagram,
           otherSns,
+          egName,
+          field,
         },
       );
       return response.data.data;

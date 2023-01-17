@@ -3,12 +3,13 @@ import styled from "@emotion/styled";
 import Button from "../../common/Button";
 import { GREY } from "../../../constants/colors";
 import { FormProps } from "../tab";
+import getUser from "../../../lib/utils";
 
 const Container = styled.div`
   width: 45rem;
   height: 70rem;
   background-color: white;
-  display: flex;
+  display: block;
   flex-direction: column;
   font-size: 2.6rem;
   gap: 2rem;
@@ -28,6 +29,8 @@ const Role = styled.div`
 `;
 const EgName = styled.div`
   font-weight: 700;
+  height: 5rem;
+  margin-top: 1rem;
 `;
 const ProfileImg = styled.img`
   width: 100%;
@@ -39,16 +42,19 @@ const InformButton = styled(Button)`
   padding: 1.5rem;
   border-radius: 0.5rem;
   font-size: 1.7rem;
+  width: 100%;
+  margin-top: 1rem;
 `;
 
 export default function Inform({ openForm }: FormProps) {
+  const { me } = getUser();
   return (
     <Container>
       <Wrapper>
-        <Name>정은비</Name>
-        <Role>모델</Role>
+        <Name>{me.name}</Name>
+        <Role>{me.field?.split(",").join(" ∙ ")}</Role>
       </Wrapper>
-      <EgName>Jeong Eun Bie</EgName>
+      <EgName>{me.egName}</EgName>
       <ProfileImg src="/images/img4.png" />
       {openForm ? (
         <InformButton title="프로필 사진 수정" buttonTheme="tertiary" />
