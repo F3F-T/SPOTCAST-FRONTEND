@@ -18,13 +18,26 @@ const Title = styled.div`
 
 const Contents = styled.div``;
 export default function Introduce() {
-  const { user } = getUser();
+  const { me } = getUser();
 
   const fakeList = [
     {
       title: "작업 분야",
+<<<<<<< HEAD
       contents: user.field,
+=======
+      contents: me.field,
+>>>>>>> eb1a230 (refactor: 더미데이터 서버에 있는 데이터로 대체)
     },
+    // {
+    //   title: "회사",
+    //   contents: "Model directors",
+    // },
+    // {
+    //   title: "아카이브",
+    //   contents: `Model of the Year (Nominations)
+    //   2017 Breakout Star (Nominee)`,
+    // },
   ];
   return (
     <Container>
