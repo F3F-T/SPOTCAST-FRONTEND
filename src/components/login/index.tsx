@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Link from "next/link";
 import Input from "../common/Input";
 import {
@@ -25,6 +25,12 @@ export default function Login() {
   const googleLogin = `http://localhost:8080/oauth2/authorization/google?redirect_uri=http://localhost:3000/redirect`;
   const kakaoLogin = ``;
 
+  const onClickGoogleLogin = useCallback(() => {
+    window.location.href = googleLogin;
+  }, []);
+  const onClickKakaoLogin = useCallback(() => {
+    window.location.href = kakaoLogin;
+  }, []);
   return (
     <Container>
       <Wrapper>
@@ -59,12 +65,12 @@ export default function Login() {
           <br />
           <ImgWrapper>
             <SNSIMG
-              href={googleLogin}
               size={4}
+              onClick={onClickGoogleLogin}
               ImgSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/320px-Google_%22G%22_Logo.svg.png"
             />
             <SNSIMG
-              href={kakaoLogin}
+              onClick={onClickKakaoLogin}
               size={4}
               ImgSrc="https://cdn.imweb.me/upload/S20210304872ba49a108a8/89a68d1e3674a.png"
             />
