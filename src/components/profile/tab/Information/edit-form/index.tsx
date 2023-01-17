@@ -31,7 +31,10 @@ const EditButton = styled(Button)`
   padding: 0.7rem 1.4rem;
   position: absolute;
 `;
-
+const FieldButton = styled(Button)`
+  font-size: 1.3rem;
+  padding: 0.7rem 1.4rem;
+`;
 const ButtonWrapper = styled.div`
   width: 100%;
   padding: 4.5rem 0;
@@ -47,6 +50,11 @@ const Title = styled.div`
 const Wrapper = styled.div`
   width: 50rem;
   position: relative;
+`;
+const FieldWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
 `;
 const AddButton = styled.button`
   position: absolute;
@@ -77,6 +85,7 @@ export default function EditForm() {
   const {
     name,
     information,
+    FieldList,
     onChangeName,
     onChangeInformation,
     onSubmitEditForm,
@@ -116,8 +125,20 @@ export default function EditForm() {
             size={50}
             label="작업 분야"
             placeholder="자신의 아카이브를 등록해보세요!"
+            value=""
           />
           <AddButton>작업 분야 추가</AddButton>
+          <FieldWrapper>
+            {FieldList.map(item => {
+              return (
+                <FieldButton
+                  key={item.name}
+                  title={item.name}
+                  buttonTheme="tertiary"
+                />
+              );
+            })}
+          </FieldWrapper>
         </Wrapper>
         <IntroduceInput
           isTextarea
