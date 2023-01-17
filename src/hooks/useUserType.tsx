@@ -50,10 +50,15 @@ export default function useUserType() {
     },
     [types],
   );
+
+  const onReplaceBack = () => {
+    router.back();
+  };
+
   const onSubmitForm = () => {
     dispatch(authSignUp(me));
     router.push("/");
   };
 
-  return { types, onToggleCheck, onSubmitForm };
+  return { types, onToggleCheck, onReplaceBack, onSubmitForm };
 }

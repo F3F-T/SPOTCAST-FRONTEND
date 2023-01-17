@@ -60,7 +60,7 @@ export default function Step2() {
             <EtcTitle>작업 & 관심분야 (1개 이상 선택) </EtcTitle>
             <EtcWrapper>
               {CategoryList.map(item => (
-                <GenreWrapper>
+                <GenreWrapper key={item}>
                   <CheckBox
                     id={item}
                     type="checkbox"
