@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { GREY } from "../../../../../constants/colors";
+import { GREY, INDIGO } from "../../../../../constants/colors";
 import Button from "../../../../common/Button";
 import Input from "../../../../common/Input";
 import useEditForm from "../../../../../hooks/useEditForm";
@@ -31,10 +31,24 @@ const EditButton = styled(Button)`
   padding: 0.7rem 1.4rem;
   position: absolute;
 `;
+const FieldButton = styled(Button)`
+  font-size: 1.3rem;
+  padding: 0.7rem 1.4rem;
+`;
 
+const FieldButtonSelected = styled(Button)`
+  font-size: 1.3rem;
+  padding: 0.7rem 1.4rem;
+  border: 0.1rem solid ${INDIGO};
+  color: ${INDIGO};
+  &:hover {
+    border: 0.1rem solid ${INDIGO};
+    color: ${INDIGO};
+  }
+`;
 const ButtonWrapper = styled.div`
   width: 100%;
-  padding: 4.5rem 0;
+  padding: 4.3rem 0;
   position: relative;
 `;
 
@@ -47,6 +61,11 @@ const Title = styled.div`
 const Wrapper = styled.div`
   width: 50rem;
   position: relative;
+`;
+const FieldWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
 `;
 const AddButton = styled.button`
   position: absolute;
@@ -77,8 +96,11 @@ export default function EditForm() {
   const {
     name,
     information,
-    onChangeName,
+    egName,
+    onChangeEgName,
+    FieldList,
     onChangeInformation,
+    onToggleField,
     onSubmitEditForm,
   } = useEditForm();
 
@@ -102,13 +124,14 @@ export default function EditForm() {
           label="이름"
           placeholder="성명 입력란"
           value={name}
-          onChange={onChangeName}
         />
         <StyledInput
           type="text"
           size={50}
           label="영문 이름"
           placeholder="영문 성명 입력란"
+          value={egName}
+          onChange={onChangeEgName}
         />
         <Wrapper>
           <StyledInput
@@ -116,8 +139,32 @@ export default function EditForm() {
             size={50}
             label="작업 분야"
             placeholder="자신의 아카이브를 등록해보세요!"
+            value=""
           />
           <AddButton>작업 분야 추가</AddButton>
+          <FieldWrapper>
+            {FieldList.map(item => {
+              return item.selected ? (
+                <FieldButtonSelected
+                  key={item.name}
+                  title={item.name}
+                  buttonTheme="tertiary"
+                  onClick={() => {
+                    onToggleField(item.id);
+                  }}
+                />
+              ) : (
+                <FieldButton
+                  key={item.name}
+                  title={item.name}
+                  buttonTheme="tertiary"
+                  onClick={() => {
+                    onToggleField(item.id);
+                  }}
+                />
+              );
+            })}
+          </FieldWrapper>
         </Wrapper>
         <IntroduceInput
           isTextarea
@@ -128,7 +175,7 @@ export default function EditForm() {
           value={information}
           onChange={onChangeInformation}
         />
-        <Title>추가 정보</Title>
+        {/* <Title>추가 정보</Title>
         <StyledInput
           type="text"
           size={50}
@@ -143,7 +190,7 @@ export default function EditForm() {
             placeholder="자신의 아카이브를 등록해보세요!"
           />
           <AddButton>아카이브 추가</AddButton>
-        </Wrapper>
+        </Wrapper> */}
       </Form>
     </Container>
   );

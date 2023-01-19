@@ -5,7 +5,6 @@ import { AppDispatch } from "../../stores/store/configureStore";
 import { authLogin, authLogout } from "../api/auth";
 import { RootState } from "../../stores/reducers";
 import useInput from "./useInput";
-import toastMsg from "../components/common/Toast";
 
 export default function useLogin() {
   const router = useRouter();
@@ -14,9 +13,7 @@ export default function useLogin() {
   const [password, onChangePassword] = useInput("");
 
   const dispatch = useDispatch<AppDispatch>();
-  const { loginDone, loginError, me } = useSelector(
-    (state: RootState) => state.user,
-  );
+  const { loginDone, me } = useSelector((state: RootState) => state.user);
 
   const useoAuthRedirct = () => {
     const prevPath = sessionStorage.getItem("prevPath");
@@ -27,7 +24,6 @@ export default function useLogin() {
 
   const useLogout = useCallback(() => {
     dispatch(authLogout());
-    toastMsg("로그아웃 완료.");
   }, []);
 
   const onSubmitForm = useCallback(
@@ -41,12 +37,8 @@ export default function useLogin() {
   useEffect(() => {
     if (loginDone && me) {
       router.push("/");
-      toastMsg("로그인 완료.");
     }
-    if (loginError) {
-      alert(loginError.message);
-    }
-  }, [loginDone, loginError]);
+  }, [loginDone]);
 
   return {
     email,

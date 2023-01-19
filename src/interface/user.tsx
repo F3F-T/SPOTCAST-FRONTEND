@@ -9,4 +9,6 @@ export interface IUser {
   name?: string | null;
   otherSns?: string | null;
   twitter?: string | null;
+  egName?: string | null;
+  field?: string | null;
 }

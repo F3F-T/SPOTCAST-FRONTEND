@@ -27,7 +27,7 @@ export default function Step2() {
     onChangeName,
     nickname,
     onChangeNickname,
-    CategoryList,
+    FieldList,
     checkedInputs,
     changeHandler,
     onReplaceBack,
@@ -59,8 +59,8 @@ export default function Step2() {
             />
             <EtcTitle>작업 & 관심분야 (1개 이상 선택) </EtcTitle>
             <EtcWrapper>
-              {CategoryList.map(item => (
-                <GenreWrapper>
+              {FieldList.map(item => (
+                <GenreWrapper key={item}>
                   <CheckBox
                     id={item}
                     type="checkbox"

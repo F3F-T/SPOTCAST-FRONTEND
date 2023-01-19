@@ -9,7 +9,7 @@ export default function useInform() {
   const router = useRouter();
   const [name, onChangeName] = useInput("");
   const [nickname, onChangeNickname] = useInput("");
-  const CategoryList = ["실용음악", "클래식", "연기", "연출", "모델", "사진"];
+  const FieldList = ["실용음악", "클래식", "연기", "연출", "모델", "사진"];
   const dispatch = useDispatch<AppDispatch>();
 
   const [checkedInputs, setCheckedInputs] = useState<string[]>([]);
@@ -27,8 +27,9 @@ export default function useInform() {
   };
 
   const onReplaceNext = () => {
+    const field = checkedInputs.join();
     dispatch(signUp({ name }));
-
+    dispatch(signUp({ field }));
     router.push("/signup/userType");
   };
 
@@ -37,7 +38,7 @@ export default function useInform() {
     onChangeName,
     nickname,
     onChangeNickname,
-    CategoryList,
+    FieldList,
     checkedInputs,
     changeHandler,
     onReplaceBack,
