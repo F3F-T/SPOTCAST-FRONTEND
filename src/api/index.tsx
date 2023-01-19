@@ -18,7 +18,7 @@ authorizationClient.interceptors.response.use(
       // 액세스 토큰 만료
       case 401: {
         return axios
-          .patch(API.REISSUE)
+          .post(API.REISSUE)
           .then(() => {
             return authorizationClient.request(error.config);
           })
