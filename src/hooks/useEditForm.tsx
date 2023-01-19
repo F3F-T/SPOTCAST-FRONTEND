@@ -31,7 +31,7 @@ export default function useEditForm() {
 
   const [FieldList, setFieldList] = useState(
     fields.map(item => {
-      if (myField.includes(item.name))
+      if (myField?.includes(item.name))
         return Object.assign(item, { selected: true });
       return Object.assign(item, { selected: false });
     }),
