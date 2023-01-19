@@ -1,7 +1,17 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from "@reduxjs/toolkit";
+<<<<<<< HEAD
 import { authLogin, authLogout, authSignUp, loadMe } from "../../src/api/auth";
 import { editMyInfo, loadField, loadUser } from "../../src/api/user";
+=======
+import {
+  authLogin,
+  authLogout,
+  authSignUp,
+  getMember,
+} from "../../src/api/auth";
+import editMyInfo from "../../src/api/user";
+>>>>>>> c4e3365 (chore: reissue test)
 
 type UserState = {
   IsUserLoggedIn: boolean;
@@ -162,6 +172,13 @@ const userSlice = createSlice({
         state.loadFieldLoading = false;
         state.loadFieldError = action.payload;
       })
+<<<<<<< HEAD
+=======
+      .addCase(editMyInfo.rejected, (state, action) => {
+        state.getMeError = action.payload;
+      })
+
+>>>>>>> c4e3365 (chore: reissue test)
       .addDefaultCase(state => state),
 });
 

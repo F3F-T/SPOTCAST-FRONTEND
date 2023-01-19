@@ -18,7 +18,11 @@ authorizationClient.interceptors.response.use(
       // 액세스 토큰 만료
       case 401: {
         return axios
+<<<<<<< HEAD
           .post(API.REISSUE)
+=======
+          .patch(API.REISSUE)
+>>>>>>> c4e3365 (chore: reissue test)
           .then(() => {
             return authorizationClient.request(error.config);
           })
