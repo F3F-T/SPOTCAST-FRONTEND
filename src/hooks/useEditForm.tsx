@@ -44,7 +44,7 @@ export default function useEditForm() {
     };
 
     await dispatch(editMyInfo(data));
-    // setTimeout(() => router.refresh(), 2000);
+    setTimeout(() => router.refresh(), 2000);
   };
 
   return {
