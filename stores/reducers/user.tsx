@@ -6,6 +6,7 @@ import {
   authSignUp,
   getMember,
 } from "../../src/api/auth";
+import editMyInfo from "../../src/api/user";
 
 type UserState = {
   IsUserLoggedIn: boolean;
@@ -120,6 +121,9 @@ const userSlice = createSlice({
       })
       .addCase(getMember.rejected, (state, action) => {
         state.getMeLoading = false;
+        state.getMeError = action.payload;
+      })
+      .addCase(editMyInfo.rejected, (state, action) => {
         state.getMeError = action.payload;
       })
 
