@@ -10,7 +10,7 @@ const editMyInfo = createAsyncThunk(
     try {
       const { id, information, twitter, instagram, otherSns, egName, field } =
         data;
-      const response = await authorizationClient.post(
+      const response = await authorizationClient.patch(
         `${API.MEMBER}${id}/change/information`,
         {
           information,
