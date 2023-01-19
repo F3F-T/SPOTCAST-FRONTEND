@@ -1,15 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import toastMsg from "../components/common/Toast";
 import { authorizationClient, unAuthorizationClient } from ".";
 import API from "./config";
 
 axios.defaults.baseURL = API.BASE_URL;
 axios.defaults.withCredentials = true;
-
-// 액세스 토큰 있는지 우선 API.MYINFO로 확인 리턴값이 err.code === 401이면
-const updateAuth = () => {
-  return axios.get(API.MYINFO);
-};
 
 // 리프레쉬 토큰으로 액세스토큰 재요청
 const refreshAuth = () => {
@@ -34,8 +30,10 @@ const authLogin = createAsyncThunk(
   async (data: object, { rejectWithValue }) => {
     try {
       const response = await unAuthorizationClient.post(API.LOGIN, data);
+      toastMsg("로그인 성공", true);
       return response.data.data;
     } catch (error: any) {
+      toastMsg(error.response.data.message, false);
       return rejectWithValue(error.response.data);
     }
   },
@@ -44,8 +42,10 @@ const authLogin = createAsyncThunk(
 const authLogout = createAsyncThunk("user/authLogout", async () => {
   try {
     const response = await authorizationClient.post(API.LOGOUT);
+    toastMsg("로그아웃 성공", true);
     return response.data.data;
   } catch (error: any) {
+    toastMsg(error.response.data.message, false);
     return error.response.data;
   }
 });
@@ -82,6 +82,5 @@ export {
   authEmailSend,
   authEmailConfirms,
   authSignUp,
-  updateAuth,
   refreshAuth,
 };
