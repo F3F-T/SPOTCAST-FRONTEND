@@ -5,7 +5,6 @@ import getUser from "../lib/utils";
 import useInput from "./useInput";
 import { AppDispatch } from "../../stores/store/configureStore";
 import editMyInfo from "../api/user";
-import toastMsg from "../components/common/Toast";
 
 export default function useEditForm() {
   const { me } = getUser();
@@ -66,7 +65,6 @@ export default function useEditForm() {
     };
 
     await dispatch(editMyInfo(data));
-    toastMsg("수정되었습니다.");
     setTimeout(() => router.refresh(), 2000);
   };
 

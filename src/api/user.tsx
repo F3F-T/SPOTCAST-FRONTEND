@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { authorizationClient } from ".";
+import toastMsg from "../components/common/Toast";
 import { IUser } from "../interface/user";
 import API from "./config";
 
@@ -20,8 +21,10 @@ const editMyInfo = createAsyncThunk(
           field,
         },
       );
+      toastMsg("수정 완료", true);
       return response.data.data;
     } catch (error: any) {
+      toastMsg("수정 실패", false);
       return rejectWithValue(error.response.data);
     }
   },
