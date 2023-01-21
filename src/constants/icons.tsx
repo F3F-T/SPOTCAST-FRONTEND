@@ -19,10 +19,15 @@ const ICONS: IconType = {
   unchecked: "bi bi-check-circle",
   checked: "bi bi-check-circle-fill",
   bell: "bi bi-bell",
+  bellFill: "bi bi-bell-fill",
   msg: "bi bi-chat-square-heart",
+  msgFill: "bi bi-chat-square-heart-fill",
   mypage: "bi bi-person",
-  mypageCircle: "bi bi-person-circle",
+  mypageFill: "bi bi-person-circle",
   plus: "bi bi-patch-plus-fill",
+  personCard: "bi bi-person-vcard",
+  trash: "bi bi-trash3",
+  reply: "bi bi-reply",
 };
 
 export default ICONS;
