@@ -23,8 +23,11 @@ const ICONS: IconType = {
   msg: "bi bi-chat-square-heart",
   msgFill: "bi bi-chat-square-heart-fill",
   mypage: "bi bi-person",
-  mypageCircle: "bi bi-person-circle",
+  mypageFill: "bi bi-person-circle",
   plus: "bi bi-patch-plus-fill",
+  personCard: "bi bi-person-vcard",
+  trash: "bi bi-trash3",
+  reply: "bi bi-reply",
 };
 
 export default ICONS;
