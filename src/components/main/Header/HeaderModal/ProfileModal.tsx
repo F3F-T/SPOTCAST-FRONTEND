@@ -89,13 +89,7 @@ export default function ProfileModal() {
         >
           나의 프로필
         </Button>
-        <Button
-          onClick={() => {
-            router.push("/bookmark");
-          }}
-        >
-          즐겨찾기
-        </Button>
+        <Button>즐겨찾기</Button>
         <Button>스크랩</Button>
       </ButtonWrapper>
       <Line width="100%" color={GREY[300]} />

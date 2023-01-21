@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../../../../stores/reducers";
 import Icon from "../../../common/Icon";
 import { GREY, INDIGO } from "../../../../constants/colors";
@@ -14,9 +14,6 @@ import {
   LoggedIn,
   StyledButton,
 } from "../index.styles";
-import { getMessage } from "../../../../util/lib";
-import { AppDispatch } from "../../../../../stores/store/configureStore";
-import { loadMsgReceived } from "../../../../api/message";
 
 export default function HeaderModal() {
   const aside = [
@@ -24,10 +21,6 @@ export default function HeaderModal() {
     { name: "회원가입", href: "/signup" },
   ];
   const { IsUserLoggedIn } = useSelector((state: RootState) => state.user);
-  const { msgReceivedData } = getMessage();
-
-  const dispatch = useDispatch<AppDispatch>();
-
   const [modalOpen, setModalOpen] = useState([
     {
       name: "ALARM",
@@ -74,12 +67,7 @@ export default function HeaderModal() {
             {/* {modalOpen[1].selected && <AlarmModal />} */}
           </ModalWrapper>
           <ModalWrapper>
-            <IconButton
-              onClick={async () => {
-                await dispatch(loadMsgReceived({ page: 0, size: 4 }));
-                showModal("MESSAGE");
-              }}
-            >
+            <IconButton onClick={() => showModal("MESSAGE")}>
               <Icon
                 className={modalOpen[1].selected ? "msgFill" : "msg"}
                 border={0.4}
@@ -87,16 +75,10 @@ export default function HeaderModal() {
                 color={modalOpen[1].selected ? INDIGO : GREY[700]}
               />
             </IconButton>
-            {modalOpen[1].selected && (
-              <MessageModal data={msgReceivedData.data} showModal={showModal} />
-            )}
+            {modalOpen[1].selected && <MessageModal />}
           </ModalWrapper>
           <ModalWrapper>
-            <IconButton
-              onClick={() => {
-                showModal("MYPAGE");
-              }}
-            >
+            <IconButton onClick={() => showModal("MYPAGE")}>
               <Icon
                 className={modalOpen[2].selected ? "mypageFill" : "mypage"}
                 border={modalOpen[2].selected ? 0.2 : 0.4}
