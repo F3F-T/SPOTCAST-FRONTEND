@@ -6,7 +6,6 @@ const USER = "/user/"; // 다른 유저
 const BOARD = "/board/";
 const PORTFFOLIO = "/portfolio/";
 const MESSAGE = "/message/";
-const BOOKMARK = "bookmark";
 const MYINFO = "myInfo";
 const REISSUE = "reissue";
 const LOGIN = "login";
@@ -33,11 +32,8 @@ const API = {
   BOARD: `${BOARD}`,
   PORTFOLIO: `${PORTFFOLIO}`,
   MESSAGE: `${MESSAGE}`,
-  MESSAGE_SEND: `${MESSAGE}send`,
   LOAD_MSG_SEND: `${MESSAGE}sender`,
   LOAD_MSG_RECEIVE: `${MESSAGE}recipient`,
-  LOAD_FOLLOWER: `${MEMBER}${BOOKMARK}/follower`,
-  LOAD_FOLLWING: `${MEMBER}${BOOKMARK}/following`,
 };
 
 export default API;
