@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useCallback } from "react";
+import React from "react";
 import { useRouter } from "next/navigation";
 import { GREY, INDIGO } from "../../../../constants/colors";
 import useLogin from "../../../../hooks/useLogin";
@@ -69,9 +69,6 @@ export default function ProfileModal() {
   const { useLogout } = useLogin();
   const { me } = getUser();
   const router = useRouter();
-  const openPotfolioForm = useCallback(() => {
-    router.push("/profile");
-  }, []);
   return (
     <Container>
       <div>
@@ -85,12 +82,17 @@ export default function ProfileModal() {
       </div>
       <Line width="100%" color={GREY[300]} />
       <ButtonWrapper>
-        <Button onClick={openPotfolioForm}>나의 프로필</Button>
+        <Button
+          onClick={() => {
+            router.push("/profile");
+          }}
+        >
+          나의 프로필
+        </Button>
         <Button>즐겨찾기</Button>
         <Button>스크랩</Button>
       </ButtonWrapper>
       <Line width="100%" color={GREY[300]} />
-
       <ButtonWrapper>
         <Button onClick={useLogout}>로그아웃</Button>{" "}
       </ButtonWrapper>
