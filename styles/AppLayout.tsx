@@ -14,8 +14,8 @@ export default function AppLayout({ children }: LayoutProps) {
       <div className={styles.Inner}>
         <Header />
         {children}
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 }
