@@ -1,16 +1,12 @@
 import styled from "@emotion/styled";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { GREY } from "../../constants/colors";
-import useMessage from "../../hooks/useMessage";
-import { useMsgModal } from "../../hooks/useModal";
-import { MessageProps } from "../../interface/messgae";
-import { getDate, getTime } from "../../util/date";
-import IconButton from "../common/IconButton";
-import MsgModal from "./msgModal";
+import Icon from "../common/Icon";
+import { PreviewType } from "./fakeData";
 
 const Container = styled.div`
   width: 100%;
-  height: 9rem;
+  height: 8rem;
   display: flex;
   align-items: center;
   padding: 0 2rem;
@@ -30,7 +26,7 @@ const Img = styled.img`
 `;
 
 const Name = styled.div`
-  width: 40rem;
+  width: 10rem;
   position: relative;
   font-size: 1.4rem;
   padding-bottom: 0.2rem;
@@ -44,72 +40,28 @@ const IconWrapper = styled.div`
   right: 0;
   padding-right: 2rem;
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
 `;
-export default function ProfileHedaer({ item, type }: MessageProps) {
-  const { replaceUserProfile, onClickDeleteMessage } = useMessage();
-  const { isMsgModalOpen, openMsgModal } = useMsgModal({ item });
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-
-  useEffect(() => {
-    if (item?.createdDate) {
-      setDate(getDate(item?.createdDate));
-      setTime(getTime(item?.createdDate));
-    }
-  }, [item]);
-
+export default function ProfileHedaer({ item }: PreviewType) {
   return (
     <Container>
-      {item && (
-        <Wrapper>
-          <Img />
-          <div>
-            <Name>
-              {item?.memberName} {`<`}
-              {item?.memberEmail}
-              {`>`}
-            </Name>
-
-            <Date>
-              {date} {time}
-            </Date>
-          </div>
-        </Wrapper>
-      )}
+      <Wrapper>
+        <Img />
+        <div>
+          <Name>{item.name}</Name>
+          <Date>{item.date}</Date>
+        </div>
+      </Wrapper>
       <IconWrapper>
-        {item && (
-          <IconButton
-            IconName="personCard"
-            border={0.1}
-            size="2.6rem"
-            color={GREY[700]}
-            onClick={() => replaceUserProfile(item.memberId)}
-          />
-        )}
-        {item && type === "RECEIVED" && (
-          <IconButton
-            IconName="reply"
-            border={0.1}
-            size="2.6rem"
-            color={GREY[700]}
-            onClick={() => openMsgModal()}
-          />
-        )}
-
-        {item && (
-          <IconButton
-            IconName="trash"
-            border={0.1}
-            size="2.6rem"
-            color={GREY[700]}
-            onClick={() => {
-              onClickDeleteMessage(item.id);
-            }}
-          />
-        )}
+        <Icon
+          className="personCard"
+          border={0.1}
+          size="2.6rem"
+          color={GREY[700]}
+        />
+        <Icon className="reply" border={0.1} size="2.6rem" color={GREY[700]} />
+        <Icon className="trash" border={0.1} size="2.6rem" color={GREY[700]} />
       </IconWrapper>
-      {isMsgModalOpen && <MsgModal item={item} />}
     </Container>
   );
 }

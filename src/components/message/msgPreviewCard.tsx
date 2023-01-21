@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { GREY } from "../../constants/colors";
-import { MessageProps } from "../../interface/messgae";
+import { PreviewType } from "./fakeData";
 
 const Preview = styled.div<{
   selected: boolean;
@@ -10,7 +10,7 @@ const Preview = styled.div<{
     background-color: ${selected ? GREY[200] : "transparent"};
 `}
   width: 30rem;
-  height: 12.1rem;
+  height: 12rem;
   border-bottom: 0.1rem solid ${GREY[300]};
   display: flex;
   gap: 2rem;
@@ -58,15 +58,15 @@ const Content = styled.div`
 export default function MsgPreviewCard({
   item,
   selected = false,
-}: MessageProps) {
+}: PreviewType) {
   return (
     <Preview selected={selected}>
       <Img />
       <Right>
         <Name>
-          {item?.memberName} <Date>{item?.createdDate.split("T")[0]}</Date>
+          {item.name} <Date>{item.date}</Date>
         </Name>
-        <Content>{item?.title}</Content>
+        <Content>{item.content}</Content>
       </Right>
     </Preview>
   );
