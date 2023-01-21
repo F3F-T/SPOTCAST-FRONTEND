@@ -83,7 +83,7 @@ const LoggedIn = styled.div`
   font-size: 1.3rem;
 `;
 
-const UserWrapper = styled.div`
+const ModalWrapper = styled.div`
   position: relative;
 `;
 const Hover = styled.div`
@@ -118,5 +118,5 @@ export {
   Login,
   LoggedIn,
   StyledButton,
-  UserWrapper,
+  ModalWrapper,
 };
