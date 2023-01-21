@@ -54,7 +54,7 @@ const VerticalLine = styled.div`
 `;
 export default function MessageRoom() {
   const [currentMsg, setCurrentMsg] = useState(0);
-  const [currentItem] = useState(fakeData.find(item => item.id === currentMsg));
+
   return (
     <Container>
       <VerticalLine />
@@ -69,8 +69,9 @@ export default function MessageRoom() {
         <Paging>1 2 3 4</Paging>
       </Left>
       <Right>
-        <ProfileHedaer item={currentItem || fakeData[0]} />
-        <MsgContentCard item={currentItem || fakeData[0]} />;
+        <ProfileHedaer item={fakeData.find(item => item.id === currentMsg)!} />
+        <MsgContentCard item={fakeData.find(item => item.id === currentMsg)!} />
+        ;
       </Right>
     </Container>
   );
