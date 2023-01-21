@@ -3,8 +3,8 @@ import styled from "@emotion/styled";
 import { GREY } from "../../constants/colors";
 import MsgPreviewCard from "./msgPreviewCard";
 import ProfileHedaer from "./profileHeader";
+import fakeData from "./fakeData";
 import MsgContentCard from "./msgContentCard";
-import { IMessage } from "../../interface/messgae";
 
 const Container = styled.div`
   width: 100%;
@@ -19,7 +19,7 @@ const Left = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding-top: 5.2rem;
+  padding-top: 6rem;
 `;
 const Right = styled.div`
   width: 78rem;
@@ -34,6 +34,16 @@ const Button = styled.div`
   border: none;
 `;
 
+const Paging = styled.div`
+  height: 3rem;
+  font-size: 1.6rem;
+  color: ${GREY[600]};
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  padding-bottom: 2rem;
+`;
 const VerticalLine = styled.div`
   width: 30rem;
   height: 100%;
@@ -42,40 +52,25 @@ const VerticalLine = styled.div`
   display: block;
   z-index: -1;
 `;
-const None = styled.div`
-  height: 40rem;
-  display: flex;
-  align-items: center;
-  color: ${GREY[600]};
-  font-size: 1.5rem;
-`;
-
-export default function MessageRoom({
-  data,
-  type,
-}: {
-  data: IMessage[];
-  type: string;
-}) {
-  const [currentMsg, setCurrentMsg] = useState<number>(0);
-
+export default function MessageRoom() {
+  const [currentMsg, setCurrentMsg] = useState(0);
+  const [currentItem] = useState(fakeData.find(item => item.id === currentMsg));
   return (
     <Container>
       <VerticalLine />
       <Left>
-        {data?.map(item => (
-          <Button onClick={() => setCurrentMsg(item.id)}>
-            <MsgPreviewCard item={item} selected={item.id === currentMsg} />
-          </Button>
-        ))}
-        {data?.length === 0 && <None>메시지가 없습니다.</None>}
+        {fakeData.map(item => {
+          return (
+            <Button onClick={() => setCurrentMsg(item.id)}>
+              <MsgPreviewCard item={item} selected={item.id === currentMsg} />
+            </Button>
+          );
+        })}
+        <Paging>1 2 3 4</Paging>
       </Left>
       <Right>
-        <ProfileHedaer
-          type={type}
-          item={data?.find(item => item?.id === currentMsg)!}
-        />
-        <MsgContentCard item={data?.find(item => item?.id === currentMsg)!} />
+        <ProfileHedaer item={currentItem || fakeData[0]} />
+        <MsgContentCard item={currentItem || fakeData[0]} />;
       </Right>
     </Container>
   );
