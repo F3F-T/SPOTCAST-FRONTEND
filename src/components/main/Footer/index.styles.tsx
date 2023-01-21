@@ -11,6 +11,15 @@ const Container = styled.div`
   align-items: center;
 `;
 
+const Margin = styled.div`
+  width: 100%;
+  background-color: white;
+  bottom: 0;
+  height: 17rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 const FooterWrapper = styled.div`
   width: 108rem;
   height: 20rem;
@@ -74,6 +83,7 @@ const Copyright = styled.div`
 
 export {
   Container,
+  Margin,
   FooterWrapper,
   Upper,
   Title,

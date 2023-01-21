@@ -46,6 +46,6 @@ export const useRedirect = () => {
       default:
         break;
     }
-  }, []);
+  }, [getMeError]);
   return null;
 };

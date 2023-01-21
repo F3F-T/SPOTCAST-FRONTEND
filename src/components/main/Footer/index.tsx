@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Margin,
   Container,
   FooterWrapper,
   Upper,
@@ -19,7 +20,7 @@ export default function Footer() {
 
   return (
     <>
-      <Container />
+      <Margin />
       <Line width="100%" color={GREY[300]} />
       <Container>
         <FooterWrapper>
