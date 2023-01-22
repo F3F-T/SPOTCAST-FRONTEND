@@ -16,13 +16,10 @@ const ModalBackground = styled.div`
 
 const ModalBox = styled.div`
   position: fixed;
+  background-color: white;
   border-radius: 1rem;
   width: 55rem;
-  background-color: white;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 6.8rem 10.2rem 3.6rem 10.2rem;
 `;
 
 interface ModalProps {
