@@ -1,4 +1,6 @@
-const fakeData: PreviewProps[] = [
+import { IMessage } from "../../interface/messgae";
+
+const fakeData: IMessage[] = [
   {
     id: 0,
     name: "윤채현",
@@ -25,15 +27,4 @@ const fakeData: PreviewProps[] = [
   },
 ];
 
-export interface PreviewProps {
-  id: number;
-  name: string;
-  date: string;
-  content: string;
-}
-
-export interface PreviewType {
-  item: PreviewProps;
-  selected?: boolean;
-}
 export default fakeData;
