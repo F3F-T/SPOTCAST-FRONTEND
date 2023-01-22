@@ -5,6 +5,7 @@ import MsgPreviewCard from "./msgPreviewCard";
 import ProfileHedaer from "./profileHeader";
 import fakeData from "./fakeData";
 import MsgContentCard from "./msgContentCard";
+// import MsgModal from "./msgModal";
 
 const Container = styled.div`
   width: 100%;
@@ -19,7 +20,7 @@ const Left = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding-top: 6rem;
+  padding-top: 5.2rem;
 `;
 const Right = styled.div`
   width: 78rem;
@@ -42,7 +43,7 @@ const Paging = styled.div`
   align-items: center;
   position: absolute;
   bottom: 0;
-  padding-bottom: 2rem;
+  padding-bottom: 3rem;
 `;
 const VerticalLine = styled.div`
   width: 30rem;
@@ -52,27 +53,40 @@ const VerticalLine = styled.div`
   display: block;
   z-index: -1;
 `;
-export default function MessageRoom() {
-  const [currentMsg, setCurrentMsg] = useState(0);
+export default function MessageRoom({ searchTerm }: { searchTerm: string }) {
+  const [currentMsg, setCurrentMsg] = useState<number>(0);
+  // const [isOpenMsgModal, setMsgModal] = useState(false);
+
+  // const closeModal = () => {
+  //   setMsgModal(false);
+  // };
+  const searched = fakeData.filter(
+    item => item.name.includes(searchTerm) || item.content.includes(searchTerm),
+  );
 
   return (
     <Container>
       <VerticalLine />
       <Left>
-        {fakeData.map(item => {
-          return (
-            <Button onClick={() => setCurrentMsg(item.id)}>
-              <MsgPreviewCard item={item} selected={item.id === currentMsg} />
-            </Button>
-          );
-        })}
+        {searched
+          ? searched.map(item => (
+              <Button onClick={() => setCurrentMsg(item.id)}>
+                <MsgPreviewCard item={item} selected={item.id === currentMsg} />
+              </Button>
+            ))
+          : fakeData.map(item => (
+              <Button onClick={() => setCurrentMsg(item.id)}>
+                <MsgPreviewCard item={item} selected={item.id === currentMsg} />
+              </Button>
+            ))}
         <Paging>1 2 3 4</Paging>
       </Left>
       <Right>
         <ProfileHedaer item={fakeData.find(item => item.id === currentMsg)!} />
         <MsgContentCard item={fakeData.find(item => item.id === currentMsg)!} />
-        ;
       </Right>
+      {/* <button onClick={() => setMsgModal(true)}>test</button>
+      {isOpenMsgModal && <MsgModal closeModal={closeModal} />} */}
     </Container>
   );
 }
