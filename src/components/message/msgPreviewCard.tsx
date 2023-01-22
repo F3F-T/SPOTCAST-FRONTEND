@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { GREY } from "../../constants/colors";
-import { PreviewType } from "./fakeData";
+import { MessageProps } from "../../interface/messgae";
 
 const Preview = styled.div<{
   selected: boolean;
@@ -58,7 +58,7 @@ const Content = styled.div`
 export default function MsgPreviewCard({
   item,
   selected = false,
-}: PreviewType) {
+}: MessageProps) {
   return (
     <Preview selected={selected}>
       <Img />
