@@ -1,12 +1,12 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { GREY } from "../../constants/colors";
+import { MessageProps } from "../../interface/messgae";
 import Icon from "../common/Icon";
-import { PreviewType } from "./fakeData";
 
 const Container = styled.div`
   width: 100%;
-  height: 8rem;
+  height: 7rem;
   display: flex;
   align-items: center;
   padding: 0 2rem;
@@ -42,7 +42,7 @@ const IconWrapper = styled.div`
   display: flex;
   gap: 2rem;
 `;
-export default function ProfileHedaer({ item }: PreviewType) {
+export default function ProfileHedaer({ item }: MessageProps) {
   return (
     <Container>
       <Wrapper>

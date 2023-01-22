@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { PreviewType } from "./fakeData";
+import { MessageProps } from "../../interface/messgae";
 
 const Content = styled.div`
   width: 100%;
@@ -11,6 +11,6 @@ const Content = styled.div`
   font-size: 1.4rem;
 `;
 
-export default function MsgContentCard({ item }: PreviewType) {
+export default function MsgContentCard({ item }: MessageProps) {
   return <Content>{item.content}</Content>;
 }
