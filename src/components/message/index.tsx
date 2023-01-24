@@ -20,7 +20,7 @@ const Top = styled.div`
   flex-direction: row;
   gap: 1rem;
   position: relative;
-  :nth-child(1) {
+  :nth-of-type(1) {
     margin-left: 2.2rem;
   }
 `;

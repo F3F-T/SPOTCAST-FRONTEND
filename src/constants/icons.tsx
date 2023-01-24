@@ -28,6 +28,7 @@ const ICONS: IconType = {
   personCard: "bi bi-person-vcard",
   trash: "bi bi-trash3",
   reply: "bi bi-reply",
+  close: "bi bi-x-lg",
 };
 
 export default ICONS;

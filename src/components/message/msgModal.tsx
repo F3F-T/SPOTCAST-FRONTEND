@@ -1,12 +1,11 @@
 import React from "react";
 import styled from "@emotion/styled";
 import Modal from "../common/Modal";
-import { useMsgModal } from "../../hooks/useModal";
+import useMsgModal from "../../hooks/useModal";
 import IconButton from "../common/IconButton";
 import { GREY } from "../../constants/colors";
 import Line from "../common/Line";
 import Button from "../common/Button";
-import { MessageProps } from "../../interface/messgae";
 
 const Top = styled.div`
   padding: 0.3rem 0 1.3rem 0;
@@ -72,7 +71,7 @@ const StyledButton = styled(Button)`
   right: 0;
   top: 0.5rem;
 `;
-export default function MsgModal({ item }: MessageProps) {
+export default function MsgModal() {
   const {
     title,
     onChangeTitle,
@@ -80,17 +79,16 @@ export default function MsgModal({ item }: MessageProps) {
     onChangeContent,
     closeMsgModal,
     onSubmitMessage,
-  } = useMsgModal({ item });
+  } = useMsgModal();
 
   const closeModal = () => {
     closeMsgModal();
   };
-
   return (
     <Modal closeModal={closeModal}>
       <Top>
         <Img />
-        <Name>{item?.memberName}</Name>
+        <Name>수신자</Name>
         <StyledIcon
           onClick={closeModal}
           IconName="close"
@@ -106,7 +104,6 @@ export default function MsgModal({ item }: MessageProps) {
           type="text"
           placeholder="제목을 입력해주세요."
         />
-
         <Content
           value={content}
           onChange={onChangeContent}
@@ -119,7 +116,7 @@ export default function MsgModal({ item }: MessageProps) {
           <StyledButton title="메시지 전송" buttonTheme="primary" disabled />
         ) : (
           <StyledButton
-            onClick={() => onSubmitMessage()}
+            onClick={onSubmitMessage}
             title="메시지 전송"
             buttonTheme="primary"
           />
