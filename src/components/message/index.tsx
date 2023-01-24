@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "@emotion/styled";
-import { GREY } from "../../constants/colors";
+import { GREY, INDIGO_DARK } from "../../constants/colors";
 import Line from "../common/Line";
 import MessageRoom from "./messageRoom";
-import Icon from "../common/Icon";
-import IconButton from "../common/IconButton";
+import useMessage from "../../hooks/useMessage";
 
 const Container = styled.div`
   width: 100%;
@@ -45,7 +44,7 @@ const Wrapper = styled.div`
 
 const Bottom = styled.div`
   width: 100%;
-  height: 59rem;
+  height: 53.5rem;
   position: absolute;
   top: 0;
 `;
@@ -56,103 +55,102 @@ const StyledLine = styled(Line)`
   z-index: -1;
   border-bottom: 0.3rem solid black;
 `;
-
-const Button = styled.div`
-  background-color: transparent;
-  border: none;
-  position: absolute;
-  right: 2.4rem;
-  top: 1.5rem;
-  z-index: 50;
-  cursor: pointer;
-`;
-const SearchbarWrapper = styled.div`
-  font-size: 1.6rem;
-  z-index: 70;
+const Paging = styled.div`
+  height: 5rem;
+  width: 30rem;
+  justify-content: center;
   display: flex;
   align-items: center;
-  width: 25rem;
-  padding: 0.95rem 0;
-  gap: 1rem;
+  gap: 0.5rem;
 `;
-
-const StyledInput = styled.input`
-  background-color: #f2f2f2;
-  border: none;
-  border-radius: 0.5rem;
-  padding: 0.8rem 1.2rem;
-  width: 21rem;
-  &:focus {
-    outline: none;
+const PageButton = styled.button<{ currentPage: boolean }>`
+  ${({ currentPage }) => `
+  background-color: ${currentPage ? INDIGO_DARK : "transparent"};
+  color: ${currentPage ? "white" : GREY[600]};
+  border: ${currentPage ? "none" : `0.1rem solid ${GREY[400]}`};
+  border-radius: 50rem;
+  font-size: 1.6rem;
+  padding: ${currentPage ? "0.4rem 0.9rem" : "0.3rem 0.8rem"};
+  cursor: pointer;
+  ${
+    !currentPage &&
+    `
+      &:hover {
+    color: ${GREY[900]};
+    border: 0.1rem solid ${GREY[700]};
+  }`
   }
-`;
-
-const IconWrapper = styled.div`
-  position: relative;
-`;
-
-const SearchIcon = styled.div`
-  position: absolute;
-  width: 3rem;
-  top: 0.7rem;
-  right: 1rem;
+`}
 `;
 
 export default function Message() {
-  const [currentTab, setCurrentTab] = useState("받은 메시지");
-  const [openSearchBar, setSearchBar] = useState(false);
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-  };
-  console.log(searchTerm);
-  const list = ["받은 메시지", "보낸 메시지"];
+  const {
+    TabList,
+    currentTab,
+    onChangeTab,
+    msgReceivedData,
+    msgReceivedSize,
+    currentPage,
+    onChangePage,
+    msgSendData,
+    msgSendSize,
+  } = useMessage();
   return (
     <Container>
       <Top>
-        {openSearchBar ? (
-          <SearchbarWrapper>
-            <IconButton
-              IconName="arrowLeft"
-              onClick={() => setSearchBar(false)}
-              size="2.3rem"
-            />
-            <IconWrapper>
-              <StyledInput size={20} value={searchTerm} onChange={onChange} />
-              <SearchIcon>
-                <Icon className="search" size="1.7rem" />
-              </SearchIcon>
-            </IconWrapper>
-          </SearchbarWrapper>
-        ) : (
-          <>
-            {list.map(item => {
-              return (
-                <Wrapper>
-                  <Category
-                    currentTab={currentTab === item}
-                    onClick={() => setCurrentTab(item)}
-                  >
-                    {item}
-                  </Category>
-                  {currentTab === item && (
-                    <StyledLine width="9rem" color={GREY[800]} />
-                  )}
-                </Wrapper>
-              );
-            })}
-            <Button onClick={() => setSearchBar(true)}>
-              <Icon className="search" size="1.7rem" />
-            </Button>
-          </>
-        )}
+        <>
+          {TabList.map(item => {
+            return (
+              <Wrapper key={item}>
+                <Category
+                  currentTab={currentTab === item}
+                  onClick={() => onChangeTab(item)}
+                >
+                  {item}
+                </Category>
+                {currentTab === item && (
+                  <StyledLine width="9rem" color={GREY[800]} />
+                )}
+              </Wrapper>
+            );
+          })}
+        </>
       </Top>
       <Line color={GREY[300]} width="100%" />
+
       <Bottom>
-        {currentTab === "받은 메시지" ? (
-          <MessageRoom searchTerm={searchTerm} />
+        {currentTab === TabList[0] ? (
+          <>
+            <MessageRoom data={msgReceivedData.data} />
+            <Paging>
+              {msgReceivedSize?.map(i => (
+                <PageButton
+                  currentPage={currentPage === i}
+                  onClick={() => {
+                    onChangePage("RECEIVED", i);
+                  }}
+                >
+                  {i + 1}
+                </PageButton>
+              ))}
+            </Paging>
+          </>
         ) : (
-          <MessageRoom searchTerm={searchTerm} />
+          <>
+            <MessageRoom data={msgSendData.data} />
+            <Paging>
+              {msgSendSize?.map(i => (
+                <PageButton
+                  currentPage={currentPage === i}
+                  onClick={() => {
+                    onChangePage("SEND", i);
+                  }}
+                >
+                  {i + 1}
+                </PageButton>
+              ))}
+            </Paging>
+          </>
         )}
       </Bottom>
     </Container>

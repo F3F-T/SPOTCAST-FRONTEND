@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import getUser from "../lib/utils";
+import { getUser } from "../lib/utils";
 import useInput from "./useInput";
 import { AppDispatch } from "../../stores/store/configureStore";
 import editMyInfo from "../api/user";

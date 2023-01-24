@@ -19,8 +19,8 @@ const Title = styled.div`
 export default function MsgContentCard({ item }: MessageProps) {
   return (
     <>
-      <Title>{item.title}</Title>
-      <Content>{item.content}</Content>
+      <Title>{item?.title}</Title>
+      <Content>{item?.content}</Content>
     </>
   );
 }
