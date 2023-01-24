@@ -66,7 +66,7 @@ export default function MsgPreviewCard({
         <Name>
           {item.name} <Date>{item.date}</Date>
         </Name>
-        <Content>{item.content}</Content>
+        <Content>{item.title}</Content>
       </Right>
     </Preview>
   );
