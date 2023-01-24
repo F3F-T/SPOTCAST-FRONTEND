@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
-import Button from "../../common/Button";
-import { GREY } from "../../../constants/colors";
+import Button from "../../../common/Button";
+import { GREY } from "../../../../constants/colors";
 import { FormProps } from "../tab";
-import getUser from "../../../lib/utils";
+import getUser from "../../../../lib/utils";
 
 const Container = styled.div`
   width: 45rem;
