@@ -31,6 +31,7 @@ const API = {
   BOARD: `${BOARD}`,
   PORTFOLIO: `${PORTFFOLIO}`,
   MESSAGE: `${MESSAGE}`,
+  MESSAGE_SEND: `${MESSAGE}send`,
   LOAD_MSG_SEND: `${MESSAGE}sender`,
   LOAD_MSG_RECEIVE: `${MESSAGE}recipient`,
 };
