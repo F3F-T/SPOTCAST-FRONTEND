@@ -6,7 +6,7 @@ import Icon from "../common/Icon";
 
 const Container = styled.div`
   width: 100%;
-  height: 8rem;
+  height: 9rem;
   display: flex;
   align-items: center;
   padding: 0 2rem;
@@ -46,10 +46,10 @@ export default function ProfileHedaer({ item }: MessageProps) {
   return (
     <Container>
       <Wrapper>
-        <Img />
+        {item && <Img />}
         <div>
-          <Name>{item.name}</Name>
-          <Date>{item.date}</Date>
+          <Name>{item?.memberName}</Name>
+          <Date>{item?.createdDate}</Date>
         </div>
       </Wrapper>
       <IconWrapper>
