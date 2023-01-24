@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { GREY, INDIGO } from "../../../../../constants/colors";
-import Button from "../../../../common/Button";
-import Input from "../../../../common/Input";
-import useEditForm from "../../../../../hooks/useEditForm";
+import { GREY, INDIGO } from "../../../../../../constants/colors";
+import Button from "../../../../../common/Button";
+import Input from "../../../../../common/Input";
+import useEditForm from "../../../../../../hooks/useEditForm";
 
 const Container = styled.div`
   width: 58.5rem;

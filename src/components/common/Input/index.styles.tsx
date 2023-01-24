@@ -69,6 +69,7 @@ const TextAreaWrapper = styled.textarea`
   padding: 1rem;
   border-radius: 0.5rem;
   outline: none;
+  resize: none;
 `;
 
 export { Container, LabelWrapper, InputWrapper, TextAreaWrapper };

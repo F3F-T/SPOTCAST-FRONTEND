@@ -93,7 +93,7 @@ export const PrevGrid = styled.div<{ length: number }>`
     grid-template-rows: ${length > 1 ? "repeat(2,1fr)" : "auto"};
     ${
       length === 3 &&
-      `  & > div:nth-child(3) {
+      `  & > div:nth-of-type(3) {
     grid-column: span 2;
   }`
     }

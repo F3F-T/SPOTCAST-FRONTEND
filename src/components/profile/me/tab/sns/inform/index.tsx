@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
-import ImgButton from "../../../../common/ImgButton";
-import { GREY } from "../../../../../constants/colors";
-import Icon from "../../../../common/Icon";
-import getUser from "../../../../../lib/utils";
+import ImgButton from "../../../../../common/ImgButton";
+import { GREY } from "../../../../../../constants/colors";
+import Icon from "../../../../../common/Icon";
+import getUser from "../../../../../../lib/utils";
 
 const Container = styled.div`
   font-size: 1.5rem;

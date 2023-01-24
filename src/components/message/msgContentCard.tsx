@@ -5,12 +5,22 @@ import { MessageProps } from "../../interface/messgae";
 const Content = styled.div`
   width: 100%;
   height: 70rem;
-  display: flex;
-  gap: 2rem;
-  padding: 5rem 3rem;
+  padding: 1rem 3rem;
   font-size: 1.4rem;
 `;
 
+const Title = styled.div`
+  width: 100%;
+  padding: 5rem 3rem 2rem 3rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+`;
+
 export default function MsgContentCard({ item }: MessageProps) {
-  return <Content>{item.content}</Content>;
+  return (
+    <>
+      <Title>{item.title}</Title>
+      <Content>{item.content}</Content>
+    </>
+  );
 }
