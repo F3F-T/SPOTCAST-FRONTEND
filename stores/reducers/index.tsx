@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
 import { HYDRATE } from "next-redux-wrapper";
 import userSlice from "./user";
+import messageSlice from "./message";
+import contextSlice from "./context";
 
 // (이전상태, 액션) => 다음상태
 const rootReducer = (state: any, action: any) => {
@@ -10,6 +12,8 @@ const rootReducer = (state: any, action: any) => {
     default: {
       const combinedReducer = combineReducers({
         user: userSlice.reducer,
+        message: messageSlice.reducer,
+        context: contextSlice.reducer,
       });
       return combinedReducer(state, action);
     }
