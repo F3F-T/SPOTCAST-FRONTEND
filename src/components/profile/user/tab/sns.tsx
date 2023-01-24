@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import ImgButton from "../../../common/ImgButton";
 import Icon from "../../../common/Icon";
 import { GREY } from "../../../../constants/colors";
-import { getUser } from "../../../../util/lib";
+import getUser from "../../../../lib/utils";
 
 const Container = styled.div`
   font-size: 1.5rem;
@@ -37,26 +37,26 @@ const IconWrapper = styled.div`
   left: 1.5rem;
 `;
 export default function SNS() {
-  const { user } = getUser();
+  const { me } = getUser();
   return (
     <Container>
-      {user.instagram && (
+      {me.instagram && (
         <SNSbtn
           title="instagram"
           size={2.4}
           ImgSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1200px-Instagram_logo_2022.svg.png"
-          href={`https://www.instagram.com/${user.instagram}/`}
+          href={`https://www.instagram.com/${me.instagram}/`}
         />
       )}
-      {user.twitter && (
+      {me.twitter && (
         <SNSbtn
           title="twitter"
           size={2.4}
           ImgSrc="https://upload.wikimedia.org/wikipedia/commons/f/f2/Logo_Twitter.png"
-          href={`https://twitter.com/${user.twitter}`}
+          href={`https://twitter.com/${me.twitter}`}
         />
       )}
-      {user.otherSns && (
+      {me.otherSns && (
         <ButtonWrapper>
           <SNSbtn
             title="other"

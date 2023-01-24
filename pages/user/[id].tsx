@@ -3,9 +3,8 @@ import axios from "axios";
 import UserProfile from "../../src/components/profile/user";
 import AppLayout from "../../styles/AppLayout";
 import wrapper from "../../stores/store/configureStore";
-import { loadMe } from "../../src/api/auth";
+import { getMember } from "../../src/api/auth";
 import { useRedirect } from "../../src/hooks/useAuth";
-import { loadUser } from "../../src/api/user";
 
 export default function Page() {
   useRedirect();
@@ -26,8 +25,8 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
     if (req && cookie) {
       axios.defaults.headers.Cookie = cookie;
     }
-    await store.dispatch(loadMe());
-    await store.dispatch(loadUser({ userId: query.id }));
+    await store.dispatch(getMember());
+    // await store.dispatch(getUser({ userId: query.id }));
     return {
       props: {},
     };

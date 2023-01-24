@@ -1,15 +1,13 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { GREY } from "../../../../../../constants/colors";
-import { getMe } from "../../../../../../util/lib";
-import { FieldProps } from "../../../../../../interface/user";
+import getUser from "../../../../../../lib/utils";
 
 const Container = styled.div`
   font-size: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 5rem;
-  line-height: 1.5;
 `;
 
 const Title = styled.div`
@@ -20,22 +18,12 @@ const Title = styled.div`
 
 const Contents = styled.div``;
 export default function Introduce() {
-  const { me, field } = getMe();
+  const { me } = getUser();
 
   const fakeList = [
     {
       title: "작업 분야",
-      contents:
-        field.constructor === Object &&
-        Object.keys(field).length !== 0 &&
-        field
-          .filter((item: FieldProps) => {
-            return item.exist === true;
-          })
-          .map((item: FieldProps) => {
-            return item.name;
-          })
-          .join(" ∙ "),
+      contents: me.field,
     },
     // {
     //   title: "회사",
@@ -49,16 +37,7 @@ export default function Introduce() {
   ];
   return (
     <Container>
-      <div>
-        {me?.information?.split("\n").map((line: string) => {
-          return (
-            <>
-              <span>{line}</span>
-              <br />
-            </>
-          );
-        })}
-      </div>
+      {me.information}
       {fakeList.map(item => {
         return (
           <div key={item.title}>

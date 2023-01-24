@@ -2,14 +2,14 @@ import React, { useState, useCallback, Dispatch, SetStateAction } from "react";
 import styled from "@emotion/styled";
 // import { useSelector } from "react-redux";
 // import { RootState } from "../../../../stores/reducers";
-import Line from "../../common/Line";
+import Line from "../../../common/Line";
 import Introduce from "./Information/inform";
 import Work from "./work";
 import SNS from "./sns/inform";
-import Button from "../../common/Button";
+import Button from "../../../common/Button";
 import InformEditForm from "./Information/edit-form";
 import SNSEditForm from "./sns/edit-form";
-import { GREY } from "../../../constants/colors";
+import { GREY } from "../../../../constants/colors";
 
 const Container = styled.div`
   width: 75rem;
