@@ -5,10 +5,11 @@ import AppLayout from "../styles/AppLayout";
 import wrapper from "../stores/store/configureStore";
 import { storeCookie } from "../stores/reducers/user";
 import { getMember } from "../src/api/auth";
-import { useRedirect } from "../src/hooks/useAuth";
+import { useMessageRoomRedirect } from "../src/hooks/useAuth";
+import { preLoadMsgReceived } from "../src/api/message";
 
 function Page() {
-  useRedirect();
+  useMessageRoomRedirect();
 
   return (
     <AppLayout>
@@ -30,6 +31,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
       await store.dispatch(storeCookie(cookie));
     }
     await store.dispatch(getMember());
+    await store.dispatch(preLoadMsgReceived({ page: 0, size: 4 }));
 
     return {
       props: {},
