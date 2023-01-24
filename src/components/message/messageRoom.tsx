@@ -66,7 +66,7 @@ export default function MessageRoom({ data }: { data: IMessage[] }) {
             <MsgPreviewCard item={item} selected={item.id === currentMsg} />
           </Button>
         ))}
-        {data.length === 0 && <None>메시지가 없습니다.</None>}
+        {data?.length === 0 && <None>메시지가 없습니다.</None>}
       </Left>
       <Right>
         <ProfileHedaer item={data?.find(item => item?.id === currentMsg)!} />
