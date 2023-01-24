@@ -2,7 +2,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../../stores/reducers";
 
-const getUser = () => {
+export const getUser = () => {
   const { IsUserLoggedIn, me } = useSelector((state: RootState) => state.user);
   return {
     IsUserLoggedIn,
@@ -10,4 +10,22 @@ const getUser = () => {
   };
 };
 
-export default getUser;
+export const getMessage = () => {
+  const { msgSend, msgReceived } = useSelector(
+    (state: RootState) => state.message,
+  );
+
+  const msgSendData = {
+    data: msgSend.content,
+    size: msgSend.totalElements,
+  };
+  const msgReceivedData = {
+    data: msgReceived.content,
+    size: msgReceived.totalElements,
+  };
+
+  return {
+    msgSendData,
+    msgReceivedData,
+  };
+};
