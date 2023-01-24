@@ -5,6 +5,8 @@ import MsgPreviewCard from "./msgPreviewCard";
 import ProfileHedaer from "./profileHeader";
 import fakeData from "./fakeData";
 import MsgContentCard from "./msgContentCard";
+import MsgModal from "./msgModal";
+import useMsgModal from "../../hooks/useModal";
 // import MsgModal from "./msgModal";
 
 const Container = styled.div`
@@ -55,11 +57,8 @@ const VerticalLine = styled.div`
 `;
 export default function MessageRoom({ searchTerm }: { searchTerm: string }) {
   const [currentMsg, setCurrentMsg] = useState<number>(0);
-  // const [isOpenMsgModal, setMsgModal] = useState(false);
+  const { isMsgModalOpen, openMsgModal } = useMsgModal();
 
-  // const closeModal = () => {
-  //   setMsgModal(false);
-  // };
   const searched = fakeData.filter(
     item => item.name.includes(searchTerm) || item.content.includes(searchTerm),
   );
@@ -85,8 +84,8 @@ export default function MessageRoom({ searchTerm }: { searchTerm: string }) {
         <ProfileHedaer item={fakeData.find(item => item.id === currentMsg)!} />
         <MsgContentCard item={fakeData.find(item => item.id === currentMsg)!} />
       </Right>
-      {/* <button onClick={() => setMsgModal(true)}>test</button>
-      {isOpenMsgModal && <MsgModal closeModal={closeModal} />} */}
+      <button onClick={() => openMsgModal()}>test</button>
+      {isMsgModalOpen && <MsgModal />}
     </Container>
   );
 }

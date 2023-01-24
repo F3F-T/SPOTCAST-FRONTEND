@@ -10,6 +10,7 @@ const Button = styled.button`
 `;
 
 export interface IconButtonProps {
+  className?: string;
   IconName: string;
   color?: string;
   size?: string;
@@ -17,6 +18,7 @@ export interface IconButtonProps {
   onClick?: (e?: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }
 export default function IconButton({
+  className,
   IconName,
   color,
   size,
@@ -24,7 +26,7 @@ export default function IconButton({
   onClick,
 }: IconButtonProps) {
   return (
-    <Button onClick={onClick}>
+    <Button className={className} onClick={onClick}>
       <Icon className={IconName} size={size} color={color} border={border} />
     </Button>
   );
