@@ -3,14 +3,10 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../stores/reducers";
 
 export const getMe = () => {
-  const { IsUserLoggedIn, me, field } = useSelector(
-    (state: RootState) => state.user,
-  );
-
+  const { IsUserLoggedIn, me } = useSelector((state: RootState) => state.user);
   return {
     IsUserLoggedIn,
     me,
-    field,
   };
 };
 
