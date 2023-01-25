@@ -64,9 +64,9 @@ export default function MsgPreviewCard({
       <Img />
       <Right>
         <Name>
-          {item.memberName} <Date>{item.createdDate.split("T")[0]}</Date>
+          {item?.memberName} <Date>{item?.createdDate.split("T")[0]}</Date>
         </Name>
-        <Content>{item.title}</Content>
+        <Content>{item?.title}</Content>
       </Right>
     </Preview>
   );

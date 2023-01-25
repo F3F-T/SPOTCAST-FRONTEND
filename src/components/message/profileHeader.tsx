@@ -2,8 +2,10 @@ import styled from "@emotion/styled";
 import React from "react";
 import { GREY } from "../../constants/colors";
 import useMessage from "../../hooks/useMessage";
+import useMsgModal from "../../hooks/useModal";
 import { MessageProps } from "../../interface/messgae";
 import IconButton from "../common/IconButton";
+import MsgModal from "./msgModal";
 
 const Container = styled.div`
   width: 100%;
@@ -43,8 +45,10 @@ const IconWrapper = styled.div`
   display: flex;
   gap: 1rem;
 `;
-export default function ProfileHedaer({ item }: MessageProps) {
-  const { onClickDeleteMessage } = useMessage();
+export default function ProfileHedaer({ item, type }: MessageProps) {
+  const { replaceUserProfile, onClickDeleteMessage } = useMessage();
+  const { isMsgModalOpen, openMsgModal } = useMsgModal({ item });
+
   return (
     <Container>
       <Wrapper>
@@ -55,28 +59,38 @@ export default function ProfileHedaer({ item }: MessageProps) {
         </div>
       </Wrapper>
       <IconWrapper>
-        <IconButton
-          IconName="personCard"
-          border={0.1}
-          size="2.6rem"
-          color={GREY[700]}
-        />
-        <IconButton
-          IconName="reply"
-          border={0.1}
-          size="2.6rem"
-          color={GREY[700]}
-        />
-        <IconButton
-          IconName="trash"
-          border={0.1}
-          size="2.6rem"
-          color={GREY[700]}
-          onClick={() => {
-            onClickDeleteMessage(item.id);
-          }}
-        />
+        {item && (
+          <IconButton
+            IconName="personCard"
+            border={0.1}
+            size="2.6rem"
+            color={GREY[700]}
+            onClick={() => replaceUserProfile(item.memberId)}
+          />
+        )}
+        {item && type === "RECEIVED" && (
+          <IconButton
+            IconName="reply"
+            border={0.1}
+            size="2.6rem"
+            color={GREY[700]}
+            onClick={() => openMsgModal()}
+          />
+        )}
+
+        {item && (
+          <IconButton
+            IconName="trash"
+            border={0.1}
+            size="2.6rem"
+            color={GREY[700]}
+            onClick={() => {
+              onClickDeleteMessage(item.id);
+            }}
+          />
+        )}
       </IconWrapper>
+      {isMsgModalOpen && <MsgModal item={item} />}
     </Container>
   );
 }
