@@ -1,11 +1,13 @@
 import { useDispatch } from "react-redux";
 import { useCallback, useState } from "react";
+import { useRouter } from "next/navigation";
 import { AppDispatch } from "../../stores/store/configureStore";
-import { loadMsgReceived, loadMsgSend } from "../api/message";
+import { loadMsgReceived, loadMsgSend, deleteMessage } from "../api/message";
 import { getMessage } from "../lib/utils";
 
 export default function useMessage() {
   const dispatch = useDispatch<AppDispatch>();
+  const router = useRouter();
 
   const MESSAGE_SIZE = 4;
 
@@ -56,6 +58,12 @@ export default function useMessage() {
     },
     [currentPage],
   );
+
+  const onClickDeleteMessage = useCallback(async (id: number) => {
+    await dispatch(deleteMessage(id));
+    router.refresh();
+  }, []);
+
   return {
     onChangeSendMsg,
     onChangeReceivedMsg,
@@ -68,5 +76,6 @@ export default function useMessage() {
     onChangePage,
     msgSendData,
     msgSendSize,
+    onClickDeleteMessage,
   };
 }
