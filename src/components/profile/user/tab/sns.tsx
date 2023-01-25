@@ -37,26 +37,26 @@ const IconWrapper = styled.div`
   left: 1.5rem;
 `;
 export default function SNS() {
-  const { me } = getUser();
+  const { user } = getUser();
   return (
     <Container>
-      {me.instagram && (
+      {user.instagram && (
         <SNSbtn
           title="instagram"
           size={2.4}
           ImgSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1200px-Instagram_logo_2022.svg.png"
-          href={`https://www.instagram.com/${me.instagram}/`}
+          href={`https://www.instagram.com/${user.instagram}/`}
         />
       )}
-      {me.twitter && (
+      {user.twitter && (
         <SNSbtn
           title="twitter"
           size={2.4}
           ImgSrc="https://upload.wikimedia.org/wikipedia/commons/f/f2/Logo_Twitter.png"
-          href={`https://twitter.com/${me.twitter}`}
+          href={`https://twitter.com/${user.twitter}`}
         />
       )}
-      {me.otherSns && (
+      {user.otherSns && (
         <ButtonWrapper>
           <SNSbtn
             title="other"

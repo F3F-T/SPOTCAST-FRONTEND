@@ -4,7 +4,7 @@ import UserProfile from "../src/components/profile/me";
 import AppLayout from "../styles/AppLayout";
 import wrapper from "../stores/store/configureStore";
 import { storeCookie } from "../stores/reducers/user";
-import { getMember } from "../src/api/auth";
+import { loadMe } from "../src/api/auth";
 import { useRedirect } from "../src/hooks/useAuth";
 
 function Page() {
@@ -29,7 +29,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
       axios.defaults.headers.Cookie = cookie;
       await store.dispatch(storeCookie(cookie));
     }
-    await store.dispatch(getMember());
+    await store.dispatch(loadMe());
 
     return {
       props: {},
