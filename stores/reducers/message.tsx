@@ -4,6 +4,7 @@ import {
   loadMsgReceived,
   loadMsgSend,
   sendMessage,
+  deleteMessage,
 } from "../../src/api/message";
 
 type MessageState = {
@@ -18,6 +19,9 @@ type MessageState = {
   sendMsgLoading: boolean;
   sendMsgDone: boolean;
   sendMsgError: any;
+  deleteMessageLoading: boolean;
+  deleteMessageDone: boolean;
+  deleteMessageError: any;
 };
 
 // 기본 state
@@ -33,6 +37,9 @@ export const initialState: MessageState = {
   sendMsgLoading: false,
   sendMsgDone: false,
   sendMsgError: null,
+  deleteMessageLoading: false,
+  deleteMessageDone: false,
+  deleteMessageError: null,
 };
 
 const messageSlice = createSlice({
@@ -84,6 +91,20 @@ const messageSlice = createSlice({
       .addCase(sendMessage.rejected, (state, action) => {
         state.sendMsgLoading = false;
         state.sendMsgError = action.payload;
+      })
+      // 메시지 삭제
+      .addCase(deleteMessage.pending, state => {
+        state.deleteMessageLoading = true;
+        state.deleteMessageDone = false;
+        state.deleteMessageError = null;
+      })
+      .addCase(deleteMessage.fulfilled, state => {
+        state.deleteMessageLoading = false;
+        state.deleteMessageDone = true;
+      })
+      .addCase(deleteMessage.rejected, (state, action) => {
+        state.deleteMessageLoading = false;
+        state.deleteMessageError = action.payload;
       })
       .addDefaultCase(state => state),
 });

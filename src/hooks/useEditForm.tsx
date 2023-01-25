@@ -1,13 +1,13 @@
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { getUser } from "../lib/utils";
+import { getMe } from "../util/lib";
 import useInput from "./useInput";
 import { AppDispatch } from "../../stores/store/configureStore";
-import editMyInfo from "../api/user";
+import { editMyInfo } from "../api/user";
 
 export default function useEditForm() {
-  const { me } = getUser();
+  const { me } = getMe();
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
 

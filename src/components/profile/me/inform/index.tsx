@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import Button from "../../../common/Button";
 import { GREY } from "../../../../constants/colors";
 import { FormProps } from "../tab";
-import { getUser } from "../../../../lib/utils";
+import { getMe } from "../../../../util/lib";
 
 const Container = styled.div`
   width: 45rem;
@@ -47,7 +47,7 @@ const InformButton = styled(Button)`
 `;
 
 export default function Inform({ openForm }: FormProps) {
-  const { me } = getUser();
+  const { me } = getMe();
   return (
     <Container>
       <Wrapper>

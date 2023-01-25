@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import ImgButton from "../../../../../common/ImgButton";
 import { GREY } from "../../../../../../constants/colors";
 import Icon from "../../../../../common/Icon";
-import getUser from "../../../../../../lib/utils";
+import { getMe } from "../../../../../../util/lib";
 
 const Container = styled.div`
   font-size: 1.5rem;
@@ -37,7 +37,7 @@ const IconWrapper = styled.div`
   left: 1.5rem;
 `;
 export default function SNS() {
-  const { me } = getUser();
+  const { me } = getMe();
   return (
     <Container>
       {me.instagram && (

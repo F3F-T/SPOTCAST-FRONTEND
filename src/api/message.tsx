@@ -81,3 +81,17 @@ export const sendMessage = createAsyncThunk(
     }
   },
 );
+
+export const deleteMessage = createAsyncThunk(
+  "message/deleteMessage",
+  async (id: number, { rejectWithValue }) => {
+    try {
+      const response = await authorizationClient.patch(`${API.MESSAGE}${id}`);
+      toastMsg("메시지 삭제 완료", true);
+      return response.data.data;
+    } catch (error: any) {
+      toastMsg("메시지 삭제 실패", false);
+      return rejectWithValue(error.response.data);
+    }
+  },
+);

@@ -10,7 +10,7 @@ const Preview = styled.div<{
     background-color: ${selected ? GREY[200] : "transparent"};
 `}
   width: 30rem;
-  height: 12rem;
+  height: 12.1rem;
   border-bottom: 0.1rem solid ${GREY[300]};
   display: flex;
   gap: 2rem;
@@ -64,9 +64,9 @@ export default function MsgPreviewCard({
       <Img />
       <Right>
         <Name>
-          {item.memberName} <Date>{item.createdDate.split("T")[0]}</Date>
+          {item?.memberName} <Date>{item?.createdDate.split("T")[0]}</Date>
         </Name>
-        <Content>{item.title}</Content>
+        <Content>{item?.title}</Content>
       </Right>
     </Preview>
   );

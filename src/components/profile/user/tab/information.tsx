@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { GREY } from "../../../../constants/colors";
-import { getUser } from "../../../../lib/utils";
+import { getUser } from "../../../../util/lib";
 
 const Container = styled.div`
   font-size: 1.5rem;
@@ -18,17 +18,17 @@ const Title = styled.div`
 
 const Contents = styled.div``;
 export default function Introduce() {
-  const { me } = getUser();
+  const { user } = getUser();
 
   const fakeList = [
     {
       title: "작업 분야",
-      contents: me.field,
+      contents: user.field,
     },
   ];
   return (
     <Container>
-      {me.information}
+      {user.information}
       {fakeList.map(item => {
         return (
           <div key={item.title}>
