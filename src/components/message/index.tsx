@@ -1,9 +1,91 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 import React from "react";
 import styled from "@emotion/styled";
+import Pagination from "react-js-pagination";
 import { GREY, INDIGO_DARK } from "../../constants/colors";
 import Line from "../common/Line";
 import MessageRoom from "./messageRoom";
 import useMessage from "../../hooks/useMessage";
+import Icon from "../common/Icon";
+
+export default function Message() {
+  const {
+    TabList,
+    currentTab,
+    onChangeTab,
+    msgReceivedData,
+    msgReceivedSize,
+    currentSendPage,
+    currentReceivedPage,
+    setReceivedPage,
+    setSendPage,
+    msgSendData,
+    msgSendSize,
+  } = useMessage();
+
+  return (
+    <Container>
+      <Top>
+        <>
+          {TabList.map(item => {
+            return (
+              <Wrapper key={item}>
+                <Category
+                  currentTab={currentTab === item}
+                  onClick={() => onChangeTab(item)}
+                >
+                  {item}
+                </Category>
+                {currentTab === item && (
+                  <StyledLine width="9rem" color={GREY[800]} />
+                )}
+              </Wrapper>
+            );
+          })}
+        </>
+      </Top>
+      <Line color={GREY[300]} width="100%" />
+
+      <Bottom>
+        {currentTab === TabList[0] ? (
+          <>
+            <MessageRoom data={msgReceivedData.data} type="RECEIVED" />
+            <Line color={GREY[300]} width="100%" />
+            <Paging>
+              <Pagination
+                activePage={currentReceivedPage}
+                itemsCountPerPage={4}
+                totalItemsCount={msgReceivedSize}
+                pageRangeDisplayed={5}
+                prevPageText={<Icon className="arrowLeft" size="1.2rem" />}
+                nextPageText={<Icon className="arrowRight" size="1.2rem" />}
+                hideFirstLastPages
+                onChange={setReceivedPage}
+              />
+            </Paging>
+          </>
+        ) : (
+          <>
+            <MessageRoom data={msgSendData.data} type="SEND" />
+            <Line color={GREY[300]} width="100%" />
+            <Paging>
+              <Pagination
+                activePage={currentSendPage}
+                itemsCountPerPage={4}
+                totalItemsCount={msgSendSize}
+                pageRangeDisplayed={5}
+                prevPageText={<Icon className="arrowLeft" size="1.2rem" />}
+                nextPageText={<Icon className="arrowRight" size="1.2rem" />}
+                hideFirstLastPages
+                onChange={setSendPage}
+              />
+            </Paging>
+          </>
+        )}
+      </Bottom>
+    </Container>
+  );
+}
 
 const Container = styled.div`
   width: 100%;
@@ -47,6 +129,50 @@ const Bottom = styled.div`
   height: 53.5rem;
   position: absolute;
   top: 0;
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  ul.pagination li {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: ${GREY[600]};
+    border-radius: 5rem;
+  }
+
+  ul.pagination li:first-child {
+    border-radius: 1rem;
+  }
+
+  ul.pagination li:last-child {
+    border-radius: 1rem;
+  }
+
+  ul.pagination li a {
+    text-decoration: none;
+    color: ${GREY[600]};
+    font-size: 1.5rem;
+  }
+
+  ul.pagination li.active a {
+    color: white;
+  }
+
+  ul.pagination li.active {
+    background-color: ${INDIGO_DARK};
+  }
 `;
 
 const StyledLine = styled(Line)`
@@ -63,99 +189,3 @@ const Paging = styled.div`
   align-items: center;
   gap: 0.5rem;
 `;
-const PageButton = styled.button<{ currentPage: boolean }>`
-  ${({ currentPage }) => `
-  background-color: ${currentPage ? INDIGO_DARK : "transparent"};
-  color: ${currentPage ? "white" : GREY[600]};
-  border: ${currentPage ? "none" : `0.1rem solid ${GREY[400]}`};
-  border-radius: 50rem;
-  font-size: 1.6rem;
-  padding: ${currentPage ? "0.4rem 0.9rem" : "0.3rem 0.8rem"};
-  cursor: pointer;
-  ${
-    !currentPage &&
-    `
-      &:hover {
-    color: ${GREY[900]};
-    border: 0.1rem solid ${GREY[700]};
-  }`
-  }
-`}
-`;
-
-export default function Message() {
-  const {
-    TabList,
-    currentTab,
-    onChangeTab,
-    msgReceivedData,
-    msgReceivedSize,
-    currentPage,
-    onChangePage,
-    msgSendData,
-    msgSendSize,
-  } = useMessage();
-  return (
-    <Container>
-      <Top>
-        <>
-          {TabList.map(item => {
-            return (
-              <Wrapper key={item}>
-                <Category
-                  currentTab={currentTab === item}
-                  onClick={() => onChangeTab(item)}
-                >
-                  {item}
-                </Category>
-                {currentTab === item && (
-                  <StyledLine width="9rem" color={GREY[800]} />
-                )}
-              </Wrapper>
-            );
-          })}
-        </>
-      </Top>
-      <Line color={GREY[300]} width="100%" />
-
-      <Bottom>
-        {currentTab === TabList[0] ? (
-          <>
-            <MessageRoom data={msgReceivedData.data} type="RECEIVED" />
-            <Line color={GREY[300]} width="100%" />
-            <Paging>
-              {msgReceivedSize?.map(i => (
-                <PageButton
-                  key={i}
-                  currentPage={currentPage === i}
-                  onClick={() => {
-                    onChangePage("RECEIVED", i);
-                  }}
-                >
-                  {i + 1}
-                </PageButton>
-              ))}
-            </Paging>
-          </>
-        ) : (
-          <>
-            <MessageRoom data={msgSendData.data} type="SEND" />
-            <Line color={GREY[300]} width="100%" />
-            <Paging>
-              {msgSendSize?.map(i => (
-                <PageButton
-                  currentPage={currentPage === i}
-                  onClick={() => {
-                    onChangePage("SEND", i);
-                  }}
-                >
-                  {i + 1}
-                </PageButton>
-              ))}
-            </Paging>
-          </>
-        )}
-      </Bottom>
-    </Container>
-  );
-}
