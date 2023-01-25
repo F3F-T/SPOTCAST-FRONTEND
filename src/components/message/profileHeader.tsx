@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { GREY } from "../../constants/colors";
 import useMessage from "../../hooks/useMessage";
 import useMsgModal from "../../hooks/useModal";
 import { MessageProps } from "../../interface/messgae";
+import { getDate, getTime } from "../../util/date";
 import IconButton from "../common/IconButton";
 import MsgModal from "./msgModal";
 
@@ -29,7 +30,7 @@ const Img = styled.img`
 `;
 
 const Name = styled.div`
-  width: 10rem;
+  width: 40rem;
   position: relative;
   font-size: 1.4rem;
   padding-bottom: 0.2rem;
@@ -48,16 +49,34 @@ const IconWrapper = styled.div`
 export default function ProfileHedaer({ item, type }: MessageProps) {
   const { replaceUserProfile, onClickDeleteMessage } = useMessage();
   const { isMsgModalOpen, openMsgModal } = useMsgModal({ item });
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    if (item?.createdDate) {
+      setDate(getDate(item?.createdDate));
+      setTime(getTime(item?.createdDate));
+    }
+  }, [item]);
 
   return (
     <Container>
-      <Wrapper>
-        {item && <Img />}
-        <div>
-          <Name>{item?.memberName}</Name>
-          <Date>{item?.createdDate}</Date>
-        </div>
-      </Wrapper>
+      {item && (
+        <Wrapper>
+          <Img />
+          <div>
+            <Name>
+              {item?.memberName} {`<`}
+              {item?.memberEmail}
+              {`>`}
+            </Name>
+
+            <Date>
+              {date} {time}
+            </Date>
+          </div>
+        </Wrapper>
+      )}
       <IconWrapper>
         {item && (
           <IconButton
