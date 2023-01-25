@@ -69,4 +69,4 @@ const loadUser = createAsyncThunk(
   },
 );
 
-export { editMyInfo, loadUser, loadField };
+export { editMyInfo, loadUser };

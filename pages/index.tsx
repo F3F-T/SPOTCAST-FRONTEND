@@ -7,6 +7,7 @@ import MainArticle1 from "../src/components/main/section/hotPortfolio";
 import MainArticle3 from "../src/components/main/section/communityPreview";
 import MainArticle2 from "../src/components/main/section/findCrew";
 import wrapper from "../stores/store/configureStore";
+import { storeCookie } from "../stores/reducers/user";
 import { loadMe } from "../src/api/auth";
 import { useRedirect } from "../src/hooks/useAuth";
 

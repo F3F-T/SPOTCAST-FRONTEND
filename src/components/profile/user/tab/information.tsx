@@ -18,17 +18,17 @@ const Title = styled.div`
 
 const Contents = styled.div``;
 export default function Introduce() {
-  const { me } = getUser();
+  const { user } = getUser();
 
   const fakeList = [
     {
       title: "작업 분야",
-      contents: me.field,
+      contents: user.field,
     },
   ];
   return (
     <Container>
-      {me.information}
+      {user.information}
       {fakeList.map(item => {
         return (
           <div key={item.title}>

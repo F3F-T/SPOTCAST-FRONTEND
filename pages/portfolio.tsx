@@ -3,6 +3,7 @@ import axios from "axios";
 import Portfolio from "../src/components/portfolio";
 import AppLayout from "../styles/AppLayout";
 import wrapper from "../stores/store/configureStore";
+import { storeCookie } from "../stores/reducers/user";
 import { loadMe } from "../src/api/auth";
 import { useRedirect } from "../src/hooks/useAuth";
 

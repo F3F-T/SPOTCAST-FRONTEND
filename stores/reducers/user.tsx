@@ -1,17 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from "@reduxjs/toolkit";
-<<<<<<< HEAD
 import { authLogin, authLogout, authSignUp, loadMe } from "../../src/api/auth";
-import { editMyInfo, loadField, loadUser } from "../../src/api/user";
-=======
-import {
-  authLogin,
-  authLogout,
-  authSignUp,
-  getMember,
-} from "../../src/api/auth";
-import editMyInfo from "../../src/api/user";
->>>>>>> c4e3365 (chore: reissue test)
+import { editMyInfo, loadUser } from "../../src/api/user";
 
 type UserState = {
   IsUserLoggedIn: boolean;
@@ -32,10 +22,7 @@ type UserState = {
   loadUserLoading: boolean;
   loadUserDone: boolean;
   loadUserError: any;
-  loadFieldLoading: boolean;
-  loadFieldDone: boolean;
-  loadFieldError: any;
-  field: object;
+  cookie: any;
 };
 
 // 기본 state
@@ -58,10 +45,7 @@ export const initialState: UserState = {
   loadUserLoading: false,
   loadUserDone: false,
   loadUserError: null,
-  field: {},
-  loadFieldLoading: false,
-  loadFieldDone: false,
-  loadFieldError: null,
+  cookie: null,
 };
 
 const userSlice = createSlice({
@@ -73,6 +57,9 @@ const userSlice = createSlice({
     },
     updateMe(state, action) {
       state.me = Object.assign(state.me, action.payload);
+    },
+    storeCookie(state, action) {
+      state.cookie = action.payload;
     },
   },
   extraReducers: builder =>
@@ -157,31 +144,10 @@ const userSlice = createSlice({
       .addCase(editMyInfo.rejected, (state, action) => {
         state.loadMeError = action.payload;
       })
-      // 유저정보 가져오기
-      .addCase(loadField.pending, state => {
-        state.loadFieldLoading = true;
-        state.loadFieldDone = false;
-        state.loadFieldError = null;
-      })
-      .addCase(loadField.fulfilled, (state, action) => {
-        state.loadFieldLoading = false;
-        state.field = action.payload;
-        state.loadFieldDone = true;
-      })
-      .addCase(loadField.rejected, (state, action) => {
-        state.loadFieldLoading = false;
-        state.loadFieldError = action.payload;
-      })
-<<<<<<< HEAD
-=======
-      .addCase(editMyInfo.rejected, (state, action) => {
-        state.getMeError = action.payload;
-      })
 
->>>>>>> c4e3365 (chore: reissue test)
       .addDefaultCase(state => state),
 });
 
-export const { signUp, updateMe } = userSlice.actions;
+export const { signUp, updateMe, storeCookie } = userSlice.actions;
 
 export default userSlice;

@@ -1,14 +1,13 @@
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { getUser } from "../lib/utils";
+import { getMe } from "../lib/utils";
 import useInput from "./useInput";
 import { AppDispatch } from "../../stores/store/configureStore";
-import { editMyInfo, loadField } from "../api/user";
-import { FieldProps } from "../interface/user";
+import { editMyInfo } from "../api/user";
 
 export default function useEditForm() {
-  const { me, field } = getMe();
+  const { me } = getMe();
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
 

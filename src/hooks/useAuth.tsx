@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { RootState } from "../../stores/reducers";
 import { AppDispatch } from "../../stores/store/configureStore";
-import { refreshAuth, getMember } from "../api/auth";
+import { refreshAuth, loadMe } from "../api/auth";
 import { loadMsgReceived, loadMsgSend } from "../api/message";
 
 export default function useAuth() {
@@ -47,18 +47,18 @@ export const useRedirect = () => {
       default:
         break;
     }
-  }, [getMeError]);
+  }, [loadMeError]);
   return null;
 };
 
 export const useMessageRoomRedirect = () => {
-  const { getMeError } = useSelector((state: RootState) => state.user);
+  const { loadMeError } = useSelector((state: RootState) => state.user);
   const { loadMsgSendError, loadMsgRecievedError } = useSelector(
     (state: RootState) => state.message,
   );
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-    switch (getMeError?.code) {
+    switch (loadMeError?.code) {
       // 로그인 하지 않은 사용자가 요청
       case 400:
         break;
@@ -66,7 +66,7 @@ export const useMessageRoomRedirect = () => {
       case 401:
         refreshAuth()
           .then(async () => {
-            await dispatch(getMember());
+            await dispatch(loadMe());
             await dispatch(loadMsgSend({ page: 0, size: 4 }));
             await dispatch(loadMsgReceived({ page: 0, size: 4 }));
           })
@@ -78,6 +78,6 @@ export const useMessageRoomRedirect = () => {
       default:
         break;
     }
-  }, [getMeError, loadMsgSendError, loadMsgRecievedError]);
+  }, [loadMeError, loadMsgSendError, loadMsgRecievedError]);
   return null;
 };
