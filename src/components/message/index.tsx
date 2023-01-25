@@ -121,10 +121,12 @@ export default function Message() {
       <Bottom>
         {currentTab === TabList[0] ? (
           <>
-            <MessageRoom data={msgReceivedData.data} />
+            <MessageRoom data={msgReceivedData.data} type="RECEIVED" />
+            <Line color={GREY[300]} width="100%" />
             <Paging>
               {msgReceivedSize?.map(i => (
                 <PageButton
+                  key={i}
                   currentPage={currentPage === i}
                   onClick={() => {
                     onChangePage("RECEIVED", i);
@@ -137,7 +139,8 @@ export default function Message() {
           </>
         ) : (
           <>
-            <MessageRoom data={msgSendData.data} />
+            <MessageRoom data={msgSendData.data} type="SEND" />
+            <Line color={GREY[300]} width="100%" />
             <Paging>
               {msgSendSize?.map(i => (
                 <PageButton

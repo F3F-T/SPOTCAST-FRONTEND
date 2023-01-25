@@ -53,9 +53,14 @@ const None = styled.div`
   font-size: 1.5rem;
 `;
 
-export default function MessageRoom({ data }: { data: IMessage[] }) {
+export default function MessageRoom({
+  data,
+  type,
+}: {
+  data: IMessage[];
+  type: string;
+}) {
   const [currentMsg, setCurrentMsg] = useState<number>(0);
-  // const { isMsgModalOpen, openMsgModal } = useMsgModal();
 
   return (
     <Container>
@@ -69,11 +74,12 @@ export default function MessageRoom({ data }: { data: IMessage[] }) {
         {data?.length === 0 && <None>메시지가 없습니다.</None>}
       </Left>
       <Right>
-        <ProfileHedaer item={data?.find(item => item?.id === currentMsg)!} />
+        <ProfileHedaer
+          type={type}
+          item={data?.find(item => item?.id === currentMsg)!}
+        />
         <MsgContentCard item={data?.find(item => item?.id === currentMsg)!} />
       </Right>
-      {/* <button onClick={() => openMsgModal()}>메시지 전송</button> */}
-      {/* {isMsgModalOpen && <MsgModal />} */}
     </Container>
   );
 }
