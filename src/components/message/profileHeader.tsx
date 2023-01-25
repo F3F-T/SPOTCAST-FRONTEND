@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { GREY } from "../../constants/colors";
+import useMessage from "../../hooks/useMessage";
 import { MessageProps } from "../../interface/messgae";
-import Icon from "../common/Icon";
+import IconButton from "../common/IconButton";
 
 const Container = styled.div`
   width: 100%;
@@ -40,9 +41,10 @@ const IconWrapper = styled.div`
   right: 0;
   padding-right: 2rem;
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
 `;
 export default function ProfileHedaer({ item }: MessageProps) {
+  const { onClickDeleteMessage } = useMessage();
   return (
     <Container>
       <Wrapper>
@@ -53,14 +55,27 @@ export default function ProfileHedaer({ item }: MessageProps) {
         </div>
       </Wrapper>
       <IconWrapper>
-        <Icon
-          className="personCard"
+        <IconButton
+          IconName="personCard"
           border={0.1}
           size="2.6rem"
           color={GREY[700]}
         />
-        <Icon className="reply" border={0.1} size="2.6rem" color={GREY[700]} />
-        <Icon className="trash" border={0.1} size="2.6rem" color={GREY[700]} />
+        <IconButton
+          IconName="reply"
+          border={0.1}
+          size="2.6rem"
+          color={GREY[700]}
+        />
+        <IconButton
+          IconName="trash"
+          border={0.1}
+          size="2.6rem"
+          color={GREY[700]}
+          onClick={() => {
+            onClickDeleteMessage(item.id);
+          }}
+        />
       </IconWrapper>
     </Container>
   );
