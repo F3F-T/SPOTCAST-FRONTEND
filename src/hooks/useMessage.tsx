@@ -64,6 +64,9 @@ export default function useMessage() {
     router.refresh();
   }, []);
 
+  const replaceUserProfile = useCallback((id: number) => {
+    router.push(`/user/${id}`);
+  }, []);
   return {
     onChangeSendMsg,
     onChangeReceivedMsg,
@@ -77,5 +80,6 @@ export default function useMessage() {
     msgSendData,
     msgSendSize,
     onClickDeleteMessage,
+    replaceUserProfile,
   };
 }
