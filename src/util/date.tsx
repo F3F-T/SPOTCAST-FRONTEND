@@ -10,7 +10,7 @@ export const getTime = (itemDate: string) => {
   if (itemDate) {
     const newTime = itemDate?.split("T")[1].split(":").map(Number);
     if (newTime[0] < 12) {
-      const hour = `오전 ${12 - newTime[0]}`;
+      const hour = `오전 ${newTime[0]}`;
       if (newTime[1] < 10) {
         const min = `${newTime[1].toString().split("")[1]}`;
         return `${hour}:${min}`;
