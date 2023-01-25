@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AppDispatch } from "../../stores/store/configureStore";
 import { loadMsgReceived, loadMsgSend, deleteMessage } from "../api/message";
-import { getMessage } from "../lib/utils";
+import { getMessage } from "../util/lib";
 
 export default function useMessage() {
   const dispatch = useDispatch<AppDispatch>();

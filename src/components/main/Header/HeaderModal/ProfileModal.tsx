@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { GREY, INDIGO } from "../../../../constants/colors";
 import useLogin from "../../../../hooks/useLogin";
 import Line from "../../../common/Line";
-import { getMe } from "../../../../lib/utils";
+import { getMe } from "../../../../util/lib";
 
 const Container = styled.div`
   width: 34rem;
