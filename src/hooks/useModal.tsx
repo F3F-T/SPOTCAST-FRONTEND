@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../stores/reducers";
 import { setMsgModal } from "../../stores/reducers/context";
