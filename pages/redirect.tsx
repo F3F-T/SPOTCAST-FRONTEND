@@ -3,7 +3,7 @@ import axios from "axios";
 import Redirct from "../src/components/login/redirect";
 import wrapper from "../stores/store/configureStore";
 import { storeCookie } from "../stores/reducers/user";
-import { getMember } from "../src/api/auth";
+import { loadMe } from "../src/api/auth";
 import { useRedirect } from "../src/hooks/useAuth";
 
 export default function Page() {
@@ -21,7 +21,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
       axios.defaults.headers.Cookie = cookie;
       await store.dispatch(storeCookie(cookie));
     }
-    await store.dispatch(getMember());
+    await store.dispatch(loadMe());
 
     return {
       props: {},

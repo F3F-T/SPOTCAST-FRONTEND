@@ -13,8 +13,8 @@ const refreshAuth = () => {
 };
 
 // 액세스 토큰 있음 && 유효함
-const getMember = createAsyncThunk(
-  "user/getMember",
+const loadMe = createAsyncThunk(
+  "user/loadMe",
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(API.MYINFO);
@@ -76,7 +76,7 @@ const authSignUp = createAsyncThunk(
 );
 
 export {
-  getMember,
+  loadMe,
   authLogin,
   authLogout,
   authEmailSend,

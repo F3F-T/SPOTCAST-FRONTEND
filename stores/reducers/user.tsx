@@ -1,16 +1,12 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  authLogin,
-  authLogout,
-  authSignUp,
-  getMember,
-} from "../../src/api/auth";
-import editMyInfo from "../../src/api/user";
+import { authLogin, authLogout, authSignUp, loadMe } from "../../src/api/auth";
+import { editMyInfo, loadUser } from "../../src/api/user";
 
 type UserState = {
   IsUserLoggedIn: boolean;
   me: object; // 내 정보
+  user: object;
   loginLoading: boolean; // 로그인 시도중
   loginDone: boolean;
   loginError: any;
@@ -20,9 +16,12 @@ type UserState = {
   signUpLoading: boolean;
   signUpDone: boolean;
   signUpError: any;
-  getMeLoading: boolean;
-  getMeDone: boolean;
-  getMeError: any;
+  loadMeLoading: boolean;
+  loadMeDone: boolean;
+  loadMeError: any;
+  loadUserLoading: boolean;
+  loadUserDone: boolean;
+  loadUserError: any;
   cookie: any;
 };
 
@@ -30,6 +29,7 @@ type UserState = {
 export const initialState: UserState = {
   IsUserLoggedIn: false,
   me: {}, // 내 정보
+  user: {}, // 유저 정보
   loginLoading: false, // 로그인 시도중
   loginDone: false,
   loginError: null,
@@ -39,9 +39,12 @@ export const initialState: UserState = {
   signUpLoading: false, // 로그인 시도중
   signUpDone: false,
   signUpError: null,
-  getMeLoading: false,
-  getMeDone: false,
-  getMeError: null,
+  loadMeLoading: false,
+  loadMeDone: false,
+  loadMeError: null,
+  loadUserLoading: false,
+  loadUserDone: false,
+  loadUserError: null,
   cookie: null,
 };
 
@@ -107,24 +110,39 @@ const userSlice = createSlice({
         state.signUpLoading = false;
         state.signUpError = action.payload;
       })
-      // 유저정보 가져오기
-      .addCase(getMember.pending, state => {
-        state.getMeLoading = true;
-        state.getMeDone = false;
-        state.getMeError = null;
+      // 내 가져오기
+      .addCase(loadMe.pending, state => {
+        state.loadMeLoading = true;
+        state.loadMeDone = false;
+        state.loadMeError = null;
       })
-      .addCase(getMember.fulfilled, (state, action) => {
-        state.getMeLoading = false;
+      .addCase(loadMe.fulfilled, (state, action) => {
+        state.loadMeLoading = false;
         state.me = action.payload;
-        state.getMeDone = true;
+        state.loadMeDone = true;
         state.IsUserLoggedIn = true;
       })
-      .addCase(getMember.rejected, (state, action) => {
-        state.getMeLoading = false;
-        state.getMeError = action.payload;
+      .addCase(loadMe.rejected, (state, action) => {
+        state.loadMeLoading = false;
+        state.loadMeError = action.payload;
+      })
+      // 유저정보 가져오기
+      .addCase(loadUser.pending, state => {
+        state.loadUserLoading = true;
+        state.loadUserDone = false;
+        state.loadUserError = null;
+      })
+      .addCase(loadUser.fulfilled, (state, action) => {
+        state.loadUserLoading = false;
+        state.user = action.payload;
+        state.loadUserDone = true;
+      })
+      .addCase(loadUser.rejected, (state, action) => {
+        state.loadUserLoading = false;
+        state.loadUserError = action.payload;
       })
       .addCase(editMyInfo.rejected, (state, action) => {
-        state.getMeError = action.payload;
+        state.loadMeError = action.payload;
       })
 
       .addDefaultCase(state => state),

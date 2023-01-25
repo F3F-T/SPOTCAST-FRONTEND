@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { GREY, INDIGO } from "../../../../constants/colors";
 import useLogin from "../../../../hooks/useLogin";
 import Line from "../../../common/Line";
-import { getUser } from "../../../../lib/utils";
+import { getMe } from "../../../../lib/utils";
 
 const Container = styled.div`
   width: 34rem;
@@ -67,7 +67,7 @@ const Email = styled.div`
 `;
 export default function ProfileModal() {
   const { useLogout } = useLogin();
-  const { me } = getUser();
+  const { me } = getMe();
   const router = useRouter();
   return (
     <Container>

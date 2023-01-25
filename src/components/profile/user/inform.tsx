@@ -46,17 +46,15 @@ const InformButton = styled(Button)`
 `;
 
 export default function Inform() {
-  const { me } = getUser();
+  const { user } = getUser();
   return (
     <Container>
       <Wrapper>
-        <Name>{me.name}</Name>
-        <Role>{me.field?.split(",").join(" ∙ ")}</Role>
+        <Name>{user.name}</Name>
+        <Role>{user.field?.split(",").join(" ∙ ")}</Role>
       </Wrapper>
-      <EgName>{me.egName}</EgName>
+      <EgName>{user.egName}</EgName>
       <ProfileImg src="/images/img4.png" />
-
-      <InformButton title="프로필 사진 수정" buttonTheme="tertiary" />
 
       <InformButton title="전체 포트폴리오 보기" buttonTheme="tertiary" />
     </Container>

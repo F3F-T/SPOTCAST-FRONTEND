@@ -30,4 +30,18 @@ const editMyInfo = createAsyncThunk(
   },
 );
 
-export default editMyInfo;
+const loadUser = createAsyncThunk(
+  "user/loadUser",
+  async (data: object, { rejectWithValue }) => {
+    try {
+      const response = await authorizationClient.get(
+        `${API.MEMBER}${Object.values(data)}`,
+      );
+      return response.data.data;
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data || null);
+    }
+  },
+);
+
+export { editMyInfo, loadUser };
