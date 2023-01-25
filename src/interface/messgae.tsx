@@ -12,6 +12,7 @@ export interface IMessage {
 export interface MessageProps {
   item: IMessage;
   selected?: boolean;
+  type?: string;
 }
 
 export interface MsgSizeProps {
