@@ -10,7 +10,7 @@ const Preview = styled.div<{
     background-color: ${selected ? GREY[200] : "transparent"};
 `}
   width: 30rem;
-  height: 12rem;
+  height: 12.1rem;
   border-bottom: 0.1rem solid ${GREY[300]};
   display: flex;
   gap: 2rem;

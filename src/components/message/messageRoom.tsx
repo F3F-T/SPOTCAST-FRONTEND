@@ -4,10 +4,7 @@ import { GREY } from "../../constants/colors";
 import MsgPreviewCard from "./msgPreviewCard";
 import ProfileHedaer from "./profileHeader";
 import MsgContentCard from "./msgContentCard";
-// import MsgModal from "./msgModal";
-// import useMsgModal from "../../hooks/useModal";
 import { IMessage } from "../../interface/messgae";
-// import MsgModal from "./msgModal";
 
 const Container = styled.div`
   width: 100%;

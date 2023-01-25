@@ -24,6 +24,7 @@ export default function useLogin() {
 
   const useLogout = useCallback(() => {
     dispatch(authLogout());
+    router.push("/");
   }, []);
 
   const onSubmitForm = useCallback(
