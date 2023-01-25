@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { GREY } from "../../../../../../constants/colors";
-import { getMe } from "../../../../../../lib/utils";
+import { getMe } from "../../../../../../util/lib";
 
 const Container = styled.div`
   font-size: 1.5rem;

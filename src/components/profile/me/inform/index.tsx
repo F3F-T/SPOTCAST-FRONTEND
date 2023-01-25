@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import Button from "../../../common/Button";
 import { GREY } from "../../../../constants/colors";
 import { FormProps } from "../tab";
-import { getMe } from "../../../../lib/utils";
+import { getMe } from "../../../../util/lib";
 
 const Container = styled.div`
   width: 45rem;

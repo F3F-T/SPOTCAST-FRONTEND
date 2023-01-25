@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import ImgButton from "../../../../../common/ImgButton";
 import { GREY } from "../../../../../../constants/colors";
 import Icon from "../../../../../common/Icon";
-import { getMe } from "../../../../../../lib/utils";
+import { getMe } from "../../../../../../util/lib";
 
 const Container = styled.div`
   font-size: 1.5rem;
