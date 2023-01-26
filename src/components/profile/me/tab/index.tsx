@@ -12,12 +12,12 @@ import SNSEditForm from "./sns/edit-form";
 import { GREY } from "../../../../constants/colors";
 
 const Container = styled.div`
-  width: 58.5rem;
+  width: 75rem;
   height: 70rem;
 `;
 
 const Wrapper = styled.div`
-  padding-top: 8.5rem;
+  padding-top: 7.5rem;
 `;
 
 const ButtonWrapper = styled.div`
@@ -118,10 +118,6 @@ export default function Tab({ openForm, setOpenForm }: FormProps) {
               title="수정하기"
               buttonTheme="tertiary"
             />
-            {/* 추후에 주석 처리 제거
-        {IsUserLoggedIn && (
-          <EditButton title="수정하기" buttonTheme="tertiary" />
-        )} */}
           </ButtonWrapper>
           <StyledLine width="100%" />
           <div>{tabMenu[currentTab].content}</div>
