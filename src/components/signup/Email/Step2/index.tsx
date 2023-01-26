@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Input from "../../../common/Input";
+import useInform from "../../../../hooks/useInform";
 import {
   Container,
   Wrapper,
@@ -26,31 +27,10 @@ import {
 } from "./index.styles";
 import Icon from "../../../common/Icon";
 import useUserType from "../../../../hooks/useUserType";
-import toastMsg from "../../../common/Toast";
 
-export default function Step2() {
-  const {
-    name,
-    onChangeName,
-    types,
-    onReplaceBack,
-    onToggleCheck,
-    onSubmitForm,
-    signUpDone,
-    signUpError,
-    bchecked,
-    checkHandler,
-  } = useUserType();
-  const router = useRouter();
-  useEffect(() => {
-    if (signUpDone) {
-      router.push("/login");
-    }
-    if (signUpError) {
-      toastMsg("회원가입 실패. 다시 시도해주세요", false);
-    }
-  }, [signUpDone, signUpError]);
-
+export default function Step3() {
+  const { types, onReplaceBack, onToggleCheck, onSubmitForm } = useUserType();
+  const { name, onChangeName, nickname, onChangeNickname } = useInform();
   return (
     <Container>
       <Wrapper>
@@ -68,7 +48,13 @@ export default function Step2() {
               label="사용자 이름"
               type="text"
             />
-
+            <Input
+              value={nickname}
+              onChange={onChangeNickname}
+              size={30}
+              label="닉네임"
+              type="text"
+            />
             <div>
               <UserTypeTitle>
                 회원타입 선택<span> *</span>
@@ -95,12 +81,7 @@ export default function Step2() {
             ))}
           </Form>
           <EtcWrapper>
-            <CheckBox
-              checked={bchecked}
-              onChange={() => checkHandler()}
-              type="checkbox"
-              required
-            />
+            <CheckBox type="checkbox" required />
             <Agree>SPOTCAST 가입 약관에 모두 동의합니다.</Agree>
             <AgreeButton>확인하기</AgreeButton>
           </EtcWrapper>
@@ -112,7 +93,7 @@ export default function Step2() {
             />
             {(types[0].selected || types[1].selected) &&
             name.length > 0 &&
-            bchecked ? (
+            nickname.length > 0 ? (
               <RightButton onClick={onSubmitForm} title="가입 완료" />
             ) : (
               <ButtonDisabled title="가입 완료" disabled />

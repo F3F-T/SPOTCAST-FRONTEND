@@ -78,7 +78,7 @@ export default function useSignUp() {
         authority: "ROLE_USER",
       }),
     );
-    router.push("/signup/inform");
+    router.push("/signup/userType");
   };
 
   return {
