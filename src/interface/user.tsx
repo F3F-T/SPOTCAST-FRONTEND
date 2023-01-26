@@ -11,4 +11,11 @@ export interface IUser {
   twitter?: string | null;
   egName?: string | null;
   field?: string | null;
+  categoryInfo?: object[];
+}
+
+export interface FieldProps {
+  categoryId: number;
+  exist: boolean;
+  name: string;
 }

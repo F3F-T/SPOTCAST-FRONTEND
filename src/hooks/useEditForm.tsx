@@ -4,63 +4,42 @@ import { useState } from "react";
 import { getMe } from "../util/lib";
 import useInput from "./useInput";
 import { AppDispatch } from "../../stores/store/configureStore";
-import { editMyInfo } from "../api/user";
+import { editMyInfo, loadField } from "../api/user";
+import { FieldProps } from "../interface/user";
 
 export default function useEditForm() {
-  const { me } = getMe();
+  const { me, field } = getMe();
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
 
+  const getFieldList = () => {
+    dispatch(loadField());
+  };
   const { name } = me;
   const [information, onChangeInformation] = useInput(me.information);
   const [instagram, onChangeInstagram] = useInput(me.instagram);
   const [twitter, onChangeTwitter] = useInput(me.twitter);
   const [otherSns, onChangeOtherSns] = useInput(me.otherSns);
   const [egName, onChangeEgName] = useInput(me.egName);
-
-  const myField = me.field?.split(",");
-
-  const fields = [
-    { id: 0, name: "실용음악" },
-    { id: 1, name: "클래식" },
-    { id: 2, name: "연기" },
-    { id: 3, name: "연출" },
-    { id: 4, name: "모델" },
-    { id: 5, name: "사진" },
-  ];
-
-  const [FieldList, setFieldList] = useState(
-    fields.map(item => {
-      if (myField?.includes(item.name))
-        return Object.assign(item, { selected: true });
-      return Object.assign(item, { selected: false });
-    }),
-  );
+  const [FieldList, setFieldList] = useState(field);
 
   const onToggleField = (id: number) => {
     setFieldList(
-      FieldList.map(type =>
+      FieldList.map((type: FieldProps) =>
         // eslint-disable-next-line no-nested-ternary
-        type.id === id ? { ...type, selected: !type.selected } : type,
+        type.categoryId === id ? { ...type, exist: !type.exist } : type,
       ),
     );
   };
 
   const onSubmitEditForm = async () => {
-    const field = FieldList.filter(item => {
-      return item.selected === true;
-    })
-      .map(item => {
-        return item.name;
-      })
-      .join();
     const data = {
       id: me.id,
       information,
       twitter,
       instagram,
       otherSns,
-      field,
+      categoryInfo: FieldList,
       egName,
     };
 
@@ -83,5 +62,6 @@ export default function useEditForm() {
     FieldList,
     onSubmitEditForm,
     onToggleField,
+    getFieldList,
   };
 }
