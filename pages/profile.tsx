@@ -4,7 +4,8 @@ import UserProfile from "../src/components/profile/me";
 import AppLayout from "../styles/AppLayout";
 import wrapper from "../stores/store/configureStore";
 import { loadMe } from "../src/api/auth";
-import { useRedirect } from "../src/hooks/useAuth";
+import { useProfileRedirect } from "../src/hooks/useAuth";
+import { loadField } from "../src/api/user";
 
 function Page() {
   useProfileRedirect();
@@ -27,6 +28,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
       axios.defaults.headers.Cookie = cookie;
     }
     await store.dispatch(loadMe());
+    await store.dispatch(loadField());
 
     return {
       props: {},

@@ -15,7 +15,7 @@ const loadField = createAsyncThunk(
       const response = await axios.get(`${API.MEMBER}field`);
       return response.data.data;
     } catch (error: any) {
-      return rejectWithValue(error.response?.data);
+      return rejectWithValue(error.response?.data || null);
     }
   },
 );
@@ -55,18 +55,6 @@ const editMyInfo = createAsyncThunk(
   },
 );
 
-const getField = createAsyncThunk(
-  "user/getField",
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await authorizationClient.get(`${API.MEMBER}field`);
-      return response.data.data;
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data || null);
-    }
-  },
-);
-
 const loadUser = createAsyncThunk(
   "user/loadUser",
   async (data: object, { rejectWithValue }) => {
@@ -81,4 +69,4 @@ const loadUser = createAsyncThunk(
   },
 );
 
-export { editMyInfo, loadUser, getField };
+export { editMyInfo, loadUser, loadField };
