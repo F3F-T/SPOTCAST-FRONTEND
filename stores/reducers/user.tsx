@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from "@reduxjs/toolkit";
 import { authLogin, authLogout, authSignUp, loadMe } from "../../src/api/auth";
-import { editMyInfo, loadUser } from "../../src/api/user";
+import { editMyInfo, getField, loadUser } from "../../src/api/user";
 
 type UserState = {
   IsUserLoggedIn: boolean;
@@ -22,6 +22,7 @@ type UserState = {
   loadUserLoading: boolean;
   loadUserDone: boolean;
   loadUserError: any;
+  field: object;
 };
 
 // 기본 state
@@ -44,6 +45,7 @@ export const initialState: UserState = {
   loadUserLoading: false,
   loadUserDone: false,
   loadUserError: null,
+  field: {},
 };
 
 const userSlice = createSlice({
@@ -139,7 +141,9 @@ const userSlice = createSlice({
       .addCase(editMyInfo.rejected, (state, action) => {
         state.loadMeError = action.payload;
       })
-
+      .addCase(getField.fulfilled, (state, action) => {
+        state.field = action.payload;
+      })
       .addDefaultCase(state => state),
 });
 
