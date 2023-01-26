@@ -55,14 +55,17 @@ const editMyInfo = createAsyncThunk(
   },
 );
 
-const getField = async () => {
-  try {
-    const response = await authorizationClient.get(`${API.MEMBER}field`);
-    return response.data.data;
-  } catch (error: any) {
-    return error.response.data;
-  }
-};
+const getField = createAsyncThunk(
+  "user/getField",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await authorizationClient.get(`${API.MEMBER}field`);
+      return response.data.data;
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data || null);
+    }
+  },
+);
 
 const loadUser = createAsyncThunk(
   "user/loadUser",
