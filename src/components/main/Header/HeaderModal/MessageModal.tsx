@@ -4,16 +4,22 @@ import { useRouter } from "next/navigation";
 import { GREY } from "../../../../constants/colors";
 import Line from "../../../common/Line";
 import Icon from "../../../common/Icon";
+import { IMessage } from "../../../../interface/messgae";
+import MessagePreview from "./MessagePreview";
 
 const Container = styled.div`
   width: 40rem;
-  height: 52rem;
+  height: 38rem;
   background-color: white;
   border-radius: 0.5rem;
   border: 0.1rem solid ${GREY[200]};
   position: absolute;
   margin-top: 1.3rem;
   box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
+  overflow: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 const TitleWrapper = styled.div`
   width: 38rem;
@@ -45,9 +51,22 @@ const Button = styled.button`
     cursor: pointer;
   }
   font-size: 1.3rem;
+  width: 100%;
 `;
 
-export default function MessageModal() {
+const PrevButton = styled.button`
+  background-color: transparent;
+  width: 40rem;
+  border: none;
+`;
+
+export default function MessageModal({
+  data,
+  showModal,
+}: {
+  data: IMessage[];
+  showModal: Function;
+}) {
   const router = useRouter();
   return (
     <Container>
@@ -65,6 +84,16 @@ export default function MessageModal() {
         </ButtonWrapper>
       </TitleWrapper>
       <Line width="100%" color={GREY[300]} />
+      <PrevButton
+        onClick={() => {
+          showModal("MESSAGE");
+          router.push("/message");
+        }}
+      >
+        {data?.map(item => (
+          <MessagePreview item={item} />
+        ))}
+      </PrevButton>
     </Container>
   );
 }
