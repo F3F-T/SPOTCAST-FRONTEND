@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { GREY } from "../../constants/colors";
 import useMessage from "../../hooks/useMessage";
-import useMsgModal from "../../hooks/useModal";
+import { useMsgModal } from "../../hooks/useModal";
 import { MessageProps } from "../../interface/messgae";
 import { getDate, getTime } from "../../util/date";
 import IconButton from "../common/IconButton";
