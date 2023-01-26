@@ -76,14 +76,13 @@ export default function Inform({ openForm }: FormProps) {
       <Wrapper>
         <Name>{me.name}</Name>
         <Role>
-          {field
-            .filter((item: FieldProps) => {
-              return item.exist === true;
-            })
-            .map((item: FieldProps) => {
-              return item.name;
-            })
-            .join(" ∙ ")}
+          {field.length > 0 &&
+            field
+              .filter((item: FieldProps) => item.exist === true)
+              .map((item: FieldProps) => {
+                return item.name;
+              })
+              .join(" ∙ ")}
         </Role>
       </Wrapper>
       <EgName>{me.egName}</EgName>
