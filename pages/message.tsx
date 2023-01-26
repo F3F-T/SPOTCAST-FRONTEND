@@ -3,7 +3,6 @@ import axios from "axios";
 import Message from "../src/components/message";
 import AppLayout from "../styles/AppLayout";
 import wrapper from "../stores/store/configureStore";
-import { storeCookie } from "../stores/reducers/user";
 import { loadMe } from "../src/api/auth";
 import { useMessageRoomRedirect } from "../src/hooks/useAuth";
 import { preLoadMsgReceived } from "../src/api/message";
@@ -28,7 +27,6 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
 
     if (req && cookie) {
       axios.defaults.headers.Cookie = cookie;
-      await store.dispatch(storeCookie(cookie));
     }
     await store.dispatch(loadMe());
     await store.dispatch(preLoadMsgReceived({ page: 0, size: 4 }));

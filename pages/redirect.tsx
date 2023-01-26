@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import Redirct from "../src/components/login/redirect";
 import wrapper from "../stores/store/configureStore";
-import { storeCookie } from "../stores/reducers/user";
 import { loadMe } from "../src/api/auth";
 import { useRedirect } from "../src/hooks/useAuth";
 
