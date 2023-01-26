@@ -76,7 +76,8 @@ export default function Inform({ openForm }: FormProps) {
       <Wrapper>
         <Name>{me.name}</Name>
         <Role>
-          {field.length > 0 &&
+          {field.constructor === Object &&
+            Object.keys(field).length !== 0 &&
             field
               .filter((item: FieldProps) => item.exist === true)
               .map((item: FieldProps) => {
