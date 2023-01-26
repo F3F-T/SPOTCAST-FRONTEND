@@ -22,7 +22,6 @@ type UserState = {
   loadUserLoading: boolean;
   loadUserDone: boolean;
   loadUserError: any;
-  cookie: any;
 };
 
 // 기본 state
@@ -45,7 +44,6 @@ export const initialState: UserState = {
   loadUserLoading: false,
   loadUserDone: false,
   loadUserError: null,
-  cookie: null,
 };
 
 const userSlice = createSlice({
@@ -57,9 +55,6 @@ const userSlice = createSlice({
     },
     updateMe(state, action) {
       state.me = Object.assign(state.me, action.payload);
-    },
-    storeCookie(state, action) {
-      state.cookie = action.payload;
     },
   },
   extraReducers: builder =>
@@ -148,6 +143,6 @@ const userSlice = createSlice({
       .addDefaultCase(state => state),
 });
 
-export const { signUp, updateMe, storeCookie } = userSlice.actions;
+export const { signUp, updateMe } = userSlice.actions;
 
 export default userSlice;
