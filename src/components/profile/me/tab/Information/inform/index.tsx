@@ -8,6 +8,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5rem;
+  line-height: 1.5;
 `;
 
 const Title = styled.div`
@@ -37,7 +38,16 @@ export default function Introduce() {
   ];
   return (
     <Container>
-      {me.information}
+      <div>
+        {me?.information.split("\n").map((line: string) => {
+          return (
+            <>
+              <span>{line}</span>
+              <br />
+            </>
+          );
+        })}
+      </div>
       {fakeList.map(item => {
         return (
           <div key={item.title}>
