@@ -25,14 +25,16 @@ export default function Introduce() {
   const fakeList = [
     {
       title: "작업 분야",
-      contents: field
-        .filter((item: FieldProps) => {
-          return item.exist === true;
-        })
-        .map((item: FieldProps) => {
-          return item.name;
-        })
-        .join(" ∙ "),
+      contents:
+        field.length > 0 &&
+        field
+          .filter((item: FieldProps) => {
+            return item.exist === true;
+          })
+          .map((item: FieldProps) => {
+            return item.name;
+          })
+          .join(" ∙ "),
     },
     // {
     //   title: "회사",

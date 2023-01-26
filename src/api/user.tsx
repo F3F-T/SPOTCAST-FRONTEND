@@ -15,7 +15,7 @@ const loadField = createAsyncThunk(
       const response = await axios.get(`${API.MEMBER}field`);
       return response.data.data;
     } catch (error: any) {
-      return rejectWithValue(error.response?.data || null);
+      return rejectWithValue(error.response?.data);
     }
   },
 );
