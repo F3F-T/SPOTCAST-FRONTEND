@@ -3,8 +3,6 @@ import useInput from "./useInput";
 
 export default function useInform() {
   const [name, onChangeName] = useInput("");
-  const [nickname, onChangeNickname] = useInput("");
-  const FieldList = ["실용음악", "클래식", "연기", "연출", "모델", "사진"];
 
   const [checkedInputs, setCheckedInputs] = useState<string[]>([]);
 
@@ -20,9 +18,6 @@ export default function useInform() {
   return {
     name,
     onChangeName,
-    nickname,
-    onChangeNickname,
-    FieldList,
     checkedInputs,
     changeHandler,
   };

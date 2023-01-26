@@ -4,6 +4,7 @@ import { GREY, INDIGO } from "../../../../../../constants/colors";
 import Button from "../../../../../common/Button";
 import Input from "../../../../../common/Input";
 import useEditForm from "../../../../../../hooks/useEditForm";
+import { FieldProps } from "../../../../../../interface/user";
 
 const Container = styled.div`
   width: 75rem;
@@ -38,7 +39,7 @@ const Form = styled.div`
 
 const FieldButton = styled(Button)`
   font-size: 1.3rem;
-  padding: 0.7rem 1.4rem;
+  padding: 1rem 1.4rem;
 `;
 
 const FieldButtonSelected = styled(Button)`
@@ -59,13 +60,14 @@ const Title = styled.div`
   font-size: 1.8rem;
 `;
 const Wrapper = styled.div`
-  width: 50rem;
+  width: 65rem;
   position: relative;
 `;
 const FieldWrapper = styled.div`
   display: flex;
   gap: 1rem;
   margin-top: 1.5rem;
+  flex-wrap: wrap;
 `;
 const AddButton = styled.button`
   position: absolute;
@@ -101,9 +103,10 @@ export default function EditForm() {
     FieldList,
     onChangeInformation,
     onToggleField,
+    getFieldList,
     onSubmitEditForm,
   } = useEditForm();
-
+  console.log(FieldList);
   const onClickSubmitButton = () => {
     onSubmitEditForm();
   };
@@ -141,16 +144,23 @@ export default function EditForm() {
             placeholder="자신의 아카이브를 등록해보세요!"
             value=""
           />
-          <AddButton>작업 분야 추가</AddButton>
+          <AddButton
+            onClick={() => {
+              getFieldList();
+              console.log("test");
+            }}
+          >
+            작업 분야 추가
+          </AddButton>
           <FieldWrapper>
-            {FieldList.map(item => {
-              return item.selected ? (
+            {FieldList.map((item: FieldProps) => {
+              return item.exist ? (
                 <FieldButtonSelected
                   key={item.name}
                   title={item.name}
                   buttonTheme="tertiary"
                   onClick={() => {
-                    onToggleField(item.id);
+                    onToggleField(item.categoryId);
                   }}
                 />
               ) : (
@@ -159,7 +169,7 @@ export default function EditForm() {
                   title={item.name}
                   buttonTheme="tertiary"
                   onClick={() => {
-                    onToggleField(item.id);
+                    onToggleField(item.categoryId);
                   }}
                 />
               );
