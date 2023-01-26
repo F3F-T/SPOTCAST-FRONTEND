@@ -30,7 +30,7 @@ import useUserType from "../../../../hooks/useUserType";
 
 export default function Step3() {
   const { types, onReplaceBack, onToggleCheck, onSubmitForm } = useUserType();
-  const { name, onChangeName, nickname, onChangeNickname } = useInform();
+  const { name, onChangeName } = useInform();
   return (
     <Container>
       <Wrapper>
@@ -48,13 +48,7 @@ export default function Step3() {
               label="사용자 이름"
               type="text"
             />
-            <Input
-              value={nickname}
-              onChange={onChangeNickname}
-              size={30}
-              label="닉네임"
-              type="text"
-            />
+
             <div>
               <UserTypeTitle>
                 회원타입 선택<span> *</span>
@@ -91,9 +85,7 @@ export default function Step3() {
               title="이전"
               onClick={onReplaceBack}
             />
-            {(types[0].selected || types[1].selected) &&
-            name.length > 0 &&
-            nickname.length > 0 ? (
+            {(types[0].selected || types[1].selected) && name.length > 0 ? (
               <RightButton onClick={onSubmitForm} title="가입 완료" />
             ) : (
               <ButtonDisabled title="가입 완료" disabled />
