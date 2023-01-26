@@ -55,6 +55,15 @@ const editMyInfo = createAsyncThunk(
   },
 );
 
+const getField = async () => {
+  try {
+    const response = await authorizationClient.get(`${API.MEMBER}field`);
+    return response.data.data;
+  } catch (error: any) {
+    return error.response.data;
+  }
+};
+
 const loadUser = createAsyncThunk(
   "user/loadUser",
   async (data: object, { rejectWithValue }) => {
@@ -69,4 +78,4 @@ const loadUser = createAsyncThunk(
   },
 );
 
-export { editMyInfo, loadUser };
+export { editMyInfo, loadUser, getField };
