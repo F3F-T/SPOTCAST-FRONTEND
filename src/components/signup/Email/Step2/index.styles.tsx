@@ -93,8 +93,8 @@ const EtcWrapper = styled.div`
   display: flex;
   position: relative;
   align-items: center;
-  padding-top: 0.5rem;
-  padding-bottom: 1rem;
+  padding-top: 1.3rem;
+  padding-bottom: 2rem;
 `;
 const Agree = styled.div`
   display: flex;
@@ -118,7 +118,6 @@ const AgreeButton = styled.button`
   cursor: pointer;
   color: ${GREY[500]};
 `;
-
 const UserTypeWrapper = styled.div<{ checked: boolean }>`
   ${({ checked }) => `
    border: ${
@@ -129,7 +128,7 @@ const UserTypeWrapper = styled.div<{ checked: boolean }>`
    }
 `}
   width: 100%;
-  height: 7.3rem;
+  height: 8rem;
   padding: 2rem;
   align-items: center;
   border-radius: 0.5rem;
@@ -158,7 +157,7 @@ const UserTypeTitle = styled.div`
   }
 `;
 const TypeTitle = styled.div`
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 700;
 `;
 
