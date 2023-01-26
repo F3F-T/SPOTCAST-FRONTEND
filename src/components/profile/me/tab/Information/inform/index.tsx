@@ -26,7 +26,8 @@ export default function Introduce() {
     {
       title: "작업 분야",
       contents:
-        field.length > 0 &&
+        field.constructor === Object &&
+        Object.keys(field).length !== 0 &&
         field
           .filter((item: FieldProps) => {
             return item.exist === true;
