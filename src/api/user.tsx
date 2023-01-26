@@ -1,15 +1,39 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 import { authorizationClient } from ".";
 import toastMsg from "../components/common/Toast";
 import { IUser } from "../interface/user";
 import API from "./config";
 
+axios.defaults.baseURL = API.BASE_URL;
+axios.defaults.withCredentials = true;
+
+const loadField = createAsyncThunk(
+  "user/getField",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`${API.MEMBER}field`);
+      return response.data.data;
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data || null);
+    }
+  },
+);
+
 const editMyInfo = createAsyncThunk(
   "user/editMyInfo",
   async (data: IUser, { rejectWithValue }) => {
     try {
-      const { id, information, twitter, instagram, otherSns, egName, field } =
-        data;
+      const {
+        id,
+        information,
+        twitter,
+        instagram,
+        otherSns,
+        egName,
+        field,
+        categoryInfo,
+      } = data;
       const response = await authorizationClient.patch(
         `${API.MEMBER}${id}/change/information`,
         {
@@ -19,6 +43,7 @@ const editMyInfo = createAsyncThunk(
           otherSns,
           egName,
           field,
+          categoryInfo,
         },
       );
       toastMsg("수정 완료", true);
@@ -26,18 +51,6 @@ const editMyInfo = createAsyncThunk(
     } catch (error: any) {
       toastMsg("수정 실패", false);
       return rejectWithValue(error.response.data);
-    }
-  },
-);
-
-const getField = createAsyncThunk(
-  "user/getField",
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await authorizationClient.get(`${API.MEMBER}field`);
-      return response.data.data;
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data || null);
     }
   },
 );
@@ -56,4 +69,4 @@ const loadUser = createAsyncThunk(
   },
 );
 
-export { editMyInfo, loadUser, getField };
+export { editMyInfo, loadUser, loadField };
