@@ -4,10 +4,11 @@ import { useState } from "react";
 import { getMe } from "../util/lib";
 import useInput from "./useInput";
 import { AppDispatch } from "../../stores/store/configureStore";
-import { editMyInfo } from "../api/user";
+import { editMyInfo, loadField } from "../api/user";
+import { FieldProps } from "../interface/user";
 
 export default function useEditForm() {
-  const { me } = getMe();
+  const { me, field } = getMe();
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
 
