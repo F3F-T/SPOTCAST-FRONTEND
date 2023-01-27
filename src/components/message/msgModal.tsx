@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import Modal from "../common/Modal";
-import useMsgModal from "../../hooks/useModal";
+import { useMsgModal } from "../../hooks/useModal";
 import IconButton from "../common/IconButton";
 import { GREY } from "../../constants/colors";
 import Line from "../common/Line";

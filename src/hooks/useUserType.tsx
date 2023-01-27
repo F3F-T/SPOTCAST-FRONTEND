@@ -5,11 +5,16 @@ import { AppDispatch } from "../../stores/store/configureStore";
 import { authSignUp } from "../api/auth";
 import { signUp } from "../../stores/reducers/user";
 import { RootState } from "../../stores/reducers";
+import useInput from "./useInput";
 
 export default function useUserType() {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
-  const { me } = useSelector((state: RootState) => state.user);
+  const { me, signUpError, signUpDone } = useSelector(
+    (state: RootState) => state.user,
+  );
+  const [name, onChangeName] = useInput("");
+  const [bchecked, setBcheked] = useState(false);
   const [types, setTypes] = useState([
     {
       id: 0,
@@ -35,6 +40,17 @@ export default function useUserType() {
       dispatch(signUp({ loginMemberType: types[1].loginMemberType }));
   }, [types]);
 
+  useEffect(() => {
+    dispatch(
+      signUp({
+        name,
+      }),
+    );
+  }, [name]);
+
+  const checkHandler = useCallback(() => {
+    setBcheked(!bchecked);
+  }, [bchecked]);
   const onToggleCheck = useCallback(
     (id: number) => {
       setTypes(
@@ -55,10 +71,20 @@ export default function useUserType() {
     router.back();
   };
 
-  const onSubmitForm = () => {
-    dispatch(authSignUp(me));
-    router.push("/");
+  const onSubmitForm = async () => {
+    await dispatch(authSignUp(me));
   };
 
-  return { types, onToggleCheck, onReplaceBack, onSubmitForm };
+  return {
+    name,
+    onChangeName,
+    types,
+    onToggleCheck,
+    onReplaceBack,
+    onSubmitForm,
+    signUpError,
+    signUpDone,
+    bchecked,
+    checkHandler,
+  };
 }

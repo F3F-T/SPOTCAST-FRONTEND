@@ -6,15 +6,15 @@ import Input from "../../../../../common/Input";
 import useEditForm from "../../../../../../hooks/useEditForm";
 
 const Container = styled.div`
-  width: 58.5rem;
+  width: 75rem;
   border-radius: 0.5rem;
 `;
 const Form = styled.div`
   width: 100%;
   height: 60rem;
-  padding: 4rem 2rem;
+  padding: 4rem 4rem;
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: 4rem;
   flex-direction: column;
   border: 0.1rem solid ${GREY[300]};
@@ -25,19 +25,17 @@ const Form = styled.div`
   }
 `;
 
+const ButtonWrapper = styled.div`
+  width: 100%;
+  padding: 3.3rem 0 4.3rem 0;
+  position: relative;
+`;
 const EditButton = styled(Button)`
   font-size: 1.5rem;
   right: 0;
   padding: 0.7rem 1.4rem;
   position: absolute;
 `;
-
-const ButtonWrapper = styled.div`
-  width: 100%;
-  padding: 4.3rem 0;
-  position: relative;
-`;
-
 const Title = styled.div`
   width: 50rem;
   font-weight: 700;
@@ -82,7 +80,7 @@ export default function EditForm() {
         <Title>SNS</Title>
         <StyledInput
           type="text"
-          size={50}
+          size={65}
           label="instagram"
           placeholder="instagram ID"
           value={instagram}
@@ -90,7 +88,7 @@ export default function EditForm() {
         />
         <StyledInput
           type="text"
-          size={50}
+          size={65}
           label="twitter"
           placeholder="twitter ID"
           value={twitter}
@@ -99,7 +97,7 @@ export default function EditForm() {
         <Wrapper>
           <StyledInput
             type="text"
-            size={50}
+            size={65}
             label="Other"
             placeholder="다른 SNS를 등록해보세요!"
             value={otherSns}

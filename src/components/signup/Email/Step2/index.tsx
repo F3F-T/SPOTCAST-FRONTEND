@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React from "react";
+import React, { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Input from "../../../common/Input";
 import {
   Container,
@@ -9,30 +10,47 @@ import {
   SubTitle,
   Ment,
   Form,
+  UserTypeTitle,
+  UserTypeWrapper,
+  UserType,
   LeftButton,
   RightButton,
-  ButtonDisabled,
   ButtonWrapper,
-  GenreWrapper,
+  TypeTitle,
+  TypeSubTitle,
   CheckBox,
-  Genre,
-  EtcTitle,
+  Agree,
+  AgreeButton,
   EtcWrapper,
+  ButtonDisabled,
 } from "./index.styles";
-import useInform from "../../../../hooks/useInform";
+import Icon from "../../../common/Icon";
+import useUserType from "../../../../hooks/useUserType";
+import toastMsg from "../../../common/Toast";
 
 export default function Step2() {
   const {
     name,
     onChangeName,
-    nickname,
-    onChangeNickname,
-    FieldList,
-    checkedInputs,
-    changeHandler,
+    types,
     onReplaceBack,
-    onReplaceNext,
-  } = useInform();
+    onToggleCheck,
+    onSubmitForm,
+    signUpDone,
+    signUpError,
+    bchecked,
+    checkHandler,
+  } = useUserType();
+  const router = useRouter();
+  useEffect(() => {
+    if (signUpDone) {
+      router.push("/login");
+    }
+    if (signUpError) {
+      toastMsg("회원가입 실패. 다시 시도해주세요", false);
+    }
+  }, [signUpDone, signUpError]);
+
   return (
     <Container>
       <Wrapper>
@@ -40,7 +58,7 @@ export default function Step2() {
           <div>
             <Title>SPOTCAST</Title>
             <SubTitle>스팟캐스트 회원 정보 입력하기</SubTitle>
-            <Ment>한 단계 남았어요!</Ment>
+            <Ment>마지막 단계에요!</Ment>
           </div>
           <Form>
             <Input
@@ -50,43 +68,56 @@ export default function Step2() {
               label="사용자 이름"
               type="text"
             />
-            <Input
-              value={nickname}
-              onChange={onChangeNickname}
-              size={30}
-              label="닉네임"
-              type="text"
-            />
-            <EtcTitle>작업 & 관심분야 (1개 이상 선택) </EtcTitle>
-            <EtcWrapper>
-              {FieldList.map(item => (
-                <GenreWrapper key={item}>
-                  <CheckBox
-                    id={item}
-                    type="checkbox"
-                    onChange={e => {
-                      changeHandler(e.currentTarget.checked, item);
-                    }}
-                    checked={!!checkedInputs.includes(item)}
-                  />
-                  <Genre>{item}</Genre>
-                </GenreWrapper>
-              ))}
-            </EtcWrapper>
 
-            <ButtonWrapper>
-              <LeftButton
-                buttonTheme="tertiary"
-                title="이전"
-                onClick={onReplaceBack}
-              />
-              {name && nickname && checkedInputs.length > 0 ? (
-                <RightButton title="다음" onClick={onReplaceNext} />
-              ) : (
-                <ButtonDisabled title="다음" disabled />
-              )}
-            </ButtonWrapper>
+            <div>
+              <UserTypeTitle>
+                회원타입 선택<span> *</span>
+              </UserTypeTitle>
+            </div>
+            {types.map(item => (
+              <UserTypeWrapper
+                checked={item.selected}
+                key={item.id}
+                onClick={() => {
+                  onToggleCheck(item.id);
+                }}
+              >
+                {item.selected ? (
+                  <Icon className="checked" border={0.5} size="3rem" />
+                ) : (
+                  <Icon className="unchecked" border={0.5} size="3rem" />
+                )}
+                <UserType>
+                  <TypeTitle> {item.title}</TypeTitle>
+                  <TypeSubTitle>{item.subTitle}</TypeSubTitle>
+                </UserType>
+              </UserTypeWrapper>
+            ))}
           </Form>
+          <EtcWrapper>
+            <CheckBox
+              checked={bchecked}
+              onChange={() => checkHandler()}
+              type="checkbox"
+              required
+            />
+            <Agree>SPOTCAST 가입 약관에 모두 동의합니다.</Agree>
+            <AgreeButton>확인하기</AgreeButton>
+          </EtcWrapper>
+          <ButtonWrapper>
+            <LeftButton
+              buttonTheme="tertiary"
+              title="이전"
+              onClick={onReplaceBack}
+            />
+            {(types[0].selected || types[1].selected) &&
+            name.length > 0 &&
+            bchecked ? (
+              <RightButton onClick={onSubmitForm} title="가입 완료" />
+            ) : (
+              <ButtonDisabled title="가입 완료" disabled />
+            )}
+          </ButtonWrapper>
         </FormWrapper>
       </Wrapper>
     </Container>

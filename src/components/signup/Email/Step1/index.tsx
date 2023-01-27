@@ -137,7 +137,10 @@ export default function Step1() {
                 buttonTheme="tertiary"
                 title="이전"
               />
-              {isValidEmail && password === passwordCheck && isEmailConfirms ? (
+              {isValidEmail &&
+              password.length > 0 &&
+              password === passwordCheck &&
+              isEmailConfirms ? (
                 <RightButton onClick={onReplaceNext} title="다음" />
               ) : (
                 <ButtonDisabled title="다음" disabled />
