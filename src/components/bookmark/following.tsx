@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { GREY } from "../../constants/colors";
-import { useBookmarkModal } from "../../hooks/useModal";
+import { useFollowingBookmarkModal } from "../../hooks/useModal";
 
 const Container = styled.button`
   display: flex;
@@ -29,8 +29,8 @@ const Text = styled.div`
   width: 100%;
   text-align: start;
 `;
-export default function Follower() {
-  const { openBookmarkModal } = useBookmarkModal();
+export default function Following() {
+  const { openBookmarkModal } = useFollowingBookmarkModal();
   return (
     <Container
       onClick={() => {
