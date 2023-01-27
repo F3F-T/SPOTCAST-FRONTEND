@@ -69,16 +69,15 @@ const Bookmarks = styled.div`
   width: 100%;
 `;
 export default function Inform({ openForm }: FormProps) {
-  const { me, field } = getMe();
+  const { me } = getMe();
 
   return (
     <Container>
       <Wrapper>
         <Name>{me.name}</Name>
         <Role>
-          {field.constructor === Object &&
-            Object.keys(field).length !== 0 &&
-            field
+          {me.field &&
+            me.field
               .filter((item: FieldProps) => item.exist === true)
               .map((item: FieldProps) => {
                 return item.name;

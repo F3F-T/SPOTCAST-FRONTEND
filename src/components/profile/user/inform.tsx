@@ -3,9 +3,10 @@ import styled from "@emotion/styled";
 import Button from "../../common/Button";
 import { GREY } from "../../../constants/colors";
 import { getUser } from "../../../util/lib";
+import { FieldProps } from "../../../interface/user";
 
 const Container = styled.div`
-  width: 45rem;
+  width: 29rem;
   height: 70rem;
   background-color: white;
   display: block;
@@ -25,14 +26,16 @@ const Name = styled.div`
 const Role = styled.div`
   color: ${GREY[600]};
   font-weight: 700;
+  width: 20rem;
+  display: flex;
 `;
 const EgName = styled.div`
   font-weight: 700;
-  height: 5rem;
+  height: 4rem;
   margin-top: 1rem;
 `;
 const ProfileImg = styled.img`
-  width: 100%;
+  width: 29rem;
   border: 0.1rem solid ${GREY[300]};
   border-radius: 0.5rem;
   object-fit: cover;
@@ -40,7 +43,7 @@ const ProfileImg = styled.img`
 const InformButton = styled(Button)`
   padding: 1.5rem;
   border-radius: 0.5rem;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   width: 100%;
   margin-top: 1rem;
 `;
@@ -51,7 +54,15 @@ export default function Inform() {
     <Container>
       <Wrapper>
         <Name>{user.name}</Name>
-        <Role>{user.field?.split(",").join(" ∙ ")}</Role>
+        <Role>
+          {user.field &&
+            user.field
+              .filter((item: FieldProps) => item.exist === true)
+              .map((item: FieldProps) => {
+                return item.name;
+              })
+              .join(" ∙ ")}
+        </Role>
       </Wrapper>
       <EgName>{user.egName}</EgName>
       <ProfileImg src="/images/img4.png" />

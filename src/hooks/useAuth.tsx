@@ -5,7 +5,6 @@ import { RootState } from "../../stores/reducers";
 import { AppDispatch } from "../../stores/store/configureStore";
 import { refreshAuth, loadMe } from "../api/auth";
 import { loadMsgReceived, loadMsgSend } from "../api/message";
-import { loadField } from "../api/user";
 
 export default function useAuth() {
   const useUser = (loginRequired: boolean) => {
@@ -80,35 +79,5 @@ export const useMessageRoomRedirect = () => {
         break;
     }
   }, [loadMeError, loadMsgSendError, loadMsgRecievedError]);
-  return null;
-};
-
-export const useProfileRedirect = () => {
-  const { loadFieldError, loadMeError } = useSelector(
-    (state: RootState) => state.user,
-  );
-
-  const dispatch = useDispatch<AppDispatch>();
-  useEffect(() => {
-    switch (loadMeError?.code) {
-      // 로그인 하지 않은 사용자가 요청
-      case 400:
-        break;
-      // 액세스 토큰 만료
-      case 401:
-        refreshAuth()
-          .then(async () => {
-            await dispatch(loadMe());
-            await dispatch(loadField());
-          })
-          .catch(async () => {});
-        break;
-      // 접근 권한 없음(ex. ADMIN페이지에 USER가 접근)
-      case 403:
-        break;
-      default:
-        break;
-    }
-  }, [loadMeError, loadFieldError]);
   return null;
 };

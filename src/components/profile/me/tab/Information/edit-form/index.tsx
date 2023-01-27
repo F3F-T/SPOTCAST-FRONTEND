@@ -103,7 +103,6 @@ export default function EditForm() {
     FieldList,
     onChangeInformation,
     onToggleField,
-    getFieldList,
     onSubmitEditForm,
   } = useEditForm();
   console.log(FieldList);
@@ -144,14 +143,7 @@ export default function EditForm() {
             placeholder="자신의 아카이브를 등록해보세요!"
             value=""
           />
-          <AddButton
-            onClick={() => {
-              getFieldList();
-              console.log("test");
-            }}
-          >
-            작업 분야 추가
-          </AddButton>
+          <AddButton>작업 분야 추가</AddButton>
           <FieldWrapper>
             {FieldList.map((item: FieldProps) => {
               return item.exist ? (

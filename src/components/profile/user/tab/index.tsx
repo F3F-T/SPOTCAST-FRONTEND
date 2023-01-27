@@ -9,12 +9,12 @@ import SNS from "./sns";
 import { GREY } from "../../../../constants/colors";
 
 const Container = styled.div`
-  width: 58.5rem;
+  width: 75rem;
   height: 70rem;
 `;
 
 const Wrapper = styled.div`
-  padding-top: 8.5rem;
+  padding-top: 7.5rem;
 `;
 
 const ButtonWrapper = styled.div`

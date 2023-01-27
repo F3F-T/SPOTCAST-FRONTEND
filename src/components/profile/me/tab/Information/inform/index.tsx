@@ -20,15 +20,14 @@ const Title = styled.div`
 
 const Contents = styled.div``;
 export default function Introduce() {
-  const { me, field } = getMe();
+  const { me } = getMe();
 
   const fakeList = [
     {
       title: "작업 분야",
       contents:
-        field.constructor === Object &&
-        Object.keys(field).length !== 0 &&
-        field
+        me.field &&
+        me.field
           .filter((item: FieldProps) => {
             return item.exist === true;
           })
@@ -37,15 +36,6 @@ export default function Introduce() {
           })
           .join(" ∙ "),
     },
-    // {
-    //   title: "회사",
-    //   contents: "Model directors",
-    // },
-    // {
-    //   title: "아카이브",
-    //   contents: `Model of the Year (Nominations)
-    //   2017 Breakout Star (Nominee)`,
-    // },
   ];
   return (
     <Container>
