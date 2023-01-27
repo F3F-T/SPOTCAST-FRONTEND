@@ -3,6 +3,7 @@ import { HYDRATE } from "next-redux-wrapper";
 import userSlice from "./user";
 import messageSlice from "./message";
 import contextSlice from "./context";
+import bookmarkSlice from "./bookmark";
 
 // (이전상태, 액션) => 다음상태
 const rootReducer = (state: any, action: any) => {
@@ -14,6 +15,7 @@ const rootReducer = (state: any, action: any) => {
         user: userSlice.reducer,
         message: messageSlice.reducer,
         context: contextSlice.reducer,
+        bookmark: bookmarkSlice.reducer,
       });
       return combinedReducer(state, action);
     }
