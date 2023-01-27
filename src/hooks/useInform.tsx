@@ -1,9 +1,6 @@
 import { useState } from "react";
-import useInput from "./useInput";
 
 export default function useInform() {
-  const [name, onChangeName] = useInput("");
-
   const [checkedInputs, setCheckedInputs] = useState<string[]>([]);
 
   const changeHandler = (checked: boolean, id: string) => {
@@ -16,8 +13,6 @@ export default function useInform() {
   };
 
   return {
-    name,
-    onChangeName,
     checkedInputs,
     changeHandler,
   };
