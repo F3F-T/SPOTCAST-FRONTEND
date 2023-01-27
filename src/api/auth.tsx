@@ -68,6 +68,7 @@ const authSignUp = createAsyncThunk(
   async (data: object, { rejectWithValue }) => {
     try {
       const response = await unAuthorizationClient.post(API.SIGNUP, data);
+      toastMsg("회원가입 성공", true);
       return response.data.data;
     } catch (error: any) {
       return rejectWithValue(error.response.data);
