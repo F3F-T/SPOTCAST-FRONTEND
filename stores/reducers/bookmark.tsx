@@ -1,30 +1,19 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  deleteBookmark,
-  addBookmark,
-  loadFollower,
-  loadFollowing,
-} from "../../src/api/bookmark";
-import { IBookmark } from "../../src/interface/bookmark";
+import { loadFollower, loadFollowing } from "../../src/api/bookmark";
 
 type BookmarkState = {
-  follower: IBookmark[];
+  follower: any;
   loadFollowerLoading: boolean;
   loadFollowerDone: boolean;
   loadFollowerError: any;
   hasMoreFollower: boolean;
-  following: IBookmark[];
+  following: any;
   loadFollowingLoading: boolean;
   loadFollowingDone: boolean;
   loadFollowingError: any;
   hasMoreFollowing: boolean;
-  deleteBookmarkLoading: boolean;
-  deleteBookmarkDone: boolean;
-  deleteBookmarkError: any;
-  addBookmarkLoadng: boolean;
-  addBookmarkDone: boolean;
-  addBookmarkError: any;
+  lastPage: number;
 };
 
 // 기본 state
@@ -39,12 +28,7 @@ export const initialState: BookmarkState = {
   loadFollowingDone: false,
   loadFollowingError: null,
   hasMoreFollowing: true,
-  deleteBookmarkLoading: false,
-  deleteBookmarkDone: false,
-  deleteBookmarkError: null,
-  addBookmarkLoadng: false,
-  addBookmarkDone: false,
-  addBookmarkError: null,
+  lastPage: 0,
 };
 
 const bookmarkSlice = createSlice({
@@ -61,8 +45,8 @@ const bookmarkSlice = createSlice({
       .addCase(loadFollower.fulfilled, (state, action) => {
         state.loadFollowerLoading = false;
         state.loadFollowerDone = true;
-        state.follower = state.follower.concat(action.payload.content);
-        state.hasMoreFollower = action.payload.content.length >= 6;
+        state.follower = state.follower.concat(action.payload);
+        state.hasMoreFollower = action.payload.length === 6;
       })
       .addCase(loadFollower.rejected, (state, action) => {
         state.loadFollowerLoading = false;
@@ -76,40 +60,14 @@ const bookmarkSlice = createSlice({
       .addCase(loadFollowing.fulfilled, (state, action) => {
         state.loadFollowingLoading = false;
         state.loadFollowingDone = true;
-        state.following = state.following.concat(action.payload.content);
-        state.hasMoreFollowing = action.payload.content.length >= 6;
+        state.following = [].concat(state.following, action.payload.content);
+        state.hasMoreFollowing = action.payload.length === 6;
+        state.lastPage += 1;
       })
       .addCase(loadFollowing.rejected, (state, action) => {
         state.loadFollowingLoading = false;
         state.loadFollowingError = action.payload;
       })
-      .addCase(deleteBookmark.pending, state => {
-        state.deleteBookmarkLoading = true;
-        state.deleteBookmarkDone = false;
-        state.deleteBookmarkError = null;
-      })
-      .addCase(deleteBookmark.fulfilled, state => {
-        state.deleteBookmarkLoading = false;
-        state.deleteBookmarkDone = true;
-      })
-      .addCase(deleteBookmark.rejected, (state, action) => {
-        state.deleteBookmarkLoading = false;
-        state.deleteBookmarkError = action.payload;
-      })
-      .addCase(addBookmark.pending, state => {
-        state.addBookmarkLoadng = true;
-        state.addBookmarkDone = false;
-        state.addBookmarkError = null;
-      })
-      .addCase(addBookmark.fulfilled, state => {
-        state.addBookmarkLoadng = false;
-        state.addBookmarkDone = true;
-      })
-      .addCase(addBookmark.rejected, (state, action) => {
-        state.addBookmarkLoadng = false;
-        state.addBookmarkError = action.payload;
-      })
-
       .addDefaultCase(state => state),
 });
 

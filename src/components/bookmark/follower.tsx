@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { GREY } from "../../constants/colors";
-import { useFollowerBookmarkModal } from "../../hooks/useModal";
 
 const Container = styled.button`
   display: flex;
@@ -30,13 +29,8 @@ const Text = styled.div`
   text-align: start;
 `;
 export default function Follower() {
-  const { openBookmarkModal } = useFollowerBookmarkModal();
   return (
-    <Container
-      onClick={() => {
-        openBookmarkModal();
-      }}
-    >
+    <Container>
       <Count>5</Count>
       <Text>나를 즐겨찾는 사람</Text>
     </Container>
