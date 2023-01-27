@@ -2,14 +2,15 @@ import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../stores/reducers";
-import { setMsgModal } from "../../stores/reducers/context";
+import { setBookmarkModal, setMsgModal } from "../../stores/reducers/context";
 import { AppDispatch } from "../../stores/store/configureStore";
+import { loadFollowing } from "../api/bookmark";
 import { sendMessage } from "../api/message";
 import { MessageProps } from "../interface/messgae";
 import { getDate, getTime } from "../util/date";
 import useInput from "./useInput";
 
-export default function useMsgModal({ item }: MessageProps) {
+export function useMsgModal({ item }: MessageProps) {
   const dispatch = useDispatch<AppDispatch>();
   const { isMsgModalOpen } = useSelector((state: RootState) => state.context);
   const { me } = useSelector((state: RootState) => state.user);
@@ -54,5 +55,34 @@ export default function useMsgModal({ item }: MessageProps) {
     openMsgModal,
     closeMsgModal,
     setPrevMsg,
+  };
+}
+
+export function useBookmarkModal() {
+  const dispatch = useDispatch<AppDispatch>();
+  const { isBookmarkModalOpen } = useSelector(
+    (state: RootState) => state.context,
+  );
+
+  const { lastPage } = useSelector((state: RootState) => state.bookmark);
+
+  const openBookmarkModal = async () => {
+    dispatch(setBookmarkModal(true));
+    await dispatch(loadFollowing(0));
+  };
+  const closeBookmarkModal = () => {
+    dispatch(setBookmarkModal(false));
+  };
+
+  const loadNext = async () => {
+    console.log("시발");
+    await dispatch(loadFollowing(lastPage));
+  };
+
+  return {
+    isBookmarkModalOpen,
+    openBookmarkModal,
+    closeBookmarkModal,
+    loadNext,
   };
 }
