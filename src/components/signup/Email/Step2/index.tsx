@@ -2,7 +2,6 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Input from "../../../common/Input";
-import useInform from "../../../../hooks/useInform";
 import {
   Container,
   Wrapper,
@@ -27,10 +26,31 @@ import {
 } from "./index.styles";
 import Icon from "../../../common/Icon";
 import useUserType from "../../../../hooks/useUserType";
+import toastMsg from "../../../common/Toast";
 
-export default function Step3() {
-  const { types, onReplaceBack, onToggleCheck, onSubmitForm } = useUserType();
-  const { name, onChangeName } = useInform();
+export default function Step2() {
+  const {
+    name,
+    onChangeName,
+    types,
+    onReplaceBack,
+    onToggleCheck,
+    onSubmitForm,
+    signUpDone,
+    signUpError,
+    bchecked,
+    checkHandler,
+  } = useUserType();
+  const router = useRouter();
+  useEffect(() => {
+    if (signUpDone) {
+      router.push("/login");
+    }
+    if (signUpError) {
+      toastMsg("회원가입 실패. 다시 시도해주세요", false);
+    }
+  }, [signUpDone, signUpError]);
+
   return (
     <Container>
       <Wrapper>
@@ -75,7 +95,12 @@ export default function Step3() {
             ))}
           </Form>
           <EtcWrapper>
-            <CheckBox type="checkbox" required />
+            <CheckBox
+              checked={bchecked}
+              onChange={() => checkHandler()}
+              type="checkbox"
+              required
+            />
             <Agree>SPOTCAST 가입 약관에 모두 동의합니다.</Agree>
             <AgreeButton>확인하기</AgreeButton>
           </EtcWrapper>
@@ -85,7 +110,9 @@ export default function Step3() {
               title="이전"
               onClick={onReplaceBack}
             />
-            {(types[0].selected || types[1].selected) && name.length > 0 ? (
+            {(types[0].selected || types[1].selected) &&
+            name.length > 0 &&
+            bchecked ? (
               <RightButton onClick={onSubmitForm} title="가입 완료" />
             ) : (
               <ButtonDisabled title="가입 완료" disabled />

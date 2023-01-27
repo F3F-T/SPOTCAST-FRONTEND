@@ -40,17 +40,10 @@ export default function useUserType() {
       dispatch(signUp({ loginMemberType: types[1].loginMemberType }));
   }, [types]);
 
-  useEffect(() => {
-    dispatch(
-      signUp({
-        name,
-      }),
-    );
-  }, [name]);
-
   const checkHandler = useCallback(() => {
     setBcheked(!bchecked);
   }, [bchecked]);
+
   const onToggleCheck = useCallback(
     (id: number) => {
       setTypes(
@@ -72,6 +65,11 @@ export default function useUserType() {
   };
 
   const onSubmitForm = async () => {
+    await dispatch(
+      signUp({
+        name,
+      }),
+    );
     await dispatch(authSignUp(me));
   };
 
