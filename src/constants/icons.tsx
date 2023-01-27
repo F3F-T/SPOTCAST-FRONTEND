@@ -29,6 +29,8 @@ const ICONS: IconType = {
   trash: "bi bi-trash3",
   reply: "bi bi-reply",
   close: "bi bi-x-lg",
+  unfollow: "bi bi-person-x-fill",
+  follow: "bi bi-person-fill-add",
 };
 
 export default ICONS;
