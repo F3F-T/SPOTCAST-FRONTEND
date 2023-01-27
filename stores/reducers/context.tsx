@@ -3,13 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 
 type ContextState = {
   isMsgModalOpen: boolean;
-  isBookmarkModalOpen: boolean;
+  isFollowingModalOpen: boolean;
+  isFollowerModalOpen: boolean;
 };
 
 // 기본 state
 export const initialState: ContextState = {
   isMsgModalOpen: false,
-  isBookmarkModalOpen: false,
+  isFollowingModalOpen: false,
+  isFollowerModalOpen: false,
 };
 
 const contextSlice = createSlice({
@@ -19,13 +21,17 @@ const contextSlice = createSlice({
     setMsgModal(state, action) {
       state.isMsgModalOpen = action.payload;
     },
-    setBookmarkModal(state, action) {
-      state.isBookmarkModalOpen = action.payload;
+    setFollowingModal(state, action) {
+      state.isFollowingModalOpen = action.payload;
+    },
+    setFollowerModal(state, action) {
+      state.isFollowerModalOpen = action.payload;
     },
   },
   extraReducers: builder => builder.addDefaultCase(state => state),
 });
 
-export const { setMsgModal, setBookmarkModal } = contextSlice.actions;
+export const { setMsgModal, setFollowingModal, setFollowerModal } =
+  contextSlice.actions;
 
 export default contextSlice;

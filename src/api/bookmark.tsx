@@ -29,3 +29,28 @@ export const loadFollowing = createAsyncThunk(
     }
   },
 );
+
+export const addBookmark = createAsyncThunk(
+  "bookmark/addBookmark",
+  async (data: object, { rejectWithValue }) => {
+    try {
+      const response = await authorizationClient.post(API.BOOKMARK, data);
+      return response.data.data;
+    } catch (error: any) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+export const deleteBookmark = createAsyncThunk(
+  "bookmark/deleteBookmark",
+  async (data: object, { rejectWithValue }) => {
+    try {
+      const response = await authorizationClient.delete(API.BOOKMARK, {
+        data: { data },
+      });
+      return response.data.data;
+    } catch (error: any) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
