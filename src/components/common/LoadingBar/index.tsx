@@ -1,7 +1,16 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 import styled from "@emotion/styled";
 import React from "react";
 
-const LoadingBar = styled.div`
+export default function LoadingBar({ type }: { type: number }) {
+  return (
+    <Loading key={0}>
+      <div className={`loader loader-${type}`} />
+    </Loading>
+  );
+}
+
+const Loading = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -96,11 +105,3 @@ const LoadingBar = styled.div`
     }
   }
 `;
-
-export default function BookmarkLoadingBar() {
-  return (
-    <LoadingBar key={0}>
-      <div className="loader loader-6" />
-    </LoadingBar>
-  );
-}

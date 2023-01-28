@@ -92,7 +92,7 @@ export default function PersonCard({ data, type }: BookmarkProps) {
           </div>
         </NoneButton>
         {type === "FOLLOWING" ? (
-          <Button onClick={() => onClickDeleteBookmark(data.memberId, me.id)}>
+          <Button onClick={() => onClickDeleteBookmark(me.id, data.memberId)}>
             <Icon
               className="unfollow"
               color={GREY[700]}

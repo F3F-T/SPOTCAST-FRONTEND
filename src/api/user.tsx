@@ -8,18 +8,6 @@ import API from "./config";
 axios.defaults.baseURL = API.BASE_URL;
 axios.defaults.withCredentials = true;
 
-const loadField = createAsyncThunk(
-  "user/getField",
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await axios.get(`${API.MEMBER}field`);
-      return response.data.data;
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data);
-    }
-  },
-);
-
 const editMyInfo = createAsyncThunk(
   "user/editMyInfo",
   async (data: IUser, { rejectWithValue }) => {
@@ -69,4 +57,4 @@ const loadUser = createAsyncThunk(
   },
 );
 
-export { editMyInfo, loadUser, loadField };
+export { editMyInfo, loadUser };

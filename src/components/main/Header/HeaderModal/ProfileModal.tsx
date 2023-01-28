@@ -51,6 +51,7 @@ const Image = styled.img`
   height: 5.7rem;
   border-radius: 30rem;
   object-fit: cover;
+  border: 0.1rem solid ${GREY[300]};
 `;
 
 const Name = styled.div`
@@ -73,7 +74,7 @@ export default function ProfileModal() {
     <Container>
       <div>
         <UserWrapper>
-          <Image src="/images/img4.png" />
+          <Image src={me.profile} />
           <div>
             <Name>{me.name}</Name>
             <Email>{me.email}</Email>

@@ -4,24 +4,21 @@ import { useState } from "react";
 import { getMe } from "../util/lib";
 import useInput from "./useInput";
 import { AppDispatch } from "../../stores/store/configureStore";
-import { editMyInfo, loadField } from "../api/user";
+import { editMyInfo } from "../api/user";
 import { FieldProps } from "../interface/user";
 
 export default function useEditForm() {
-  const { me, field } = getMe();
+  const { me } = getMe();
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
 
-  const getFieldList = () => {
-    dispatch(loadField());
-  };
   const { name } = me;
   const [information, onChangeInformation] = useInput(me.information);
   const [instagram, onChangeInstagram] = useInput(me.instagram);
   const [twitter, onChangeTwitter] = useInput(me.twitter);
   const [otherSns, onChangeOtherSns] = useInput(me.otherSns);
   const [egName, onChangeEgName] = useInput(me.egName);
-  const [FieldList, setFieldList] = useState(field);
+  const [FieldList, setFieldList] = useState(me.field);
 
   const onToggleField = (id: number) => {
     setFieldList(
@@ -62,6 +59,5 @@ export default function useEditForm() {
     FieldList,
     onSubmitEditForm,
     onToggleField,
-    getFieldList,
   };
 }

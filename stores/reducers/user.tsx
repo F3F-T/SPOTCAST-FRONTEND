@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from "@reduxjs/toolkit";
 import { authLogin, authLogout, authSignUp, loadMe } from "../../src/api/auth";
-import { editMyInfo, loadField, loadUser } from "../../src/api/user";
+import { editMyInfo, loadUser } from "../../src/api/user";
 
 type UserState = {
   IsUserLoggedIn: boolean;
@@ -22,10 +22,6 @@ type UserState = {
   loadUserLoading: boolean;
   loadUserDone: boolean;
   loadUserError: any;
-  loadFieldLoading: boolean;
-  loadFieldDone: boolean;
-  loadFieldError: any;
-  field: object;
 };
 
 // 기본 state
@@ -48,10 +44,6 @@ export const initialState: UserState = {
   loadUserLoading: false,
   loadUserDone: false,
   loadUserError: null,
-  field: {},
-  loadFieldLoading: false,
-  loadFieldDone: false,
-  loadFieldError: null,
 };
 
 const userSlice = createSlice({
@@ -147,21 +139,7 @@ const userSlice = createSlice({
       .addCase(editMyInfo.rejected, (state, action) => {
         state.loadMeError = action.payload;
       })
-      // 유저정보 가져오기
-      .addCase(loadField.pending, state => {
-        state.loadFieldLoading = true;
-        state.loadFieldDone = false;
-        state.loadFieldError = null;
-      })
-      .addCase(loadField.fulfilled, (state, action) => {
-        state.loadFieldLoading = false;
-        state.field = action.payload;
-        state.loadFieldDone = true;
-      })
-      .addCase(loadField.rejected, (state, action) => {
-        state.loadFieldLoading = false;
-        state.loadFieldError = action.payload;
-      })
+
       .addDefaultCase(state => state),
 });
 

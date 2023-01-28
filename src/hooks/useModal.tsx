@@ -14,8 +14,47 @@ import { MessageProps } from "../interface/messgae";
 import { getDate, getTime } from "../util/date";
 import useInput from "./useInput";
 import useBodyScrollLock from "./useBodyScrollLock";
+import { UserProps } from "../interface/user";
 
-export function useMsgModal({ item }: MessageProps) {
+export function useMsgModal({ user }: UserProps) {
+  const dispatch = useDispatch<AppDispatch>();
+  const { isMsgModalOpen } = useSelector((state: RootState) => state.context);
+  const { me } = useSelector((state: RootState) => state.user);
+  const router = useRouter();
+  const [title, onChangeTitle] = useInput("");
+  const [content, onChangeContent] = useInput("");
+
+  const openMsgModal = () => {
+    dispatch(setMsgModal(true));
+  };
+  const closeMsgModal = () => {
+    dispatch(setMsgModal(false));
+  };
+
+  const onSubmitMessage = useCallback(async () => {
+    await dispatch(
+      sendMessage({
+        title,
+        content,
+        sender: { id: me.id },
+        recipient: { id: user.id },
+      }),
+    );
+    router.refresh();
+  }, [title, content]);
+
+  return {
+    isMsgModalOpen,
+    title,
+    onChangeTitle,
+    content,
+    onChangeContent,
+    onSubmitMessage,
+    openMsgModal,
+    closeMsgModal,
+  };
+}
+export function useReplyMsgModal({ item }: MessageProps) {
   const dispatch = useDispatch<AppDispatch>();
   const { isMsgModalOpen } = useSelector((state: RootState) => state.context);
   const { me } = useSelector((state: RootState) => state.user);

@@ -16,6 +16,7 @@ function App({ Component, pageProps }: AppProps) {
         className="toast"
         position="top-center"
         closeButton={false}
+        limit={1}
       />
     </>
   );

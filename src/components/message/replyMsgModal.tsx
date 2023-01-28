@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "@emotion/styled";
 import Modal from "../common/Modal";
-import { useMsgModal } from "../../hooks/useModal";
+import { useReplyMsgModal } from "../../hooks/useModal";
 import IconButton from "../common/IconButton";
 import { GREY } from "../../constants/colors";
 import Line from "../common/Line";
 import Button from "../common/Button";
-import { UserProps } from "../../interface/user";
+import { MessageProps } from "../../interface/messgae";
 
 const Top = styled.div`
   padding: 0.3rem 0 1.3rem 0;
@@ -72,7 +72,7 @@ const StyledButton = styled(Button)`
   right: 0;
   top: 0.5rem;
 `;
-export default function MsgModal({ user }: UserProps) {
+export default function ReplyMsgModal({ item }: MessageProps) {
   const {
     title,
     onChangeTitle,
@@ -80,7 +80,7 @@ export default function MsgModal({ user }: UserProps) {
     onChangeContent,
     closeMsgModal,
     onSubmitMessage,
-  } = useMsgModal({ user });
+  } = useReplyMsgModal({ item });
 
   const closeModal = () => {
     closeMsgModal();
@@ -90,7 +90,7 @@ export default function MsgModal({ user }: UserProps) {
     <Modal closeModal={closeModal}>
       <Top>
         <Img />
-        <Name>{user?.name}</Name>
+        <Name>{item?.memberName}</Name>
         <StyledIcon
           onClick={closeModal}
           IconName="close"

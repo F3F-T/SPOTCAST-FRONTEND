@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { GREY } from "../../constants/colors";
 import { useFollowingBookmarkModal } from "../../hooks/useModal";
+import { getMe } from "../../util/lib";
 
 const Container = styled.button`
   display: flex;
@@ -31,13 +32,14 @@ const Text = styled.div`
 `;
 export default function Following() {
   const { openBookmarkModal } = useFollowingBookmarkModal();
+  const { me } = getMe();
   return (
     <Container
       onClick={() => {
         openBookmarkModal();
       }}
     >
-      <Count>5</Count>
+      <Count>{me.following}</Count>
       <Text>내가 즐겨찾는 사람</Text>
     </Container>
   );

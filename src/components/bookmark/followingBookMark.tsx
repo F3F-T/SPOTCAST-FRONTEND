@@ -8,11 +8,11 @@ import { GREY } from "../../constants/colors";
 import IconButton from "../common/IconButton";
 import PersonCard from "./personCard";
 import { IBookmark } from "../../interface/bookmark";
-import BookmarkLoadingBar from "./BookmarkLoading";
+import LoadingBar from "../common/LoadingBar";
 
 const Top = styled.div`
   padding: 1.3rem 0 1.3rem 0;
-  width: 100%;
+  width: 53rem;
   display: flex;
   align-items: center;
   justify-content: start;
@@ -64,7 +64,7 @@ export default function FollowingBookMarkModal() {
               loadNext(num);
             }}
             hasMore={hasMoreFollowing}
-            loader={<BookmarkLoadingBar />}
+            loader={<LoadingBar type={6} />}
             useWindow={false}
           >
             {following.map((data: IBookmark) => {
