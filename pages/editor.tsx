@@ -1,5 +1,5 @@
 import React from "react";
-import WysiwygEditor from "../src/components/common/Editor";
+import Editor from "../src/components/common/Editor";
 
 function editor() {
   const onChangeHanlder = (value: any) => {
@@ -8,9 +8,10 @@ function editor() {
   };
   return (
     <div>
-      {/*  <Editor /> */}
-      <WysiwygEditor
+      <Editor
         onChange={onChangeHanlder}
+        placeholder="hi"
+        initialValue=""
         initialEditType="wysiwyg"
         hideModeSwitch
       />

@@ -7,24 +7,25 @@ import {
 import { TuiEditorWrapperProps } from "./TuiEditorWrapper";
 import "@toast-ui/editor/dist/toastui-editor.css";
 
-interface TuiEditorPropsWithHandlers extends TuiEditorProps {
-  onChange(value: string): void;
-}
-
 const TuiEditorWrapper = dynamic<TuiEditorWrapperProps>(
   () => import("./TuiEditorWrapper"),
   { ssr: false },
-); /* forwardRef까지 붙은 에디터 다이나믹 임포트 */
+);
 
 const EditorWithForwardedRef = React.forwardRef<
   TuiEditor | undefined,
   TuiEditorPropsWithHandlers
 >((props, ref) => (
+  /* forwardRef: Child */
   <TuiEditorWrapper
     {...props}
     forwardedRef={ref as React.MutableRefObject<TuiEditor>}
   />
-)); /* 얘가 child인거네 */
+));
+
+interface TuiEditorPropsWithHandlers extends TuiEditorProps {
+  onChange(value: string): void;
+}
 
 function Editor({
   initialValue,
@@ -36,7 +37,8 @@ function Editor({
   onChange,
 }: TuiEditorPropsWithHandlers) {
   const editorRef = React.useRef<TuiEditor>();
-  /* 여기서 레프를 처음 만드니까 결국 얘가 parent인거지? */
+  /* forwardRef: Parent */
+
   const handleChange = React.useCallback(() => {
     if (!editorRef.current) {
       return;
@@ -52,8 +54,7 @@ function Editor({
   return (
     <div className="editor">
       <EditorWithForwardedRef
-        /*    {...props} */
-        initialValue={initialValue || "hello react editor world!"}
+        initialValue={initialValue || "please write here..."}
         previewStyle={previewStyle || "vertical"}
         height={height || "300px"}
         initialEditType={initialEditType}
