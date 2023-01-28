@@ -9,6 +9,10 @@
     "project": "./tsconfig.json"
   },
   "rules": {
+  /*   "react/function-component-definition": [
+      2,
+      { "namedcomponents": "arrow-function" }
+    ], */
     "react/jsx-props-no-spreading": "off",
     "react/require-default-props": "off",
     "react/no-unknown-property": ["error", { "ignore": ["css"] }],
