@@ -105,7 +105,7 @@ export default function EditForm() {
     onToggleField,
     onSubmitEditForm,
   } = useEditForm();
-  console.log(FieldList);
+
   const onClickSubmitButton = () => {
     onSubmitEditForm();
   };
