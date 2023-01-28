@@ -49,7 +49,7 @@ export const deleteBookmark = createAsyncThunk(
   async (data: object, { rejectWithValue }) => {
     try {
       const response = await authorizationClient.delete(API.BOOKMARK, {
-        data: { data },
+        data,
       });
       toastMsg("팔로우 취소 완료", true);
       return response.data.data;
