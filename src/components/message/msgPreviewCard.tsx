@@ -27,14 +27,15 @@ const Img = styled.img`
   border-radius: 10rem;
   background-color: ${GREY[400]};
 `;
-
-const Name = styled.div`
-  width: 16rem;
+const UserWrapper = styled.div`
   position: relative;
+  display: flex;
+`;
+const Name = styled.div`
+  width: 11rem;
   font-size: 1.5rem;
 `;
-const Date = styled.span`
-  position: absolute;
+const Date = styled.div`
   right: 0;
   font-size: 1.2rem;
   color: ${GREY[500]};
@@ -63,9 +64,10 @@ export default function MsgPreviewCard({
     <Preview selected={selected}>
       <Img />
       <Right>
-        <Name>
-          {item?.memberName} <Date>{item?.createdDate.split("T")[0]}</Date>
-        </Name>
+        <UserWrapper>
+          <Name>{item?.memberName}</Name>
+          <Date>{item?.createdDate.split("T")[0]}</Date>
+        </UserWrapper>
         <Content>{item?.title}</Content>
       </Right>
     </Preview>

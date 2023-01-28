@@ -2,11 +2,11 @@ import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { GREY } from "../../constants/colors";
 import useMessage from "../../hooks/useMessage";
-import { useMsgModal } from "../../hooks/useModal";
+import { useReplyMsgModal } from "../../hooks/useModal";
 import { MessageProps } from "../../interface/messgae";
 import { getDate, getTime } from "../../util/date";
 import IconButton from "../common/IconButton";
-import MsgModal from "./msgModal";
+import ReplyMsgModal from "./replyMsgModal";
 
 const Container = styled.div`
   width: 100%;
@@ -30,7 +30,7 @@ const Img = styled.img`
 `;
 
 const Name = styled.div`
-  width: 40rem;
+  width: 55rem;
   position: relative;
   font-size: 1.4rem;
   padding-bottom: 0.2rem;
@@ -48,7 +48,7 @@ const IconWrapper = styled.div`
 `;
 export default function ProfileHedaer({ item, type }: MessageProps) {
   const { replaceUserProfile, onClickDeleteMessage } = useMessage();
-  const { isMsgModalOpen, openMsgModal } = useMsgModal({ item });
+  const { isMsgModalOpen, openMsgModal } = useReplyMsgModal({ item });
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
 
@@ -109,7 +109,7 @@ export default function ProfileHedaer({ item, type }: MessageProps) {
           />
         )}
       </IconWrapper>
-      {isMsgModalOpen && <MsgModal item={item} />}
+      {isMsgModalOpen && <ReplyMsgModal item={item} />}
     </Container>
   );
 }

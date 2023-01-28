@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import useLogin from "../../hooks/useLogin";
 import { GREY } from "../../constants/colors";
+import LoadingBar from "../common/LoadingBar";
 
 const Container = styled.div`
   width: 100%;
@@ -34,7 +35,9 @@ export default function Redirct() {
   return (
     <Container>
       <Title>SPOTCAST</Title>
-      <Comment>로그인 진행중 • • •</Comment>
+      <Comment>
+        로그인 진행중 <LoadingBar type={6} />
+      </Comment>
     </Container>
   );
 }

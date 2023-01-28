@@ -37,14 +37,14 @@ function CrewCard({
       </Info>
       <Stats>
         <span>
-          <Icon className="eye" />
+          <Icon className="eye" border={0.5} />
           {views}
         </span>
         <span>
           {bookmarked ? (
-            <Icon className="bookmarkFill" color={MUSTARD} />
+            <Icon className="bookmarkFill" color={MUSTARD} border={0.3} />
           ) : (
-            <Icon className="bookmarkEmpty" />
+            <Icon className="bookmarkEmpty" border={0.3} />
           )}
           {bookmarks}
         </span>
