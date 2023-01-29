@@ -88,9 +88,12 @@ const bookmarkSlice = createSlice({
         state.deleteBookmarkDone = false;
         state.deleteBookmarkError = null;
       })
-      .addCase(deleteBookmark.fulfilled, state => {
+      .addCase(deleteBookmark.fulfilled, (state, action) => {
         state.deleteBookmarkLoading = false;
         state.deleteBookmarkDone = true;
+        state.following = state.following.filter(
+          i => i.memberId !== action.payload,
+        );
       })
       .addCase(deleteBookmark.rejected, (state, action) => {
         state.deleteBookmarkLoading = false;
@@ -112,5 +115,4 @@ const bookmarkSlice = createSlice({
 
       .addDefaultCase(state => state),
 });
-
 export default bookmarkSlice;
