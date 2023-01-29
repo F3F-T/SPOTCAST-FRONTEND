@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { GREY } from "../../../constants/colors";
+import { GREY, INDIGO_MUTED } from "../../../constants/colors";
 import Button from "../../common/Button";
 
 const Container = styled.div`
@@ -79,7 +79,7 @@ const Login = styled.div`
 const LoggedIn = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.7rem;
   font-size: 1.3rem;
 `;
 
@@ -102,8 +102,24 @@ const IconButton = styled.button`
   outline: none;
   cursor: pointer;
   border: none;
-`;
 
+  &:hover {
+    opacity: 0.6;
+  }
+`;
+const Img = styled.img<{ selected: boolean }>`
+  ${({ selected }) => `
+      border: ${
+        selected ? `0.1rem solid ${INDIGO_MUTED}` : `0.1rem solid ${GREY[400]}`
+      };
+`}
+  width: 3.1rem;
+  height: 3.1rem;
+  border-radius: 20rem;
+  &:hover {
+    opacity: 0.6;
+  }
+`;
 export {
   Container,
   Wrapper,
@@ -119,4 +135,5 @@ export {
   LoggedIn,
   StyledButton,
   ModalWrapper,
+  Img,
 };

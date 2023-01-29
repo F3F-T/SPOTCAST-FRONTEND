@@ -13,6 +13,7 @@ import {
   Login,
   LoggedIn,
   StyledButton,
+  Img,
 } from "../index.styles";
 import { getMessage } from "../../../../util/lib";
 import { AppDispatch } from "../../../../../stores/store/configureStore";
@@ -23,7 +24,7 @@ export default function HeaderModal() {
     { name: "로그인", href: "/login" },
     { name: "회원가입", href: "/signup" },
   ];
-  const { IsUserLoggedIn } = useSelector((state: RootState) => state.user);
+  const { me, IsUserLoggedIn } = useSelector((state: RootState) => state.user);
   const { msgReceivedData } = getMessage();
 
   const dispatch = useDispatch<AppDispatch>();
@@ -67,7 +68,7 @@ export default function HeaderModal() {
               <Icon
                 className={modalOpen[0].selected ? "bellFill" : "bell"}
                 border={0.4}
-                size="2.3rem"
+                size="2rem"
                 color={modalOpen[0].selected ? INDIGO : GREY[700]}
               />
             </IconButton>
@@ -83,7 +84,7 @@ export default function HeaderModal() {
               <Icon
                 className={modalOpen[1].selected ? "msgFill" : "msg"}
                 border={0.4}
-                size="2.3rem"
+                size="2rem"
                 color={modalOpen[1].selected ? INDIGO : GREY[700]}
               />
             </IconButton>
@@ -97,12 +98,7 @@ export default function HeaderModal() {
                 showModal("MYPAGE");
               }}
             >
-              <Icon
-                className={modalOpen[2].selected ? "mypageFill" : "mypage"}
-                border={modalOpen[2].selected ? 0.2 : 0.4}
-                size="2.7rem"
-                color={modalOpen[2].selected ? INDIGO : GREY[700]}
-              />
+              <Img src={me.profile} selected={!!modalOpen[2].selected} />
             </IconButton>
             {modalOpen[2].selected && <ProfileModal />}
           </ModalWrapper>
