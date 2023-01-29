@@ -52,18 +52,16 @@ function Editor({
   }, [onChange]);
 
   return (
-    <div className="editor">
-      <EditorWithForwardedRef
-        initialValue={initialValue || "please write here..."}
-        previewStyle={previewStyle || "vertical"}
-        height={height || "300px"}
-        initialEditType={initialEditType}
-        useCommandShortcut={useCommandShortcut || true}
-        ref={editorRef}
-        onChange={handleChange}
-        hideModeSwitch={hideModeSwitch || false}
-      />
-    </div>
+    <EditorWithForwardedRef
+      initialValue={initialValue || ""}
+      previewStyle={previewStyle || "vertical"}
+      height={height || "300px"}
+      initialEditType={initialEditType}
+      useCommandShortcut={useCommandShortcut || true}
+      ref={editorRef}
+      onChange={handleChange}
+      hideModeSwitch={hideModeSwitch || false}
+    />
   );
 }
 
