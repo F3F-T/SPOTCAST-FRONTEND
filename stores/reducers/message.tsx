@@ -6,10 +6,13 @@ import {
   sendMessage,
   deleteMessage,
   readMessage,
+  loadMsgUnread,
 } from "../../src/api/message";
+import { IMessage } from "../../src/interface/messgae";
 
 type MessageState = {
-  msgReceived: object;
+  msgReceived: any;
+  msgReceivedUnRead: object;
   msgSend: object;
   loadMsgSendLoding: boolean;
   loadMsgSendDone: boolean;
@@ -28,6 +31,7 @@ type MessageState = {
 // 기본 state
 export const initialState: MessageState = {
   msgReceived: [],
+  msgReceivedUnRead: [],
   msgSend: [],
   loadMsgSendLoding: false,
   loadMsgSendDone: false,
@@ -108,9 +112,13 @@ const messageSlice = createSlice({
         state.deleteMessageError = action.payload;
       })
       .addCase(readMessage.fulfilled, (state, action) => {
-        state.msgReceived.content = state.msgReceived.content.map(i =>
-          i.id === action.payload ? { ...i, readStatus: true } : i,
+        state.msgReceived.content = state.msgReceived.content.map(
+          (i: IMessage) =>
+            i.id === action.payload ? { ...i, readStatus: true } : i,
         );
+      })
+      .addCase(loadMsgUnread.fulfilled, (state, action) => {
+        state.msgReceivedUnRead = action.payload;
       })
       .addDefaultCase(state => state),
 });

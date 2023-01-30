@@ -68,6 +68,21 @@ export const loadMsgReceived = createAsyncThunk(
   },
 );
 
+export const loadMsgUnread = createAsyncThunk(
+  "message/loadMsgUnread",
+  async (data: MsgSizeProps, { rejectWithValue }) => {
+    try {
+      const { page, size } = data;
+      const response = await authorizationClient.get(
+        `${API.LOAD_MSG_UNREAD}?page=${page}&size=${size}`,
+      );
+      return response.data.data;
+    } catch (error: any) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
 export const sendMessage = createAsyncThunk(
   "message/sendMessage",
   async (data: object, { rejectWithValue }) => {

@@ -17,7 +17,7 @@ import {
 } from "../index.styles";
 import { getMessage } from "../../../../util/lib";
 import { AppDispatch } from "../../../../../stores/store/configureStore";
-import { loadMsgReceived } from "../../../../api/message";
+import { loadMsgUnread } from "../../../../api/message";
 
 export default function HeaderModal() {
   const aside = [
@@ -25,7 +25,7 @@ export default function HeaderModal() {
     { name: "회원가입", href: "/signup" },
   ];
   const { me, IsUserLoggedIn } = useSelector((state: RootState) => state.user);
-  const { msgReceivedData } = getMessage();
+  const { msgUnreadData } = getMessage();
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -77,7 +77,7 @@ export default function HeaderModal() {
           <ModalWrapper>
             <IconButton
               onClick={async () => {
-                await dispatch(loadMsgReceived({ page: 0, size: 4 }));
+                await dispatch(loadMsgUnread({ page: 0, size: 4 }));
                 showModal("MESSAGE");
               }}
             >
@@ -89,7 +89,7 @@ export default function HeaderModal() {
               />
             </IconButton>
             {modalOpen[1].selected && (
-              <MessageModal data={msgReceivedData.data} showModal={showModal} />
+              <MessageModal data={msgUnreadData.data} showModal={showModal} />
             )}
           </ModalWrapper>
           <ModalWrapper>

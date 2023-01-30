@@ -18,7 +18,7 @@ export const getUser = () => {
 };
 
 export const getMessage = () => {
-  const { msgSend, msgReceived } = useSelector(
+  const { msgSend, msgReceived, msgReceivedUnRead } = useSelector(
     (state: RootState) => state.message,
   );
 
@@ -30,9 +30,12 @@ export const getMessage = () => {
     data: msgReceived.content,
     size: msgReceived.totalElements,
   };
-
+  const msgUnreadData = {
+    data: msgReceivedUnRead.content,
+  };
   return {
     msgSendData,
     msgReceivedData,
+    msgUnreadData,
   };
 };

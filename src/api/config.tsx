@@ -36,6 +36,7 @@ const API = {
   MESSAGE_SEND: `${MESSAGE}send`,
   LOAD_MSG_SEND: `${MESSAGE}sender`,
   LOAD_MSG_RECEIVE: `${MESSAGE}recipient`,
+  LOAD_MSG_UNREAD: `${MESSAGE}unread`,
   LOAD_FOLLOWER: `${MEMBER}${BOOKMARK}/follower`,
   LOAD_FOLLWING: `${MEMBER}${BOOKMARK}/following`,
 };
