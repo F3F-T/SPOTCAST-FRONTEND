@@ -85,7 +85,7 @@ export default function PersonCard({ data, type }: BookmarkProps) {
           }}
         >
           {data.bookmarkId}
-          <Img />
+          <Img src={data.profile} />
           <div>
             <Name>{data.name}</Name>
             <Date>{data.email}</Date>

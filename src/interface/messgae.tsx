@@ -7,6 +7,7 @@ export interface IMessage {
   memberName: string;
   title: string;
   size?: number;
+  memberProfile?: string;
 }
 
 export interface MessageProps {

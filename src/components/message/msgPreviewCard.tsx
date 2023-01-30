@@ -62,7 +62,7 @@ export default function MsgPreviewCard({
 }: MessageProps) {
   return (
     <Preview selected={selected}>
-      <Img />
+      <Img src={item?.memberProfile} />
       <Right>
         <UserWrapper>
           <Name>{item?.memberName}</Name>

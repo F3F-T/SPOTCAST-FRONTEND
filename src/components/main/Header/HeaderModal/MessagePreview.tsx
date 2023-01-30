@@ -67,7 +67,7 @@ export default function MessagePreview({
   return (
     <Preview selected={selected}>
       <Left>
-        <Img />
+        <Img src={item?.memberProfile} />
         <Right>
           <Name>{item?.memberName}</Name>
           <Content>{item?.title}</Content>

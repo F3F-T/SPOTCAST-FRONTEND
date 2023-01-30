@@ -3,6 +3,7 @@ export interface IBookmark {
   memberId: number;
   name: string;
   email: string;
+  profile: string;
 }
 
 export interface BookmarkProps {

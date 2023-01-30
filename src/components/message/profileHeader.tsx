@@ -63,7 +63,7 @@ export default function ProfileHedaer({ item, type }: MessageProps) {
     <Container>
       {item && (
         <Wrapper>
-          <Img />
+          <Img src={item?.memberProfile} />
           <div>
             <Name>
               {item?.memberName} {`<`}

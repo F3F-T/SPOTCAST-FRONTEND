@@ -89,7 +89,7 @@ export default function ReplyMsgModal({ item }: MessageProps) {
   return (
     <Modal closeModal={closeModal}>
       <Top>
-        <Img />
+        <Img src={item?.memberProfile} />
         <Name>{item?.memberName}</Name>
         <StyledIcon
           onClick={closeModal}
