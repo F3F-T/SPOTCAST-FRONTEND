@@ -84,7 +84,6 @@ export default function PersonCard({ data, type }: BookmarkProps) {
             router.push(`/user/${data.memberId}`);
           }}
         >
-          {data.bookmarkId}
           <Img src={data.profile} />
           <div>
             <Name>{data.name}</Name>
