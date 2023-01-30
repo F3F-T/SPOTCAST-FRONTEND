@@ -8,6 +8,7 @@ export interface IMessage {
   title: string;
   size?: number;
   memberProfile?: string;
+  readStatus?: boolean;
 }
 
 export interface MessageProps {

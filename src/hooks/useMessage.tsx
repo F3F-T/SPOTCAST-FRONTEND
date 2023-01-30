@@ -2,7 +2,12 @@ import { useDispatch } from "react-redux";
 import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AppDispatch } from "../../stores/store/configureStore";
-import { loadMsgReceived, loadMsgSend, deleteMessage } from "../api/message";
+import {
+  loadMsgReceived,
+  loadMsgSend,
+  deleteMessage,
+  readMessage,
+} from "../api/message";
 import { getMessage } from "../util/lib";
 
 export default function useMessage() {
@@ -69,9 +74,15 @@ export default function useMessage() {
   const replaceUserProfile = useCallback((id: number) => {
     router.push(`/user/${id}`);
   }, []);
+
+  const readMsg = useCallback(async (messageId: number) => {
+    await dispatch(readMessage(messageId));
+  }, []);
+
   return {
     onChangeSendMsg,
     onChangeReceivedMsg,
+    readMsg,
     TabList,
     currentTab,
     onChangeTab,

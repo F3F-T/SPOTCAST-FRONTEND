@@ -5,11 +5,12 @@ import {
   loadMsgSend,
   sendMessage,
   deleteMessage,
+  readMessage,
 } from "../../src/api/message";
 
 type MessageState = {
-  msgReceived: object[];
-  msgSend: object[];
+  msgReceived: object;
+  msgSend: object;
   loadMsgSendLoding: boolean;
   loadMsgSendDone: boolean;
   loadMsgSendError: any;
@@ -105,6 +106,11 @@ const messageSlice = createSlice({
       .addCase(deleteMessage.rejected, (state, action) => {
         state.deleteMessageLoading = false;
         state.deleteMessageError = action.payload;
+      })
+      .addCase(readMessage.fulfilled, (state, action) => {
+        state.msgReceived.content = state.msgReceived.content.map(i =>
+          i.id === action.payload ? { ...i, readStatus: true } : i,
+        );
       })
       .addDefaultCase(state => state),
 });

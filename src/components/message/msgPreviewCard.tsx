@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { GREY } from "../../constants/colors";
 import { MessageProps } from "../../interface/messgae";
+import Icon from "../common/Icon";
 
 const Preview = styled.div<{
   selected: boolean;
@@ -13,6 +14,7 @@ const Preview = styled.div<{
   height: 12.1rem;
   border-bottom: 0.1rem solid ${GREY[300]};
   display: flex;
+  position: relative;
   gap: 2rem;
   justify-content: center;
   align-items: center;
@@ -34,6 +36,7 @@ const UserWrapper = styled.div`
 const Name = styled.div`
   width: 11rem;
   font-size: 1.5rem;
+  padding-left: 0.7rem;
 `;
 const Date = styled.div`
   right: 0;
@@ -65,6 +68,21 @@ export default function MsgPreviewCard({
       <Img src={item?.memberProfile} />
       <Right>
         <UserWrapper>
+          {item?.readStatus ? (
+            <Icon
+              className="openMsg"
+              size="1.3rem"
+              border={0.1}
+              color={GREY[500]}
+            />
+          ) : (
+            <Icon
+              className="contact"
+              size="1.3rem"
+              border={0.1}
+              color={GREY[800]}
+            />
+          )}
           <Name>{item?.memberName}</Name>
           <Date>{item?.createdDate.split("T")[0]}</Date>
         </UserWrapper>

@@ -5,6 +5,7 @@ import MsgPreviewCard from "./msgPreviewCard";
 import ProfileHedaer from "./profileHeader";
 import MsgContentCard from "./msgContentCard";
 import { IMessage } from "../../interface/messgae";
+import useMessage from "../../hooks/useMessage";
 
 const Container = styled.div`
   width: 100%;
@@ -58,13 +59,18 @@ export default function MessageRoom({
   type: string;
 }) {
   const [currentMsg, setCurrentMsg] = useState<number>(0);
+  const { readMsg } = useMessage();
 
+  const onClickMsg = (messageId: number) => {
+    setCurrentMsg(messageId);
+    readMsg(messageId);
+  };
   return (
     <Container>
       <VerticalLine />
       <Left>
         {data?.map(item => (
-          <Button onClick={() => setCurrentMsg(item.id)}>
+          <Button onClick={() => onClickMsg(item.id)}>
             <MsgPreviewCard item={item} selected={item.id === currentMsg} />
           </Button>
         ))}

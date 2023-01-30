@@ -95,3 +95,15 @@ export const deleteMessage = createAsyncThunk(
     }
   },
 );
+
+export const readMessage = createAsyncThunk(
+  "message/readMessage",
+  async (messageId: number, { rejectWithValue }) => {
+    try {
+      await authorizationClient.patch(`${API.MESSAGE}${messageId}/read`);
+      return messageId;
+    } catch (error: any) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);

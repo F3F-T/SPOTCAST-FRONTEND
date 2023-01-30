@@ -32,6 +32,7 @@ const ICONS: IconType = {
   unfollow: "bi bi-person-x-fill",
   follow: "bi bi-person-fill-add",
   contact: "bi bi-envelope-fill",
+  openMsg: "bi bi-envelope-open",
 };
 
 export default ICONS;
