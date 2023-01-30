@@ -4,6 +4,7 @@ export interface IBookmark {
   name: string;
   email: string;
   profile: string;
+  exist?: string;
 }
 
 export interface BookmarkProps {

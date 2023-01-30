@@ -102,15 +102,17 @@ export default function PersonCard({ data, type }: BookmarkProps) {
             삭제
           </Button>
         ) : (
-          <Button onClick={() => onClickAddBookmark(me.id, data.memberId)}>
-            <Icon
-              className="follow"
-              border={0.1}
-              color={GREY[700]}
-              size="1.7rem"
-            />
-            추가
-          </Button>
+          data.exist && (
+            <Button onClick={() => onClickAddBookmark(me.id, data.memberId)}>
+              <Icon
+                className="follow"
+                border={0.1}
+                color={GREY[700]}
+                size="1.7rem"
+              />
+              추가
+            </Button>
+          )
         )}
       </Wrapper>
     </Container>

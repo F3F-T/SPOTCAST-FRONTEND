@@ -9,6 +9,16 @@ export const getDate = (itemDate: string) => {
 export const getTime = (itemDate: string) => {
   if (itemDate) {
     const newTime = itemDate?.split("T")[1].split(":").map(Number);
+    if (newTime[0] === 0) {
+      if (newTime[1] < 10) {
+        const min = `${newTime[1].toString()}`;
+        return `오전 12:0${min}`;
+      }
+      if (newTime[1] > 10) {
+        const min = `${newTime[1]}`;
+        return `오전 12:${min}`;
+      }
+    }
     if (newTime[0] < 12) {
       const hour = `오전 ${newTime[0]}`;
       if (newTime[1] < 10) {
@@ -29,6 +39,16 @@ export const getTime = (itemDate: string) => {
       if (newTime[1] > 10) {
         const min = `${newTime[1]}`;
         return `${hour}:${min}`;
+      }
+    }
+    if (newTime[0] === 12) {
+      if (newTime[1] < 10) {
+        const min = `${newTime[1].toString()}`;
+        return `오후 12:0${min}`;
+      }
+      if (newTime[1] > 10) {
+        const min = `${newTime[1]}`;
+        return `오후 12:${min}`;
       }
     }
   }
