@@ -25,6 +25,10 @@ const EditorWithForwardedRef = React.forwardRef<
 
 interface TuiEditorPropsWithHandlers extends TuiEditorProps {
   onChange(value: string): void;
+  /* 
+  parent 컴포넌트에서 onChange 핸들러를 만들고, value로 값을 가져오시면 됩니다.
+  ex. const editorOnChange = (val) => {console.log(val)}
+  */
 }
 
 function Editor({
@@ -37,7 +41,6 @@ function Editor({
   onChange,
 }: TuiEditorPropsWithHandlers) {
   const editorRef = React.useRef<TuiEditor>();
-  /* forwardRef: Parent */
 
   const handleChange = React.useCallback(() => {
     if (!editorRef.current) {

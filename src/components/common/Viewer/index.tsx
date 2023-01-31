@@ -8,11 +8,11 @@ const TuiViewer = dynamic(
 );
 
 interface TuiViewerProps {
-  value: string;
+  content: string;
 }
 
-function Viewer({ value }: TuiViewerProps) {
-  return <TuiViewer initialValue={value || ""} />;
+function Viewer({ content }: TuiViewerProps) {
+  return <TuiViewer initialValue={content || ""} />;
 }
 
 export default Viewer;
