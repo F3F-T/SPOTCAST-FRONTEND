@@ -90,7 +90,7 @@ export default function PersonCard({ data, type }: BookmarkProps) {
             <Date>{data.email}</Date>
           </div>
         </NoneButton>
-        {type === "FOLLOWING" ? (
+        {type === "FOLLOWING" && (
           <Button onClick={() => onClickDeleteBookmark(me.id, data.memberId)}>
             <Icon
               className="unfollow"
@@ -100,18 +100,17 @@ export default function PersonCard({ data, type }: BookmarkProps) {
             />
             삭제
           </Button>
-        ) : (
-          data.exist && (
-            <Button onClick={() => onClickAddBookmark(me.id, data.memberId)}>
-              <Icon
-                className="follow"
-                border={0.1}
-                color={GREY[700]}
-                size="1.7rem"
-              />
-              추가
-            </Button>
-          )
+        )}
+        {type === "FOLLOWER" && !data.exist && (
+          <Button onClick={() => onClickAddBookmark(me.id, data.memberId)}>
+            <Icon
+              className="follow"
+              border={0.1}
+              color={GREY[700]}
+              size="1.7rem"
+            />
+            추가
+          </Button>
         )}
       </Wrapper>
     </Container>

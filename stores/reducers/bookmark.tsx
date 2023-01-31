@@ -104,9 +104,12 @@ const bookmarkSlice = createSlice({
         state.addBookmarkDone = false;
         state.addBookmarkError = null;
       })
-      .addCase(addBookmark.fulfilled, state => {
+      .addCase(addBookmark.fulfilled, (state, action) => {
         state.addBookmarkLoadng = false;
         state.addBookmarkDone = true;
+        state.follower = state.follower.map(i =>
+          i.memberId === action.payload ? { ...i, exist: true } : i,
+        );
       })
       .addCase(addBookmark.rejected, (state, action) => {
         state.addBookmarkLoadng = false;
