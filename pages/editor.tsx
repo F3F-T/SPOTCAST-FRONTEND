@@ -1,10 +1,10 @@
 import React from "react";
 import Editor from "../src/components/common/Editor";
+import Viewer from "../src/components/common/Viewer";
 
-function editor() {
+function Index() {
   const onChangeHanlder = (value: any) => {
-    // eslint-disable-next-line no-console
-    console.log(value);
+    console.log(`value : ${value}`);
   };
   return (
     <div>
@@ -15,8 +15,10 @@ function editor() {
         initialEditType="wysiwyg"
         hideModeSwitch
       />
+
+      <Viewer content="content" />
     </div>
   );
 }
 
-export default editor;
+export default Index;
