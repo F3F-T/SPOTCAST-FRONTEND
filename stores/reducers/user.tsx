@@ -1,11 +1,12 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from "@reduxjs/toolkit";
 import { authLogin, authLogout, authSignUp, loadMe } from "../../src/api/auth";
+import { addBookmark, deleteBookmark } from "../../src/api/bookmark";
 import { editMyInfo, loadUser } from "../../src/api/user";
 
 type UserState = {
   IsUserLoggedIn: boolean;
-  me: object; // 내 정보
+  me: any; // 내 정보
   user: object;
   loginLoading: boolean; // 로그인 시도중
   loginDone: boolean;
@@ -139,7 +140,12 @@ const userSlice = createSlice({
       .addCase(editMyInfo.rejected, (state, action) => {
         state.loadMeError = action.payload;
       })
-
+      .addCase(addBookmark.fulfilled, state => {
+        state.me.following += 1;
+      })
+      .addCase(deleteBookmark.fulfilled, state => {
+        state.me.following -= 1;
+      })
       .addDefaultCase(state => state),
 });
 
