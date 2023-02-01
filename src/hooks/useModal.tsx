@@ -15,6 +15,7 @@ import { getDate, getTime } from "../util/date";
 import useInput from "./useInput";
 import useBodyScrollLock from "./useBodyScrollLock";
 import { UserProps } from "../interface/user";
+import { resetFollower, resetFollowing } from "../../stores/reducers/bookmark";
 
 export function useMsgModal({ user }: UserProps) {
   const dispatch = useDispatch<AppDispatch>();
@@ -108,9 +109,12 @@ export function useFollowingBookmarkModal() {
     (state: RootState) => state.context,
   );
   const { lockScroll, openScroll } = useBodyScrollLock();
-  const { following, hasMoreFollowing, loadFollowingLoading } = useSelector(
-    (state: RootState) => state.bookmark,
-  );
+  const {
+    following,
+    hasMoreFollowing,
+    loadFollowingLoading,
+    loadFollowingDone,
+  } = useSelector((state: RootState) => state.bookmark);
 
   const openBookmarkModal = async () => {
     dispatch(setFollowingModal(true));
@@ -119,14 +123,13 @@ export function useFollowingBookmarkModal() {
   };
   const closeBookmarkModal = () => {
     dispatch(setFollowingModal(false));
+    dispatch(resetFollowing());
     openScroll();
   };
 
   const loadNext = async (num: number) => {
     if (!loadFollowingLoading && hasMoreFollowing) {
-      await setTimeout(() => {
-        dispatch(loadFollowing(num));
-      }, 3000);
+      dispatch(loadFollowing(num));
     }
   };
 
@@ -138,6 +141,7 @@ export function useFollowingBookmarkModal() {
     following,
     hasMoreFollowing,
     loadFollowingLoading,
+    loadFollowingDone,
   };
 }
 
@@ -147,9 +151,8 @@ export function useFollowerBookmarkModal() {
     (state: RootState) => state.context,
   );
   const { lockScroll, openScroll } = useBodyScrollLock();
-  const { follower, hasMoreFollower, loadFollowerLoading } = useSelector(
-    (state: RootState) => state.bookmark,
-  );
+  const { follower, hasMoreFollower, loadFollowerLoading, loadFollowerDone } =
+    useSelector((state: RootState) => state.bookmark);
 
   const openBookmarkModal = async () => {
     dispatch(setFollowerModal(true));
@@ -158,14 +161,13 @@ export function useFollowerBookmarkModal() {
   };
   const closeBookmarkModal = () => {
     dispatch(setFollowerModal(false));
+    dispatch(resetFollower());
     openScroll();
   };
 
   const loadNext = async (num: number) => {
     if (!loadFollowerLoading && hasMoreFollower) {
-      await setTimeout(() => {
-        dispatch(loadFollower(num));
-      }, 3000);
+      await dispatch(loadFollower(num));
     }
   };
 
@@ -177,5 +179,6 @@ export function useFollowerBookmarkModal() {
     follower,
     hasMoreFollower,
     loadFollowerLoading,
+    loadFollowerDone,
   };
 }

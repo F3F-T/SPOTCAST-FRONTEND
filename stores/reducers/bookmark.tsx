@@ -50,7 +50,14 @@ export const initialState: BookmarkState = {
 const bookmarkSlice = createSlice({
   name: "bookmark",
   initialState,
-  reducers: {},
+  reducers: {
+    resetFollowing(state) {
+      state.following = [];
+    },
+    resetFollower(state) {
+      state.follower = [];
+    },
+  },
   extraReducers: builder =>
     builder
       .addCase(loadFollower.pending, state => {
@@ -118,4 +125,6 @@ const bookmarkSlice = createSlice({
 
       .addDefaultCase(state => state),
 });
+
+export const { resetFollower, resetFollowing } = bookmarkSlice.actions;
 export default bookmarkSlice;
