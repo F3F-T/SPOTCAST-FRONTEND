@@ -22,9 +22,9 @@ export default function useLogin() {
     } else router.push("/");
   };
 
-  const useLogout = useCallback(() => {
-    dispatch(authLogout());
-    router.push("/");
+  const useLogout = useCallback(async () => {
+    await dispatch(authLogout());
+    window.location.replace("/");
   }, []);
 
   const onSubmitForm = useCallback(
