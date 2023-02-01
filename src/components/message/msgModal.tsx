@@ -72,6 +72,14 @@ const StyledButton = styled(Button)`
   right: 0;
   top: 0.5rem;
 `;
+
+const TextCount = styled.div`
+  padding: 1rem 0.8rem;
+  font-size: 1.1rem;
+  width: 100%;
+  text-align: end;
+  font-weight: 300;
+`;
 export default function MsgModal({ user }: UserProps) {
   const {
     title,
@@ -111,7 +119,9 @@ export default function MsgModal({ user }: UserProps) {
           value={content}
           onChange={onChangeContent}
           placeholder="메시지 내용을 입력해주세요."
+          maxLength={500}
         />
+        <TextCount> {content.length}/500</TextCount>
       </Wrapper>
       <Line width="100%" color={GREY[400]} />
       <Bottom>
