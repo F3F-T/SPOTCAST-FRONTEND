@@ -12,7 +12,7 @@ export const BookmartButton = styled.button`
   padding: 0;
   font-size: 1.8rem;
   position: absolute;
-  top: 0.9rem;
+  top: 1.2rem;
   right: 1.2rem;
   background-color: transparent;
   cursor: pointer;
@@ -32,9 +32,13 @@ export const ImageContainer = styled.div`
 `;
 
 export const Title = styled.a`
-  display: block;
+  display: -webkit-box;
   font-size: 1.9rem;
+  min-height: calc(1.9rem * 2);
   margin-bottom: 0.6rem;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `;
 
 export const Subtitle = styled.a`

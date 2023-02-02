@@ -18,7 +18,8 @@ interface CastingProps {
   companyUrl: string;
   title: string;
   subtitle: string;
-  endingDate: Date;
+  endDate: string;
+  remaining: number;
 }
 
 function CastingCard({
@@ -27,7 +28,8 @@ function CastingCard({
   companyUrl = "/company/YG",
   title = "2023 YG NATIONAL AUDITION TOUR",
   subtitle = "YG Entertainment",
-  endingDate,
+  endDate = "2023-02-11",
+  remaining = 14,
 }: CastingProps) {
   return (
     <CardContainer>
@@ -41,8 +43,12 @@ function CastingCard({
       <Title href={postUrl}>{title}</Title>
       <Subtitle href={companyUrl}>{subtitle}</Subtitle>
       <EndDate>
-        <Date>2023-02-11 마감</Date>
-        <Remainder>D-14</Remainder>
+        <Date>
+          <span>{endDate}</span> 마감
+        </Date>
+        <Remainder>
+          D-<span>{remaining}</span>
+        </Remainder>
       </EndDate>
     </CardContainer>
   );
