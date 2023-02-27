@@ -74,12 +74,15 @@ const Login = styled.div`
   align-items: center;
   gap: 1rem;
   font-size: 1.3rem;
+  width: 30rem;
   padding-left: 7rem;
 `;
 const LoggedIn = styled.div`
   display: flex;
   align-items: center;
   gap: 0.7rem;
+  width: 30rem;
+  justify-content: end;
   font-size: 1.3rem;
 `;
 
@@ -100,9 +103,9 @@ const StyledButton = styled(Button)`
 const IconButton = styled.button`
   background-color: transparent;
   outline: none;
+  height: 3.5rem;
   cursor: pointer;
   border: none;
-
   &:hover {
     opacity: 0.6;
   }

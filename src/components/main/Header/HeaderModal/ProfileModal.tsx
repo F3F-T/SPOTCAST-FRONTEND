@@ -5,6 +5,7 @@ import { GREY, INDIGO } from "../../../../constants/colors";
 import useLogin from "../../../../hooks/useLogin";
 import Line from "../../../common/Line";
 import { getMe } from "../../../../util/lib";
+import Unknown from "./Unknown";
 
 const Container = styled.div`
   width: 34rem;
@@ -14,7 +15,7 @@ const Container = styled.div`
   border: 0.1rem solid ${GREY[200]};
   position: absolute;
   display: flex;
-  margin-top: 1rem;
+  margin-top: 0.8rem;
   flex-direction: column;
   justify-content: space-evenly;
   box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
@@ -68,41 +69,47 @@ const Email = styled.div`
 `;
 export default function ProfileModal() {
   const { useLogout } = useLogin();
-  const { me } = getMe();
+  const { me, IsUserLoggedIn } = getMe();
   const router = useRouter();
   return (
-    <Container>
-      <div>
-        <UserWrapper>
-          <Image src={me.profile} />
+    <div>
+      {IsUserLoggedIn ? (
+        <Container>
           <div>
-            <Name>{me.name}</Name>
-            <Email>{me.email}</Email>
+            <UserWrapper>
+              <Image src={me.profile} />
+              <div>
+                <Name>{me.name}</Name>
+                <Email>{me.email}</Email>
+              </div>
+            </UserWrapper>
           </div>
-        </UserWrapper>
-      </div>
-      <Line width="100%" color={GREY[300]} />
-      <ButtonWrapper>
-        <Button
-          onClick={() => {
-            router.push("/profile");
-          }}
-        >
-          나의 프로필
-        </Button>
-        <Button
-          onClick={() => {
-            router.push("/bookmark");
-          }}
-        >
-          즐겨찾기
-        </Button>
-        <Button>스크랩</Button>
-      </ButtonWrapper>
-      <Line width="100%" color={GREY[300]} />
-      <ButtonWrapper>
-        <Button onClick={useLogout}>로그아웃</Button>{" "}
-      </ButtonWrapper>
-    </Container>
+          <Line width="100%" color={GREY[300]} />
+          <ButtonWrapper>
+            <Button
+              onClick={() => {
+                router.push("/profile");
+              }}
+            >
+              나의 프로필
+            </Button>
+            <Button
+              onClick={() => {
+                router.push("/bookmark");
+              }}
+            >
+              즐겨찾기
+            </Button>
+            <Button>스크랩</Button>
+          </ButtonWrapper>
+          <Line width="100%" color={GREY[300]} />
+          <ButtonWrapper>
+            <Button onClick={useLogout}>로그아웃</Button>
+          </ButtonWrapper>
+        </Container>
+      ) : (
+        <Unknown />
+      )}
+    </div>
   );
 }

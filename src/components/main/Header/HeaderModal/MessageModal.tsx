@@ -6,6 +6,8 @@ import Line from "../../../common/Line";
 import Icon from "../../../common/Icon";
 import { IMessage } from "../../../../interface/messgae";
 import MessagePreview from "./MessagePreview";
+import { getMe } from "../../../../util/lib";
+import Unknown from "./Unknown";
 
 const Container = styled.div`
   width: 40rem;
@@ -14,7 +16,7 @@ const Container = styled.div`
   border-radius: 0.5rem;
   border: 0.1rem solid ${GREY[200]};
   position: absolute;
-  margin-top: 1.3rem;
+  margin-top: 0.8rem;
   box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
   overflow: scroll;
   ::-webkit-scrollbar {
@@ -68,32 +70,39 @@ export default function MessageModal({
   showModal: Function;
 }) {
   const router = useRouter();
+  const { IsUserLoggedIn } = getMe();
   return (
-    <Container>
-      <TitleWrapper>
-        <Title>메시지</Title>
-        <ButtonWrapper>
-          <Button
+    <div>
+      {IsUserLoggedIn ? (
+        <Container>
+          <TitleWrapper>
+            <Title>메시지</Title>
+            <ButtonWrapper>
+              <Button
+                onClick={() => {
+                  router.push("/message");
+                }}
+              >
+                모든 메시지 보기
+              </Button>
+              <Icon className="arrowRight" border={0.4} size="1.3rem" />
+            </ButtonWrapper>
+          </TitleWrapper>
+          <Line width="100%" color={GREY[300]} />
+          <PrevButton
             onClick={() => {
+              showModal("MESSAGE");
               router.push("/message");
             }}
           >
-            모든 메시지 보기
-          </Button>
-          <Icon className="arrowRight" border={0.4} size="1.3rem" />
-        </ButtonWrapper>
-      </TitleWrapper>
-      <Line width="100%" color={GREY[300]} />
-      <PrevButton
-        onClick={() => {
-          showModal("MESSAGE");
-          router.push("/message");
-        }}
-      >
-        {data?.map(item => (
-          <MessagePreview item={item} />
-        ))}
-      </PrevButton>
-    </Container>
+            {data?.map(item => (
+              <MessagePreview item={item} />
+            ))}
+          </PrevButton>
+        </Container>
+      ) : (
+        <Unknown />
+      )}
+    </div>
   );
 }

@@ -18,7 +18,7 @@ export default function Header() {
   const menu = [
     { name: "캐스팅/오디션", href: "/casting" },
     { name: "공개 포트폴리오", href: "/portfolio" },
-    { name: "구인 공고", href: "/crew" },
+    { name: "구인 공고", href: "/recruit" },
     { name: "커뮤니티", href: "/community" },
   ];
 
