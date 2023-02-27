@@ -34,6 +34,8 @@ const ICONS: IconType = {
   contact: "bi bi-envelope-fill",
   openMsg: "bi bi-envelope-open",
   sort: "bi bi-sort-down",
+  heartEmpty: "bi bi-heart",
+  heartFill: "bi bi-heart-fill",
 };
 
 export default ICONS;

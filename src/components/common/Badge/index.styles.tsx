@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { GREY, MUSTARD, INDIGO } from "../../../constants/colors";
+import { GREY, MUSTARD, INDIGO, WHITE, BLACK } from "../../../constants/colors";
 
 export type BadgeVariant = "mustard" | "indigo" | "grey";
 export type BadgeSize = "large" | "medium" | "small";
@@ -17,6 +17,7 @@ const Wrapper = styled.span<{
   className?: string;
 }>`
   ${({ variant, size }) => `
+  color : ${variant === "indigo" || "mustard" ? WHITE : BLACK};
   background-color: ${
     {
       mustard: MUSTARD,
@@ -27,7 +28,7 @@ const Wrapper = styled.span<{
   font-size: ${{ large: "2rem", medium: "1.5rem", small: "1rem" }[size]};
   `}
   display: block;
-  font-weight: bold;
+  font-weight: 500;
   padding: 0.5em 1em;
   width: fit-content;
   border-radius: 0.3em;

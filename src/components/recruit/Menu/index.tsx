@@ -95,7 +95,7 @@ const Progress = styled.button<{ selected: boolean }>`
 `;
 
 const CategoryButton = styled(Button)<{ selected: string }>`
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   padding: 1rem 2.7rem;
   border-radius: 2.85rem;
   ${({ selected }) => `
@@ -115,6 +115,7 @@ const SortButton = styled.button`
   width: 12rem;
   border: 0.1rem solid ${GREY[500]};
   padding: 1rem;
+  margin-left: 2rem;
   display: flex;
   justify-content: space-around;
 `;
