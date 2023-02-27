@@ -25,11 +25,11 @@ export default function useSignUp() {
 
   const onSubmitEmailAuth = useCallback(() => {
     authEmailConfirms(email, authNumber)
-      .then(res => {
+      .then((res: any) => {
         const isConfirmedEmail = res.data;
         if (isConfirmedEmail) setIsEmailConfirms(true);
       })
-      .catch(err => {
+      .catch((err: any) => {
         if (err.response.status === 403) {
           console.error("에러!");
         }
