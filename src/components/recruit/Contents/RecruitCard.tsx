@@ -3,6 +3,7 @@ import React from "react";
 import { INDIGO } from "../../../constants/colors";
 import CardCategory from "./CardCategory";
 import CardDetail from "./CardDetail";
+import useRecruit from "../../../hooks/useRecruit";
 
 const Container = styled.div`
   width: 87rem;
@@ -13,11 +14,19 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+const Button = styled.div`
+  cursor: pointer;
+  background-color: transparent;
+`;
 export default function RecruitCard() {
+  const { replacePostPage } = useRecruit();
+
   return (
-    <Container>
-      <CardDetail />
-      <CardCategory />
-    </Container>
+    <Button onClick={replacePostPage}>
+      <Container>
+        <CardDetail />
+        <CardCategory />
+      </Container>
+    </Button>
   );
 }

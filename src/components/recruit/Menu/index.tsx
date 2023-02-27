@@ -21,7 +21,6 @@ export default function Menu() {
   ];
   const [currentCategory, setCurrentCategory] = useState("실용 음악");
   const [currentMenu, setCurrentMenu] = useState("진행중");
-
   return (
     <Container>
       <div>
@@ -52,6 +51,7 @@ export default function Menu() {
           <Icon className="sort" border={0.1} size="1.8rem" />
           최신순
         </SortButton>
+        <WriteButton>작성하기⚡</WriteButton>
       </CategoryList>
 
       <Line width="100%" color={GREY[400]} />
@@ -95,8 +95,8 @@ const Progress = styled.button<{ selected: boolean }>`
 `;
 
 const CategoryButton = styled(Button)<{ selected: string }>`
-  font-size: 1.6rem;
-  padding: 1rem 2.7rem;
+  font-size: 1.5rem;
+  padding: 1rem 2.3rem;
   border-radius: 2.85rem;
   ${({ selected }) => `
       color: ${selected === "active" ? BLACK : GREY[600]};
@@ -110,12 +110,24 @@ const CategoryButton = styled(Button)<{ selected: string }>`
 
 const SortButton = styled.button`
   background-color: white;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   border-radius: 0.5rem;
-  width: 12rem;
+  width: 11rem;
   border: 0.1rem solid ${GREY[500]};
   padding: 1rem;
   margin-left: 2rem;
   display: flex;
+  align-items: center;
   justify-content: space-around;
+`;
+
+const WriteButton = styled.button`
+  font-size: 1.4rem;
+  width: 11rem;
+  border-radius: 0.5rem;
+  border: 0.1rem solid ${GREY[500]};
+  padding: 1rem;
+  color: white;
+  background-color: ${GREY[700]};
+  margin-left: 0.3rem;
 `;

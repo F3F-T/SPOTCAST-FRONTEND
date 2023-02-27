@@ -6,7 +6,7 @@ import RecruitCard from "./RecruitCard";
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 5rem;
+  margin-top: 4rem;
 `;
 
 const CardWrapper = styled.div`
