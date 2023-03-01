@@ -8,6 +8,7 @@ import useEditForm from "../../../../../../hooks/useEditForm";
 const Container = styled.div`
   width: 75rem;
   border-radius: 0.5rem;
+  margin-top: 1rem;
 `;
 const Form = styled.div`
   width: 100%;
