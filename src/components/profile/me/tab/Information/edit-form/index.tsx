@@ -12,7 +12,7 @@ const Container = styled.div`
 `;
 const ButtonWrapper = styled.div`
   width: 100%;
-  padding: 3.3rem 0 4.3rem 0;
+  padding: 4.3rem 0 4.3rem 0;
   position: relative;
 `;
 const EditButton = styled(Button)`

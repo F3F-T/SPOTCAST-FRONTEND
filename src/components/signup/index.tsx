@@ -17,7 +17,7 @@ import {
 export default function Signup() {
   const router = useRouter();
 
-  const googloSignup = `http://localhost:8080/oauth2/authorization/google?redirect_uri=http://localhost:3000/redirect`;
+  const googloSignup = `http://localhost:80/oauth2/authorization/google?redirect_uri=http://localhost:3000/redirect`;
   const kakaoSignup = ``;
 
   const EmailLogin = useCallback(() => {

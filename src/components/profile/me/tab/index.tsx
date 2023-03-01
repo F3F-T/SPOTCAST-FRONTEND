@@ -17,7 +17,7 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  padding-top: 7.5rem;
+  padding-top: 8.5rem;
 `;
 
 const ButtonWrapper = styled.div`

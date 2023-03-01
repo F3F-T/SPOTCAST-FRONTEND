@@ -28,6 +28,7 @@ const Img = styled.img`
   width: 3rem;
   height: 3rem;
   border-radius: 10rem;
+  object-fit: cover;
   background-color: ${GREY[400]};
 `;
 

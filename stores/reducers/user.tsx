@@ -2,7 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { authLogin, authLogout, authSignUp, loadMe } from "../../src/api/auth";
 import { addBookmark, deleteBookmark } from "../../src/api/bookmark";
-import { editMyInfo, loadUser } from "../../src/api/user";
+import { changeProfile, editMyInfo, loadUser } from "../../src/api/user";
 
 type UserState = {
   IsUserLoggedIn: boolean;
@@ -23,6 +23,7 @@ type UserState = {
   loadUserLoading: boolean;
   loadUserDone: boolean;
   loadUserError: any;
+  changeProfileError: any;
 };
 
 // 기본 state
@@ -45,6 +46,7 @@ export const initialState: UserState = {
   loadUserLoading: false,
   loadUserDone: false,
   loadUserError: null,
+  changeProfileError: null,
 };
 
 const userSlice = createSlice({
@@ -145,6 +147,12 @@ const userSlice = createSlice({
       })
       .addCase(deleteBookmark.fulfilled, state => {
         state.me.following -= 1;
+      })
+      .addCase(changeProfile.fulfilled, (state, action) => {
+        state.me.profile = action.payload;
+      })
+      .addCase(changeProfile.rejected, (state, action) => {
+        state.me.chagneProfileError = action.payload;
       })
       .addDefaultCase(state => state),
 });

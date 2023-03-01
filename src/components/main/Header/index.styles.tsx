@@ -118,6 +118,7 @@ const Img = styled.img<{ selected: boolean }>`
 `}
   width: 3.1rem;
   height: 3.1rem;
+  object-fit: cover;
   border-radius: 20rem;
   &:hover {
     opacity: 0.6;

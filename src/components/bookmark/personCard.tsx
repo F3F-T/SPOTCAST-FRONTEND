@@ -32,6 +32,7 @@ const Wrapper = styled.div`
 const Img = styled.img`
   width: 5rem;
   height: 5rem;
+  object-fit: cover;
   border-radius: 10rem;
   background-color: ${GREY[400]};
 `;
