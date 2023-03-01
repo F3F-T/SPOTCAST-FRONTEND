@@ -29,6 +29,7 @@ const Left = styled.div`
 const Img = styled.img`
   width: 4rem;
   height: 4rem;
+  object-fit: cover;
   border-radius: 10rem;
   background-color: ${GREY[400]};
 `;

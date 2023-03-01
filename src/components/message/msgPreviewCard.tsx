@@ -27,6 +27,7 @@ const Img = styled.img`
   width: 6rem;
   height: 6rem;
   border-radius: 10rem;
+  object-fit: cover;
   background-color: ${GREY[400]};
 `;
 const UserWrapper = styled.div`

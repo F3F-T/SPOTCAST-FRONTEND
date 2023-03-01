@@ -36,6 +36,7 @@ const ICONS: IconType = {
   sort: "bi bi-sort-down",
   heartEmpty: "bi bi-heart",
   heartFill: "bi bi-heart-fill",
+  plusCircle: "bi bi-plus-circle",
 };
 
 export default ICONS;
