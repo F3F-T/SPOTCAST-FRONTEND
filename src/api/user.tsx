@@ -57,4 +57,32 @@ const loadUser = createAsyncThunk(
   },
 );
 
-export { editMyInfo, loadUser };
+const changeProfile = createAsyncThunk(
+  "user/changeProfile",
+  async ({ image, id }: { image: any; id: number }, { rejectWithValue }) => {
+    try {
+      const response = await authorizationClient.patch(
+        `${API.MEMBER}${id}/change/profile`,
+        image,
+      );
+      return response.data.data;
+    } catch (error: any) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+const changeProfileDefault = createAsyncThunk(
+  "user/changeProfile",
+  async (id: number, { rejectWithValue }) => {
+    try {
+      const response = await authorizationClient.patch(
+        `${API.MEMBER}${id}/profile`,
+      );
+      return response.data.data;
+    } catch (error: any) {
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
+export { editMyInfo, loadUser, changeProfile, changeProfileDefault };
