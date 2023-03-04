@@ -7,7 +7,12 @@ export default function useRecruit() {
     router.push("/recruit/post");
   };
 
+  const replaceFormPage = () => {
+    router.push("/recruit/form");
+  };
+
   return {
     replacePostPage,
+    replaceFormPage,
   };
 }

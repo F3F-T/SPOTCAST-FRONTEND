@@ -5,6 +5,7 @@ import { BLACK, GREY } from "../../../constants/colors";
 import Button from "../../common/Button";
 import Icon from "../../common/Icon";
 import Line from "../../common/Line";
+import useRecruit from "../../../hooks/useRecruit";
 
 export default function Menu() {
   const menu = ["진행중", "진행 마감"];
@@ -21,6 +22,7 @@ export default function Menu() {
   ];
   const [currentCategory, setCurrentCategory] = useState("실용 음악");
   const [currentMenu, setCurrentMenu] = useState("진행중");
+  const { replaceFormPage } = useRecruit();
   return (
     <Container>
       <div>
@@ -51,7 +53,13 @@ export default function Menu() {
           <Icon className="sort" border={0.1} size="1.8rem" />
           최신순
         </SortButton>
-        <WriteButton>작성하기⚡</WriteButton>
+        <WriteButton
+          onClick={() => {
+            replaceFormPage();
+          }}
+        >
+          작성하기⚡
+        </WriteButton>
       </CategoryList>
 
       <Line width="100%" color={GREY[400]} />

@@ -10,7 +10,7 @@ export default function Post() {
     { name: "제작", contents: "이방인들" },
     { name: "모집 인원", contents: "3명" },
     { name: "모집 분야", contents: "영화" },
-    { name: "작성자", contents: "이방인들" },
+    { name: "모집 마감", contents: "2023-03-14" },
     { name: "참여 기간", contents: "3개월 이상" },
     { name: "전화번호", contents: "" },
     { name: "페이", contents: "없음" },
