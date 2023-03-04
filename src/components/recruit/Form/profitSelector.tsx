@@ -1,21 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import * as styles from "./index.styles";
 import Icon from "../../common/Icon";
+import useRecruit from "../../../hooks/useRecruit";
 
 export default function ProfitSelector() {
-  const [types, setTypes] = useState([
-    {
-      id: 0,
-      title: "수익성",
-      selected: true,
-    },
-    {
-      id: 1,
-      title: "비수익성(포트폴리오)",
-      selected: false,
-    },
-  ]);
-
+  const { types, onToggleCheck } = useRecruit();
   return (
     <styles.ProfitWrapper>
       <div>
@@ -28,7 +17,9 @@ export default function ProfitSelector() {
           <styles.ProfitTypeWrapper
             checked={item.selected}
             key={item.id}
-            onClick={() => {}}
+            onClick={() => {
+              onToggleCheck(item.id);
+            }}
           >
             {item.selected ? (
               <Icon className="checked" border={0.5} size="2rem" />
