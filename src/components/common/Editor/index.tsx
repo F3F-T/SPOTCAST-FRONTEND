@@ -58,7 +58,7 @@ function Editor({
 
   const uploadImage = async (blob: Blob | File) => {
     /* s3에 post 후 응답값에서 url string을 뱉어야 함 */
-    const reqUrl = "s3어쩌고/image/upload";
+    const reqUrl = "/board/boardImage/{boardId}";
     const formData = new FormData();
     formData.append("data", blob);
     fetch(reqUrl, {
@@ -66,17 +66,23 @@ function Editor({
       cache: "no-cache",
       body: formData,
     })
-      .then(response => console.log(response)) /* 응답값 중 s3 url을 리턴 */
+      .then(response => {
+        return response.data;
+      }) /* 응답값 중 s3 url을 리턴 */
       .catch(error => console.log(error));
   };
 
   const handleImage = async (blob: Blob | File, callback: HookCallback) => {
     const url = await uploadImage(blob);
     const mockUrl = "www.image.com/s3/somethisng";
-    callback(mockUrl, "alt text");
+    callback(url, "alt text");
     console.log(blob);
     return false;
   };
+  /* https://leego.tistory.com/entry/Toast-UI-Editor-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%B2%A8%EB%B6%80%ED%95%98%EA%B8%B0 */
+  /* https://dev-swlee.tistory.com/16 */
+  /* https://jforj.tistory.com/212 */
+  /* https://okky.kr/articles/1025404?note=2473708 */
 
   return (
     <EditorWithForwardedRef
