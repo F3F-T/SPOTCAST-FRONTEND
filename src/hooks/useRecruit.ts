@@ -61,16 +61,13 @@ export default function useRecruit() {
     },
     [types],
   );
-
   useEffect(() => {
-    // eslint-disable-next-line array-callback-return
-    types.map(i => {
-      if (i.selected) {
-        setProfitStatus(i.profitStatus);
-      }
-    });
-    console.log(profitStatus);
+    if (types[0].selected && !types[1].selected)
+      setProfitStatus(types[0].profitStatus);
+    else if (!types[0].selected && types[1].selected)
+      setProfitStatus(types[1].profitStatus);
   }, [types]);
+
   const onSubmitForm = () => {
     const data = {
       title,
@@ -92,32 +89,84 @@ export default function useRecruit() {
         id: me.id,
       },
     };
-    console.log(profitStatus);
     dispatch(postRecruit(data));
   };
+  const inputs = [
+    {
+      outerLabel: "제작",
+      label: "제작사 또는 조직명",
+      size: 19.5,
+      type: "text",
+      value: "",
+      onChange: "",
+    },
+    {
+      outerLabel: "모집 분야",
+      label: "ex. 영화, 모델",
+      size: 19,
+      type: "text",
+      value: recruitType,
+      onChange: onChangeRecruitType,
+    },
+    {
+      outerLabel: "모집 인원",
+      label: "필요 인원 수",
+      size: 19,
+      type: "text",
+      value: recruitVolume,
+      onChange: onChangeRecruitVolume,
+    },
+    {
+      outerLabel: "모집 마감",
+      label: "",
+      size: 19,
+      type: "date",
+      value: regDate,
+      onChange: onChangeRegDate,
+    },
+    {
+      outerLabel: "페이",
+      label: "비수익성일 경우 미기재 가능",
+      size: 19.5,
+      type: "text",
+      value: pay,
+      onChange: onChangePay,
+    },
+    {
+      outerLabel: "전화번호",
+      label: "담당자 전화번호",
+      size: 19.5,
+      type: "text",
+      value: phone,
+      onChange: onChangePhone,
+    },
+    {
+      outerLabel: "참여 기간",
+      label: "작업 참여 기간",
+      size: 19.5,
+      type: "text",
+      value: participationPeriod,
+      onChange: onChangeParticipationPeriod,
+    },
+    {
+      outerLabel: "이메일",
+      label: "담당자 이메일",
+      size: 19.5,
+      type: "email",
+      value: supportEmail,
+      onChange: onChangeSupportEmail,
+    },
+  ];
   return {
     types,
     replacePostPage,
     replaceFormPage,
     onToggleCheck,
     title,
-    recruitType,
-    recruitVolume,
-    regDate,
-    pay,
-    phone,
-    supportEmail,
-    participationPeriod,
     contents,
     onChangeTitle,
-    onChangeRecruitType,
-    onChangeRecruitVolume,
-    onChangeRegDate,
-    onChangePay,
-    onChangePhone,
-    onChangeSupportEmail,
-    onChangeParticipationPeriod,
     onChangeContents,
     onSubmitForm,
+    inputs,
   };
 }
