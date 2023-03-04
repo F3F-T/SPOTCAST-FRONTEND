@@ -1,98 +1,22 @@
 import React from "react";
 import * as styles from "./index.styles";
 import Input from "../../common/Input";
-import ProfitSelector from "./profitSelector";
 import Line from "../../common/Line";
 import useRecruit from "../../../hooks/useRecruit";
+import Icon from "../../common/Icon";
 
 export default function RecruitForm() {
   const {
+    types,
+    inputs,
     title,
-    recruitType,
-    recruitVolume,
-    regDate,
-    pay,
-    phone,
-    supportEmail,
-    participationPeriod,
     contents,
     onChangeTitle,
-    onChangeRecruitType,
-    onChangeRecruitVolume,
-    onChangeRegDate,
-    onChangePay,
-    onChangePhone,
-    onChangeParticipationPeriod,
-    onChangeSupportEmail,
     onChangeContents,
     onSubmitForm,
+    onToggleCheck,
   } = useRecruit();
-  const inputs = [
-    {
-      outerLabel: "제작",
-      label: "제작사 또는 조직명",
-      size: 19.5,
-      type: "text",
-      value: "",
-      onChange: "",
-    },
-    {
-      outerLabel: "모집 분야",
-      label: "ex. 영화, 모델",
-      size: 19,
-      type: "text",
-      value: recruitType,
-      onChange: onChangeRecruitType,
-    },
-    {
-      outerLabel: "모집 인원",
-      label: "필요 인원 수",
-      size: 19,
-      type: "text",
-      value: recruitVolume,
-      onChange: onChangeRecruitVolume,
-    },
-    {
-      outerLabel: "모집 마감",
-      label: "",
-      size: 19,
-      type: "date",
-      value: regDate,
-      onChange: onChangeRegDate,
-    },
-    {
-      outerLabel: "페이",
-      label: "비수익성일 경우 미기재 가능",
-      size: 19.5,
-      type: "text",
-      value: pay,
-      onChange: onChangePay,
-    },
-    {
-      outerLabel: "전화번호",
-      label: "담당자 전화번호",
-      size: 19.5,
-      type: "text",
-      value: phone,
-      onChange: onChangePhone,
-    },
-    {
-      outerLabel: "참여 기간",
-      label: "작업 참여 기간",
-      size: 19.5,
-      type: "text",
-      value: participationPeriod,
-      onChange: onChangeParticipationPeriod,
-    },
-    {
-      outerLabel: "이메일",
-      label: "담당자 이메일",
-      size: 19.5,
-      type: "email",
-      value: supportEmail,
-      onChange: onChangeSupportEmail,
-    },
-  ];
+
   return (
     <div>
       <styles.Title>
@@ -109,7 +33,33 @@ export default function RecruitForm() {
           label="제목"
           type="text"
         />
-        <ProfitSelector />
+        <styles.ProfitWrapper>
+          <div>
+            <styles.ProfitTypeTitle>
+              수익성/비수익성(포트폴리오) 선택<span> *</span>
+            </styles.ProfitTypeTitle>
+          </div>
+          <styles.Form>
+            {types.map(item => (
+              <styles.ProfitTypeWrapper
+                checked={item.selected}
+                key={item.id}
+                onClick={() => {
+                  onToggleCheck(item.id);
+                }}
+              >
+                {item.selected ? (
+                  <Icon className="checked" border={0.5} size="2rem" />
+                ) : (
+                  <Icon className="unchecked" border={0.5} size="2rem" />
+                )}
+                <styles.ProfitType>
+                  <styles.TypeTitle> {item.title}</styles.TypeTitle>
+                </styles.ProfitType>
+              </styles.ProfitTypeWrapper>
+            ))}
+          </styles.Form>
+        </styles.ProfitWrapper>
         {inputs.map(input => {
           return (
             <>
@@ -134,11 +84,20 @@ export default function RecruitForm() {
           type="text"
           isTextarea
         />
-        <styles.SubmitButton
-          onClick={onSubmitForm}
-          title="작성 완료"
-          buttonTheme="primary"
-        />
+        {types[0].selected || types[1].selected ? (
+          <styles.SubmitButton
+            onClick={onSubmitForm}
+            title="작성 완료"
+            buttonTheme="primary"
+          />
+        ) : (
+          <styles.SubmitButton
+            onClick={onSubmitForm}
+            title="작성 완료"
+            buttonTheme="primary"
+            disabled
+          />
+        )}
       </styles.Wrapper>
     </div>
   );
