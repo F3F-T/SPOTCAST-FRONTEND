@@ -22,6 +22,18 @@ export default function useRecruit() {
   const [participationPeriod, onChangeParticipationPeriod] = useInput("");
   const [contents, onChangeContents] = useInput("");
   const [profitStatus, setProfitStatus] = useState("PROFITABLE");
+  const [selectedTag, setSelectedTag] = useState("전체보기");
+  const tagOptions = [
+    { value: "실용 음악", label: "실용 음악" },
+    { value: "클래식", label: "클래식" },
+    { value: "영화", label: "영화" },
+    { value: "드라마", label: "드라마" },
+    { value: "연극", label: "연극" },
+    { value: "방송/예능", label: "방송/예능" },
+    { value: "모델", label: "모델" },
+    { value: "광고", label: "광고" },
+    { value: "기타", label: "기타" },
+  ];
 
   const replacePostPage = () => {
     router.push("/recruit/post");
@@ -168,5 +180,7 @@ export default function useRecruit() {
     onChangeContents,
     onSubmitForm,
     inputs,
+    setSelectedTag,
+    tagOptions,
   };
 }

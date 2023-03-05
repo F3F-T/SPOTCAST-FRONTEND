@@ -7,6 +7,8 @@ import Icon from "../../common/Icon";
 
 export default function RecruitForm() {
   const {
+    tagOptions,
+    setSelectedTag,
     types,
     inputs,
     title,
@@ -29,10 +31,21 @@ export default function RecruitForm() {
         <Input
           value={title}
           onChange={onChangeTitle}
-          size={76}
+          size={60}
           label="제목"
           type="text"
         />
+        <div>
+          <styles.ProfitTypeTitle>
+            카테고리 선택<span> *</span>
+          </styles.ProfitTypeTitle>
+          <styles.TagSelectBox
+            options={tagOptions}
+            onChange={tag => {
+              setSelectedTag(tag);
+            }}
+          />
+        </div>
         <styles.ProfitWrapper>
           <div>
             <styles.ProfitTypeTitle>
