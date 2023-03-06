@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { GREY, BLACK } from "../../../constants/colors";
 
 export const CardContainer = styled.div`
-  max-width: 25.1rem;
+  max-width: 100%;
   position: relative;
 `;
 
