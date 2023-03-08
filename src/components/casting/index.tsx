@@ -58,7 +58,7 @@ export default function Casting() {
           </li>
         ))}
       </CategoryList>
-      <SubCategory>
+      <SubCategory className="drop-down">
         <CategoryTitle>
           {Object.keys(categories).find(
             key => categories[key] === currentCategory,
@@ -67,14 +67,12 @@ export default function Casting() {
         <DropDownButton
           className="drop-down-button"
           onClick={() =>
-            document
-              .querySelector(".drop-down-list")
-              ?.classList.toggle("active")
+            document.querySelector(".drop-down")?.classList.toggle("active")
           }
         >
           <Icon className="arrowDown" />
         </DropDownButton>
-        <DropDownList className="drop-down-list">
+        <DropDownList>
           {Object.keys(subCategories).map(sub => (
             <li key={sub}>
               <SubCategoryButton

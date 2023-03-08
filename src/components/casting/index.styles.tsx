@@ -42,9 +42,9 @@ export const DropDownButton = styled.button`
   display: block;
   border-radius: 50%;
   border: 0.12rem solid ${BLACK};
-  &:hover .drop-down-list {
-    opacity: 1;
-    pointer-events: auto;
+  transition: rotate 200ms linear;
+  .active.drop-down > & {
+    rotate: 180deg;
   }
 `;
 
@@ -52,19 +52,29 @@ export const DropDownList = styled.ul`
   position: absolute;
   opacity: 0;
   pointer-events: none;
-  top: calc(100% + 2.2rem);
+  top: 100%;
   display: flex;
   flex-direction: column;
+  gap: 2rem;
   z-index: 100;
   background-color: ${WHITE};
   padding: 2.4rem 2.6rem;
   border-radius: 0.6rem;
   border: 0.05rem solid ${GREY[300]};
   box-shadow: 0 0.57rem 0.818rem 0.409rem rgba(0, 0, 0, 0.07);
+  transition: all 150ms ease-in-out;
+  .active.drop-down > & {
+    opacity: 1;
+    pointer-events: auto;
+    top: calc(100% + 2.2rem);
+  }
 `;
 
 export const SubCategoryButton = styled.button`
   background-color: transparent;
+  border: none;
+  font-size: 1.635rem;
+  cursor: pointer;
 `;
 
 export const CardGrid = styled.div`
