@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import useInput from "./useInput";
 import { AppDispatch } from "../../stores/store/configureStore";
 import { getMe } from "../util/lib";
-import postRecruit from "../api/recruit";
+import postBoard from "../api/board";
 
 export default function useRecruit() {
   const dispatch = useDispatch<AppDispatch>();
@@ -29,6 +29,7 @@ export default function useRecruit() {
     { value: "영화", label: "영화" },
     { value: "드라마", label: "드라마" },
     { value: "연극", label: "연극" },
+    { value: "연출", label: "연출" },
     { value: "방송/예능", label: "방송/예능" },
     { value: "모델", label: "모델" },
     { value: "광고", label: "광고" },
@@ -101,7 +102,7 @@ export default function useRecruit() {
         id: me.id,
       },
     };
-    dispatch(postRecruit(data));
+    dispatch(postBoard(data));
   };
   const inputs = [
     {
@@ -180,6 +181,7 @@ export default function useRecruit() {
     onChangeContents,
     onSubmitForm,
     inputs,
+    selectedTag,
     setSelectedTag,
     tagOptions,
   };
