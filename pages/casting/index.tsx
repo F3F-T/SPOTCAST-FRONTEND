@@ -1,10 +1,10 @@
 import React from "react";
 import axios from "axios";
-import AppLayout from "../styles/AppLayout";
-import wrapper from "../stores/store/configureStore";
-import { loadMe } from "../src/api/auth";
-import { useRedirect } from "../src/hooks/useAuth";
-import Casting from "../src/components/casting";
+import AppLayout from "../../styles/AppLayout";
+import wrapper from "../../stores/store/configureStore";
+import { loadMe } from "../../src/api/auth";
+import { useRedirect } from "../../src/hooks/useAuth";
+import Casting from "../../src/components/casting";
 
 function Page() {
   useRedirect();
