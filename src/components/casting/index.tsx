@@ -1,4 +1,3 @@
-import { ClassNames } from "@emotion/react";
 import React, { useState } from "react";
 import Icon from "../common/Icon";
 import CastingCard from "./CastingCard";
@@ -39,8 +38,6 @@ export default function Casting() {
   const [currentSubCategory, setCurrentSubCateogory] = useState(
     Object.values(subCategories)[0],
   );
-
-  console.log(Object.values(categories));
 
   return (
     <>
@@ -85,7 +82,6 @@ export default function Casting() {
               </SubCategoryButton>
             </li>
           ))}
-          <SubCategoryButton>실용음악</SubCategoryButton>
         </DropDownList>
       </SubCategory>
       <CardGrid>
