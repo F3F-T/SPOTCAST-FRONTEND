@@ -11,6 +11,7 @@ import {
   Date,
   Remainder,
 } from "./index.styles";
+import useCasting from "../../../hooks/useCasting";
 
 interface CastingProps {
   thumbImg: string;
@@ -31,11 +32,15 @@ function CastingCard({
   endDate = "2023-02-11",
   remaining = 14,
 }: CastingProps) {
+  const { replacePostPage } = useCasting();
   return (
-    <CardContainer>
+      <CardContainer
+          onClick={() => {
+            replacePostPage();
+          }}
+      >
       <BookmartButton type="button">
         <Icon className="bookmarkFill" color="#FFF" border={0} />
-        {/* 이거 어케하실건가요? */}
       </BookmartButton>
       <ImageContainer>
         <img className="unselectable" src={thumbImg} alt="alt" />

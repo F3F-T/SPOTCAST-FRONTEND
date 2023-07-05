@@ -1,9 +1,14 @@
 import styled from "@emotion/styled";
 import { GREY, BLACK } from "../../../constants/colors";
 
-export const CardContainer = styled.div`
+export const CardContainer = styled.button`
   max-width: 100%;
   position: relative;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  text-align: start;
+  cursor: pointer;
 `;
 
 export const BookmartButton = styled.button`
