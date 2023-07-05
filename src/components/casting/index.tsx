@@ -10,7 +10,11 @@ import {
   DropDownList,
   SubCategory,
   SubCategoryButton,
+  SortButton,
+  WriteButton,
+  ButtonWrapper,
 } from "./index.styles";
+import useCasting from "../../hooks/useCasting";
 
 interface CastingCategories {
   [translation: string]: string;
@@ -38,6 +42,7 @@ export default function Casting() {
   const [currentSubCategory, setCurrentSubCateogory] = useState(
     Object.values(subCategories)[0],
   );
+  const { replaceFormPage } = useCasting();
 
   return (
     <>
@@ -83,6 +88,19 @@ export default function Casting() {
             </li>
           ))}
         </DropDownList>
+        <ButtonWrapper>
+          <SortButton>
+            <Icon className="sort" border={0.1} size="1.8rem" />
+            최신순
+          </SortButton>
+          <WriteButton
+            onClick={() => {
+              replaceFormPage();
+            }}
+          >
+            작성하기⚡
+          </WriteButton>
+        </ButtonWrapper>
       </SubCategory>
       <CardGrid>
         <CastingCard />

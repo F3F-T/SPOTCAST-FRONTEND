@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import useInput from "./useInput";
 import { AppDispatch } from "../../stores/store/configureStore";
@@ -8,6 +9,7 @@ import postBoard from "../api/board";
 export default function useCasting() {
   const dispatch = useDispatch<AppDispatch>();
   const { me } = getMe();
+  const router = useRouter();
 
   const [title, onChangeTitle] = useInput("");
   // 제작사 필드 아직 없음
@@ -81,6 +83,15 @@ export default function useCasting() {
       onChange: onChangeSupportEmail,
     },
   ];
+
+  const replacePostPage = () => {
+    router.push("/casting/post");
+  };
+
+  const replaceFormPage = () => {
+    router.push("/casting/form");
+  };
+
   return {
     title,
     contents,
@@ -91,5 +102,7 @@ export default function useCasting() {
     selectedTag,
     setSelectedTag,
     tagOptions,
+    replacePostPage,
+    replaceFormPage,
   };
 }

@@ -5,9 +5,10 @@ import Button from "../common/Button";
 export const CategoryList = styled.ul`
   display: flex;
   justify-content: space-between;
+  padding-bottom: 2rem;
+  border-bottom: 0.1rem solid ${GREY[300]};
 `;
 export const CategoryButton = styled(Button)<{ className: string }>`
-  margin-top: 5rem;
   font-size: 1.7rem;
   min-width: 13.5rem;
   padding: 0.9rem 3rem;
@@ -23,14 +24,14 @@ export const CategoryButton = styled(Button)<{ className: string }>`
 `;
 
 export const SubCategory = styled.div`
-  margin-top: 7rem;
+  margin-top: 5rem;
   display: flex;
   flex-direction: row;
   position: relative;
 `;
 
 export const CategoryTitle = styled.h3`
-  font-size: 2.617rem;
+  font-size: 2.5rem;
   font-weight: bold;
 `;
 
@@ -70,6 +71,36 @@ export const DropDownList = styled.ul`
   }
 `;
 
+export const ButtonWrapper = styled.div`
+  position: absolute;
+  right: 0;
+  display: flex;
+  gap: 1rem;
+`;
+export const SortButton = styled.button`
+  background-color: white;
+  font-size: 1.4rem;
+  border-radius: 0.5rem;
+  width: 11rem;
+  border: 0.1rem solid ${GREY[500]};
+  padding: 1rem;
+  margin-left: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+`;
+
+export const WriteButton = styled.button`
+  font-size: 1.4rem;
+  width: 11rem;
+  border-radius: 0.5rem;
+  border: 0.1rem solid ${GREY[500]};
+  padding: 1rem;
+  color: white;
+  background-color: ${GREY[700]};
+  margin-left: 0.3rem;
+`;
+
 export const SubCategoryButton = styled.button`
   background-color: transparent;
   border: none;
@@ -78,7 +109,7 @@ export const SubCategoryButton = styled.button`
 `;
 
 export const CardGrid = styled.div`
-  margin-top: 2.6rem;
+  margin-top: 3rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 7rem 2.4rem;
