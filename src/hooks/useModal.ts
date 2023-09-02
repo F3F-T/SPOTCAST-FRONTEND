@@ -20,7 +20,6 @@ import { resetFollower, resetFollowing } from "../../stores/reducers/bookmark";
 export function useMsgModal({ user }: UserProps) {
   const dispatch = useDispatch<AppDispatch>();
   const { isMsgModalOpen } = useSelector((state: RootState) => state.context);
-  const { me } = useSelector((state: RootState) => state.user);
   const router = useRouter();
   const [title, onChangeTitle] = useInput("");
   const [content, onChangeContent] = useInput("");
@@ -33,14 +32,12 @@ export function useMsgModal({ user }: UserProps) {
   };
 
   const onSubmitMessage = useCallback(async () => {
-    await dispatch(
-      sendMessage({
-        title,
-        content,
-        sender: { id: me.id },
-        recipient: { id: user.id },
-      }),
-    );
+    await sendMessage({
+      title,
+      content,
+      sender: { id: Number(localStorage.getItem("id")) || undefined },
+      recipient: { id: user.id },
+    });
     router.refresh();
   }, [title, content]);
 
@@ -78,14 +75,13 @@ export function useReplyMsgModal({ item }: MessageProps) {
   };
 
   const onSubmitMessage = useCallback(async () => {
-    await dispatch(
-      sendMessage({
-        title,
-        content,
-        sender: { id: me.id },
-        recipient: { id: item.memberId },
-      }),
-    );
+    await sendMessage({
+      title,
+      content,
+      sender: { id: me.id },
+      recipient: { id: item.memberId },
+    });
+
     router.refresh();
   }, [title, content]);
 
