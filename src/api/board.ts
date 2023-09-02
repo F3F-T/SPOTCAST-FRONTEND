@@ -3,6 +3,23 @@ import { authorizationClient } from ".";
 import toastMsg from "../components/common/Toast";
 import API from "./config";
 
+export const loadBoard = async (
+  boardType: string,
+  categoryId: number,
+  profitStatus: string,
+  page: number,
+  size: number,
+) => {
+  const { data } = await authorizationClient.get(
+    `${API.LOAD_BOARD}${boardType}?categoryId=${categoryId}&profitStatus=${profitStatus}&page=${page}&size=${size}`,
+  );
+  return data;
+};
+
+export const loadBoardDetail = (id: number) => {
+  authorizationClient.get(`${API.BOARD}/${id}`);
+};
+
 const postBoard = createAsyncThunk(
   "board/postBoard",
   async (data: object, { rejectWithValue }) => {

@@ -14,8 +14,6 @@ const LOGOUT = "logout";
 const SIGNUP = "signup";
 const EMAIL_CERTIFICATION_SEND = "email-certification/sends";
 const EMAIL_CERTIFICATION_CONFIRM = "email-certification/confirms";
-// const GOOGLE = "/auth/google/"; => API 미정이라 주석
-// const KAKAO = "/auth/kakao/"; => API 미정이라 주석
 
 const API = {
   BASE_URL: `${BASE_URL}`,
@@ -39,6 +37,7 @@ const API = {
   LOAD_MSG_UNREAD: `${MESSAGE}unread`,
   LOAD_FOLLOWER: `${MEMBER}${BOOKMARK}/follower`,
   LOAD_FOLLWING: `${MEMBER}${BOOKMARK}/following`,
+  LOAD_BOARD: `${BOARD}/list/boardType/`,
 };
 
 export default API;
