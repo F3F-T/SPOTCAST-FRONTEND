@@ -14,15 +14,15 @@ export default function Message() {
     currentTab,
     onChangeTab,
     msgReceivedData,
-    msgReceivedSize,
+    msgSendData,
     currentSendPage,
     currentReceivedPage,
     setReceivedPage,
     setSendPage,
-    msgSendData,
-    msgSendSize,
+    mutateReceieved,
   } = useMessage();
 
+  if (!msgReceivedData || !msgSendData) return null;
   return (
     <Container>
       <Top>
@@ -49,13 +49,17 @@ export default function Message() {
       <Bottom>
         {currentTab === TabList[0] ? (
           <>
-            <MessageRoom data={msgReceivedData.data} type="RECEIVED" />
+            <MessageRoom
+              data={msgReceivedData.content}
+              mutateReceieved={mutateReceieved}
+              type="RECEIVED"
+            />
             <Line color={GREY[300]} width="100%" />
             <Paging>
               <Pagination
                 activePage={currentReceivedPage}
                 itemsCountPerPage={4}
-                totalItemsCount={msgReceivedSize}
+                totalItemsCount={msgReceivedData.totalElements}
                 pageRangeDisplayed={5}
                 prevPageText={<Icon className="arrowLeft" size="1.2rem" />}
                 nextPageText={<Icon className="arrowRight" size="1.2rem" />}
@@ -66,13 +70,13 @@ export default function Message() {
           </>
         ) : (
           <>
-            <MessageRoom data={msgSendData.data} type="SEND" />
+            <MessageRoom data={msgSendData.content} type="SEND" />
             <Line color={GREY[300]} width="100%" />
             <Paging>
               <Pagination
                 activePage={currentSendPage}
                 itemsCountPerPage={4}
-                totalItemsCount={msgSendSize}
+                totalItemsCount={msgSendData.totalElements}
                 pageRangeDisplayed={5}
                 prevPageText={<Icon className="arrowLeft" size="1.2rem" />}
                 nextPageText={<Icon className="arrowRight" size="1.2rem" />}
@@ -142,7 +146,6 @@ const Bottom = styled.div`
   }
 
   ul.pagination li {
-    display: inline-block;
     width: 30px;
     height: 30px;
     display: flex;

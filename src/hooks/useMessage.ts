@@ -1,17 +1,14 @@
-import { useDispatch } from "react-redux";
-import { useCallback, useState } from "react";
+import useSWR from "swr";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { AppDispatch } from "../../stores/store/configureStore";
 import {
   loadMsgReceived,
   loadMsgSend,
   deleteMessage,
   readMessage,
 } from "../api/message";
-import { getMessage } from "../util/lib";
 
 export default function useMessage() {
-  const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
 
   const MESSAGE_SIZE = 4;
@@ -21,53 +18,47 @@ export default function useMessage() {
 
   const [currentSendPage, setCurrentSendPage] = useState(1);
   const [currentReceivedPage, setCurrentReceivedPage] = useState(1);
+  const { data: msgReceivedData, mutate: mutateReceieved } = useSWR(
+    "loadMsgReceivedb",
+    () =>
+      loadMsgReceived({ page: currentReceivedPage - 1, size: MESSAGE_SIZE }),
+  );
 
-  const { msgSendData, msgReceivedData } = getMessage();
+  const { data: msgSendData, mutate: mutateSend } = useSWR("loadMsgSend", () =>
+    loadMsgSend({ page: currentSendPage - 1, size: MESSAGE_SIZE }),
+  );
 
-  const msgSendSize = msgSendData.size;
-  const msgReceivedSize = msgReceivedData.size;
+  useEffect(() => {
+    mutateReceieved();
+  }, [currentReceivedPage]);
 
-  const onChangeSendMsg = async (page: number) => {
-    await dispatch(loadMsgSend({ page, size: MESSAGE_SIZE }));
-  };
-
-  const onChangeReceivedMsg = async (page: number) => {
-    await dispatch(loadMsgReceived({ page, size: MESSAGE_SIZE }));
-  };
+  useEffect(() => {
+    mutateSend();
+  }, [currentSendPage]);
 
   const onChangeTab = useCallback(
     (item: string) => {
       setCurrentTab(item);
       if (item === TabList[0]) {
-        onChangeReceivedMsg(0);
         setCurrentReceivedPage(1);
       }
       if (item === TabList[1]) {
-        onChangeSendMsg(0);
         setCurrentSendPage(1);
       }
     },
     [currentTab],
   );
 
-  const setSendPage = useCallback(
-    (page: number) => {
-      setCurrentSendPage(page);
-      onChangeSendMsg(page - 1);
-    },
-    [currentSendPage],
-  );
+  const setSendPage = (page: number) => {
+    setCurrentSendPage(page);
+  };
 
-  const setReceivedPage = useCallback(
-    (page: number) => {
-      setCurrentReceivedPage(page);
-      onChangeReceivedMsg(page - 1);
-    },
-    [currentReceivedPage],
-  );
+  const setReceivedPage = (page: number) => {
+    setCurrentReceivedPage(page);
+  };
 
   const onClickDeleteMessage = useCallback(async (id: number) => {
-    await dispatch(deleteMessage(id));
+    await deleteMessage(id);
     router.refresh();
   }, []);
 
@@ -76,25 +67,22 @@ export default function useMessage() {
   }, []);
 
   const readMsg = useCallback(async (messageId: number) => {
-    await dispatch(readMessage(messageId));
+    await readMessage(messageId);
   }, []);
 
   return {
-    onChangeSendMsg,
-    onChangeReceivedMsg,
     readMsg,
     TabList,
     currentTab,
     onChangeTab,
     msgReceivedData,
-    msgReceivedSize,
+    msgSendData,
     currentReceivedPage,
     currentSendPage,
     setSendPage,
     setReceivedPage,
-    msgSendData,
-    msgSendSize,
     onClickDeleteMessage,
     replaceUserProfile,
+    mutateReceieved,
   };
 }
