@@ -22,7 +22,7 @@ import useLogin from "../../hooks/useLogin";
 export default function Login() {
   const { email, onChangeEmail, password, onChangePassword, onSubmitForm } =
     useLogin();
-  const googleLogin = `http://localhost:80/oauth2/authorization/google?redirect_uri=http://localhost:3000/redirect`;
+  const googleLogin = `${process.env.NEXT_PUBLIC_API_URL}/oauth2/authorization/google?redirect_uri=http://localhost:3000/redirect`;
   const kakaoLogin = ``;
 
   const onClickGoogleLogin = useCallback(() => {
