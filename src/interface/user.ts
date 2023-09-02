@@ -1,22 +1,23 @@
 import { IBookmark } from "./bookmark";
 
 export interface IUser {
-  authority?: string | null;
-  egName?: string | null;
-  email?: string | null;
-  field?: IBookmark[] | null;
-  follower?: number | null;
-  following?: number | null;
-  id: number | null;
-  information?: string | null;
-  instagram?: string | null;
-  loginMemberType?: string | null;
-  loginType?: string | null;
-  name?: string | null;
-  otherSns?: string | null;
-  profile?: string | null;
-  twitter?: string | null;
-  categoryInfo?: string | null;
+  authority?: string;
+  egName?: string;
+  email?: string;
+  field?: IBookmark[];
+  follower?: number;
+  following?: number;
+  src: string;
+  id: number;
+  information?: string;
+  instagram?: string;
+  loginMemberType?: string;
+  loginType?: string;
+  name?: string;
+  otherSns?: string;
+  profile?: string;
+  twitter?: string;
+  categoryInfo?: string;
 }
 
 export interface UserProps {
