@@ -1,7 +1,6 @@
 import { combineReducers } from "redux";
 import { HYDRATE } from "next-redux-wrapper";
 import userSlice from "./user";
-import messageSlice from "./message";
 import contextSlice from "./context";
 import bookmarkSlice from "./bookmark";
 import boardSlice from "./board";
@@ -14,7 +13,6 @@ const rootReducer = (state: any, action: any) => {
     default: {
       const combinedReducer = combineReducers({
         user: userSlice.reducer,
-        message: messageSlice.reducer,
         context: contextSlice.reducer,
         bookmark: bookmarkSlice.reducer,
         board: boardSlice.reducer,
