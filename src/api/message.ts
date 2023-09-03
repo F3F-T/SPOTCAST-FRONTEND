@@ -1,4 +1,3 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { authorizationClient } from ".";
 import toastMsg from "../components/common/Toast";

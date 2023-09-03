@@ -3,33 +3,19 @@ import { authorizationClient } from ".";
 import toastMsg from "../components/common/Toast";
 import API from "./config";
 
-export const loadFollower = createAsyncThunk(
-  "bookmark/loadFollower",
-  async (page: number, { rejectWithValue }) => {
-    try {
-      const response = await authorizationClient.get(
-        `${API.LOAD_FOLLOWER}?page=${page}&size=6`,
-      );
-      return response.data.data;
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data);
-    }
-  },
-);
+export const loadFollower = async (page: number) => {
+  const response = await authorizationClient.get(
+    `${API.LOAD_FOLLOWER}?page=${page}&size=6`,
+  );
+  return response.data.data;
+};
 
-export const loadFollowing = createAsyncThunk(
-  "bookmark/loadFollowing",
-  async (page: number, { rejectWithValue }) => {
-    try {
-      const response = await authorizationClient.get(
-        `${API.LOAD_FOLLWING}?page=${page}&size=6`,
-      );
-      return response.data.data;
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data);
-    }
-  },
-);
+export const loadFollowing = async (page: number) => {
+  const response = await authorizationClient.get(
+    `${API.LOAD_FOLLWING}?page=${page}&size=6`,
+  );
+  return response.data.data;
+};
 
 export const addBookmark = createAsyncThunk(
   "bookmark/addBookmark",
