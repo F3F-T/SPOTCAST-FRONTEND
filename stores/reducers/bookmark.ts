@@ -60,36 +60,6 @@ const bookmarkSlice = createSlice({
   },
   extraReducers: builder =>
     builder
-      .addCase(loadFollower.pending, state => {
-        state.loadFollowerLoading = true;
-        state.loadFollowerDone = false;
-        state.loadFollowerError = null;
-      })
-      .addCase(loadFollower.fulfilled, (state, action) => {
-        state.loadFollowerLoading = false;
-        state.loadFollowerDone = true;
-        state.follower = state.follower.concat(action.payload.content);
-        state.hasMoreFollower = action.payload.content.length >= 6;
-      })
-      .addCase(loadFollower.rejected, (state, action) => {
-        state.loadFollowerLoading = false;
-        state.loadFollowerError = action.payload;
-      })
-      .addCase(loadFollowing.pending, state => {
-        state.loadFollowingLoading = true;
-        state.loadFollowingDone = false;
-        state.loadFollowingError = null;
-      })
-      .addCase(loadFollowing.fulfilled, (state, action) => {
-        state.loadFollowingLoading = false;
-        state.loadFollowingDone = true;
-        state.following = state.following.concat(action.payload.content);
-        state.hasMoreFollowing = action.payload.content.length >= 6;
-      })
-      .addCase(loadFollowing.rejected, (state, action) => {
-        state.loadFollowingLoading = false;
-        state.loadFollowingError = action.payload;
-      })
       .addCase(deleteBookmark.pending, state => {
         state.deleteBookmarkLoading = true;
         state.deleteBookmarkDone = false;
