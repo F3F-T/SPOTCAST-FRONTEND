@@ -19,7 +19,7 @@ export default function useMessage() {
   const [currentSendPage, setCurrentSendPage] = useState(1);
   const [currentReceivedPage, setCurrentReceivedPage] = useState(1);
   const { data: msgReceivedData, mutate: mutateReceieved } = useSWR(
-    "loadMsgReceivedb",
+    "loadMsgReceived",
     () =>
       loadMsgReceived({ page: currentReceivedPage - 1, size: MESSAGE_SIZE }),
   );
