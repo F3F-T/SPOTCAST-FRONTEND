@@ -1,5 +1,6 @@
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
+import useSWR from "swr";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../stores/reducers";
 import {
@@ -111,7 +112,6 @@ export function useFollowingBookmarkModal() {
     loadFollowingLoading,
     loadFollowingDone,
   } = useSelector((state: RootState) => state.bookmark);
-
   const openBookmarkModal = async () => {
     dispatch(setFollowingModal(true));
     lockScroll();
@@ -147,13 +147,13 @@ export function useFollowerBookmarkModal() {
     (state: RootState) => state.context,
   );
   const { lockScroll, openScroll } = useBodyScrollLock();
-  const { follower, hasMoreFollower, loadFollowerLoading, loadFollowerDone } =
-    useSelector((state: RootState) => state.bookmark);
+  const { data } = useSWR("loadFollower", () => loadFollower(0));
+  const [follower, setFollower] = useState(data?.content);
+  const [hasMoreFollower, setHasMoreFollower] = useState(true);
 
   const openBookmarkModal = async () => {
     dispatch(setFollowerModal(true));
     lockScroll();
-    if (follower.length === 0) await dispatch(loadFollower(0));
   };
   const closeBookmarkModal = () => {
     dispatch(setFollowerModal(false));
@@ -162,9 +162,9 @@ export function useFollowerBookmarkModal() {
   };
 
   const loadNext = async (num: number) => {
-    if (!loadFollowerLoading && hasMoreFollower) {
-      await dispatch(loadFollower(num));
-    }
+    const newData = await loadFollower(num);
+    setHasMoreFollower(newData.content.length >= 6);
+    setFollower(follower.concat(newData?.content));
   };
 
   return {
@@ -174,7 +174,5 @@ export function useFollowerBookmarkModal() {
     loadNext,
     follower,
     hasMoreFollower,
-    loadFollowerLoading,
-    loadFollowerDone,
   };
 }
