@@ -24,6 +24,7 @@ export function useMsgModal({ user }: UserProps) {
   const router = useRouter();
   const [title, onChangeTitle] = useInput("");
   const [content, onChangeContent] = useInput("");
+  const { me } = useSelector((state: RootState) => state.user);
 
   const openMsgModal = () => {
     dispatch(setMsgModal(true));
@@ -36,7 +37,7 @@ export function useMsgModal({ user }: UserProps) {
     await sendMessage({
       title,
       content,
-      sender: { id: Number(localStorage.getItem("id")) || undefined },
+      sender: { id: me.id },
       recipient: { id: user.id },
     });
     router.refresh();
@@ -106,16 +107,13 @@ export function useFollowingBookmarkModal() {
     (state: RootState) => state.context,
   );
   const { lockScroll, openScroll } = useBodyScrollLock();
-  const {
-    following,
-    hasMoreFollowing,
-    loadFollowingLoading,
-    loadFollowingDone,
-  } = useSelector((state: RootState) => state.bookmark);
+  const { data } = useSWR("loadMoreFollowing", () => loadFollower(0));
+  const [following, setFollowing] = useState(data?.content);
+  const [hasMoreFollowing, setHasMoreFollowing] = useState(true);
+
   const openBookmarkModal = async () => {
     dispatch(setFollowingModal(true));
     lockScroll();
-    if (following.length === 0) await dispatch(loadFollowing(0));
   };
   const closeBookmarkModal = () => {
     dispatch(setFollowingModal(false));
@@ -124,9 +122,9 @@ export function useFollowingBookmarkModal() {
   };
 
   const loadNext = async (num: number) => {
-    if (!loadFollowingLoading && hasMoreFollowing) {
-      dispatch(loadFollowing(num));
-    }
+    const newFollowing = await loadFollower(num);
+    setHasMoreFollowing(newFollowing.content.length >= 6);
+    setFollowing(following.concat(newFollowing?.content));
   };
 
   return {
@@ -136,8 +134,6 @@ export function useFollowingBookmarkModal() {
     loadNext,
     following,
     hasMoreFollowing,
-    loadFollowingLoading,
-    loadFollowingDone,
   };
 }
 
@@ -162,9 +158,9 @@ export function useFollowerBookmarkModal() {
   };
 
   const loadNext = async (num: number) => {
-    const newData = await loadFollower(num);
-    setHasMoreFollower(newData.content.length >= 6);
-    setFollower(follower.concat(newData?.content));
+    const newFollower = await loadFollower(num);
+    setHasMoreFollower(newFollower.content.length >= 6);
+    setFollower(follower.concat(newFollower?.content));
   };
 
   return {
