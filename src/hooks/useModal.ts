@@ -16,7 +16,6 @@ import { getDate, getTime } from "../util/date";
 import useInput from "./useInput";
 import useBodyScrollLock from "./useBodyScrollLock";
 import { UserProps } from "../interface/user";
-import { resetFollower, resetFollowing } from "../../stores/reducers/bookmark";
 
 export function useMsgModal({ user }: UserProps) {
   const dispatch = useDispatch<AppDispatch>();
@@ -107,7 +106,7 @@ export function useFollowingBookmarkModal() {
     (state: RootState) => state.context,
   );
   const { lockScroll, openScroll } = useBodyScrollLock();
-  const { data } = useSWR("loadMoreFollowing", () => loadFollower(0));
+  const { data } = useSWR("loadMoreFollowing", () => loadFollowing(0));
   const [following, setFollowing] = useState(data?.content);
   const [hasMoreFollowing, setHasMoreFollowing] = useState(true);
 
@@ -117,12 +116,11 @@ export function useFollowingBookmarkModal() {
   };
   const closeBookmarkModal = () => {
     dispatch(setFollowingModal(false));
-    dispatch(resetFollowing());
     openScroll();
   };
 
   const loadNext = async (num: number) => {
-    const newFollowing = await loadFollower(num);
+    const newFollowing = await loadFollowing(num);
     setHasMoreFollowing(newFollowing.content.length >= 6);
     setFollowing(following.concat(newFollowing?.content));
   };
@@ -153,7 +151,6 @@ export function useFollowerBookmarkModal() {
   };
   const closeBookmarkModal = () => {
     dispatch(setFollowerModal(false));
-    dispatch(resetFollower());
     openScroll();
   };
 

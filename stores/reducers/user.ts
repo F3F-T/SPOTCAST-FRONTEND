@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from "@reduxjs/toolkit";
 import { authLogin, authLogout, authSignUp, loadMe } from "../../src/api/auth";
-import { addBookmark, deleteBookmark } from "../../src/api/bookmark";
 import { changeProfile, editMyInfo, loadUser } from "../../src/api/user";
 
 type UserState = {
@@ -141,12 +140,6 @@ const userSlice = createSlice({
       })
       .addCase(editMyInfo.rejected, (state, action) => {
         state.loadMeError = action.payload;
-      })
-      .addCase(addBookmark.fulfilled, state => {
-        state.me.following += 1;
-      })
-      .addCase(deleteBookmark.fulfilled, state => {
-        state.me.following -= 1;
       })
       .addCase(changeProfile.fulfilled, (state, action) => {
         state.me.profile = action.payload;
