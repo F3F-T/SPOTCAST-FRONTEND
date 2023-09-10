@@ -5,9 +5,11 @@ import { useRouter } from "next/navigation";
 import { GREY } from "../../../../constants/colors";
 import Line from "../../../common/Line";
 import Icon from "../../../common/Icon";
-import { IMessage } from "../../../../interface/messgae";
+import { getMe } from "../../../../util/lib";
 import MessagePreview from "./MessagePreview";
 import { loadMsgUnread } from "../../../../api/message";
+import Unknown from "./Unknown";
+import { IMessage } from "../../../../interface/messgae";
 
 const Container = styled.div`
   width: 40rem;
@@ -64,37 +66,43 @@ const PrevButton = styled.button`
 
 export default function MessageModal({ showModal }: { showModal: Function }) {
   const router = useRouter();
+  const { IsUserLoggedIn } = getMe();
+
   const { data } = useSWR("loadMsgUnread", () =>
     loadMsgUnread({ page: 0, size: 4 }),
   );
   return (
     <div>
-      <Container>
-        <TitleWrapper>
-          <Title>메시지</Title>
-          <ButtonWrapper>
-            <Button
-              onClick={() => {
-                router.push("/message");
-              }}
-            >
-              모든 메시지 보기
-            </Button>
-            <Icon className="arrowRight" border={0.4} size="1.3rem" />
-          </ButtonWrapper>
-        </TitleWrapper>
-        <Line width="100%" color={GREY[300]} />
-        <PrevButton
-          onClick={() => {
-            showModal("MESSAGE");
-            router.push("/message");
-          }}
-        >
-          {data?.content?.map((item: IMessage) => (
-            <MessagePreview item={item} />
-          ))}
-        </PrevButton>
-      </Container>
+      {IsUserLoggedIn ? (
+        <Container>
+          <TitleWrapper>
+            <Title>메시지</Title>
+            <ButtonWrapper>
+              <Button
+                onClick={() => {
+                  router.push("/message");
+                }}
+              >
+                모든 메시지 보기
+              </Button>
+              <Icon className="arrowRight" border={0.4} size="1.3rem" />
+            </ButtonWrapper>
+          </TitleWrapper>
+          <Line width="100%" color={GREY[300]} />
+          <PrevButton
+            onClick={() => {
+              showModal("MESSAGE");
+              router.push("/message");
+            }}
+          >
+            {data?.content?.map((item: IMessage) => (
+              <MessagePreview item={item} />
+            ))}
+          </PrevButton>
+        </Container>
+      ) : (
+        <Unknown />
+      )}
     </div>
   );
 }
