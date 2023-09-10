@@ -68,7 +68,7 @@ export default function FollowingBookMarkModal() {
             useWindow={false}
           >
             {following.map((data: IBookmark) => {
-              return <PersonCard data={data} type="FOLLOWER" />;
+              return <PersonCard data={data} type="FOLLOWING" />;
             })}
           </InfiniteScroll>
         </Container>

@@ -102,7 +102,7 @@ export default function PersonCard({ data, type }: BookmarkProps) {
             삭제
           </Button>
         )}
-        {type === "FOLLOWER" && !data.exist && (
+        {type === "FOLLOWER" && (
           <Button onClick={() => onClickAddBookmark(me.id, data.memberId)}>
             <Icon
               className="follow"
