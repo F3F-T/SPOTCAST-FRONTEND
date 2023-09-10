@@ -1,16 +1,18 @@
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../stores/store/configureStore";
 import { addBookmark, deleteBookmark } from "../api/bookmark";
 
 export default function useBookmark() {
-  const dispatch = useDispatch<AppDispatch>();
-
-  const onClickDeleteBookmark = (followerId: number, followingId: number) => {
-    dispatch(deleteBookmark({ followerId, followingId }));
+  const onClickDeleteBookmark = async (
+    followerId: number,
+    followingId: number,
+  ) => {
+    await deleteBookmark({ followerId, followingId });
   };
 
-  const onClickAddBookmark = (followerId: number, followingId: number) => {
-    dispatch(addBookmark({ followerId, followingId }));
+  const onClickAddBookmark = async (
+    followerId: number,
+    followingId: number,
+  ) => {
+    await addBookmark({ followerId, followingId });
   };
   return {
     onClickDeleteBookmark,
