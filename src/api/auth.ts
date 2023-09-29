@@ -25,6 +25,11 @@ const loadMe = createAsyncThunk(
   },
 );
 
+const loadMyInfo = async () => {
+  const response = await axios.get(API.MYINFO);
+  return response.data.data;
+};
+
 const authLogin = createAsyncThunk(
   "user/authLogin",
   async (data: object, { rejectWithValue }) => {
@@ -84,4 +89,5 @@ export {
   authEmailConfirms,
   authSignUp,
   refreshAuth,
+  loadMyInfo,
 };
