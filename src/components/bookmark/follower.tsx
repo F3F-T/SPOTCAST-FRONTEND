@@ -3,6 +3,9 @@ import styled from "@emotion/styled";
 import { GREY } from "../../constants/colors";
 import { useFollowerBookmarkModal } from "../../hooks/useModal";
 import { getMe } from "../../util/lib";
+import useSWR from "swr";
+import { loadMyInfo } from "../../api/auth";
+import swrKeys from "../../constants/swrKeys";
 
 const Container = styled.button`
   display: flex;
@@ -32,14 +35,15 @@ const Text = styled.div`
 `;
 export default function Follower() {
   const { openBookmarkModal } = useFollowerBookmarkModal();
-  const { me } = getMe();
+  const { data: me } = useSWR(swrKeys.loadMeKey, loadMyInfo);
+
   return (
     <Container
       onClick={() => {
         openBookmarkModal();
       }}
     >
-      <Count>{me.follower}</Count>
+      <Count>{me?.follower}</Count>
       <Text>나를 즐겨찾는 사람</Text>
     </Container>
   );

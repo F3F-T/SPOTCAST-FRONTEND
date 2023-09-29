@@ -106,7 +106,7 @@ export function useFollowingBookmarkModal() {
     (state: RootState) => state.context,
   );
   const { lockScroll, openScroll } = useBodyScrollLock();
-  const { data } = useSWR("loadMoreFollowing", () => loadFollowing(0));
+  const { data } = useSWR("loadFollowing", () => loadFollowing(0));
   const [following, setFollowing] = useState(data?.content);
   const [hasMoreFollowing, setHasMoreFollowing] = useState(true);
 
