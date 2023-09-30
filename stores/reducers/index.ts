@@ -2,7 +2,6 @@ import { combineReducers } from "redux";
 import { HYDRATE } from "next-redux-wrapper";
 import userSlice from "./user";
 import contextSlice from "./context";
-import boardSlice from "./board";
 
 // (이전상태, 액션) => 다음상태
 const rootReducer = (state: any, action: any) => {
@@ -13,7 +12,6 @@ const rootReducer = (state: any, action: any) => {
       const combinedReducer = combineReducers({
         user: userSlice.reducer,
         context: contextSlice.reducer,
-        board: boardSlice.reducer,
       });
       return combinedReducer(state, action);
     }
