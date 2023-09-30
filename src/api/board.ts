@@ -1,20 +1,31 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
 import { authorizationClient } from ".";
 import toastMsg from "../components/common/Toast";
 import API from "./config";
 
-const postBoard = createAsyncThunk(
-  "board/postBoard",
-  async (data: object, { rejectWithValue }) => {
-    try {
-      const response = await authorizationClient.post(API.BOARD, data);
-      toastMsg("게시 완료", true);
-      return response.data.data;
-    } catch (error: any) {
-      toastMsg("게시 실패", false);
-      return rejectWithValue(error.response?.data || null);
-    }
-  },
-);
+export const loadBoard = async (
+  boardType: string,
+  categoryId: number,
+  profitStatus: string,
+  page: number,
+  size: number,
+) => {
+  const { data } = await authorizationClient.get(
+    `${API.LOAD_BOARD}${boardType}?categoryId=${categoryId}&profitStatus=${profitStatus}&page=${page}&size=${size}`,
+  );
+  return data;
+};
 
-export default postBoard;
+export const loadBoardDetail = (id: number) => {
+  authorizationClient.get(`${API.BOARD}/${id}`);
+};
+
+export const postBoard = async (data: object) => {
+  try {
+    const response = await authorizationClient.post(API.BOARD, data);
+    toastMsg("게시 완료", true);
+    return response.data.data;
+  } catch (error: any) {
+    toastMsg("게시 실패", false);
+    return error;
+  }
+};

@@ -12,13 +12,11 @@ import {
   StyledButton,
   Img,
 } from "../index.styles";
-import { getMessage } from "../../../../util/lib";
 import { AppDispatch } from "../../../../../stores/store/configureStore";
 import { loadMsgUnread } from "../../../../api/message";
-
+import useSWR from "swr";
 export default function HeaderModal() {
   const { me, IsUserLoggedIn } = useSelector((state: RootState) => state.user);
-  const { msgUnreadData } = getMessage();
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -69,7 +67,6 @@ export default function HeaderModal() {
         <ModalWrapper>
           <IconButton
             onClick={async () => {
-              await dispatch(loadMsgUnread({ page: 0, size: 4 }));
               showModal("MESSAGE");
             }}
           >
@@ -80,9 +77,7 @@ export default function HeaderModal() {
               color={modalOpen[1].selected ? INDIGO : GREY[700]}
             />
           </IconButton>
-          {modalOpen[1].selected && (
-            <MessageModal data={msgUnreadData.data} showModal={showModal} />
-          )}
+          {modalOpen[1].selected && <MessageModal showModal={showModal} />}
         </ModalWrapper>
         <ModalWrapper>
           <IconButton

@@ -1,5 +1,6 @@
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
+import useSWR from "swr";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../stores/reducers";
 import {
@@ -15,15 +16,14 @@ import { getDate, getTime } from "../util/date";
 import useInput from "./useInput";
 import useBodyScrollLock from "./useBodyScrollLock";
 import { UserProps } from "../interface/user";
-import { resetFollower, resetFollowing } from "../../stores/reducers/bookmark";
 
 export function useMsgModal({ user }: UserProps) {
   const dispatch = useDispatch<AppDispatch>();
   const { isMsgModalOpen } = useSelector((state: RootState) => state.context);
-  const { me } = useSelector((state: RootState) => state.user);
   const router = useRouter();
   const [title, onChangeTitle] = useInput("");
   const [content, onChangeContent] = useInput("");
+  const { me } = useSelector((state: RootState) => state.user);
 
   const openMsgModal = () => {
     dispatch(setMsgModal(true));
@@ -33,14 +33,12 @@ export function useMsgModal({ user }: UserProps) {
   };
 
   const onSubmitMessage = useCallback(async () => {
-    await dispatch(
-      sendMessage({
-        title,
-        content,
-        sender: { id: me.id },
-        recipient: { id: user.id },
-      }),
-    );
+    await sendMessage({
+      title,
+      content,
+      sender: { id: me.id },
+      recipient: { id: user.id },
+    });
     router.refresh();
   }, [title, content]);
 
@@ -78,14 +76,13 @@ export function useReplyMsgModal({ item }: MessageProps) {
   };
 
   const onSubmitMessage = useCallback(async () => {
-    await dispatch(
-      sendMessage({
-        title,
-        content,
-        sender: { id: me.id },
-        recipient: { id: item.memberId },
-      }),
-    );
+    await sendMessage({
+      title,
+      content,
+      sender: { id: me.id },
+      recipient: { id: item.memberId },
+    });
+
     router.refresh();
   }, [title, content]);
 
@@ -109,28 +106,23 @@ export function useFollowingBookmarkModal() {
     (state: RootState) => state.context,
   );
   const { lockScroll, openScroll } = useBodyScrollLock();
-  const {
-    following,
-    hasMoreFollowing,
-    loadFollowingLoading,
-    loadFollowingDone,
-  } = useSelector((state: RootState) => state.bookmark);
+  const { data } = useSWR("loadFollowing", () => loadFollowing(0));
+  const [following, setFollowing] = useState(data?.content);
+  const [hasMoreFollowing, setHasMoreFollowing] = useState(true);
 
   const openBookmarkModal = async () => {
     dispatch(setFollowingModal(true));
     lockScroll();
-    if (following.length === 0) await dispatch(loadFollowing(0));
   };
   const closeBookmarkModal = () => {
     dispatch(setFollowingModal(false));
-    dispatch(resetFollowing());
     openScroll();
   };
 
   const loadNext = async (num: number) => {
-    if (!loadFollowingLoading && hasMoreFollowing) {
-      dispatch(loadFollowing(num));
-    }
+    const newFollowing = await loadFollowing(num);
+    setHasMoreFollowing(newFollowing.content.length >= 6);
+    setFollowing(following.concat(newFollowing?.content));
   };
 
   return {
@@ -140,8 +132,6 @@ export function useFollowingBookmarkModal() {
     loadNext,
     following,
     hasMoreFollowing,
-    loadFollowingLoading,
-    loadFollowingDone,
   };
 }
 
@@ -151,24 +141,23 @@ export function useFollowerBookmarkModal() {
     (state: RootState) => state.context,
   );
   const { lockScroll, openScroll } = useBodyScrollLock();
-  const { follower, hasMoreFollower, loadFollowerLoading, loadFollowerDone } =
-    useSelector((state: RootState) => state.bookmark);
+  const { data } = useSWR("loadFollower", () => loadFollower(0));
+  const [follower, setFollower] = useState(data?.content);
+  const [hasMoreFollower, setHasMoreFollower] = useState(true);
 
   const openBookmarkModal = async () => {
     dispatch(setFollowerModal(true));
     lockScroll();
-    if (follower.length === 0) await dispatch(loadFollower(0));
   };
   const closeBookmarkModal = () => {
     dispatch(setFollowerModal(false));
-    dispatch(resetFollower());
     openScroll();
   };
 
   const loadNext = async (num: number) => {
-    if (!loadFollowerLoading && hasMoreFollower) {
-      await dispatch(loadFollower(num));
-    }
+    const newFollower = await loadFollower(num);
+    setHasMoreFollower(newFollower.content.length >= 6);
+    setFollower(follower.concat(newFollower?.content));
   };
 
   return {
@@ -178,7 +167,5 @@ export function useFollowerBookmarkModal() {
     loadNext,
     follower,
     hasMoreFollower,
-    loadFollowerLoading,
-    loadFollowerDone,
   };
 }

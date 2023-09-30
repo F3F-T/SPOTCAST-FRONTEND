@@ -1,53 +1,50 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
 import useInput from "./useInput";
-import { AppDispatch } from "../../stores/store/configureStore";
 import { getMe } from "../util/lib";
-import postBoard from "../api/board";
+import { postBoard } from "../api/board";
 
 export default function useCasting() {
-  const dispatch = useDispatch<AppDispatch>();
   const { me } = getMe();
   const router = useRouter();
 
   const [title, onChangeTitle] = useInput("");
-  // 제작사 필드 아직 없음
+  const [production, onChangeProduction] = useInput("");
   const [recruitType, onChangeRecruitType] = useInput("");
   const [regDate, onChangeRegDate] = useInput("");
   const [supportEmail, onChangeSupportEmail] = useInput("");
-  const [contents, onChangeContents] = useInput("");
+  const [content, onChangeContent] = useInput("");
   const [selectedTag, setSelectedTag] = useState("전체보기");
   const tagOptions = [
-    { value: "실용 음악", label: "실용 음악" },
-    { value: "클래식", label: "클래식" },
-    { value: "영화", label: "영화" },
-    { value: "드라마", label: "드라마" },
-    { value: "연극", label: "연극" },
-    { value: "방송/예능", label: "방송/예능" },
-    { value: "모델", label: "모델" },
-    { value: "광고", label: "광고" },
-    { value: "기타", label: "기타" },
+    { value: 4, label: "실용 음악" },
+    { value: 5, label: "클래식" },
+    { value: 6, label: "영화" },
+    { value: 7, label: "드라마" },
+    { value: 8, label: "연극" },
+    { value: 9, label: "방송/예능" },
+    { value: 10, label: "모델" },
+    { value: 11, label: "광고" },
+    { value: 12, label: "기타" },
   ];
-
-  const onSubmitForm = () => {
+  const onSubmitForm = async () => {
     const data = {
       title,
-      content: contents,
+      content,
       supportEmail,
       recruitType,
+      production,
       boardType: "CASTING_AUDITION",
       regDate: new Date(regDate),
       profitStatus: "PROFITABLE",
       category: {
         // 임시 아이디
-        id: 3,
+        id: Number(selectedTag),
       },
       member: {
         id: me.id,
       },
     };
-    dispatch(postBoard(data));
+    await postBoard(data);
   };
   const inputs = [
     {
@@ -55,8 +52,8 @@ export default function useCasting() {
       label: "제작사 또는 조직명",
       size: 25.5,
       type: "text",
-      value: "",
-      onChange: "",
+      value: production,
+      onChange: onChangeProduction,
     },
     {
       outerLabel: "모집 형식",
@@ -84,8 +81,8 @@ export default function useCasting() {
     },
   ];
 
-  const replacePostPage = () => {
-    router.push("/casting/post");
+  const replacePostPage = (id: number) => {
+    router.push(`/casting/${id}`);
   };
 
   const replaceFormPage = () => {
@@ -94,9 +91,9 @@ export default function useCasting() {
 
   return {
     title,
-    contents,
+    content,
     onChangeTitle,
-    onChangeContents,
+    onChangeContent,
     onSubmitForm,
     inputs,
     selectedTag,

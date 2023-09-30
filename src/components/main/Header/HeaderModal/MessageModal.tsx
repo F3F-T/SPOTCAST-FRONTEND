@@ -1,13 +1,15 @@
 import styled from "@emotion/styled";
 import React from "react";
+import useSWR from "swr";
 import { useRouter } from "next/navigation";
 import { GREY } from "../../../../constants/colors";
 import Line from "../../../common/Line";
 import Icon from "../../../common/Icon";
-import { IMessage } from "../../../../interface/messgae";
-import MessagePreview from "./MessagePreview";
 import { getMe } from "../../../../util/lib";
+import MessagePreview from "./MessagePreview";
+import { loadMsgUnread } from "../../../../api/message";
 import Unknown from "./Unknown";
+import { IMessage } from "../../../../interface/messgae";
 
 const Container = styled.div`
   width: 40rem;
@@ -62,15 +64,13 @@ const PrevButton = styled.button`
   border: none;
 `;
 
-export default function MessageModal({
-  data,
-  showModal,
-}: {
-  data: IMessage[];
-  showModal: Function;
-}) {
+export default function MessageModal({ showModal }: { showModal: Function }) {
   const router = useRouter();
   const { IsUserLoggedIn } = getMe();
+
+  const { data } = useSWR("loadMsgUnread", () =>
+    loadMsgUnread({ page: 0, size: 4 }),
+  );
   return (
     <div>
       {IsUserLoggedIn ? (
@@ -95,7 +95,7 @@ export default function MessageModal({
               router.push("/message");
             }}
           >
-            {data?.map(item => (
+            {data?.content?.map((item: IMessage) => (
               <MessagePreview item={item} />
             ))}
           </PrevButton>

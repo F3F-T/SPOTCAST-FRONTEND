@@ -1,16 +1,23 @@
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../stores/store/configureStore";
+import { useSWRConfig } from "swr";
 import { addBookmark, deleteBookmark } from "../api/bookmark";
+import swrKeys from "../constants/swrKeys";
 
 export default function useBookmark() {
-  const dispatch = useDispatch<AppDispatch>();
-
-  const onClickDeleteBookmark = (followerId: number, followingId: number) => {
-    dispatch(deleteBookmark({ followerId, followingId }));
+  const { mutate } = useSWRConfig();
+  const onClickDeleteBookmark = async (
+    followerId: number,
+    followingId: number,
+  ) => {
+    await deleteBookmark({ followerId, followingId });
+    mutate(swrKeys.loadMeKey);
   };
 
-  const onClickAddBookmark = (followerId: number, followingId: number) => {
-    dispatch(addBookmark({ followerId, followingId }));
+  const onClickAddBookmark = async (
+    followerId: number,
+    followingId: number,
+  ) => {
+    await addBookmark({ followerId, followingId });
+    mutate(swrKeys.loadMeKey);
   };
   return {
     onClickDeleteBookmark,

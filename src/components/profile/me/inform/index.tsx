@@ -5,10 +5,9 @@ import Button from "../../../common/Button";
 import { GREY } from "../../../../constants/colors";
 import { FormProps } from "../tab";
 import { getMe } from "../../../../util/lib";
-import Following from "../../../bookmark/following";
-import Follower from "../../../bookmark/follower";
 import { FieldProps } from "../../../../interface/user";
 import useImage from "../../../../hooks/useImage";
+import Bookmark from "../../../bookmark";
 
 export default function Inform({ openForm }: FormProps) {
   const { me } = getMe();
@@ -71,8 +70,7 @@ export default function Inform({ openForm }: FormProps) {
           <BookMarkBox>
             <div>활동 정보</div>
             <Bookmarks>
-              <Following />
-              <Follower />
+              <Bookmark />
             </Bookmarks>
           </BookMarkBox>
         </>

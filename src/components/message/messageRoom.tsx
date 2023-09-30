@@ -54,17 +54,21 @@ const None = styled.div`
 export default function MessageRoom({
   data,
   type,
+  mutateReceieved,
 }: {
   data: IMessage[];
   type: string;
+  mutateReceieved?: () => void;
 }) {
   const [currentMsg, setCurrentMsg] = useState<number>(0);
   const { readMsg } = useMessage();
 
-  const onClickMsg = (messageId: number) => {
+  const onClickMsg = async (messageId: number) => {
     setCurrentMsg(messageId);
-    readMsg(messageId);
+    await readMsg(messageId);
+    if (mutateReceieved) mutateReceieved();
   };
+
   return (
     <Container>
       <VerticalLine />

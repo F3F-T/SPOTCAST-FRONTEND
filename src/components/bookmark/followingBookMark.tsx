@@ -40,14 +40,8 @@ const Container = styled.div`
 `;
 
 export default function FollowingBookMarkModal() {
-  const {
-    closeBookmarkModal,
-    loadNext,
-    following,
-    hasMoreFollowing,
-    loadFollowingLoading,
-    loadFollowingDone,
-  } = useFollowingBookmarkModal();
+  const { closeBookmarkModal, loadNext, following, hasMoreFollowing } =
+    useFollowingBookmarkModal();
 
   return (
     <Modal closeModal={closeBookmarkModal}>
@@ -63,22 +57,20 @@ export default function FollowingBookMarkModal() {
         </Top>
         <Line width="100%" color={GREY[400]} />
         <Container style={{ height: "500px", overflow: "auto" }}>
-          {(loadFollowingDone || loadFollowingLoading) && (
-            <InfiniteScroll
-              pageStart={0}
-              loadMore={() => {
-                const num = Math.floor(following.length / 6);
-                loadNext(num);
-              }}
-              hasMore={hasMoreFollowing}
-              loader={<LoadingBar type={6} />}
-              useWindow={false}
-            >
-              {following.map((data: IBookmark) => {
-                return <PersonCard data={data} type="FOLLOWING" />;
-              })}
-            </InfiniteScroll>
-          )}
+          <InfiniteScroll
+            pageStart={0}
+            loadMore={() => {
+              const num = Math.floor(following.length / 6);
+              loadNext(num);
+            }}
+            hasMore={hasMoreFollowing}
+            loader={<LoadingBar type={6} />}
+            useWindow={false}
+          >
+            {following.map((data: IBookmark) => {
+              return <PersonCard data={data} type="FOLLOWING" />;
+            })}
+          </InfiniteScroll>
         </Container>
       </div>
     </Modal>
