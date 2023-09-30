@@ -1,13 +1,10 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
 import useInput from "./useInput";
-import { AppDispatch } from "../../stores/store/configureStore";
 import { getMe } from "../util/lib";
-import postBoard from "../api/board";
+import { postBoard } from "../api/board";
 
 export default function useCasting() {
-  const dispatch = useDispatch<AppDispatch>();
   const { me } = getMe();
   const router = useRouter();
 
@@ -29,7 +26,7 @@ export default function useCasting() {
     { value: 11, label: "광고" },
     { value: 12, label: "기타" },
   ];
-  const onSubmitForm = () => {
+  const onSubmitForm = async () => {
     const data = {
       title,
       content,
@@ -47,7 +44,7 @@ export default function useCasting() {
         id: me.id,
       },
     };
-    dispatch(postBoard(data));
+    await postBoard(data);
   };
   const inputs = [
     {
