@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import useInput from "./useInput";
 import { getMe } from "../util/lib";
 import { postBoard } from "../api/board";
+import BOARD_TYPE from "../constants/boardType";
 
 export default function useCasting() {
   const { me } = getMe();
@@ -14,7 +15,7 @@ export default function useCasting() {
   const [regDate, onChangeRegDate] = useInput("");
   const [supportEmail, onChangeSupportEmail] = useInput("");
   const [content, onChangeContent] = useInput("");
-  const [selectedTag, setSelectedTag] = useState("전체보기");
+  const [selectedTag, setSelectedTag] = useState(4);
   const tagOptions = [
     { value: 4, label: "실용 음악" },
     { value: 5, label: "클래식" },
@@ -33,7 +34,7 @@ export default function useCasting() {
       supportEmail,
       recruitType,
       production,
-      boardType: "CASTING_AUDITION",
+      boardType: BOARD_TYPE.CASTING_AUDITION,
       regDate: new Date(regDate),
       profitStatus: "PROFITABLE",
       category: {
