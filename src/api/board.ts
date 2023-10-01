@@ -4,8 +4,8 @@ import API from "./config";
 
 export const loadBoard = async (
   boardType: string,
-  categoryId: number,
-  profitStatus: string,
+  categoryId: number | null,
+  profitStatus: string | null,
   page: number,
   size: number,
 ) => {
