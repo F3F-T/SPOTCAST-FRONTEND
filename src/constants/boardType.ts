@@ -1,0 +1,6 @@
+const BOARD_TYPE = {
+  RECRUIT: "RECRUIT",
+  CASTING_AUDITION: "CASTING_AUDITION",
+} as const;
+
+export default BOARD_TYPE;
