@@ -37,7 +37,7 @@ const API = {
   LOAD_MSG_UNREAD: `${MESSAGE}unread`,
   LOAD_FOLLOWER: `${MEMBER}${BOOKMARK}/follower`,
   LOAD_FOLLWING: `${MEMBER}${BOOKMARK}/following`,
-  LOAD_BOARD: `${BOARD}/list/boardType/`,
+  LOAD_BOARD: `${BOARD}list/boardType/`,
 };
 
 export default API;
