@@ -7,11 +7,11 @@ import { useRedirect } from "../../src/hooks/useAuth";
 import Post from "../../src/components/casting/Post";
 
 // 추후에 다이나믹 라우팅으로 변경
-function Page() {
+function Page({ id }: { id: number }) {
   useRedirect();
   return (
     <AppLayout>
-      <Post />
+      <Post postId={id} />
     </AppLayout>
   );
 }
@@ -20,7 +20,9 @@ export default Page;
 
 export const getServerSideProps = wrapper.getServerSideProps(store =>
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async ({ req, res, ...etc }) => {
+  async ({ req, res, query }) => {
+    const { id } = query;
+
     const cookie = req ? req.headers.cookie : "";
     axios.defaults.headers.Cookie = "";
 
@@ -30,7 +32,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store =>
     await store.dispatch(loadMe());
 
     return {
-      props: {},
+      props: { id },
     };
   },
 );
