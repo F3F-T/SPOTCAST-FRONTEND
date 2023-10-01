@@ -39,7 +39,7 @@ export const ImageContainer = styled.div`
 export const Title = styled.a`
   display: -webkit-box;
   font-size: 1.9rem;
-  min-height: calc(1.9rem * 2);
+  min-height: calc(1.5rem * 2);
   margin-bottom: 0.6rem;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
