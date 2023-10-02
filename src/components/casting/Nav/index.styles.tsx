@@ -10,7 +10,7 @@ export const CategoryList = styled.ul`
 `;
 export const CategoryButton = styled(Button)<{ className: string }>`
   font-size: 1.7rem;
-  min-width: 13.5rem;
+  min-width: 6rem;
   padding: 0.9rem 3rem;
   border-radius: 2.85rem;
   ${({ className }) => `
@@ -33,42 +33,6 @@ export const SubCategory = styled.div`
 export const CategoryTitle = styled.h3`
   font-size: 2.5rem;
   font-weight: bold;
-`;
-
-export const DropDownButton = styled.button`
-  cursor: pointer;
-  margin-left: 0.9rem;
-  aspect-ratio: 1/1;
-  background-color: transparent;
-  display: block;
-  border-radius: 50%;
-  border: 0.12rem solid ${BLACK};
-  transition: rotate 200ms linear;
-  .active.drop-down > & {
-    rotate: 180deg;
-  }
-`;
-
-export const DropDownList = styled.ul`
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-  top: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  z-index: 100;
-  background-color: ${WHITE};
-  padding: 2.4rem 2.6rem;
-  border-radius: 0.6rem;
-  border: 0.05rem solid ${GREY[300]};
-  box-shadow: 0 0.57rem 0.818rem 0.409rem rgba(0, 0, 0, 0.07);
-  transition: all 150ms ease-in-out;
-  .active.drop-down > & {
-    opacity: 1;
-    pointer-events: auto;
-    top: calc(100% + 2.2rem);
-  }
 `;
 
 export const ButtonWrapper = styled.div`
@@ -100,12 +64,5 @@ export const WriteButton = styled.button`
   color: white;
   background-color: ${GREY[700]};
   margin-left: 0.3rem;
-  cursor: pointer;
-`;
-
-export const SubCategoryButton = styled.button`
-  background-color: transparent;
-  border: none;
-  font-size: 1.635rem;
   cursor: pointer;
 `;
