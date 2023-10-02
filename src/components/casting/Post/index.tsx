@@ -1,19 +1,29 @@
 import styled from "@emotion/styled";
 import React from "react";
+import useSWR from "swr";
 import { GREY } from "../../../constants/colors";
 import { getMe } from "../../../util/lib";
 import ApplyButton from "./applyButton";
-import text from "./text";
+import { loadBoardPost } from "../../../api/board";
+import swrKeys from "../../../constants/swrKeys";
 
-export default function Post() {
+export default function Post({ postId }: { postId: number }) {
   const { me } = getMe();
-  const fakeDate = [
-    { name: "주최사", contents: "JYP Entertainment" },
-    { name: "모집 형식", contents: "기간 한정 오디션" },
-    { name: "모집 마감", contents: "2023-03-08" },
-    { name: "모집 분야", contents: "실용 음악" },
-    { name: "이메일", contents: "dbscogus4467@naver.com" },
+  const { data } = useSWR(swrKeys.loadBoardPostKey, () =>
+    loadBoardPost(postId),
+  );
+
+  if (!data) return null;
+
+  const dataMap = [
+    { name: "주최사", contents: data.production },
+    { name: "모집 형식", contents: data.recruitType },
+    { name: "모집 마감", contents: data.regDate.split("T")[0] },
+    { name: "모집 분야", contents: data.category.name },
+    { name: "이메일", contents: data.supportEmail },
   ];
+
+  console.log(data);
   return (
     <Container>
       <Wrapper>
@@ -22,9 +32,9 @@ export default function Post() {
         </ButtonWrapper>
         <Img src={me.profile} />
         <div>
-          <Title>JYP 연습생 공채 17기 오디션 안내</Title>
+          <Title>{data.title}</Title>
           <ContentsContainer>
-            {fakeDate.map(ele => {
+            {dataMap.map(ele => {
               return (
                 <ContentsWrapper key={ele.name}>
                   <Name>{ele.name}</Name>
@@ -35,8 +45,8 @@ export default function Post() {
           </ContentsContainer>
         </div>
       </Wrapper>
-      <Detail> 상세 내용</Detail>
-      <DetailContents>{text}</DetailContents>
+      <Detail>상세 내용</Detail>
+      <DetailContents>{data.content}</DetailContents>
     </Container>
   );
 }
@@ -110,7 +120,7 @@ const DetailContents = styled.div`
   font-size: 1.5rem;
   padding-top: 3rem;
   white-space: pre-wrap;
-  line-height: 1.5;
+  line-height: 1.75;
 `;
 
 const ButtonWrapper = styled.div`
