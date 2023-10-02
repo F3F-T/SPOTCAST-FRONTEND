@@ -1,9 +1,10 @@
 export interface CastingProps {
-  id: number;
-  category: number;
+  boardType: "CASTING_AUDITION";
+  category: number | null;
   categoryName: string;
   commentCount: number;
   content: string;
+  id: number;
   likeCount: number;
   memberId: number;
   memeberName: string;

@@ -37,6 +37,6 @@ const ICONS: IconType = {
   heartEmpty: "bi bi-heart",
   heartFill: "bi bi-heart-fill",
   plusCircle: "bi bi-plus-circle",
-};
+} as const;
 
 export default ICONS;

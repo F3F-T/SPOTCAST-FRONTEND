@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useSWR from "swr";
 import { useRouter } from "next/router";
 import useInput from "./useInput";
 import { getMe } from "../util/lib";
-import { postBoard } from "../api/board";
+import { loadBoard, postBoard } from "../api/board";
+import { BOARD_TYPE, CATEGORY_ID } from "../constants/boardType";
+import swrKeys from "../constants/swrKeys";
 
 export default function useCasting() {
   const { me } = getMe();
@@ -14,18 +17,13 @@ export default function useCasting() {
   const [regDate, onChangeRegDate] = useInput("");
   const [supportEmail, onChangeSupportEmail] = useInput("");
   const [content, onChangeContent] = useInput("");
-  const [selectedTag, setSelectedTag] = useState("전체보기");
-  const tagOptions = [
-    { value: 4, label: "실용 음악" },
-    { value: 5, label: "클래식" },
-    { value: 6, label: "영화" },
-    { value: 7, label: "드라마" },
-    { value: 8, label: "연극" },
-    { value: 9, label: "방송/예능" },
-    { value: 10, label: "모델" },
-    { value: 11, label: "광고" },
-    { value: 12, label: "기타" },
-  ];
+  const [selectedTag, setSelectedTag] = useState(3);
+  const tagOptions = (
+    Object.keys(CATEGORY_ID) as (keyof typeof CATEGORY_ID)[]
+  ).map(label => ({
+    value: CATEGORY_ID[label],
+    label,
+  }));
   const onSubmitForm = async () => {
     const data = {
       title,
@@ -33,11 +31,10 @@ export default function useCasting() {
       supportEmail,
       recruitType,
       production,
-      boardType: "CASTING_AUDITION",
+      boardType: BOARD_TYPE.CASTING_AUDITION,
       regDate: new Date(regDate),
       profitStatus: "PROFITABLE",
       category: {
-        // 임시 아이디
         id: Number(selectedTag),
       },
       member: {
@@ -82,12 +79,41 @@ export default function useCasting() {
   ];
 
   const replacePostPage = (id: number) => {
-    router.push(`/casting/${id}`);
+    router.push(`/casting/post/${id}`);
   };
 
   const replaceFormPage = () => {
     router.push("/casting/form");
   };
+
+  const { category, page } = router.query;
+  const [currentPage, setCurrentPage] = useState(Number(page) + 1);
+  const onChangePage = (newPage: number) => {
+    setCurrentPage(newPage);
+    router.replace(`/casting?category=${category}&page=${newPage - 1}`);
+  };
+
+  const onChangeCategory = (categoryId: number) => {
+    router.replace(`/casting?category=${categoryId}&page=0`);
+  };
+
+  const swrCastingKey = `${swrKeys.loadCastingKey}?category=${
+    category || 0
+  }&page=${page || 0}`;
+
+  const { data } = useSWR(swrCastingKey, () =>
+    loadBoard(
+      BOARD_TYPE.CASTING_AUDITION,
+      category ? +category : 0,
+      null,
+      page ? +page : 0,
+      12,
+    ),
+  );
+
+  useEffect(() => {
+    setCurrentPage(Number(page) + 1);
+  }, [page]);
 
   return {
     title,
@@ -101,5 +127,10 @@ export default function useCasting() {
     tagOptions,
     replacePostPage,
     replaceFormPage,
+    currentPage,
+    onChangePage,
+    data,
+    onChangeCategory,
+    category,
   };
 }

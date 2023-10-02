@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import useInput from "./useInput";
 import { AppDispatch } from "../../stores/store/configureStore";
 import { getMe } from "../util/lib";
-import postBoard from "../api/board";
+import { postBoard } from "../api/board";
 
 export default function useRecruit() {
   const dispatch = useDispatch<AppDispatch>();

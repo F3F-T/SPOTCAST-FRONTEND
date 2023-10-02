@@ -10,9 +10,9 @@ export default function RecruitForm() {
     setSelectedTag,
     inputs,
     title,
-    contents,
+    content,
     onChangeTitle,
-    onChangeContents,
+    onChangeContent,
     onSubmitForm,
   } = useCasting();
 
@@ -58,8 +58,8 @@ export default function RecruitForm() {
         })}
         <Line width="100%" color="white" />
         <Input
-          value={contents}
-          onChange={onChangeContents}
+          value={content}
+          onChange={onChangeContent}
           label="상세 내용"
           size={108}
           type="text"

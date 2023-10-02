@@ -5,7 +5,7 @@ import API from "./config";
 export const loadBoard = async (
   boardType: string,
   categoryId: number,
-  profitStatus: string,
+  profitStatus: string | null,
   page: number,
   size: number,
 ) => {
@@ -15,8 +15,9 @@ export const loadBoard = async (
   return data;
 };
 
-export const loadBoardDetail = (id: number) => {
-  authorizationClient.get(`${API.BOARD}/${id}`);
+export const loadBoardPost = async (id: number) => {
+  const { data } = await authorizationClient.get(`${API.BOARD}${id}`);
+  return data.data;
 };
 
 export const postBoard = async (data: object) => {

@@ -16,9 +16,9 @@ import HeaderModal from "./HeaderModal";
 
 export default function Header() {
   const menu = [
-    { name: "캐스팅/오디션", href: "/casting" },
+    { name: "캐스팅/오디션", href: "/casting?category=0&page=0" },
     { name: "공개 포트폴리오", href: "/portfolio" },
-    { name: "구인 공고", href: "/recruit" },
+    { name: "구인 공고", href: "/recruit?category=0&page=0" },
     { name: "커뮤니티", href: "/community" },
   ];
 

@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import Icon from "../../common/Icon";
 import {
@@ -12,47 +11,35 @@ import {
   Remainder,
 } from "./index.styles";
 import useCasting from "../../../hooks/useCasting";
+import { CastingProps } from "../../../interface/borad";
+import { getRemainDay } from "../../../util/date";
 
-interface CastingProps {
-  thumbImg: string;
-  postUrl: string;
-  companyUrl: string;
-  title: string;
-  subtitle: string;
-  endDate: string;
-  remaining: number;
-}
-
-function CastingCard({
-  thumbImg = "https://via.placeholder.com/300?text=casting",
-  postUrl = "/",
-  companyUrl = "/company/YG",
-  title = "2023 YG NATIONAL AUDITION TOUR",
-  subtitle = "YG Entertainment",
-  endDate = "2023-02-11",
-  remaining = 14,
-}: CastingProps) {
+function CastingCard({ info }: { info: CastingProps }) {
   const { replacePostPage } = useCasting();
   return (
-      <CardContainer
-          onClick={() => {
-            replacePostPage();
-          }}
-      >
+    <CardContainer
+      onClick={() => {
+        replacePostPage(info.id);
+      }}
+    >
       <BookmartButton type="button">
         <Icon className="bookmarkFill" color="#FFF" border={0} />
       </BookmartButton>
       <ImageContainer>
-        <img className="unselectable" src={thumbImg} alt="alt" />
+        <img
+          className="unselectable"
+          src="https://via.placeholder.com/300?text=casting"
+          alt="alt"
+        />
       </ImageContainer>
-      <Title href={postUrl}>{title}</Title>
-      <Subtitle href={companyUrl}>{subtitle}</Subtitle>
+      <Title>{info.title}</Title>
+      <Subtitle>{info.production}</Subtitle>
       <EndDate>
         <Date>
-          <span>{endDate}</span> 마감
+          <span>{info.regDate.split("T")[0]}</span> 마감
         </Date>
         <Remainder>
-          D-<span>{remaining}</span>
+          D<span>{getRemainDay(info.regDate)}</span>
         </Remainder>
       </EndDate>
     </CardContainer>
