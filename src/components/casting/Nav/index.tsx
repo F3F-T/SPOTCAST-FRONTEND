@@ -4,44 +4,32 @@ import {
   CategoryButton,
   CategoryList,
   CategoryTitle,
-  DropDownButton,
-  DropDownList,
   SortButton,
   SubCategory,
-  SubCategoryButton,
   WriteButton,
 } from "./index.styles";
 import Icon from "../../common/Icon";
 import useCasting from "../../../hooks/useCasting";
+import { CATEGORY_ID } from "../../../constants/boardType";
 
 interface CastingCategories {
-  [translation: string]: string;
+  [translation: string]: number;
 }
 
 export default function CastingNav() {
   const categories: CastingCategories = {
-    전체보기: "all",
-    실용음악: "contemporaryMusic",
-    클래식: "classic",
-    연기: "theatre",
-    연출: "production",
-    모델: "modeling",
-    기타: "others",
+    전체보기: 0,
+    ...CATEGORY_ID,
   };
-  const subCategories: CastingCategories = {
-    아이돌: "idol",
-    보컬: "vocal",
-    연주: "instrument",
-    프로듀싱: "producing",
-  };
+  const {
+    category: currentPageCategory,
+    replaceFormPage,
+    onChangeCategory,
+  } = useCasting();
 
   const [currentCategory, setCurrentCategory] = useState(
-    Object.values(categories)[0],
+    currentPageCategory ? +currentPageCategory : 0,
   );
-  const [currentSubCategory, setCurrentSubCateogory] = useState(
-    Object.values(subCategories)[0],
-  );
-  const { replaceFormPage } = useCasting();
 
   return (
     <>
@@ -51,7 +39,10 @@ export default function CastingNav() {
             <CategoryButton
               buttonTheme="tertiary"
               title={category}
-              onClick={() => setCurrentCategory(categories[category])}
+              onClick={() => {
+                setCurrentCategory(categories[category]);
+                onChangeCategory(categories[category]);
+              }}
               className={
                 categories[category] === currentCategory ? "active" : ""
               }
@@ -65,28 +56,7 @@ export default function CastingNav() {
             key => categories[key] === currentCategory,
           )}
         </CategoryTitle>
-        <DropDownButton
-          className="drop-down-button"
-          onClick={() =>
-            document.querySelector(".drop-down")?.classList.toggle("active")
-          }
-        >
-          <Icon className="arrowDown" />
-        </DropDownButton>
-        <DropDownList>
-          {Object.keys(subCategories).map(sub => (
-            <li key={sub}>
-              <SubCategoryButton
-                onClick={() => setCurrentSubCateogory(subCategories[sub])}
-                className={
-                  subCategories[sub] === currentSubCategory ? "active" : ""
-                }
-              >
-                {sub}
-              </SubCategoryButton>
-            </li>
-          ))}
-        </DropDownList>
+
         <ButtonWrapper>
           <SortButton>
             <Icon className="sort" border={0.1} size="1.8rem" />
