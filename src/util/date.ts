@@ -27,7 +27,7 @@ export const getRemainDay = (date: string) => {
   const diff = endDate.getTime() - curDate.getTime();
   const diffDays = diff / (1000 * 60 * 60 * 24);
 
-  return diff < 0 ? ` + ${Math.abs(diffDays)}` : ` - ${Math.abs(diffDays)}`;
+  return diffDays;
 };
 
 export const getTime = (date: string) => {
