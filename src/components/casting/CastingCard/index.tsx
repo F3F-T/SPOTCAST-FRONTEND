@@ -39,7 +39,9 @@ function CastingCard({ info }: { info: CastingProps }) {
           <span>{info.regDate.split("T")[0]}</span> 마감
         </Date>
         <Remainder>
-          D<span>{getRemainDay(info.regDate)}</span>
+          {getRemainDay(info.regDate) < 0
+            ? "마감"
+            : `D-${getRemainDay(info.regDate)}`}
         </Remainder>
       </EndDate>
     </CardContainer>
