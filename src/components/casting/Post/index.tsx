@@ -6,6 +6,7 @@ import { getMe } from "../../../util/lib";
 import ApplyButton from "./applyButton";
 import { loadBoardPost } from "../../../api/board";
 import swrKeys from "../../../constants/swrKeys";
+import { getRemainDay } from "../../../util/date";
 
 export default function Post({ postId }: { postId: number }) {
   const { me } = getMe();
@@ -28,7 +29,9 @@ export default function Post({ postId }: { postId: number }) {
     <Container>
       <Wrapper>
         <ButtonWrapper>
-          <ApplyButton />
+          {getRemainDay(data.regDate) > 0 && (
+            <ApplyButton remainDays={getRemainDay(data.regDate)} />
+          )}
         </ButtonWrapper>
         <Img src={me.profile} />
         <div>
