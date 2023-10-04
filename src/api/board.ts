@@ -8,9 +8,10 @@ export const loadBoard = async (
   profitStatus: string | null,
   page: number,
   size: number,
+  regStatus = "ALL",
 ) => {
   const { data } = await authorizationClient.get(
-    `${API.LOAD_BOARD}${boardType}?categoryId=${categoryId}&profitStatus=${profitStatus}&page=${page}&size=${size}`,
+    `${API.LOAD_BOARD}${boardType}?categoryId=${categoryId}&profitStatus=${profitStatus}&page=${page}&size=${size}&regStatus=${regStatus}`,
   );
   return data;
 };
