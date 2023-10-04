@@ -8,7 +8,7 @@ import Line from "../../common/Line";
 import useRecruit from "../../../hooks/useRecruit";
 
 export default function Menu() {
-  const menu = ["진행중", "진행 마감"];
+  const menu = ["전체", "진행중", "진행 마감"];
   const categories = [
     "실용 음악",
     "클래식",
