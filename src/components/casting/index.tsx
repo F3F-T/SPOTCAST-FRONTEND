@@ -3,7 +3,7 @@ import Pagination from "react-js-pagination";
 import CastingCard from "./CastingCard";
 import { CardGrid, Paging, Container } from "./index.styles";
 import CastingNav from "./Nav";
-import { CastingProps } from "../../interface/borad";
+import { IBoard } from "../../interface/borad";
 import Icon from "../common/Icon";
 import useCasting from "../../hooks/useCasting";
 
@@ -16,7 +16,7 @@ export default function Casting() {
       <CastingNav />
       <Container>
         <CardGrid>
-          {data.data.content.map((info: CastingProps) => (
+          {data.data.content.map((info: IBoard) => (
             <CastingCard info={info} />
           ))}
         </CardGrid>

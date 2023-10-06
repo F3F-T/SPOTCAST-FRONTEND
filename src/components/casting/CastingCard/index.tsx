@@ -11,10 +11,10 @@ import {
   Remainder,
 } from "./index.styles";
 import useCasting from "../../../hooks/useCasting";
-import { CastingProps } from "../../../interface/borad";
+import { IBoard } from "../../../interface/borad";
 import { getRemainDay } from "../../../util/date";
 
-function CastingCard({ info }: { info: CastingProps }) {
+function CastingCard({ info }: { info: IBoard }) {
   const { replacePostPage } = useCasting();
   return (
     <CardContainer
