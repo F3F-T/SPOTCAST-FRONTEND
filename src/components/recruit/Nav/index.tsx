@@ -6,46 +6,62 @@ import Button from "../../common/Button";
 import Icon from "../../common/Icon";
 import Line from "../../common/Line";
 import useRecruit from "../../../hooks/useRecruit";
+import { CATEGORY_ID, REG_STATUS } from "../../../constants/boardType";
 
-export default function Menu() {
-  const menu = ["전체", "진행중", "진행 마감"];
-  const categories = [
-    "실용 음악",
-    "클래식",
-    "영화",
-    "드라마",
-    "연극",
-    "방송/예능",
-    "모델",
-    "광고",
-    "기타",
+export default function RecruitNav() {
+  const regStatusMenu = [
+    { label: "전체", value: REG_STATUS.ALL },
+    { label: "진행중", value: REG_STATUS.ONGOING },
+    { label: "진행 마감", value: REG_STATUS.END },
   ];
-  const [currentCategory, setCurrentCategory] = useState("실용 음악");
-  const [currentMenu, setCurrentMenu] = useState("진행중");
-  const { replaceFormPage } = useRecruit();
+
+  const {
+    replaceFormPage,
+    onChangeRegStatus,
+    regStatus,
+    category: currentPageCategory,
+    onChangeCategory,
+  } = useRecruit();
+
+  const [currentCategory, setCurrentCategory] = useState(
+    currentPageCategory ? +currentPageCategory : 3,
+  );
+  const [currentMenu, setCurrentMenu] = useState(() => {
+    const matchingMenu = regStatusMenu.find(ele => ele.value === regStatus);
+    return matchingMenu ? matchingMenu.label : "전체";
+  });
+
   return (
     <Container>
       <div>
         <Title>구인 공고</Title>
-        {menu.map(ele => {
+        {regStatusMenu.map(ele => {
           return (
             <Progress
-              onClick={() => setCurrentMenu(ele)}
-              selected={currentMenu === ele}
+              onClick={() => {
+                setCurrentMenu(ele.label);
+                onChangeRegStatus(ele.value);
+              }}
+              selected={currentMenu === ele.label}
             >
-              {ele}
+              {ele.label}
             </Progress>
           );
         })}
       </div>
       <CategoryList>
-        {categories.map(category => (
+        {Object.keys(CATEGORY_ID).map(category => (
           <li key={category}>
             <CategoryButton
               buttonTheme="tertiary"
               title={category}
-              onClick={() => setCurrentCategory(category)}
-              selected={category === currentCategory ? "active" : ""}
+              onClick={() => {
+                setCurrentCategory(CATEGORY_ID[category]);
+                onChangeCategory(CATEGORY_ID[category]);
+              }}
+              selected={
+                CATEGORY_ID[category] === currentCategory ? "active" : ""
+              }
             />
           </li>
         ))}
