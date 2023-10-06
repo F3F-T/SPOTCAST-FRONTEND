@@ -1,18 +1,18 @@
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
+import useSWR from "swr";
 import { useCallback, useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import useInput from "./useInput";
-import { AppDispatch } from "../../stores/store/configureStore";
 import { getMe } from "../util/lib";
-import { postBoard } from "../api/board";
+import { loadBoard, postBoard } from "../api/board";
+import { BOARD_TYPE, CATEGORY_ID, REG_STATUS } from "../constants/boardType";
+import swrKeys from "../constants/swrKeys";
 
 export default function useRecruit() {
-  const dispatch = useDispatch<AppDispatch>();
   const { me } = getMe();
 
   const router = useRouter();
   const [title, onChangeTitle] = useInput("");
-  // 제작사 필드 아직 없음
+  const [production, onChangeProduction] = useInput("");
   const [recruitType, onChangeRecruitType] = useInput("");
   const [recruitVolume, onChangeRecruitVolume] = useInput("");
   const [regDate, onChangeRegDate] = useInput("");
@@ -20,22 +20,15 @@ export default function useRecruit() {
   const [phone, onChangePhone] = useInput("");
   const [supportEmail, onChangeSupportEmail] = useInput("");
   const [participationPeriod, onChangeParticipationPeriod] = useInput("");
-  const [contents, onChangeContents] = useInput("");
+  const [content, onChangeContent] = useInput("");
   const [profitStatus, setProfitStatus] = useState("PROFITABLE");
-  const [selectedTag, setSelectedTag] = useState("전체보기");
-  const tagOptions = [
-    { value: "실용 음악", label: "실용 음악" },
-    { value: "클래식", label: "클래식" },
-    { value: "영화", label: "영화" },
-    { value: "드라마", label: "드라마" },
-    { value: "연극", label: "연극" },
-    { value: "연출", label: "연출" },
-    { value: "방송/예능", label: "방송/예능" },
-    { value: "모델", label: "모델" },
-    { value: "광고", label: "광고" },
-    { value: "기타", label: "기타" },
-  ];
-
+  const [selectedTag, setSelectedTag] = useState(3);
+  const tagOptions = (
+    Object.keys(CATEGORY_ID) as (keyof typeof CATEGORY_ID)[]
+  ).map(label => ({
+    value: CATEGORY_ID[label],
+    label,
+  }));
   const replacePostPage = () => {
     router.push("/recruit/post");
   };
@@ -81,28 +74,28 @@ export default function useRecruit() {
       setProfitStatus(types[1].profitStatus);
   }, [types]);
 
-  const onSubmitForm = () => {
+  const onSubmitForm = async () => {
     const data = {
       title,
-      content: contents,
+      content,
       supportEmail,
       phone,
-      pay: +pay,
-      participationPeriod: +participationPeriod,
+      pay,
+      participationPeriod,
       recruitVolume: +recruitVolume,
       recruitType,
       profitStatus,
-      boardType: "RECRUIT",
+      production,
+      boardType: BOARD_TYPE.RECRUIT,
       regDate: new Date(regDate),
       category: {
-        // 임시 아이디
-        id: 3,
+        id: Number(selectedTag),
       },
       member: {
         id: me.id,
       },
     };
-    dispatch(postBoard(data));
+    await postBoard(data);
   };
   const inputs = [
     {
@@ -110,8 +103,8 @@ export default function useRecruit() {
       label: "제작사 또는 조직명",
       size: 19.5,
       type: "text",
-      value: "",
-      onChange: "",
+      value: production,
+      onChange: onChangeProduction,
     },
     {
       outerLabel: "모집 분야",
@@ -170,19 +163,77 @@ export default function useRecruit() {
       onChange: onChangeSupportEmail,
     },
   ];
+
+  const { category, page, profitable, regStatus } = router.query;
+
+  const [currentPage, setCurrentPage] = useState(Number(page) + 1);
+  const onChangePage = (newPage: number) => {
+    setCurrentPage(newPage);
+    router.replace(
+      `/recruit?category=${category}&page=${
+        newPage - 1
+      }&profitable=${profitable}&regStatus=${regStatus}`,
+    );
+  };
+
+  const onChangeCategory = (categoryId: number) => {
+    router.replace(
+      `/recruit?category=${categoryId}&page=0&profitable=${profitable}&regStatus=${REG_STATUS.ALL}`,
+    );
+  };
+
+  const onChangeRegStatus = (newRegStatus: string) => {
+    router.replace(
+      `/recruit?category=${category}&page=0&profitable=${profitable}&regStatus=${newRegStatus}`,
+    );
+  };
+
+  const onChangeProfitable = (newProfitable: string) => {
+    router.replace(
+      `/recruit?category=${category}&page=0&profitable=${newProfitable}&regStatus=${regStatus}`,
+    );
+  };
+
+  const swrRecruitKey = `${swrKeys.loadRecruitKey}?category=${
+    category || 0
+  }&page=${page || 0}&profitable=${profitable}&regStatus=${regStatus}`;
+
+  const { data } = useSWR(swrRecruitKey, () =>
+    loadBoard(
+      BOARD_TYPE.RECRUIT,
+      category ? +category : 0,
+      profitable || "PROFITABLE",
+      page ? +page : 0,
+      4,
+      regStatus || "ALL",
+    ),
+  );
+
+  useEffect(() => {
+    setCurrentPage(Number(page) + 1);
+  }, [page]);
+
   return {
     types,
     replacePostPage,
     replaceFormPage,
     onToggleCheck,
     title,
-    contents,
+    content,
     onChangeTitle,
-    onChangeContents,
+    onChangeContent,
     onSubmitForm,
     inputs,
     selectedTag,
     setSelectedTag,
     tagOptions,
+    data,
+    currentPage,
+    onChangePage,
+    onChangeCategory,
+    onChangeProfitable,
+    onChangeRegStatus,
+    regStatus,
+    category,
   };
 }
