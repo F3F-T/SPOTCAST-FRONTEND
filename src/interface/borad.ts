@@ -1,4 +1,4 @@
-export interface CastingProps {
+export interface IBoard {
   boardType: "CASTING_AUDITION";
   category: number | null;
   categoryName: string;
