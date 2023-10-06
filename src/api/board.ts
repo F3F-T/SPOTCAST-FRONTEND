@@ -5,13 +5,17 @@ import API from "./config";
 export const loadBoard = async (
   boardType: string,
   categoryId: number,
-  profitStatus: string | null,
+  profitStatus: string | string[] | null,
   page: number,
   size: number,
-  regStatus = "ALL",
+  regStatus: string | string[] | null,
 ) => {
   const { data } = await authorizationClient.get(
     `${API.LOAD_BOARD}${boardType}?categoryId=${categoryId}&profitStatus=${profitStatus}&page=${page}&size=${size}&regStatus=${regStatus}`,
+  );
+  console.log(
+    `${API.LOAD_BOARD}${boardType}?categoryId=${categoryId}&profitStatus=${profitStatus}&page=${page}&size=${size}&regStatus=${regStatus}`,
+    data,
   );
   return data;
 };

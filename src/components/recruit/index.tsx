@@ -1,11 +1,11 @@
 import React from "react";
-import Menu from "./Menu";
+import RecruitNav from "./Nav";
 import Contents from "./Contents";
 
 export default function Recruit() {
   return (
     <>
-      <Menu />
+      <RecruitNav />
       <Contents />
     </>
   );

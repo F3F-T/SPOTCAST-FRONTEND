@@ -4,6 +4,7 @@ import { INDIGO } from "../../../constants/colors";
 import CardCategory from "./CardCategory";
 import CardDetail from "./CardDetail";
 import useRecruit from "../../../hooks/useRecruit";
+import { IBoard } from "../../../interface/borad";
 
 const Container = styled.div`
   width: 87rem;
@@ -18,14 +19,14 @@ const Button = styled.div`
   cursor: pointer;
   background-color: transparent;
 `;
-export default function RecruitCard() {
+export default function RecruitCard({ info }: { info: IBoard }) {
   const { replacePostPage } = useRecruit();
 
   return (
     <Button onClick={replacePostPage}>
       <Container>
-        <CardDetail />
-        <CardCategory />
+        <CardDetail info={info} />
+        <CardCategory info={info} />
       </Container>
     </Button>
   );
