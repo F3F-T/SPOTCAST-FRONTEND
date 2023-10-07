@@ -24,7 +24,6 @@ export default function Post({ postId }: { postId: number }) {
     { name: "이메일", contents: data.supportEmail },
   ];
 
-  console.log(data);
   return (
     <Container>
       <Wrapper>

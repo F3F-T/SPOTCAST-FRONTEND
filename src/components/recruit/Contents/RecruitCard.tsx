@@ -23,7 +23,7 @@ export default function RecruitCard({ info }: { info: IBoard }) {
   const { replacePostPage } = useRecruit();
 
   return (
-    <Button onClick={replacePostPage}>
+    <Button onClick={() => replacePostPage(info.id)}>
       <Container>
         <CardDetail info={info} />
         <CardCategory info={info} />

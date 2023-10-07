@@ -29,8 +29,8 @@ export default function useRecruit() {
     value: CATEGORY_ID[label],
     label,
   }));
-  const replacePostPage = () => {
-    router.push("/recruit/post");
+  const replacePostPage = (id: number) => {
+    router.push(`/recruit/post/${id}`);
   };
 
   const replaceFormPage = () => {
