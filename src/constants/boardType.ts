@@ -4,6 +4,7 @@ const BOARD_TYPE = {
 } as const;
 
 const PROFITABLE_STATUS = {
+  ALL: "null",
   PROFITABLE: "PROFITABLE",
   NON_PROFITABLE: "NON_PROFITABLE",
 } as const;
