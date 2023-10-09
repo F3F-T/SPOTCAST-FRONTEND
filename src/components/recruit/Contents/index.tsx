@@ -10,7 +10,6 @@ import { IBoard } from "../../../interface/borad";
 
 export default function Contents() {
   const { data, currentPage, onChangePage } = useRecruit();
-  console.log(data);
 
   if (!data) return null;
 

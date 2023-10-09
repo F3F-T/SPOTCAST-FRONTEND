@@ -13,10 +13,6 @@ export const loadBoard = async (
   const { data } = await authorizationClient.get(
     `${API.LOAD_BOARD}${boardType}?categoryId=${categoryId}&profitStatus=${profitStatus}&page=${page}&size=${size}&regStatus=${regStatus}`,
   );
-  console.log(
-    `${API.LOAD_BOARD}${boardType}?categoryId=${categoryId}&profitStatus=${profitStatus}&page=${page}&size=${size}&regStatus=${regStatus}`,
-    data,
-  );
   return data;
 };
 
