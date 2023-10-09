@@ -16,7 +16,7 @@ export default function Post({ postId }: { postId: number }) {
   );
 
   if (!data) return null;
-  console.log(data);
+
   const dataMap = [
     { name: "제작", contents: data.production },
     { name: "모집 인원", contents: data.recruitVolume },
