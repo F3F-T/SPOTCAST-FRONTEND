@@ -11,30 +11,30 @@ import { IBoard } from "../../../interface/borad";
 export default function Contents() {
   const { data, currentPage, onChangePage } = useRecruit();
 
-  if (!data) return null;
-
   return (
     <Container>
       <FilterTab />
-      <PagingWrapper>
-        <CardWrapper>
-          {data.data.content.map((info: IBoard) => (
-            <RecruitCard info={info} />
-          ))}
-        </CardWrapper>
-        <Paging>
-          <Pagination
-            activePage={currentPage}
-            itemsCountPerPage={4}
-            totalItemsCount={data.data.totalElements}
-            pageRangeDisplayed={4}
-            prevPageText={<Icon className="arrowLeft" size="1.2rem" />}
-            nextPageText={<Icon className="arrowRight" size="1.2rem" />}
-            hideFirstLastPages
-            onChange={onChangePage}
-          />
-        </Paging>
-      </PagingWrapper>
+      {data && (
+        <PagingWrapper>
+          <CardWrapper>
+            {data.data.content.map((info: IBoard) => (
+              <RecruitCard info={info} />
+            ))}
+          </CardWrapper>
+          <Paging>
+            <Pagination
+              activePage={currentPage}
+              itemsCountPerPage={4}
+              totalItemsCount={data.data.totalElements}
+              pageRangeDisplayed={4}
+              prevPageText={<Icon className="arrowLeft" size="1.2rem" />}
+              nextPageText={<Icon className="arrowRight" size="1.2rem" />}
+              hideFirstLastPages
+              onChange={onChangePage}
+            />
+          </Paging>
+        </PagingWrapper>
+      )}
     </Container>
   );
 }
