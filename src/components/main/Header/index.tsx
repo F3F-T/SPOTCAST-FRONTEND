@@ -20,7 +20,7 @@ export default function Header() {
     { name: "공개 포트폴리오", href: "/portfolio" },
     {
       name: "구인 공고",
-      href: "/recruit?category=3&page=0&profitable=PROFITABLE&regStatus=ALL",
+      href: "/recruit?category=3&page=0&profitable=null&regStatus=ALL",
     },
     { name: "커뮤니티", href: "/community" },
   ];
