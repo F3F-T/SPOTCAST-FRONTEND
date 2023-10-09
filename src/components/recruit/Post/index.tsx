@@ -1,39 +1,59 @@
 import styled from "@emotion/styled";
 import React from "react";
+import useSWR from "swr";
 import Badge from "../../common/Badge";
 import { GREY, INDIGO } from "../../../constants/colors";
-import text from "./text";
 import Icon from "../../common/Icon";
+import swrKeys from "../../../constants/swrKeys";
+import { loadBoardPost } from "../../../api/board";
+import { IBoard } from "../../../interface/borad";
+import { getRemainDay } from "../../../util/date";
+import { PROFITABLE_STATUS } from "../../../constants/boardType";
 
-export default function Post() {
-  const fakeDate = [
-    { name: "제작", contents: "이방인들" },
-    { name: "모집 인원", contents: "3명" },
-    { name: "모집 분야", contents: "영화" },
-    { name: "모집 마감", contents: "2023-03-14" },
-    { name: "참여 기간", contents: "3개월 이상" },
-    { name: "전화번호", contents: "" },
-    { name: "페이", contents: "없음" },
-    { name: "이메일", contents: "nu8545@naver.com" },
+export default function Post({ postId }: { postId: number }) {
+  const { data }: { data: IBoard } = useSWR(swrKeys.loadBoardPostKey, () =>
+    loadBoardPost(postId),
+  );
+
+  if (!data) return null;
+  console.log(data);
+  const dataMap = [
+    { name: "제작", contents: data.production },
+    { name: "모집 인원", contents: data.recruitVolume },
+    { name: "모집 분야", contents: data.recruitType },
+    { name: "모집 마감", contents: data.regDate.split("T")[0] },
+    { name: "참여 기간", contents: data.participationPeriod },
+    { name: "전화번호", contents: data.phone },
+    { name: "페이", contents: data.pay },
+    { name: "이메일", contents: data.supportEmail },
   ];
+
   return (
     <Container>
       <Top>
         <Wrapper>
-          <Date>0일 남음</Date>
-          <Category>영화</Category>
+          <Date>
+            {getRemainDay(data.regDate) < 0
+              ? "진행 마감"
+              : `${getRemainDay(data.regDate)}일 남음`}
+          </Date>
+          <Category>{data.category.name}</Category>
         </Wrapper>
-        <Title>
-          상업적인 장편영화 시나리오 스터디 팀원 모집 (아이템 개발, 공모전 준비)
-        </Title>
-        <StyledBadge label="비수익성(포트폴리오)" />
+        <Title>{data.title}</Title>
+        <StyledBadge
+          label={
+            data.profitStatus === PROFITABLE_STATUS.PROFITABLE
+              ? "수익성"
+              : "비수익성(포트폴리오)"
+          }
+        />
         <BookmarkButton>
           <Icon className="bookmarkEmpty" border={0.1} color={INDIGO} />
           북마크 하기
         </BookmarkButton>
       </Top>
       <ContentsContainer>
-        {fakeDate.map(ele => {
+        {dataMap.map(ele => {
           return (
             <ContentsWrapper key={ele.name}>
               <Name>{ele.name}</Name>
@@ -42,8 +62,8 @@ export default function Post() {
           );
         })}
       </ContentsContainer>
-      <Detail> 상세 내용</Detail>
-      <DetailContents>{text}</DetailContents>
+      <Detail>상세 내용</Detail>
+      <DetailContents>{data.content}</DetailContents>
     </Container>
   );
 }
