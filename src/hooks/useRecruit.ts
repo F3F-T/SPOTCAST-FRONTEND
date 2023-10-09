@@ -23,11 +23,11 @@ export default function useRecruit() {
   const [content, onChangeContent] = useInput("");
   const [profitStatus, setProfitStatus] = useState("PROFITABLE");
   const [selectedTag, setSelectedTag] = useState(3);
-  const tagOptions = (
+  const tagOptions: { label: string; value: number }[] = (
     Object.keys(CATEGORY_ID) as (keyof typeof CATEGORY_ID)[]
   ).map(label => ({
     value: CATEGORY_ID[label],
-    label,
+    label: label.toString(),
   }));
   const replacePostPage = (id: number) => {
     router.push(`/recruit/post/${id}`);
@@ -67,6 +67,7 @@ export default function useRecruit() {
     },
     [types],
   );
+
   useEffect(() => {
     if (types[0].selected && !types[1].selected)
       setProfitStatus(types[0].profitStatus);
@@ -82,7 +83,7 @@ export default function useRecruit() {
       phone,
       pay,
       participationPeriod,
-      recruitVolume: +recruitVolume,
+      recruitVolume,
       recruitType,
       profitStatus,
       production,
@@ -95,6 +96,7 @@ export default function useRecruit() {
         id: me.id,
       },
     };
+    console.log(data);
     await postBoard(data);
   };
   const inputs = [
