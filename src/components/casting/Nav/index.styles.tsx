@@ -9,7 +9,7 @@ export const CategoryList = styled.ul`
   border-bottom: 0.1rem solid ${GREY[300]};
 `;
 export const CategoryButton = styled(Button)<{ className: string }>`
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   min-width: 6rem;
   padding: 0.9rem 3rem;
   border-radius: 2.85rem;

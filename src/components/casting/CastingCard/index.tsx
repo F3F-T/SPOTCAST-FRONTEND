@@ -11,10 +11,10 @@ import {
   Remainder,
 } from "./index.styles";
 import useCasting from "../../../hooks/useCasting";
-import { CastingProps } from "../../../interface/borad";
+import { IBoard } from "../../../interface/borad";
 import { getRemainDay } from "../../../util/date";
 
-function CastingCard({ info }: { info: CastingProps }) {
+function CastingCard({ info }: { info: IBoard }) {
   const { replacePostPage } = useCasting();
   return (
     <CardContainer
@@ -39,7 +39,9 @@ function CastingCard({ info }: { info: CastingProps }) {
           <span>{info.regDate.split("T")[0]}</span> 마감
         </Date>
         <Remainder>
-          D<span>{getRemainDay(info.regDate)}</span>
+          {getRemainDay(info.regDate) < 0
+            ? "마감"
+            : `D-${getRemainDay(info.regDate)}`}
         </Remainder>
       </EndDate>
     </CardContainer>

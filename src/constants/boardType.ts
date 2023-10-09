@@ -3,7 +3,19 @@ const BOARD_TYPE = {
   CASTING_AUDITION: "CASTING_AUDITION",
 } as const;
 
-const CATEGORY_ID = {
+const PROFITABLE_STATUS = {
+  ALL: "null",
+  PROFITABLE: "PROFITABLE",
+  NON_PROFITABLE: "NON_PROFITABLE",
+} as const;
+
+const REG_STATUS = {
+  ALL: "ALL",
+  END: "END",
+  ONGOING: "ONGOING",
+} as const;
+
+const CATEGORY_ID: { [key: string]: number } = {
   실용음악: 3,
   클래식: 4,
   영화: 5,
@@ -15,4 +27,4 @@ const CATEGORY_ID = {
   기타: 11,
 };
 
-export { BOARD_TYPE, CATEGORY_ID };
+export { PROFITABLE_STATUS, REG_STATUS, BOARD_TYPE, CATEGORY_ID };

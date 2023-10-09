@@ -18,11 +18,11 @@ export default function useCasting() {
   const [supportEmail, onChangeSupportEmail] = useInput("");
   const [content, onChangeContent] = useInput("");
   const [selectedTag, setSelectedTag] = useState(3);
-  const tagOptions = (
+  const tagOptions: { label: string; value: number }[] = (
     Object.keys(CATEGORY_ID) as (keyof typeof CATEGORY_ID)[]
   ).map(label => ({
     value: CATEGORY_ID[label],
-    label,
+    label: label.toString(),
   }));
   const onSubmitForm = async () => {
     const data = {
@@ -108,6 +108,7 @@ export default function useCasting() {
       null,
       page ? +page : 0,
       12,
+      null,
     ),
   );
 

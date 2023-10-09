@@ -3,20 +3,26 @@ import React from "react";
 import { GREY, INDIGO } from "../../../constants/colors";
 import Icon from "../../common/Icon";
 import IconButton from "../../common/IconButton";
+import { getDate, getRemainDay } from "../../../util/date";
+import { IBoard } from "../../../interface/borad";
 
-export default function CardDetail() {
+export default function CardDetail({ info }: { info: IBoard }) {
   return (
     <Container>
       <Top>
-        <Badge>2일 남음</Badge>
-        <Category>영화</Category>
+        <Badge>
+          {getRemainDay(info.regDate) < 0
+            ? "진행 마감"
+            : `${getRemainDay(info.regDate)}일 남음`}
+        </Badge>
+        <Category>{info.categoryName}</Category>
         <IconWrapper>
           <IconButton IconName="heartEmpty" size="1.8rem" border={0.2} />
           <IconButton IconName="bookmarkEmpty" size="1.8rem" border={0.2} />
         </IconWrapper>
       </Top>
       <Middle>
-        <Title>{`단편영화 <이별 이야기(가제)>에서 작곡가/음악감독님을 구인합니다!`}</Title>
+        <Title>{info.title}</Title>
         <EyeWrapper>
           <Icon className="eye" size="1.5rem" color={GREY[400]} border={0.2} />
           <Eye>221</Eye>
@@ -24,8 +30,8 @@ export default function CardDetail() {
       </Middle>
       <Bottom>
         <Img />
-        <Name>강준우</Name>
-        <Date>23.02.02까지</Date>
+        <Name>{info.production}</Name>
+        <Date>{getDate(info.regDate)}까지</Date>
       </Bottom>
     </Container>
   );

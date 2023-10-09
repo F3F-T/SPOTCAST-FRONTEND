@@ -3,11 +3,11 @@ import styled from "@emotion/styled";
 import { GREY, INDIGO, WHITE } from "../../../constants/colors";
 import Icon from "../../common/Icon";
 
-export default function ApplyButton() {
+export default function ApplyButton({ remainDays }: { remainDays: number }) {
   return (
     <Container>
       <Title>
-        마감일까지<span> 16일 </span>남았어요!
+        마감일까지<span> {remainDays}일 </span>남았어요!
       </Title>
       <div>
         <IconWrapper>
