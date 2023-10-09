@@ -4,7 +4,12 @@ import { useCallback, useState, useEffect } from "react";
 import useInput from "./useInput";
 import { getMe } from "../util/lib";
 import { loadBoard, postBoard } from "../api/board";
-import { BOARD_TYPE, CATEGORY_ID, REG_STATUS } from "../constants/boardType";
+import {
+  BOARD_TYPE,
+  CATEGORY_ID,
+  PROFITABLE_STATUS,
+  REG_STATUS,
+} from "../constants/boardType";
 import swrKeys from "../constants/swrKeys";
 
 export default function useRecruit() {
@@ -96,7 +101,6 @@ export default function useRecruit() {
         id: me.id,
       },
     };
-    console.log(data);
     await postBoard(data);
   };
   const inputs = [
@@ -190,10 +194,26 @@ export default function useRecruit() {
     );
   };
 
-  const onChangeProfitable = (newProfitable: string) => {
+  type CheckProps = {
+    label: string;
+    isChecked: boolean;
+    value: string;
+  };
+
+  const onChangeProfitable = (checkList: CheckProps[]) => {
     router.replace(
-      `/recruit?category=${category}&page=0&profitable=${newProfitable}&regStatus=${regStatus}`,
+      `/recruit?category=${category}&page=0&profitable=${checkProfitStatus(
+        checkList,
+      )}&regStatus=${regStatus}`,
     );
+  };
+
+  const checkProfitStatus = (checkList: CheckProps[]) => {
+    if (checkList.every(check => check.isChecked === true))
+      return PROFITABLE_STATUS.ALL;
+    if (checkList.every(check => check.isChecked === false)) return undefined;
+    return checkList[checkList.findIndex(check => check.isChecked === true)]
+      .value;
   };
 
   const swrRecruitKey = `${swrKeys.loadRecruitKey}?category=${
@@ -237,5 +257,6 @@ export default function useRecruit() {
     onChangeRegStatus,
     regStatus,
     category,
+    profitable,
   };
 }
